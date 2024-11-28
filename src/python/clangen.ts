@@ -68,11 +68,11 @@ class Clangen implements ClangenInterface {
     }
   }
 
-  getCat(id: string): Object {
+  getCat(id: string): any {
     return {};
   }
 
-  getCats(): Array<Object> {
+  getCats(): Array<any> {
     return [];
   }
 
@@ -82,7 +82,7 @@ class Clangen implements ClangenInterface {
     `);
   }
 
-  getEvents(): Array<Object> {
+  getEvents(): Array<any> {
     const events = this.pyodide.runPython(`
       to_js([vars(event) for event in game.cur_events_list])
     `);
