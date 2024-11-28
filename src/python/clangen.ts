@@ -40,6 +40,7 @@ class Clangen implements ClangenInterface {
     try {
       this.pyodide.runPython(`
       from pyodide.ffi import to_js
+      import js
 
       from scripts.game_structure.load_cat import load_cats, version_convert
       from scripts.game_structure.game_essentials import game
@@ -84,7 +85,7 @@ class Clangen implements ClangenInterface {
 
   getEvents(): Array<any> {
     const events = this.pyodide.runPython(`
-      to_js([vars(event) for event in game.cur_events_list])
+      to_js([vars(event) for event in game.cur_events_list], dict_converter=js.Object.fromEntries)
     `);
     return events;
   }
