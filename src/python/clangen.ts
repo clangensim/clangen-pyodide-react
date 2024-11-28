@@ -91,5 +91,6 @@ class Clangen implements ClangenInterface {
 }
 
 const clangenRunner = new Clangen(pyodide);
+await clangenRunner.loadClangen();
 
 export { clangenRunner };
