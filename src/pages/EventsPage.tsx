@@ -14,9 +14,9 @@ function EventsPage() {
     <>
       <button onClick={handleMoonskip}>Moonskip</button>
       <ul>
-        {events?.map((obj, i) => {
-          if (!obj.types.includes('interaction')) {
-            return <li key={i}>{obj.text}</li>;
+        {events?.map((event, i) => {
+          if (!event.types.includes('interaction')) {
+            return <li key={i}>{event.text}</li>;
           }
         })}
       </ul>
