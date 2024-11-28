@@ -74,7 +74,18 @@ class Clangen implements ClangenInterface {
   }
 
   getCats(): Array<any> {
-    return [];
+    const cats = this.pyodide.runPython(`
+      cats = []
+      for cat in Cat.all_cats_list:
+        cats.append({
+          'ID': cat.ID,
+          'name': str(cat.name),
+          'moons': cat.moons,
+          'desc': cat.describe_cat()
+        })
+      to_js(cats, dict_converter=js.Object.fromEntries)
+    `)
+    return cats;
   }
 
   moonskip(): void {
