@@ -33,9 +33,7 @@ class Clangen implements ClangenInterface {
     this.pyodide.unpackArchive(binarySaves, "zip");
 
     // install "clangen-lite"
-    await this.pyodide.loadPackage("micropip");
-    const micropip = this.pyodide.pyimport("micropip");
-    await micropip.install("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
+    await this.pyodide.loadPackage("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
 
     // load clan
     try {
