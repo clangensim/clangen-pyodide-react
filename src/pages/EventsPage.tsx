@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { clangenRunner } from "../python/clangen";
 import Nav from "../components/Nav";
 
@@ -10,6 +10,10 @@ function EventsPage() {
     clangenRunner.moonskip();
     setEvents(clangenRunner.getEvents());
   };
+
+  useEffect(() => {
+    setEvents(clangenRunner.getEvents());
+  }, []);
 
   return (
     <>
