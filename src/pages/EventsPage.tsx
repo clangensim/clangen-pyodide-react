@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { clangenRunner } from "../python/clangen";
+import Nav from "../components/Nav";
 
 function EventsPage() {
 
@@ -12,6 +13,7 @@ function EventsPage() {
 
   return (
     <>
+      <Nav />
       <button onClick={handleMoonskip}>Moonskip</button>
       <ul>
         {events?.map((event, i) => {

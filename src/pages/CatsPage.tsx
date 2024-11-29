@@ -1,8 +1,10 @@
 import { clangenRunner } from "../python/clangen"
+import Nav from "../components/Nav";
 
 function CatsPage() {
 
-  return (
+  return (<>
+    <Nav />
     <ul>
       { clangenRunner.getCats().map((cat) => {
         return (
@@ -12,7 +14,7 @@ function CatsPage() {
         )
       }) }
     </ul>
-  )
+  </>)
 }
 
 export default CatsPage;
