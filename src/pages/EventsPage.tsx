@@ -5,19 +5,23 @@ import Nav from "../components/Nav";
 function EventsPage() {
 
   const [events, setEvents] = useState<Array<any>>();
+  const [clanAge, setClanAge] = useState<Number>(0);
 
   function handleMoonskip() {
     clangenRunner.moonskip();
     setEvents(clangenRunner.getEvents());
+    setClanAge(clangenRunner.getClanAge());
   };
 
   useEffect(() => {
+    setClanAge(clangenRunner.getClanAge());
     setEvents(clangenRunner.getEvents());
   }, []);
 
   return (
     <>
       <Nav />
+      <div>{clanAge.toString()} Moons</div>
       <button onClick={handleMoonskip}>Moonskip</button>
       <ul>
         {events?.map((event, i) => {

@@ -6,6 +6,7 @@ interface ClangenInterface {
   moonskip(): void;
   getEvents(): Array<Object>;
   getCats(): Array<Object>
+  getClanAge(): Number;
 }
 
 class Clangen implements ClangenInterface {
@@ -99,6 +100,13 @@ class Clangen implements ClangenInterface {
       to_js([vars(event) for event in game.cur_events_list], dict_converter=js.Object.fromEntries)
     `);
     return events;
+  }
+
+  getClanAge(): Number {
+    const age = this.pyodide.runPython(`
+      game.clan.age
+    `);
+    return age;
   }
 }
 
