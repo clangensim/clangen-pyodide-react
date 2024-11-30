@@ -6,6 +6,20 @@ type Cat = {
   name: string;
 }
 
+type Relationship = {
+  cat_to_id: string;
+  cat_from_id: string;
+  mates: boolean;
+  family: boolean;
+  romantic_love: Number;
+  platonic_like: Number;
+  dislike: Number;
+  admiration: Number;
+  comfortable: Number;
+  jealousy: Number;
+  trust: Number;
+}
+
 interface ClangenInterface {
   getCat(id: string): Cat | undefined;
   moonskip(): void;
@@ -106,7 +120,7 @@ class Clangen implements ClangenInterface {
     return cats;
   }
 
-  public getRelationships(id: string | undefined): Array<Object> {
+  public getRelationships(id: string | undefined): Array<Relationship> {
     if (id === undefined) {
       return [];
     }
