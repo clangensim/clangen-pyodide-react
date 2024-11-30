@@ -15,34 +15,34 @@ interface ClangenInterface {
 }
 
 class Clangen implements ClangenInterface {
-  pyodide;
+  private _pyodide;
 
   constructor(pyodide: PyodideInterface) {
-    this.pyodide = pyodide;
+    this._pyodide = pyodide;
   }
 
-  async loadClangen(): Promise<void> {
+  public async loadClangen(): Promise<void> {
     // load resources
     let zipResources = await fetch("/bin/resources.zip");
     let binaryResources = await zipResources.arrayBuffer();
-    this.pyodide.unpackArchive(binaryResources, "zip");
+    this._pyodide.unpackArchive(binaryResources, "zip");
 
     // load "sprites" (actually just tints)
     let zipSprites = await fetch("/bin/sprites.zip");
     let binarySprites = await zipSprites.arrayBuffer();
-    this.pyodide.unpackArchive(binarySprites, "zip");
+    this._pyodide.unpackArchive(binarySprites, "zip");
 
     // load saves (for testing)
     let zipSaves = await fetch("/bin/saves.zip");
     let binarySaves = await zipSaves.arrayBuffer();
-    this.pyodide.unpackArchive(binarySaves, "zip");
+    this._pyodide.unpackArchive(binarySaves, "zip");
 
     // install "clangen-lite"
-    await this.pyodide.loadPackage("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
+    await this._pyodide.loadPackage("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
 
     // load clan
     try {
-      this.pyodide.runPython(`
+      this._pyodide.runPython(`
       from pyodide.ffi import to_js
       import js
 
@@ -73,13 +73,13 @@ class Clangen implements ClangenInterface {
     }
   }
 
-  getCat(id: string | undefined): Cat | undefined {
+  public getCat(id: string | undefined): Cat | undefined {
     if (id === undefined) {
       return undefined;
     }
     // is there a better way of doing this?
     const locals = pyodide.toPy({ cat_id: id });
-    const cat = this.pyodide.runPython(`
+    const cat = this._pyodide.runPython(`
       cat = Cat.all_cats[cat_id]
       to_js({
         'ID': cat.ID,
@@ -89,8 +89,8 @@ class Clangen implements ClangenInterface {
     return cat;
   }
 
-  getCats(): Array<any> {
-    const cats = this.pyodide.runPython(`
+  public getCats(): Array<any> {
+    const cats = this._pyodide.runPython(`
       cats = []
       for cat in Cat.all_cats_list:
         cats.append({
@@ -104,21 +104,21 @@ class Clangen implements ClangenInterface {
     return cats;
   }
 
-  moonskip(): void {
-    this.pyodide.runPython(`
+  public moonskip(): void {
+    this._pyodide.runPython(`
       events_class.one_moon()
     `);
   }
 
-  getEvents(): Array<any> {
-    const events = this.pyodide.runPython(`
+  public getEvents(): Array<any> {
+    const events = this._pyodide.runPython(`
       to_js([vars(event) for event in game.cur_events_list], dict_converter=js.Object.fromEntries)
     `);
     return events;
   }
 
-  getClanAge(): Number {
-    const age = this.pyodide.runPython(`
+  public getClanAge(): Number {
+    const age = this._pyodide.runPython(`
       game.clan.age
     `);
     return age;
