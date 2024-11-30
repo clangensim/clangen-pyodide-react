@@ -12,6 +12,7 @@ interface ClangenInterface {
   getEvents(): Array<Object>;
   getCats(): Array<Object>
   getClanAge(): Number;
+  getRelationships(id: string): Array<Object>;
 }
 
 class Clangen implements ClangenInterface {
@@ -103,6 +104,40 @@ class Clangen implements ClangenInterface {
       to_js(cats, dict_converter=js.Object.fromEntries)
     `)
     return cats;
+  }
+
+  public getRelationships(id: string | undefined): Array<Object> {
+    if (id === undefined) {
+      return [];
+    }
+
+    // is there a better way of doing this?
+    const locals = pyodide.toPy({ cat_id: id });
+    const rels = this._pyodide.runPython(`
+      rels = []
+      cat = Cat.all_cats[cat_id]
+      cat_rels = rel = sorted(cat.relationships.values(),
+                             key=lambda x: sum(map(abs, [x.romantic_love, x.platonic_like, x.dislike,
+                             x.admiration, x.comfortable, x.jealousy, x.trust])),
+                             reverse=True)
+      for rel in cat_rels:
+        rels.append({
+          'cat_to_id': cat_id,
+          'cat_from_id': rel.cat_to.ID,
+          'mates': rel.mates,
+          'family': rel.family,
+          'romantic_love': rel.romantic_love,
+          'platonic_like': rel.platonic_like,
+          'dislike': rel.dislike,
+          'admiration': rel.admiration,
+          'comfortable': rel.comfortable,
+          'jealousy': rel.jealousy,
+          'trust': rel.trust
+        })
+      to_js(rels, dict_converter=js.Object.fromEntries)
+    `, { locals: locals });
+    locals.destroy();
+    return rels;
   }
 
   public moonskip(): void {

@@ -1,7 +1,7 @@
 import { clangenRunner, Cat } from "../python/clangen"
 import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 function CatProfilePage() {
 
@@ -16,6 +16,7 @@ function CatProfilePage() {
     <>
       <Nav />
       { cat?.name }
+      <Link to={`/cats/${params.id}/relationships`}>Relationships</Link>
     </>
   )
 }
