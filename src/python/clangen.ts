@@ -1,8 +1,13 @@
 import { PyodideInterface } from "pyodide";
 import pyodide from "./pyodide";
 
+type Cat = {
+  ID: string;
+  name: string;
+}
+
 interface ClangenInterface {
-  getCat(id: string): Object;
+  getCat(id: string): Cat | undefined;
   moonskip(): void;
   getEvents(): Array<Object>;
   getCats(): Array<Object>
@@ -68,8 +73,20 @@ class Clangen implements ClangenInterface {
     }
   }
 
-  getCat(id: string): any {
-    return {};
+  getCat(id: string | undefined): Cat | undefined {
+    if (id === undefined) {
+      return undefined;
+    }
+    // is there a better way of doing this?
+    const locals = pyodide.toPy({ cat_id: id });
+    const cat = this.pyodide.runPython(`
+      cat = Cat.all_cats[cat_id]
+      to_js({
+        'ID': cat.ID,
+        'name': str(cat.name)
+        }, dict_converter=js.Object.fromEntries)
+    `, { locals: locals });
+    return cat;
   }
 
   getCats(): Array<any> {
@@ -112,3 +129,4 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
+export type { Cat };
