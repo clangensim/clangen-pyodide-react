@@ -86,6 +86,7 @@ class Clangen implements ClangenInterface {
         'name': str(cat.name)
         }, dict_converter=js.Object.fromEntries)
     `, { locals: locals });
+    locals.destroy();
     return cat;
   }
 
