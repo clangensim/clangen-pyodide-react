@@ -20,6 +20,12 @@ type Relationship = {
   trust: Number;
 }
 
+type Event = {
+  text: string;
+  types: Array<string>;
+  cats_involved: Array<string>;
+}
+
 interface ClangenInterface {
   getCat(id: string): Cat | undefined;
   moonskip(): void;
@@ -160,7 +166,7 @@ class Clangen implements ClangenInterface {
     `);
   }
 
-  public getEvents(): Array<any> {
+  public getEvents(): Array<Event> {
     const events = this._pyodide.runPython(`
       to_js([vars(event) for event in game.cur_events_list], dict_converter=js.Object.fromEntries)
     `);
