@@ -185,4 +185,4 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
-export type { Cat };
+export type { Cat, Relationship, Event };
