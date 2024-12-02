@@ -142,8 +142,8 @@ class Clangen implements ClangenInterface {
                              reverse=True)
       for rel in cat_rels:
         rels.append({
-          'cat_to_id': cat_id,
-          'cat_from_id': rel.cat_to.ID,
+          'cat_to_id': rel.cat_to.ID,
+          'cat_from_id': cat_id,
           'mates': rel.mates,
           'family': rel.family,
           'romantic_love': rel.romantic_love,
