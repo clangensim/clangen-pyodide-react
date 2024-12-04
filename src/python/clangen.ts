@@ -17,6 +17,7 @@ type Pelt = {
 type Cat = {
   ID: string;
   name: string;
+  pelt: Pelt;
 }
 
 type Relationship = {
