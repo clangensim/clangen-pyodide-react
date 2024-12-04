@@ -10,7 +10,7 @@ function CatsPage() {
       { clangenRunner.getCats().map((cat) => {
         return (
           <li>
-            <Link to={`/cats/${cat.ID}`}>{cat.name} ({cat.ID})</Link>
+            <Link to={`/cats/${cat.ID}`}>{cat.name} - {cat.desc} </Link>
           </li>
         )
       }) }
