@@ -1,6 +1,26 @@
 import { PyodideInterface } from "pyodide";
 import pyodide from "./pyodide";
 
+type Pelt = {
+  name: string;
+  color: string;
+  spritesName: string;
+  whitePatches: string | null;
+  points: string | null;
+  vitiligo: string | null;
+  eyeColour: string;
+  eyeColour2: string | null;
+  scars: Array<string> | null;
+
+  kittenSprite: number;
+  adolSprite: number;
+  youngAdultSprite: number;
+  adultSprite: number;
+  seniorAdultSprite: number;
+  seniorSprite: number;
+  paraAdultSprite: number;
+}
+
 type Cat = {
   ID: string;
   name: string;
@@ -185,4 +205,4 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
-export type { Cat, Relationship, Event };
+export type { Cat, Pelt, Relationship, Event };
