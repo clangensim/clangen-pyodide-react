@@ -6,9 +6,7 @@ import Sprite from "./Sprite";
   TODO:
     tortie/calico, tints, masks, scars, dead lineart
 */
-function CatDisplay({ pelt, age }: { pelt: Pelt | undefined, age: string | undefined }) {
-  if (pelt === undefined || age === undefined ) { return <></> }
-
+function CatDisplay({ pelt, age }: { pelt: Pelt, age: string }) {
   const catSprite = pelt.catSprites[age]
 
   if (pelt.name === 'Tortie' || pelt.name === 'Calico') { return <>ERROR</> }
