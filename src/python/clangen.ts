@@ -18,6 +18,7 @@ type Cat = {
   ID: string;
   name: string;
   pelt: Pelt;
+  age: string;
 }
 
 type Relationship = {
@@ -118,7 +119,20 @@ class Clangen implements ClangenInterface {
       cat = Cat.all_cats[cat_id]
       to_js({
         'ID': cat.ID,
-        'name': str(cat.name)
+        'name': str(cat.name),
+        'age': cat.age,
+        'pelt': {
+          'name': cat.pelt.name,
+          'colour': cat.pelt.colour,
+          'spritesName': cat.pelt.get_sprites_name(),
+          'whitePatches': cat.pelt.white_patches,
+          'points': cat.pelt.points,
+          'vitiligo': cat.pelt.vitiligo,
+          'eyeColour': cat.pelt.eye_colour,
+          'eyeColour2': cat.pelt.eye_colour2,
+          'scars': cat.pelt.scars,
+          'catSprites': cat.pelt.cat_sprites
+          }
         }, dict_converter=js.Object.fromEntries)
     `, { locals: locals });
     locals.destroy();
