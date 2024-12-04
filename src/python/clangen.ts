@@ -3,22 +3,15 @@ import pyodide from "./pyodide";
 
 type Pelt = {
   name: string;
-  color: string;
+  colour: string;
   spritesName: string;
-  whitePatches: string | null;
-  points: string | null;
-  vitiligo: string | null;
+  whitePatches: string | undefined;
+  points: string | undefined;
+  vitiligo: string | undefined;
   eyeColour: string;
-  eyeColour2: string | null;
-  scars: Array<string> | null;
-
-  kittenSprite: number;
-  adolSprite: number;
-  youngAdultSprite: number;
-  adultSprite: number;
-  seniorAdultSprite: number;
-  seniorSprite: number;
-  paraAdultSprite: number;
+  eyeColour2: string | undefined;
+  scars: Array<string> | undefined;
+  catSprites: Record<string, number>;
 }
 
 type Cat = {
