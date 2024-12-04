@@ -15,7 +15,8 @@ function Sprite({ spriteName, spriteNumber }: { spriteName: string, spriteNumber
         background: `url(/sprites/${spritesIndex[spriteKey].spritesheet}.png) -${spriteXOffset}px -${spriteYOffset}px`,
         height: '50px',
         width: '50px',
-        imageRendering: 'pixelated'
+        imageRendering: 'pixelated',
+        position: 'absolute'
       }}>
       </div>
     </>
