@@ -12,7 +12,7 @@ function Sprite({ spriteName, spriteNumber }: { spriteName: string, spriteNumber
   return (
     <>
       <div style={{
-        background: `url(/sprites/${spritesIndex[spriteKey].spritesheet}.png) ${spriteXOffset}px ${spriteYOffset}px`,
+        background: `url(/sprites/${spritesIndex[spriteKey].spritesheet}.png) -${spriteXOffset}px -${spriteYOffset}px`,
         height: '50px',
         width: '50px',
         imageRendering: 'pixelated'
