@@ -16,8 +16,14 @@ function CatProfilePage() {
   return (
     <>
       <Nav />
-      { cat?.name }
-      <Link to={`/cats/${params.id}/relationships`}>Relationships</Link>
+
+      { cat &&
+        <>
+          {cat.name}
+
+          <Link to={`/cats/${catID}/relationships`}>Relationships</Link>
+        </>
+      }
     </>
   )
 }
