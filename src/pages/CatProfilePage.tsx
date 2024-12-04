@@ -7,9 +7,10 @@ function CatProfilePage() {
 
   const [cat, setCat] = useState<Cat>();
   const params = useParams();
+  const catID = params.id as string;
 
   useEffect(() => {
-    setCat(clangenRunner.getCat(params.id));
+    setCat(clangenRunner.getCat(catID));
   }, []);
 
   return (

@@ -109,10 +109,7 @@ class Clangen implements ClangenInterface {
     }
   }
 
-  public getCat(id: string | undefined): Cat | undefined {
-    if (id === undefined) {
-      return undefined;
-    }
+  public getCat(id: string): Cat | undefined {
     // is there a better way of doing this?
     const locals = pyodide.toPy({ cat_id: id });
     const cat = this._pyodide.runPython(`
