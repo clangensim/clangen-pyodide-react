@@ -43,27 +43,35 @@ class Clangen implements ClangenInterface {
   }
 
   public async loadClangen(): Promise<void> {
+    let mountDir = "/mnt";
+    this._pyodide.FS.mkdirTree(mountDir);
+    this._pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, {}, mountDir);
+
     // load resources
     let zipResources = await fetch("/bin/resources.zip");
     let binaryResources = await zipResources.arrayBuffer();
-    this._pyodide.unpackArchive(binaryResources, "zip");
+    this._pyodide.unpackArchive(binaryResources, "zip", { extractDir: "/mnt" });
 
     // load "sprites" (actually just tints)
     let zipSprites = await fetch("/bin/sprites.zip");
     let binarySprites = await zipSprites.arrayBuffer();
-    this._pyodide.unpackArchive(binarySprites, "zip");
+    this._pyodide.unpackArchive(binarySprites, "zip", { extractDir: "/mnt" });
 
-    // load saves (for testing)
-    let zipSaves = await fetch("/bin/saves.zip");
+    let zipSaves = await fetch("/bin/saves-no-folder.zip");
     let binarySaves = await zipSaves.arrayBuffer();
-    this._pyodide.unpackArchive(binarySaves, "zip");
+    this._pyodide.unpackArchive(binarySaves, "zip", { extractDir: "/mnt/saves" });
 
     // install "clangen-lite"
     await this._pyodide.loadPackage("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
 
+    this._pyodide.FS.syncfs(false, (err: Error) => {console.error(err)})
+
     // load clan
     try {
       this._pyodide.runPython(`
+      import os
+      os.chdir("/mnt")
+
       from pyodide.ffi import to_js
       import js
 
