@@ -1,6 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router'
+
+import './styles/base.css';
+
 import App from './App.tsx'
 import EventsPage from './pages/EventsPage.tsx'
 import CatsPage from './pages/CatsPage.tsx'
