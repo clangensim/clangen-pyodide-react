@@ -3,6 +3,7 @@ import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import CatDisplay from "../components/CatDisplay";
+import CatProfile from "../components/CatProfile";
 
 function CatProfilePage() {
 
@@ -20,9 +21,11 @@ function CatProfilePage() {
 
       { cat &&
         <>
-          {cat.name}
+          {cat.name} (#{ cat.ID })
 
           <CatDisplay pelt={cat.pelt} age={cat.age}/>
+
+          <CatProfile cat={cat} />
 
           <Link to={`/cats/${catID}/relationships`}>Relationships</Link>
         </>

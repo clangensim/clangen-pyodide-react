@@ -17,6 +17,8 @@ type Pelt = {
 type Cat = {
   ID: string;
   name: string;
+  moons: number;
+  status: string;
   pelt: Pelt;
   age: string;
 }
@@ -118,6 +120,8 @@ class Clangen implements ClangenInterface {
         'ID': cat.ID,
         'name': str(cat.name),
         'age': cat.age,
+        'moons': cat.moons,
+        'status': cat.status,
         'pelt': {
           'name': cat.pelt.name,
           'colour': cat.pelt.colour,
