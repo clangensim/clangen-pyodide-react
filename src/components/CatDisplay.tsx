@@ -33,6 +33,19 @@ async function drawSprite(spriteName: string, spriteNumber: number, ctx: any) {
   ctx.drawImage(img, spritePosition.x, spritePosition.y, 50, 50, 0, 0, 50, 50);
 }
 
+async function drawMaskedSprite(spriteName: string, maskSpriteName: string, spriteNumber: number, ctx: any) {
+  const offscreen = new OffscreenCanvas(50, 50);
+  const offscreenContext = offscreen.getContext("2d");
+
+  if (offscreenContext !== null) {
+    await drawSprite(maskSpriteName, spriteNumber, offscreenContext);
+    offscreenContext.globalCompositeOperation = "source-in";
+    await drawSprite(spriteName, spriteNumber, offscreenContext);
+
+    ctx.drawImage(offscreen, 0, 0);
+  }
+}
+
 /* 
   TODO:
     tortie/calico, tints, masks, scars, dead lineart
