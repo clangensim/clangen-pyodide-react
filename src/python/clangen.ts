@@ -4,6 +4,10 @@ import pyodide from "./pyodide";
 type Pelt = {
   name: string;
   colour: string;
+  pattern: string | undefined;
+  tortieBase: string | undefined;
+  tortiePattern: string | undefined;
+  tortieColour: string | undefined;
   spritesName: string;
   whitePatches: string | undefined;
   points: string | undefined;
@@ -125,6 +129,10 @@ class Clangen implements ClangenInterface {
         'pelt': {
           'name': cat.pelt.name,
           'colour': cat.pelt.colour,
+          'pattern': cat.pelt.pattern,
+          'tortieBase': cat.pelt.tortiebase,
+          'tortiePattern': cat.pelt.tortiepattern,
+          'tortieColour': cat.pelt.tortiecolour,
           'spritesName': cat.pelt.get_sprites_name(),
           'whitePatches': cat.pelt.white_patches,
           'points': cat.pelt.points,
@@ -154,6 +162,10 @@ class Clangen implements ClangenInterface {
           'pelt': {
             'name': cat.pelt.name,
             'colour': cat.pelt.colour,
+            'pattern': cat.pelt.pattern,
+            'tortieBase': cat.pelt.tortiebase,
+            'tortiePattern': cat.pelt.tortiepattern,
+            'tortieColour': cat.pelt.tortiecolour,
             'spritesName': cat.pelt.get_sprites_name(),
             'whitePatches': cat.pelt.white_patches,
             'points': cat.pelt.points,

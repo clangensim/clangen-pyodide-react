@@ -33,7 +33,12 @@ async function drawSprite(spriteName: string, spriteNumber: number, ctx: any) {
   ctx.drawImage(img, spritePosition.x, spritePosition.y, 50, 50, 0, 0, 50, 50);
 }
 
-async function drawMaskedSprite(spriteName: string, maskSpriteName: string, spriteNumber: number, ctx: any) {
+async function drawMaskedSprite(
+  spriteName: string,
+  maskSpriteName: string,
+  spriteNumber: number,
+  ctx: any,
+) {
   const offscreen = new OffscreenCanvas(50, 50);
   const offscreenContext = offscreen.getContext("2d");
 
@@ -48,7 +53,7 @@ async function drawMaskedSprite(spriteName: string, maskSpriteName: string, spri
 
 /* 
   TODO:
-    tortie/calico, tints, masks, scars, dead lineart
+    tints, scars, dead lineart
 */
 function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
   const canvasRef = useRef<any>(null);
@@ -60,7 +65,26 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
       const ctx = canvas.getContext("2d");
 
       const drawCat = async () => {
-        await drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
+        if (pelt.name !== "Tortie" && pelt.name !== "Calico") {
+          await drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
+        } else {
+          await drawSprite(`${pelt.tortieBase}${pelt.colour}`, catSprite, ctx);
+
+          var tortiePattern;
+          if (pelt.tortiePattern == "Single") {
+            tortiePattern = "SingleColour";
+          } else {
+            tortiePattern = pelt.tortiePattern;
+          }
+
+          await drawMaskedSprite(
+            `${tortiePattern}${pelt.tortieColour}`,
+            `tortiemask${pelt.pattern}`,
+            catSprite,
+            ctx,
+          );
+        }
+
         if (pelt.whitePatches !== undefined) {
           await drawSprite(`white${pelt.whitePatches}`, catSprite, ctx);
         }
@@ -75,14 +99,11 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
           await drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
         }
         await drawSprite("lines", catSprite, ctx);
-      }
+      };
       drawCat();
     }
   }, [canvasRef]);
 
-  if (pelt.name === "Tortie" || pelt.name === "Calico") {
-    return <>ERROR</>;
-  }
   return (
     <>
       <canvas
