@@ -1,64 +1,82 @@
 import { Pelt } from "../python/clangen";
 import spritesIndex from "../assets/spritesIndex.json";
 import spriteNumbers from "../assets/spritesOffsetMap.json";
+import { useEffect, useRef } from "react";
 
-function Sprite({ spriteName, spriteNumber }: { spriteName: string, spriteNumber: number }) {
+function getSpritePosition(spriteName: string, spriteNumber: number) {
   const spriteKey = spriteName as keyof typeof spritesIndex;
   const spriteXPosition = spriteNumbers[spriteNumber].x;
   const spriteYPosition = spriteNumbers[spriteNumber].y;
 
-  const spriteXOffset = spritesIndex[spriteKey].xOffset + 50 * spriteXPosition;
-  const spriteYOffset = spritesIndex[spriteKey].yOffset + 50 * spriteYPosition;
+  return {
+    url: `/sprites/${spritesIndex[spriteKey].spritesheet}.png`,
+    x: spritesIndex[spriteKey].xOffset + 50 * spriteXPosition,
+    y: spritesIndex[spriteKey].yOffset + 50 * spriteYPosition,
+  };
+}
 
-  return (
-    <>
-      <div style={{
-        background: `url(/sprites/${spritesIndex[spriteKey].spritesheet}.png) -${spriteXOffset}px -${spriteYOffset}px`,
-        height: '50px',
-        width: '50px',
-        imageRendering: 'pixelated',
-        position: 'absolute'
-      }}>
-      </div>
-    </>
-  )
+async function loadImage(url: string) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = url;
+
+    img.addEventListener("load", () => {
+      resolve(img);
+    });
+  });
+}
+
+async function drawSprite(spriteName: string, spriteNumber: number, ctx: any) {
+  const spritePosition = getSpritePosition(spriteName, spriteNumber);
+
+  const img = await loadImage(spritePosition.url);
+  ctx.drawImage(img, spritePosition.x, spritePosition.y, 50, 50, 0, 0, 50, 50);
 }
 
 /* 
   TODO:
     tortie/calico, tints, masks, scars, dead lineart
 */
-function CatDisplay({ pelt, age }: { pelt: Pelt, age: string }) {
-  const catSprite = pelt.catSprites[age]
+function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
+  const canvasRef = useRef<any>(null);
+  const catSprite = pelt.catSprites[age];
 
-  if (pelt.name === 'Tortie' || pelt.name === 'Calico') { return <>ERROR</> }
+  useEffect(() => {
+    if (canvasRef.current !== null) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+
+      drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
+      if (pelt.whitePatches !== undefined) {
+        drawSprite(`white${pelt.whitePatches}`, catSprite, ctx);
+      }
+      if (pelt.points !== undefined) {
+        drawSprite(`white${pelt.points}`, catSprite, ctx);
+      }
+      if (pelt.vitiligo !== undefined) {
+        drawSprite(`white${pelt.vitiligo}`, catSprite, ctx);
+      }
+      drawSprite(`eyes${pelt.eyeColour}`, catSprite, ctx);
+      if (pelt.eyeColour2 !== undefined) {
+        drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
+      }
+      drawSprite("lines", catSprite, ctx);
+    }
+  }, [canvasRef]);
+
+  if (pelt.name === "Tortie" || pelt.name === "Calico") {
+    return <>ERROR</>;
+  }
   return (
     <>
-      <div style={{height: '50px', width: '50px', position: 'relative'}}>
-        <Sprite spriteName={`${pelt.spritesName}${pelt.colour}`} spriteNumber={catSprite} />
-
-        { pelt.whitePatches !== undefined && 
-          <Sprite spriteName={`white${pelt.whitePatches}`} spriteNumber={catSprite} />
-        }
-
-        { pelt.points !== undefined && 
-          <Sprite spriteName={`white${pelt.points}`} spriteNumber={catSprite} />
-        }
-
-        { pelt.vitiligo !== undefined && 
-          <Sprite spriteName={`white${pelt.vitiligo}`} spriteNumber={catSprite} />
-        }
-
-        <Sprite spriteName={`eyes${pelt.eyeColour}`} spriteNumber={catSprite} />
-
-        { pelt.eyeColour2 !== undefined && 
-          <Sprite spriteName={`eyes2${pelt.eyeColour2}`} spriteNumber={catSprite} />
-        }
-
-        <Sprite spriteName="lines" spriteNumber={catSprite} />
-      </div>
+      <canvas
+        style={{ imageRendering: "pixelated" }}
+        width={50}
+        height={50}
+        ref={canvasRef}
+      />
     </>
-  )
+  );
 }
 
 export default CatDisplay;
