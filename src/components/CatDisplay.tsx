@@ -46,21 +46,24 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
 
-      drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
-      if (pelt.whitePatches !== undefined) {
-        drawSprite(`white${pelt.whitePatches}`, catSprite, ctx);
+      const drawCat = async () => {
+        await drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
+        if (pelt.whitePatches !== undefined) {
+          await drawSprite(`white${pelt.whitePatches}`, catSprite, ctx);
+        }
+        if (pelt.points !== undefined) {
+          await drawSprite(`white${pelt.points}`, catSprite, ctx);
+        }
+        if (pelt.vitiligo !== undefined) {
+          await drawSprite(`white${pelt.vitiligo}`, catSprite, ctx);
+        }
+        await drawSprite(`eyes${pelt.eyeColour}`, catSprite, ctx);
+        if (pelt.eyeColour2 !== undefined) {
+          await drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
+        }
+        await drawSprite("lines", catSprite, ctx);
       }
-      if (pelt.points !== undefined) {
-        drawSprite(`white${pelt.points}`, catSprite, ctx);
-      }
-      if (pelt.vitiligo !== undefined) {
-        drawSprite(`white${pelt.vitiligo}`, catSprite, ctx);
-      }
-      drawSprite(`eyes${pelt.eyeColour}`, catSprite, ctx);
-      if (pelt.eyeColour2 !== undefined) {
-        drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
-      }
-      drawSprite("lines", catSprite, ctx);
+      drawCat();
     }
   }, [canvasRef]);
 
