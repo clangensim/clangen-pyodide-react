@@ -13,6 +13,8 @@ function CatsPage() {
           <th>#ID</th>
           <th>Sprite</th>
           <th>Name</th>
+          <th>Age (moons)</th>
+          <th>Status</th>
         </thead>
         <tbody>
           { clangenRunner.getCats().map((cat) => {
@@ -21,6 +23,8 @@ function CatsPage() {
                 <td>{cat.ID}</td>
                 <td><CatDisplay pelt={cat.pelt} age={cat.age}/></td>
                 <td><Link to={`/cats/${cat.ID}`}> { cat.name } </Link></td>
+                <td> {cat.moons} </td>
+                <td>{ cat.status } </td>
               </tr>
             )
           }) }
