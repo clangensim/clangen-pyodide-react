@@ -186,6 +186,7 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
           await drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
         }
         await drawSprite("lines", catSprite, ctx);
+        await drawSprite(`skin${pelt.skin}`, catSprite, ctx);
       };
       drawCat();
     }
