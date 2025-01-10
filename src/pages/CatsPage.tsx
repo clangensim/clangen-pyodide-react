@@ -10,7 +10,7 @@ function CatsPage() {
     <div className="list" role="listbox">
       <table className="detailed" >
         <thead>
-          <th>ID</th>
+          <th>#ID</th>
           <th>Sprite</th>
           <th>Name</th>
         </thead>
