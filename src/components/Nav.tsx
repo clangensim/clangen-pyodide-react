@@ -2,18 +2,10 @@ import { Link } from "react-router";
 
 function Nav() {
   return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/events">Events</Link>
-        </li>
-        <li>
-          <Link to="/cats">Cats</Link>
-        </li>
-      </ul>
+    <div style={{marginBottom: "1em"}}>
+      <Link className="button" to="/">Home</Link>
+      <Link className="button" to="/events">Events</Link>
+      <Link className="button" to="/cats">Cats</Link>
     </div>
   )
 }
