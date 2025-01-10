@@ -1,6 +1,7 @@
 import { Pelt } from "../python/clangen";
 import tints from "../assets/tints/tint.json";
 import whitePatchesTints from "../assets/tints/white_patches_tint.json";
+import peltInfo from "../assets/peltInfo.json";
 import spritesIndex from "../assets/spritesIndex.json";
 import spriteNumbers from "../assets/spritesOffsetMap.json";
 import { useEffect, useRef } from "react";
@@ -185,6 +186,18 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
         if (pelt.eyeColour2 !== undefined) {
           await drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
         }
+
+        if (pelt.scars !== undefined) {
+          for (const scar of pelt.scars) {
+            if (peltInfo.scars1.includes(scar)) {
+              await drawSprite(`scars${scar}`, catSprite, ctx);
+            }
+            if (peltInfo.scars3.includes(scar)) {
+              await drawSprite(`scars${scar}`, catSprite, ctx);
+            }
+          }
+        }
+
         await drawSprite("lines", catSprite, ctx);
         await drawSprite(`skin${pelt.skin}`, catSprite, ctx);
       };
