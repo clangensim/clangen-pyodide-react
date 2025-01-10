@@ -1,4 +1,5 @@
 import { Pelt } from "../python/clangen";
+import tints from "../assets/tints/tint.json";
 import spritesIndex from "../assets/spritesIndex.json";
 import spriteNumbers from "../assets/spritesOffsetMap.json";
 import { useEffect, useRef } from "react";
@@ -31,6 +32,34 @@ async function drawSprite(spriteName: string, spriteNumber: number, ctx: any) {
 
   const img = await loadImage(spritePosition.url);
   ctx.drawImage(img, spritePosition.x, spritePosition.y, 50, 50, 0, 0, 50, 50);
+}
+
+async function drawTint(
+  tint: number[] | null,
+  blendingMode: "multiply" | "lighter",
+  ctx: any,
+) {
+  if (tint === null) {
+    return;
+  }
+  const compositeOperation = ctx.globalCompositeOperation;
+  ctx.globalCompositeOperation = blendingMode;
+
+  const hexTint = `#${tint[0].toString(16)}${tint[1].toString(16)}${tint[2].toString(16)}`;
+
+  const offscreen = new OffscreenCanvas(50, 50);
+  const offscreenContext = offscreen.getContext("2d");
+
+  if (offscreenContext !== null) {
+    const imageData = ctx.getImageData(0, 0, 50, 50);
+    offscreenContext.putImageData(imageData, 0, 0);
+    offscreenContext.globalCompositeOperation = "source-in";
+    offscreenContext.fillStyle = hexTint;
+    offscreenContext.fillRect(0, 0, 50, 50);
+  }
+  ctx.drawImage(offscreen, 0, 0);
+
+  ctx.globalCompositeOperation = compositeOperation;
 }
 
 async function drawMaskedSprite(
@@ -83,6 +112,21 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
             catSprite,
             ctx,
           );
+        }
+
+        if (
+          pelt.tint !== "none" &&
+          Object.keys(tints.tint_colours).includes(pelt.tint)
+        ) {
+          const tint = pelt.tint as keyof typeof tints.tint_colours;
+          await drawTint(tints.tint_colours[tint], "multiply", ctx);
+        }
+        if (
+          pelt.tint !== "none" &&
+          Object.keys(tints.dilute_tint_colours).includes(pelt.tint)
+        ) {
+          const tint = pelt.tint as keyof typeof tints.tint_colours;
+          await drawTint(tints.tint_colours[tint], "lighter", ctx);
         }
 
         if (pelt.whitePatches !== undefined) {
