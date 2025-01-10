@@ -7,16 +7,26 @@ function CatsPage() {
 
   return (<>
     <Nav />
-    <ul>
-      { clangenRunner.getCats().map((cat) => {
-        return (
-          <li>
-            <CatDisplay pelt={cat.pelt} age={cat.age}/>
-            <Link to={`/cats/${cat.ID}`}> { cat.name } </Link>
-          </li>
-        )
-      }) }
-    </ul>
+    <div className="list" role="listbox">
+      <table className="detailed" >
+        <thead>
+          <th>ID</th>
+          <th>Sprite</th>
+          <th>Name</th>
+        </thead>
+        <tbody>
+          { clangenRunner.getCats().map((cat) => {
+            return (
+              <tr>
+                <td>{cat.ID}</td>
+                <td><CatDisplay pelt={cat.pelt} age={cat.age}/></td>
+                <td><Link to={`/cats/${cat.ID}`}> { cat.name } </Link></td>
+              </tr>
+            )
+          }) }
+        </tbody>
+      </table>
+    </div>
   </>)
 }
 
