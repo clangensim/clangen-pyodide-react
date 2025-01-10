@@ -1,5 +1,6 @@
 import { Pelt } from "../python/clangen";
 import tints from "../assets/tints/tint.json";
+import whitePatchesTints from "../assets/tints/white_patches_tint.json";
 import spritesIndex from "../assets/spritesIndex.json";
 import spriteNumbers from "../assets/spritesOffsetMap.json";
 import { useEffect, useRef } from "react";
@@ -82,7 +83,7 @@ async function drawMaskedSprite(
 
 /* 
   TODO:
-    tints, scars, dead lineart
+    scars, dead lineart
 */
 function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
   const canvasRef = useRef<any>(null);
@@ -130,10 +131,52 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
         }
 
         if (pelt.whitePatches !== undefined) {
-          await drawSprite(`white${pelt.whitePatches}`, catSprite, ctx);
+          const offscreen = new OffscreenCanvas(50, 50);
+          const offscreenContext = offscreen.getContext("2d");
+          if (
+            pelt.whitePatchesTint !== "none" &&
+            Object.keys(whitePatchesTints.tint_colours).includes(
+              pelt.whitePatchesTint,
+            )
+          ) {
+            await drawSprite(
+              `white${pelt.whitePatches}`,
+              catSprite,
+              offscreenContext,
+            );
+            const tint =
+              pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
+            await drawTint(
+              whitePatchesTints.tint_colours[tint],
+              "multiply",
+              offscreenContext,
+            );
+          }
+          ctx.drawImage(offscreen, 0, 0);
         }
         if (pelt.points !== undefined) {
-          await drawSprite(`white${pelt.points}`, catSprite, ctx);
+          const offscreen = new OffscreenCanvas(50, 50);
+          const offscreenContext = offscreen.getContext("2d");
+          if (
+            pelt.whitePatchesTint !== "none" &&
+            Object.keys(whitePatchesTints.tint_colours).includes(
+              pelt.whitePatchesTint,
+            )
+          ) {
+            await drawSprite(
+              `white${pelt.points}`,
+              catSprite,
+              offscreenContext,
+            );
+            const tint =
+              pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
+            await drawTint(
+              whitePatchesTints.tint_colours[tint],
+              "multiply",
+              offscreenContext,
+            );
+          }
+          ctx.drawImage(offscreen, 0, 0);
         }
         if (pelt.vitiligo !== undefined) {
           await drawSprite(`white${pelt.vitiligo}`, catSprite, ctx);
