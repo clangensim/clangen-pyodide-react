@@ -84,7 +84,7 @@ async function drawMaskedSprite(
 
 /* 
   TODO:
-    scars, dead lineart
+    missing scars, dead lineart
 */
 function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
   const canvasRef = useRef<any>(null);
