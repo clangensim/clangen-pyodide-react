@@ -18,6 +18,7 @@ type Pelt = {
   scars: Array<string> | undefined;
   tint: string;
   whitePatchesTint: string;
+  accessory: string | undefined;
   catSprites: Record<string, number>;
 }
 
@@ -146,6 +147,7 @@ class Clangen implements ClangenInterface {
           'scars': cat.pelt.scars,
           'tint': cat.pelt.tint,
           'whitePatchesTint': cat.pelt.white_patches_tint,
+          'accessory': cat.pelt.accessory,
           'catSprites': cat.pelt.cat_sprites
           }
         }, dict_converter=js.Object.fromEntries)
@@ -182,6 +184,7 @@ class Clangen implements ClangenInterface {
             'scars': cat.pelt.scars,
             'tint': cat.pelt.tint,
             'whitePatchesTint': cat.pelt.white_patches_tint,
+            'accessory': cat.pelt.accessory,
             'catSprites': cat.pelt.cat_sprites
           }
         })

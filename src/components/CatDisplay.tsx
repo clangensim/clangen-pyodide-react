@@ -200,6 +200,16 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
 
         await drawSprite("lines", catSprite, ctx);
         await drawSprite(`skin${pelt.skin}`, catSprite, ctx);
+
+        if (pelt.accessory !== undefined) {
+          if (peltInfo.plant_accessories.includes(pelt.accessory)) {
+            await drawSprite(`acc_herbs${pelt.accessory}`, catSprite, ctx);
+          } else if (peltInfo.wild_accessories.includes(pelt.accessory)) {
+            await drawSprite(`acc_wild${pelt.accessory}`, catSprite, ctx);
+          } else if (peltInfo.collars.includes(pelt.accessory)) {
+            await drawSprite(`collars${pelt.accessory}`, catSprite, ctx);
+          }
+        }
       };
       drawCat();
     }
