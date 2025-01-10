@@ -4,6 +4,11 @@ import pyodide from "./pyodide";
 type Pelt = {
   name: string;
   colour: string;
+  skin: string;
+  pattern: string | undefined;
+  tortieBase: string | undefined;
+  tortiePattern: string | undefined;
+  tortieColour: string | undefined;
   spritesName: string;
   whitePatches: string | undefined;
   points: string | undefined;
@@ -11,6 +16,9 @@ type Pelt = {
   eyeColour: string;
   eyeColour2: string | undefined;
   scars: Array<string> | undefined;
+  tint: string;
+  whitePatchesTint: string;
+  accessory: string | undefined;
   catSprites: Record<string, number>;
 }
 
@@ -125,6 +133,11 @@ class Clangen implements ClangenInterface {
         'pelt': {
           'name': cat.pelt.name,
           'colour': cat.pelt.colour,
+          'skin': cat.pelt.skin,
+          'pattern': cat.pelt.pattern,
+          'tortieBase': cat.pelt.tortiebase,
+          'tortiePattern': cat.pelt.tortiepattern,
+          'tortieColour': cat.pelt.tortiecolour,
           'spritesName': cat.pelt.get_sprites_name(),
           'whitePatches': cat.pelt.white_patches,
           'points': cat.pelt.points,
@@ -132,6 +145,9 @@ class Clangen implements ClangenInterface {
           'eyeColour': cat.pelt.eye_colour,
           'eyeColour2': cat.pelt.eye_colour2,
           'scars': cat.pelt.scars,
+          'tint': cat.pelt.tint,
+          'whitePatchesTint': cat.pelt.white_patches_tint,
+          'accessory': cat.pelt.accessory,
           'catSprites': cat.pelt.cat_sprites
           }
         }, dict_converter=js.Object.fromEntries)
@@ -154,6 +170,11 @@ class Clangen implements ClangenInterface {
           'pelt': {
             'name': cat.pelt.name,
             'colour': cat.pelt.colour,
+            'skin': cat.pelt.skin,
+            'pattern': cat.pelt.pattern,
+            'tortieBase': cat.pelt.tortiebase,
+            'tortiePattern': cat.pelt.tortiepattern,
+            'tortieColour': cat.pelt.tortiecolour,
             'spritesName': cat.pelt.get_sprites_name(),
             'whitePatches': cat.pelt.white_patches,
             'points': cat.pelt.points,
@@ -161,6 +182,9 @@ class Clangen implements ClangenInterface {
             'eyeColour': cat.pelt.eye_colour,
             'eyeColour2': cat.pelt.eye_colour2,
             'scars': cat.pelt.scars,
+            'tint': cat.pelt.tint,
+            'whitePatchesTint': cat.pelt.white_patches_tint,
+            'accessory': cat.pelt.accessory,
             'catSprites': cat.pelt.cat_sprites
           }
         })
