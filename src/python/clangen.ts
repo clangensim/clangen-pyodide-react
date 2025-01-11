@@ -1,9 +1,34 @@
 import { PyodideInterface } from "pyodide";
 import pyodide from "./pyodide";
 
+type Pelt = {
+  name: string;
+  colour: string;
+  skin: string;
+  pattern: string | undefined;
+  tortieBase: string | undefined;
+  tortiePattern: string | undefined;
+  tortieColour: string | undefined;
+  spritesName: string;
+  whitePatches: string | undefined;
+  points: string | undefined;
+  vitiligo: string | undefined;
+  eyeColour: string;
+  eyeColour2: string | undefined;
+  scars: Array<string> | undefined;
+  tint: string;
+  whitePatchesTint: string;
+  accessory: string | undefined;
+  catSprites: Record<string, number>;
+}
+
 type Cat = {
   ID: string;
   name: string;
+  moons: number;
+  status: string;
+  pelt: Pelt;
+  age: string;
 }
 
 type Relationship = {
@@ -138,22 +163,67 @@ class Clangen implements ClangenInterface {
       cat = Cat.all_cats[cat_id]
       to_js({
         'ID': cat.ID,
-        'name': str(cat.name)
+        'name': str(cat.name),
+        'age': cat.age,
+        'moons': cat.moons,
+        'status': cat.status,
+        'pelt': {
+          'name': cat.pelt.name,
+          'colour': cat.pelt.colour,
+          'skin': cat.pelt.skin,
+          'pattern': cat.pelt.pattern,
+          'tortieBase': cat.pelt.tortiebase,
+          'tortiePattern': cat.pelt.tortiepattern,
+          'tortieColour': cat.pelt.tortiecolour,
+          'spritesName': cat.pelt.get_sprites_name(),
+          'whitePatches': cat.pelt.white_patches,
+          'points': cat.pelt.points,
+          'vitiligo': cat.pelt.vitiligo,
+          'eyeColour': cat.pelt.eye_colour,
+          'eyeColour2': cat.pelt.eye_colour2,
+          'scars': cat.pelt.scars,
+          'tint': cat.pelt.tint,
+          'whitePatchesTint': cat.pelt.white_patches_tint,
+          'accessory': cat.pelt.accessory,
+          'catSprites': cat.pelt.cat_sprites
+          }
         }, dict_converter=js.Object.fromEntries)
     `, { locals: locals });
     locals.destroy();
     return cat;
   }
 
-  public getCats(): Array<any> {
+  public getCats(): Array<Cat> {
     const cats = this._pyodide.runPython(`
       cats = []
       for cat in Cat.all_cats_list:
         cats.append({
           'ID': cat.ID,
           'name': str(cat.name),
+          'age': cat.age,
           'moons': cat.moons,
-          'desc': cat.describe_cat()
+          'status': cat.status,
+          'desc': cat.describe_cat(),
+          'pelt': {
+            'name': cat.pelt.name,
+            'colour': cat.pelt.colour,
+            'skin': cat.pelt.skin,
+            'pattern': cat.pelt.pattern,
+            'tortieBase': cat.pelt.tortiebase,
+            'tortiePattern': cat.pelt.tortiepattern,
+            'tortieColour': cat.pelt.tortiecolour,
+            'spritesName': cat.pelt.get_sprites_name(),
+            'whitePatches': cat.pelt.white_patches,
+            'points': cat.pelt.points,
+            'vitiligo': cat.pelt.vitiligo,
+            'eyeColour': cat.pelt.eye_colour,
+            'eyeColour2': cat.pelt.eye_colour2,
+            'scars': cat.pelt.scars,
+            'tint': cat.pelt.tint,
+            'whitePatchesTint': cat.pelt.white_patches_tint,
+            'accessory': cat.pelt.accessory,
+            'catSprites': cat.pelt.cat_sprites
+          }
         })
       to_js(cats, dict_converter=js.Object.fromEntries)
     `)
@@ -220,4 +290,4 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
-export type { Cat, Relationship, Event };
+export type { Cat, Pelt, Relationship, Event };

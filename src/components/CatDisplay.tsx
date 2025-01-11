@@ -1,0 +1,237 @@
+import { Pelt } from "../python/clangen";
+import tints from "../assets/tints/tint.json";
+import whitePatchesTints from "../assets/tints/white_patches_tint.json";
+import peltInfo from "../assets/peltInfo.json";
+import spritesIndex from "../assets/spritesIndex.json";
+import spriteNumbers from "../assets/spritesOffsetMap.json";
+import { useEffect, useRef } from "react";
+
+function getSpritePosition(spriteName: string, spriteNumber: number) {
+  const spriteKey = spriteName as keyof typeof spritesIndex;
+  const spriteXPosition = spriteNumbers[spriteNumber].x;
+  const spriteYPosition = spriteNumbers[spriteNumber].y;
+
+  return {
+    url: `/sprites/${spritesIndex[spriteKey].spritesheet}.png`,
+    x: spritesIndex[spriteKey].xOffset + 50 * spriteXPosition,
+    y: spritesIndex[spriteKey].yOffset + 50 * spriteYPosition,
+  };
+}
+
+async function loadImage(url: string) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = url;
+
+    img.addEventListener("load", () => {
+      resolve(img);
+    });
+  });
+}
+
+async function drawSprite(spriteName: string, spriteNumber: number, ctx: any) {
+  const spritePosition = getSpritePosition(spriteName, spriteNumber);
+
+  const img = await loadImage(spritePosition.url);
+  ctx.drawImage(img, spritePosition.x, spritePosition.y, 50, 50, 0, 0, 50, 50);
+}
+
+async function drawTint(
+  tint: number[] | null,
+  blendingMode: "multiply" | "lighter",
+  ctx: any,
+) {
+  if (tint === null) {
+    return;
+  }
+  const compositeOperation = ctx.globalCompositeOperation;
+  ctx.globalCompositeOperation = blendingMode;
+
+  const hexTint = `#${tint[0].toString(16)}${tint[1].toString(16)}${tint[2].toString(16)}`;
+
+  const offscreen = new OffscreenCanvas(50, 50);
+  const offscreenContext = offscreen.getContext("2d");
+
+  if (offscreenContext !== null) {
+    const imageData = ctx.getImageData(0, 0, 50, 50);
+    offscreenContext.putImageData(imageData, 0, 0);
+    offscreenContext.globalCompositeOperation = "source-in";
+    offscreenContext.fillStyle = hexTint;
+    offscreenContext.fillRect(0, 0, 50, 50);
+  }
+  ctx.drawImage(offscreen, 0, 0);
+
+  ctx.globalCompositeOperation = compositeOperation;
+}
+
+async function drawMaskedSprite(
+  spriteName: string,
+  maskSpriteName: string,
+  spriteNumber: number,
+  ctx: any,
+) {
+  const offscreen = new OffscreenCanvas(50, 50);
+  const offscreenContext = offscreen.getContext("2d");
+
+  if (offscreenContext !== null) {
+    await drawSprite(maskSpriteName, spriteNumber, offscreenContext);
+    offscreenContext.globalCompositeOperation = "source-in";
+    await drawSprite(spriteName, spriteNumber, offscreenContext);
+
+    ctx.drawImage(offscreen, 0, 0);
+  }
+}
+
+/* 
+  TODO:
+    missing scars, dead lineart
+*/
+function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
+  const canvasRef = useRef<any>(null);
+  const catSprite = pelt.catSprites[age];
+
+  useEffect(() => {
+    if (canvasRef.current !== null) {
+      const canvas = new OffscreenCanvas(50, 50);
+      const ctx = canvas.getContext("2d");
+      if (ctx === null) {
+        return;
+      }
+
+      const drawCat = async () => {
+        if (pelt.name !== "Tortie" && pelt.name !== "Calico") {
+          await drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
+        } else {
+          await drawSprite(`${pelt.tortieBase}${pelt.colour}`, catSprite, ctx);
+
+          var tortiePattern;
+          if (pelt.tortiePattern == "Single") {
+            tortiePattern = "SingleColour";
+          } else {
+            tortiePattern = pelt.tortiePattern;
+          }
+
+          await drawMaskedSprite(
+            `${tortiePattern}${pelt.tortieColour}`,
+            `tortiemask${pelt.pattern}`,
+            catSprite,
+            ctx,
+          );
+        }
+
+        if (
+          pelt.tint !== "none" &&
+          Object.keys(tints.tint_colours).includes(pelt.tint)
+        ) {
+          const tint = pelt.tint as keyof typeof tints.tint_colours;
+          await drawTint(tints.tint_colours[tint], "multiply", ctx);
+        }
+        if (
+          pelt.tint !== "none" &&
+          Object.keys(tints.dilute_tint_colours).includes(pelt.tint)
+        ) {
+          const tint = pelt.tint as keyof typeof tints.tint_colours;
+          await drawTint(tints.tint_colours[tint], "lighter", ctx);
+        }
+
+        if (pelt.whitePatches !== undefined) {
+          const offscreen = new OffscreenCanvas(50, 50);
+          const offscreenContext = offscreen.getContext("2d");
+          if (
+            pelt.whitePatchesTint !== "none" &&
+            Object.keys(whitePatchesTints.tint_colours).includes(
+              pelt.whitePatchesTint,
+            )
+          ) {
+            await drawSprite(
+              `white${pelt.whitePatches}`,
+              catSprite,
+              offscreenContext,
+            );
+            const tint =
+              pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
+            await drawTint(
+              whitePatchesTints.tint_colours[tint],
+              "multiply",
+              offscreenContext,
+            );
+          }
+          ctx.drawImage(offscreen, 0, 0);
+        }
+        if (pelt.points !== undefined) {
+          const offscreen = new OffscreenCanvas(50, 50);
+          const offscreenContext = offscreen.getContext("2d");
+          if (
+            pelt.whitePatchesTint !== "none" &&
+            Object.keys(whitePatchesTints.tint_colours).includes(
+              pelt.whitePatchesTint,
+            )
+          ) {
+            await drawSprite(
+              `white${pelt.points}`,
+              catSprite,
+              offscreenContext,
+            );
+            const tint =
+              pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
+            await drawTint(
+              whitePatchesTints.tint_colours[tint],
+              "multiply",
+              offscreenContext,
+            );
+          }
+          ctx.drawImage(offscreen, 0, 0);
+        }
+        if (pelt.vitiligo !== undefined) {
+          await drawSprite(`white${pelt.vitiligo}`, catSprite, ctx);
+        }
+        await drawSprite(`eyes${pelt.eyeColour}`, catSprite, ctx);
+        if (pelt.eyeColour2 !== undefined) {
+          await drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
+        }
+
+        if (pelt.scars !== undefined) {
+          for (const scar of pelt.scars) {
+            if (peltInfo.scars1.includes(scar)) {
+              await drawSprite(`scars${scar}`, catSprite, ctx);
+            }
+            if (peltInfo.scars3.includes(scar)) {
+              await drawSprite(`scars${scar}`, catSprite, ctx);
+            }
+          }
+        }
+
+        await drawSprite("lines", catSprite, ctx);
+        await drawSprite(`skin${pelt.skin}`, catSprite, ctx);
+
+        if (pelt.accessory !== undefined) {
+          if (peltInfo.plant_accessories.includes(pelt.accessory)) {
+            await drawSprite(`acc_herbs${pelt.accessory}`, catSprite, ctx);
+          } else if (peltInfo.wild_accessories.includes(pelt.accessory)) {
+            await drawSprite(`acc_wild${pelt.accessory}`, catSprite, ctx);
+          } else if (peltInfo.collars.includes(pelt.accessory)) {
+            await drawSprite(`collars${pelt.accessory}`, catSprite, ctx);
+          }
+        }
+      };
+      drawCat().then(() => {
+        const domCanvas = canvasRef.current;
+        const domCtx = domCanvas.getContext("2d");
+        domCtx.drawImage(canvas, 0, 0);
+      });
+    }
+  }, [canvasRef]);
+
+  return (
+    <>
+      <canvas
+        style={{ imageRendering: "pixelated" }}
+        width={50}
+        height={50}
+        ref={canvasRef}
+      />
+    </>
+  );
+}
+
+export default CatDisplay;

@@ -2,21 +2,34 @@ import { clangenRunner, Cat } from "../python/clangen"
 import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
+import CatDisplay from "../components/CatDisplay";
+import CatProfile from "../components/CatProfile";
 
 function CatProfilePage() {
 
   const [cat, setCat] = useState<Cat>();
   const params = useParams();
+  const catID = params.id as string;
 
   useEffect(() => {
-    setCat(clangenRunner.getCat(params.id));
+    setCat(clangenRunner.getCat(catID));
   }, []);
 
   return (
     <>
       <Nav />
-      { cat?.name }
-      <Link to={`/cats/${params.id}/relationships`}>Relationships</Link>
+
+      { cat &&
+        <>
+          {cat.name} (#{ cat.ID })
+
+          <CatDisplay pelt={cat.pelt} age={cat.age}/>
+
+          <CatProfile cat={cat} />
+
+          <Link to={`/cats/${catID}/relationships`}>Relationships</Link>
+        </>
+      }
     </>
   )
 }

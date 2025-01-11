@@ -1,6 +1,7 @@
 import { clangenRunner } from "../python/clangen"
 import Nav from "../components/Nav";
 import { Link } from "react-router";
+import CatDisplay from "../components/CatDisplay";
 
 function CatsPage() {
 
@@ -10,7 +11,8 @@ function CatsPage() {
       { clangenRunner.getCats().map((cat) => {
         return (
           <li>
-            <Link to={`/cats/${cat.ID}`}>{cat.name} ({cat.ID})</Link>
+            <CatDisplay pelt={cat.pelt} age={cat.age}/>
+            <Link to={`/cats/${cat.ID}`}> { cat.name } </Link>
           </li>
         )
       }) }
