@@ -6,7 +6,6 @@ import RelationshipDisplay from "../components/RelationshipDisplay";
 import Nav from "../components/Nav";
 
 function RelationshipsPage() {
-
   const [relationships, setRelationships] = useState<Array<any>>();
   const params = useParams();
 
@@ -17,9 +16,9 @@ function RelationshipsPage() {
   return (
     <>
       <Nav />
-      { relationships?.map((rel, _) => {
-        return <RelationshipDisplay relationship={rel} />
-      }) }
+      {relationships?.map((rel, _) => {
+        return <RelationshipDisplay relationship={rel} />;
+      })}
     </>
   );
 }

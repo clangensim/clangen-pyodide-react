@@ -1,27 +1,27 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router";
 
-import './styles/base.css';
-import '../vendors/classic-stylesheets-win9x-2.0/win9x/theme.min.css';
-import '../vendors/classic-stylesheets-win9x-2.0/win9x/skins/teal-2000.css';
+import "./styles/base.css";
+import "../vendors/classic-stylesheets-win9x-2.0/win9x/theme.min.css";
+import "../vendors/classic-stylesheets-win9x-2.0/win9x/skins/teal-2000.css";
 
-import App from './App.tsx'
-import EventsPage from './pages/EventsPage.tsx'
-import CatsPage from './pages/CatsPage.tsx'
-import CatProfilePage from './pages/CatProfilePage.tsx'
-import RelationshipsPage from './pages/RelationshipsPage.tsx'
+import App from "./App.tsx";
+import EventsPage from "./pages/EventsPage.tsx";
+import CatsPage from "./pages/CatsPage.tsx";
+import CatProfilePage from "./pages/CatProfilePage.tsx";
+import RelationshipsPage from "./pages/RelationshipsPage.tsx";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={ <App />} />
-        <Route path="/events" element={ <EventsPage />} />
-        <Route path="/cats" element={ <CatsPage />} />
-        <Route path="/cats/:id" element={ <CatProfilePage /> } />
-        <Route path="/cats/:id/relationships" element={ <RelationshipsPage /> } />
+        <Route path="/" element={<App />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/cats" element={<CatsPage />} />
+        <Route path="/cats/:id" element={<CatProfilePage />} />
+        <Route path="/cats/:id/relationships" element={<RelationshipsPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
-)
+);

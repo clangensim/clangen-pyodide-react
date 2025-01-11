@@ -20,7 +20,7 @@ type Pelt = {
   whitePatchesTint: string;
   accessory: string | undefined;
   catSprites: Record<string, number>;
-}
+};
 
 type Cat = {
   ID: string;
@@ -29,7 +29,7 @@ type Cat = {
   status: string;
   pelt: Pelt;
   age: string;
-}
+};
 
 type Relationship = {
   cat_to_id: string;
@@ -43,20 +43,20 @@ type Relationship = {
   comfortable: Number;
   jealousy: Number;
   trust: Number;
-}
+};
 
 type Event = {
   text: string;
   types: Array<string>;
   cats_involved: Array<string>;
-}
+};
 
 interface ClangenInterface {
   getCat(id: string): Cat | undefined;
   saveGame(): void;
   moonskip(): void;
   getEvents(): Array<Object>;
-  getCats(): Array<Object>
+  getCats(): Array<Object>;
   getClanAge(): Number;
   getRelationships(id: string): Array<Object>;
 }
@@ -70,7 +70,9 @@ class Clangen implements ClangenInterface {
 
   private async _syncFS(populate: boolean) {
     return new Promise((resolve) => {
-      this._pyodide.FS.syncfs(populate, (err: Error) => {resolve(err)});
+      this._pyodide.FS.syncfs(populate, (err: Error) => {
+        resolve(err);
+      });
     });
   }
 
@@ -84,7 +86,9 @@ class Clangen implements ClangenInterface {
       // load resources
       let zipResources = await fetch("/bin/resources.zip");
       let binaryResources = await zipResources.arrayBuffer();
-      this._pyodide.unpackArchive(binaryResources, "zip", { extractDir: "/mnt" });
+      this._pyodide.unpackArchive(binaryResources, "zip", {
+        extractDir: "/mnt",
+      });
 
       // load "sprites" (actually just tints)
       let zipSprites = await fetch("/bin/sprites.zip");
@@ -94,18 +98,21 @@ class Clangen implements ClangenInterface {
       // loag DEBUG SAVE
       let zipSaves = await fetch("/bin/saves-no-folder.zip");
       let binarySaves = await zipSaves.arrayBuffer();
-      this._pyodide.unpackArchive(binarySaves, "zip", { extractDir: "/mnt/saves" });
-  
+      this._pyodide.unpackArchive(binarySaves, "zip", {
+        extractDir: "/mnt/saves",
+      });
+
       await this._syncFS(false);
       localStorage.setItem("resourcesLoaded", "true");
-    }
-    else {
+    } else {
       console.log("Loading existing resources...");
       await this._syncFS(true);
     }
 
     // install "clangen-lite"
-    await this._pyodide.loadPackage("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
+    await this._pyodide.loadPackage(
+      "/bin/clangen_lite-0.0.1-py2.py3-none-any.whl",
+    );
 
     // load clan
     try {
@@ -138,7 +145,7 @@ class Clangen implements ClangenInterface {
                       'error_message'] = 'There was an error loading the cats file!'
                   game.switches['traceback'] = e
     `);
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
@@ -159,7 +166,8 @@ class Clangen implements ClangenInterface {
     }
     // is there a better way of doing this?
     const locals = pyodide.toPy({ cat_id: id });
-    const cat = this._pyodide.runPython(`
+    const cat = this._pyodide.runPython(
+      `
       cat = Cat.all_cats[cat_id]
       to_js({
         'ID': cat.ID,
@@ -188,7 +196,9 @@ class Clangen implements ClangenInterface {
           'catSprites': cat.pelt.cat_sprites
           }
         }, dict_converter=js.Object.fromEntries)
-    `, { locals: locals });
+    `,
+      { locals: locals },
+    );
     locals.destroy();
     return cat;
   }
@@ -226,7 +236,7 @@ class Clangen implements ClangenInterface {
           }
         })
       to_js(cats, dict_converter=js.Object.fromEntries)
-    `)
+    `);
     return cats;
   }
 
@@ -237,7 +247,8 @@ class Clangen implements ClangenInterface {
 
     // is there a better way of doing this?
     const locals = pyodide.toPy({ cat_id: id });
-    const rels = this._pyodide.runPython(`
+    const rels = this._pyodide.runPython(
+      `
       rels = []
       cat = Cat.all_cats[cat_id]
       cat_rels = rel = sorted(cat.relationships.values(),
@@ -259,7 +270,9 @@ class Clangen implements ClangenInterface {
           'trust': rel.trust
         })
       to_js(rels, dict_converter=js.Object.fromEntries)
-    `, { locals: locals });
+    `,
+      { locals: locals },
+    );
     locals.destroy();
     return rels;
   }

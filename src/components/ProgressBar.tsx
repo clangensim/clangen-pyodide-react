@@ -1,4 +1,4 @@
-function ProgressBar({value}: {value: number}) {
+function ProgressBar({ value }: { value: number }) {
   return (
     <>
       <div
@@ -12,7 +12,7 @@ function ProgressBar({value}: {value: number}) {
         ></div>
       </div>
     </>
-  )
+  );
 }
 
 export default ProgressBar;
