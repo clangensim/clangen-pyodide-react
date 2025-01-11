@@ -1,4 +1,5 @@
 import { Relationship } from "../python/clangen";
+import ProgressBar from "./ProgressBar";
 
 function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   return (
@@ -7,94 +8,31 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
       <ul>
         <li>
           romantic love
-          <div
-            className="progress-bar"
-            aria-valuenow={relationship.romantic_love.valueOf()}
-            style={{ width: "140px" }}
-          >
-            <div
-              className="progress-bar-value"
-              style={{ width: `${relationship.romantic_love.toString()}%` }}
-            ></div>
-          </div>
+          <ProgressBar value={relationship.romantic_love.valueOf()} />
         </li>
         <li>
           platonic like
-          <div
-            className="progress-bar"
-            aria-valuenow={relationship.platonic_like.valueOf()}
-            style={{ width: "140px" }}
-          >
-            <div
-              className="progress-bar-value"
-              style={{ width: `${relationship.platonic_like.toString()}%` }}
-            ></div>
-          </div>
+          <ProgressBar value={relationship.platonic_like.valueOf()} />
         </li>
         <li>
           dislike
-          <div
-            className="progress-bar"
-            aria-valuenow={relationship.dislike.valueOf()}
-            style={{ width: "140px" }}
-          >
-            <div
-              className="progress-bar-value"
-              style={{ width: `${relationship.dislike.toString()}%` }}
-            ></div>
-          </div>
+          <ProgressBar value={relationship.dislike.valueOf()} />
         </li>
         <li>
           admiration
-          <div
-            className="progress-bar"
-            aria-valuenow={relationship.admiration.valueOf()}
-            style={{ width: "140px" }}
-          >
-            <div
-              className="progress-bar-value"
-              style={{ width: `${relationship.admiration.toString()}%` }}
-            ></div>
-          </div>
+          <ProgressBar value={relationship.admiration.valueOf()} />
         </li>
         <li>
           comfort
-          <div
-            className="progress-bar"
-            aria-valuenow={relationship.comfortable.valueOf()}
-            style={{ width: "140px" }}
-          >
-            <div
-              className="progress-bar-value"
-              style={{ width: `${relationship.comfortable.toString()}%` }}
-            ></div>
-          </div>
+          <ProgressBar value={relationship.comfortable.valueOf()} />
         </li>
         <li>
           jealousy
-          <div
-            className="progress-bar"
-            aria-valuenow={relationship.jealousy.valueOf()}
-            style={{ width: "140px" }}
-          >
-            <div
-              className="progress-bar-value"
-              style={{ width: `${relationship.jealousy.toString()}%` }}
-            ></div>
-          </div>
+          <ProgressBar value={relationship.jealousy.valueOf()} />
         </li>
         <li>
           trust
-          <div
-            className="progress-bar"
-            aria-valuenow={relationship.trust.valueOf()}
-            style={{ width: "140px" }}
-          >
-            <div
-              className="progress-bar-value"
-              style={{ width: `${relationship.trust.toString()}%` }}
-            ></div>
-          </div>
+          <ProgressBar value={relationship.trust.valueOf()} />
         </li>
       </ul>
     </div>
