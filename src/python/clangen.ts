@@ -264,11 +264,11 @@ class Clangen implements ClangenInterface {
     return rels;
   }
 
-  public moonskip(): void {
+  public async moonskip(): Promise<void> {
     this._pyodide.runPython(`
       events_class.one_moon()
     `);
-    this.saveGame()
+    await this.saveGame();
   }
 
   public getEvents(): Array<Event> {

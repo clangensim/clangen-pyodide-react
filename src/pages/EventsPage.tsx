@@ -8,9 +8,10 @@ function EventsPage() {
   const [clanAge, setClanAge] = useState<Number>(0);
 
   function handleMoonskip() {
-    clangenRunner.moonskip();
-    setEvents(clangenRunner.getEvents());
-    setClanAge(clangenRunner.getClanAge());
+    clangenRunner.moonskip().then(() => {
+      setEvents(clangenRunner.getEvents());
+      setClanAge(clangenRunner.getClanAge());  
+    });
   };
 
   useEffect(() => {
