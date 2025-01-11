@@ -92,8 +92,11 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
 
   useEffect(() => {
     if (canvasRef.current !== null) {
-      const canvas = canvasRef.current;
+      const canvas = new OffscreenCanvas(50, 50);
       const ctx = canvas.getContext("2d");
+      if (ctx === null) {
+        return;
+      }
 
       const drawCat = async () => {
         if (pelt.name !== "Tortie" && pelt.name !== "Calico") {
@@ -211,7 +214,11 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
           }
         }
       };
-      drawCat();
+      drawCat().then(() => {
+        const domCanvas = canvasRef.current;
+        const domCtx = domCanvas.getContext("2d");
+        domCtx.drawImage(canvas, 0, 0);
+      });
     }
   }, [canvasRef]);
 
