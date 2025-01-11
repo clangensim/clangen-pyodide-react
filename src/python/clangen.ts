@@ -28,6 +28,7 @@ type Event = {
 
 interface ClangenInterface {
   getCat(id: string): Cat | undefined;
+  saveGame(): void;
   moonskip(): void;
   getEvents(): Array<Object>;
   getCats(): Array<Object>
@@ -65,6 +66,11 @@ class Clangen implements ClangenInterface {
       let binarySprites = await zipSprites.arrayBuffer();
       this._pyodide.unpackArchive(binarySprites, "zip", { extractDir: "/mnt" });
 
+      // loag DEBUG SAVE
+      let zipSaves = await fetch("/bin/saves-no-folder.zip");
+      let binarySaves = await zipSaves.arrayBuffer();
+      this._pyodide.unpackArchive(binarySaves, "zip", { extractDir: "/mnt/saves" });
+  
       await this._syncFS(false);
       localStorage.setItem("resourcesLoaded", "true");
     }
@@ -72,10 +78,6 @@ class Clangen implements ClangenInterface {
       console.log("Loading existing resources...");
       await this._syncFS(true);
     }
-
-    let zipSaves = await fetch("/bin/saves-no-folder.zip");
-    let binarySaves = await zipSaves.arrayBuffer();
-    this._pyodide.unpackArchive(binarySaves, "zip", { extractDir: "/mnt/saves" });
 
     // install "clangen-lite"
     await this._pyodide.loadPackage("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
@@ -114,6 +116,16 @@ class Clangen implements ClangenInterface {
     } catch(err) {
       console.error(err);
     }
+  }
+
+  public async saveGame(): Promise<void> {
+    this._pyodide.runPython(`
+      game.save_cats()
+      game.clan.save_clan()
+      game.clan.save_pregnancy(game.clan)
+      game.save_events()
+    `);
+    await this._syncFS(false);
   }
 
   public getCat(id: string | undefined): Cat | undefined {
@@ -186,6 +198,7 @@ class Clangen implements ClangenInterface {
     this._pyodide.runPython(`
       events_class.one_moon()
     `);
+    this.saveGame()
   }
 
   public getEvents(): Array<Event> {
