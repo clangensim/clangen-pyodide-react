@@ -1,0 +1,48 @@
+:root {
+  --desktop-bg: #008080;
+
+  --window-bg: #C0C0C0;
+  --window-fg: #000000;
+
+  --lightest: #FFFFFF;
+  --lighter: #E0E0E0;
+  --light: #DFDFDF;
+  --medium: #C0C0C0;
+  --dark: #808080;
+  --darker: #404040;
+  --darkest: #000000;
+
+  --input-bg: #FFFFFF;
+  --input-fg: #000000;
+
+  --title-bar-bg: var(--dark);
+  --title-bar-fg: var(--medium);
+
+  --title-bar-active-bg: #000080;
+  --title-bar-active-fg: #FFFFFF;
+
+  --selection-bg: #000080;
+  --selection-fg: #FFFFFF;
+  --selection-inverse: #FFFF7F;
+}
+
+/* The "Windows Standard" color scheme in Windows 95 and 98 had an extra  line
+ * of color #DFDFDF next to the left and top borders. This is not present in any
+ * of the other color schemes.
+ */
+
+details > summary:not(:active):focus,
+button:not(:active):focus {
+  box-shadow: inset -1px -1px 0 var(--darkest), inset 1px 1px 0 var(--lightest), 
+    inset -2px -2px 0 var(--dark), inset 2px 2px 0 var(--light);
+}
+
+details > summary:not(:active),
+button:not(:active),
+button:disabled:active {
+  box-shadow: inset -1px -1px 0 var(--dark), inset 1px 1px 0 var(--light);
+}
+
+.title-bar-buttons button:not(:active):focus {
+  box-shadow: inset -1px -1px 0 var(--dark), inset 1px 1px 0 var(--light);
+}

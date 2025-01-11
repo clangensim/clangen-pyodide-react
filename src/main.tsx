@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router'
 
 import './styles/base.css';
+import './styles/classic-stylesheets-win9x-2.0/win9x/theme.min.css';
+import './styles/classic-stylesheets-win9x-2.0/win9x/skins/teal-2000.css';
 
 import App from './App.tsx'
 import EventsPage from './pages/EventsPage.tsx'
