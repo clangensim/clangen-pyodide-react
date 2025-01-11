@@ -53,15 +53,25 @@ class Clangen implements ClangenInterface {
     this._pyodide.FS.mkdirTree(mountDir);
     this._pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, {}, mountDir);
 
-    // load resources
-    let zipResources = await fetch("/bin/resources.zip");
-    let binaryResources = await zipResources.arrayBuffer();
-    this._pyodide.unpackArchive(binaryResources, "zip", { extractDir: "/mnt" });
+    if (localStorage.getItem("resourcesLoaded") === null) {
+      console.log("Loading resources...");
+      // load resources
+      let zipResources = await fetch("/bin/resources.zip");
+      let binaryResources = await zipResources.arrayBuffer();
+      this._pyodide.unpackArchive(binaryResources, "zip", { extractDir: "/mnt" });
 
-    // load "sprites" (actually just tints)
-    let zipSprites = await fetch("/bin/sprites.zip");
-    let binarySprites = await zipSprites.arrayBuffer();
-    this._pyodide.unpackArchive(binarySprites, "zip", { extractDir: "/mnt" });
+      // load "sprites" (actually just tints)
+      let zipSprites = await fetch("/bin/sprites.zip");
+      let binarySprites = await zipSprites.arrayBuffer();
+      this._pyodide.unpackArchive(binarySprites, "zip", { extractDir: "/mnt" });
+
+      await this._syncFS(false);
+      localStorage.setItem("resourcesLoaded", "true");
+    }
+    else {
+      console.log("Loading existing resources...");
+      await this._syncFS(true);
+    }
 
     let zipSaves = await fetch("/bin/saves-no-folder.zip");
     let binarySaves = await zipSaves.arrayBuffer();
@@ -69,8 +79,6 @@ class Clangen implements ClangenInterface {
 
     // install "clangen-lite"
     await this._pyodide.loadPackage("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
-
-    await this._syncFS(false);
 
     // load clan
     try {
