@@ -42,6 +42,12 @@ class Clangen implements ClangenInterface {
     this._pyodide = pyodide;
   }
 
+  private async _syncFS(populate: boolean) {
+    return new Promise((resolve) => {
+      this._pyodide.FS.syncfs(populate, (err: Error) => {resolve(err)});
+    });
+  }
+
   public async loadClangen(): Promise<void> {
     let mountDir = "/mnt";
     this._pyodide.FS.mkdirTree(mountDir);
@@ -64,7 +70,7 @@ class Clangen implements ClangenInterface {
     // install "clangen-lite"
     await this._pyodide.loadPackage("/bin/clangen_lite-0.0.1-py2.py3-none-any.whl");
 
-    this._pyodide.FS.syncfs(false, (err: Error) => {console.error(err)})
+    await this._syncFS(false);
 
     // load clan
     try {
