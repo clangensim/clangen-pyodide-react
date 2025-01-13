@@ -351,6 +351,42 @@ class Clangen implements ClangenInterface {
     return events;
   }
 
+  public startPatrol(patrolMembers: string[], patrolType: "hunting" | "border" | "training" | "med") {
+    const locals = pyodide.toPy({
+      patrol_members: patrolMembers,
+      patrol_type: patrolType
+     });
+    const introText = this._pyodide.runPython(
+      `
+      patrol_members_obj = list(map(lambda cat_id : Cat.all_cats[cat_id], patrol_members))
+      global current_patrol
+      current_patrol = Patrol()
+      current_patrol.setup_patrol(patrol_members_obj, patrol_type)
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+
+    return introText;
+  }
+
+  public finishPatrol(action: "proceed" | "antag" | "decline") {
+    const locals = pyodide.toPy({
+      action: action,
+     });
+     const outcome = this._pyodide.runPython(
+      `
+      global current_patrol
+      current_patrol.proceed_patrol(action)
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+
+    // outcome text, results text
+    return outcome;
+  }
+
   public getClanAge(): Number {
     const age = this._pyodide.runPython(`
       game.clan.age
