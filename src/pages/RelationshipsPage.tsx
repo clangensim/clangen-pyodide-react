@@ -16,8 +16,8 @@ function RelationshipsPage() {
   return (
     <>
       <Nav />
-      {relationships?.map((rel, _) => {
-        return <RelationshipDisplay relationship={rel} />;
+      {relationships?.map((rel, index) => {
+        return <RelationshipDisplay key={index} relationship={rel} />;
       })}
     </>
   );

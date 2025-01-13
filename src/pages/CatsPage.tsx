@@ -19,12 +19,12 @@ function CatsPage() {
             </tr>
           </thead>
           <tbody>
-            {clangenRunner.getCats().map((cat) => {
+            {clangenRunner.getCats().map((cat, index) => {
               if (cat.dead || cat.outside) {
                 return;
               }
               return (
-                <tr>
+                <tr key={index}>
                   <td>{cat.ID}</td>
                   <td>
                     <CatDisplay pelt={cat.pelt} age={cat.age} />
