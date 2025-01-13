@@ -144,6 +144,35 @@ class Clangen implements ClangenInterface {
       from scripts.clan import clan_class
       from scripts.utility import quit as clangen_quit
 
+      def cat_to_dict(cat):
+          return {
+              'ID': cat.ID,
+              'name': str(cat.name),
+              'age': cat.age,
+              'moons': cat.moons,
+              'status': cat.status,
+              'pelt': {
+                  'name': cat.pelt.name,
+                  'colour': cat.pelt.colour,
+                  'skin': cat.pelt.skin,
+                  'pattern': cat.pelt.pattern,
+                  'tortieBase': cat.pelt.tortiebase,
+                  'tortiePattern': cat.pelt.tortiepattern,
+                  'tortieColour': cat.pelt.tortiecolour,
+                  'spritesName': cat.pelt.get_sprites_name(),
+                  'whitePatches': cat.pelt.white_patches,
+                  'points': cat.pelt.points,
+                  'vitiligo': cat.pelt.vitiligo,
+                  'eyeColour': cat.pelt.eye_colour,
+                  'eyeColour2': cat.pelt.eye_colour2,
+                  'scars': cat.pelt.scars,
+                  'tint': cat.pelt.tint,
+                  'whitePatchesTint': cat.pelt.white_patches_tint,
+                  'accessory': cat.pelt.accessory,
+                  'catSprites': cat.pelt.cat_sprites
+              }
+          }
+
       clan_list = game.read_clans()
       if clan_list:
           game.switches['clan_list'] = clan_list
@@ -180,34 +209,7 @@ class Clangen implements ClangenInterface {
     cats = []
     create_example_cats()
     for _, cat in game.choose_cats.items():
-      cats.append({
-        'ID': cat.ID,
-        'name': str(cat.name),
-        'age': cat.age,
-        'moons': cat.moons,
-        'status': cat.status,
-        'desc': cat.describe_cat(),
-        'pelt': {
-          'name': cat.pelt.name,
-          'colour': cat.pelt.colour,
-          'skin': cat.pelt.skin,
-          'pattern': cat.pelt.pattern,
-          'tortieBase': cat.pelt.tortiebase,
-          'tortiePattern': cat.pelt.tortiepattern,
-          'tortieColour': cat.pelt.tortiecolour,
-          'spritesName': cat.pelt.get_sprites_name(),
-          'whitePatches': cat.pelt.white_patches,
-          'points': cat.pelt.points,
-          'vitiligo': cat.pelt.vitiligo,
-          'eyeColour': cat.pelt.eye_colour,
-          'eyeColour2': cat.pelt.eye_colour2,
-          'scars': cat.pelt.scars,
-          'tint': cat.pelt.tint,
-          'whitePatchesTint': cat.pelt.white_patches_tint,
-          'accessory': cat.pelt.accessory,
-          'catSprites': cat.pelt.cat_sprites
-        }
-      })
+      cats.append(cat_to_dict(cat))
     to_js(cats, dict_converter=js.Object.fromEntries)
     `,
     );
@@ -276,33 +278,7 @@ class Clangen implements ClangenInterface {
     const cat = this._pyodide.runPython(
       `
       cat = Cat.all_cats[cat_id]
-      to_js({
-        'ID': cat.ID,
-        'name': str(cat.name),
-        'age': cat.age,
-        'moons': cat.moons,
-        'status': cat.status,
-        'pelt': {
-          'name': cat.pelt.name,
-          'colour': cat.pelt.colour,
-          'skin': cat.pelt.skin,
-          'pattern': cat.pelt.pattern,
-          'tortieBase': cat.pelt.tortiebase,
-          'tortiePattern': cat.pelt.tortiepattern,
-          'tortieColour': cat.pelt.tortiecolour,
-          'spritesName': cat.pelt.get_sprites_name(),
-          'whitePatches': cat.pelt.white_patches,
-          'points': cat.pelt.points,
-          'vitiligo': cat.pelt.vitiligo,
-          'eyeColour': cat.pelt.eye_colour,
-          'eyeColour2': cat.pelt.eye_colour2,
-          'scars': cat.pelt.scars,
-          'tint': cat.pelt.tint,
-          'whitePatchesTint': cat.pelt.white_patches_tint,
-          'accessory': cat.pelt.accessory,
-          'catSprites': cat.pelt.cat_sprites
-          }
-        }, dict_converter=js.Object.fromEntries)
+      to_js(cat_to_dict(cat), dict_converter=js.Object.fromEntries)
     `,
       { locals: locals },
     );
@@ -314,34 +290,7 @@ class Clangen implements ClangenInterface {
     const cats = this._pyodide.runPython(`
       cats = []
       for cat in Cat.all_cats_list:
-        cats.append({
-          'ID': cat.ID,
-          'name': str(cat.name),
-          'age': cat.age,
-          'moons': cat.moons,
-          'status': cat.status,
-          'desc': cat.describe_cat(),
-          'pelt': {
-            'name': cat.pelt.name,
-            'colour': cat.pelt.colour,
-            'skin': cat.pelt.skin,
-            'pattern': cat.pelt.pattern,
-            'tortieBase': cat.pelt.tortiebase,
-            'tortiePattern': cat.pelt.tortiepattern,
-            'tortieColour': cat.pelt.tortiecolour,
-            'spritesName': cat.pelt.get_sprites_name(),
-            'whitePatches': cat.pelt.white_patches,
-            'points': cat.pelt.points,
-            'vitiligo': cat.pelt.vitiligo,
-            'eyeColour': cat.pelt.eye_colour,
-            'eyeColour2': cat.pelt.eye_colour2,
-            'scars': cat.pelt.scars,
-            'tint': cat.pelt.tint,
-            'whitePatchesTint': cat.pelt.white_patches_tint,
-            'accessory': cat.pelt.accessory,
-            'catSprites': cat.pelt.cat_sprites
-          }
-        })
+        cats.append(cat_to_dict(cat))
       to_js(cats, dict_converter=js.Object.fromEntries)
     `);
     return cats;
