@@ -69,10 +69,10 @@ interface ClangenInterface {
     members: string[],
     season: string,
   ): void;
-  getEvents(): Array<Object>;
-  getCats(): Array<Object>;
+  getEvents(): Event[];
+  getCats(): Cat[];
   getClanAge(): Number;
-  getRelationships(id: string): Array<Object>;
+  getRelationships(id: string): Relationship[];
 }
 
 class Clangen implements ClangenInterface {
@@ -290,7 +290,7 @@ class Clangen implements ClangenInterface {
     return cat;
   }
 
-  public getCats(): Array<Cat> {
+  public getCats(): Cat[] {
     const cats = this._pyodide.runPython(`
       cats = []
       for cat in Cat.all_cats_list:
@@ -300,7 +300,7 @@ class Clangen implements ClangenInterface {
     return cats;
   }
 
-  public getRelationships(id: string | undefined): Array<Relationship> {
+  public getRelationships(id: string | undefined): Relationship[] {
     if (id === undefined) {
       return [];
     }
@@ -344,7 +344,7 @@ class Clangen implements ClangenInterface {
     await this.saveGame();
   }
 
-  public getEvents(): Array<Event> {
+  public getEvents(): Event[] {
     const events = this._pyodide.runPython(`
       to_js([vars(event) for event in game.cur_events_list], dict_converter=js.Object.fromEntries)
     `);
