@@ -8,9 +8,10 @@ import Nav from "../components/Nav";
 function RelationshipsPage() {
   const [relationships, setRelationships] = useState<Array<any>>();
   const params = useParams();
+  const catID = params.id as string;
 
   useEffect(() => {
-    setRelationships(clangenRunner.getRelationships(params.id));
+    setRelationships(clangenRunner.getRelationships(catID));
   }, []);
 
   return (

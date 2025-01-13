@@ -54,7 +54,7 @@ type Event = {
 };
 
 interface ClangenInterface {
-  getCat(id: string): Cat | undefined;
+  getCat(id: string): Cat;
   saveGame(): void;
   moonskip(): void;
   initializeStarterCats(): Cat[];
@@ -273,10 +273,7 @@ class Clangen implements ClangenInterface {
     await this.saveGame();
   }
 
-  public getCat(id: string | undefined): Cat | undefined {
-    if (id === undefined) {
-      return undefined;
-    }
+  public getCat(id: string): Cat {
     // is there a better way of doing this?
     const locals = pyodide.toPy({ cat_id: id });
     const cat = this._pyodide.runPython(
@@ -300,11 +297,7 @@ class Clangen implements ClangenInterface {
     return cats;
   }
 
-  public getRelationships(id: string | undefined): Relationship[] {
-    if (id === undefined) {
-      return [];
-    }
-
+  public getRelationships(id: string): Relationship[] {
     // is there a better way of doing this?
     const locals = pyodide.toPy({ cat_id: id });
     const rels = this._pyodide.runPython(
