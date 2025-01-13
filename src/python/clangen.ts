@@ -29,6 +29,8 @@ type Cat = {
   status: string;
   pelt: Pelt;
   age: string;
+  outside: boolean;
+  dead: boolean;
 };
 
 type Relationship = {
@@ -151,6 +153,8 @@ class Clangen implements ClangenInterface {
               'age': cat.age,
               'moons': cat.moons,
               'status': cat.status,
+              'outside': cat.outside,
+              'dead': cat.dead,
               'pelt': {
                   'name': cat.pelt.name,
                   'colour': cat.pelt.colour,
