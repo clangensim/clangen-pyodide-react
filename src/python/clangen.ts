@@ -55,6 +55,18 @@ interface ClangenInterface {
   getCat(id: string): Cat | undefined;
   saveGame(): void;
   moonskip(): void;
+  initializeStarterCats(): Cat[];
+  createClan(
+    clanName: string,
+    leader: string,
+    deputy: string,
+    medCat: string,
+    biome: string,
+    camp: string,
+    gameMode: string,
+    members: string[],
+    season: string,
+  ): void;
   getEvents(): Array<Object>;
   getCats(): Array<Object>;
   getClanAge(): Number;
@@ -125,7 +137,9 @@ class Clangen implements ClangenInterface {
 
       from scripts.game_structure.load_cat import load_cats, version_convert
       from scripts.game_structure.game_essentials import game
-      from scripts.cat.cats import Cat
+      from scripts.cat.cats import Cat, create_example_cats
+      from scripts.patrol.patrol import Patrol
+      from scripts.clan import Clan
       from scripts.events import events_class
       from scripts.clan import clan_class
       from scripts.utility import quit as clangen_quit
@@ -158,6 +172,99 @@ class Clangen implements ClangenInterface {
       game.save_events()
     `);
     await this._syncFS(false);
+  }
+
+  public initializeStarterCats(): Cat[] {
+    const cats = this._pyodide.runPython(
+      `
+    cats = []
+    create_example_cats()
+    for _, cat in game.choose_cats.items():
+      cats.append({
+        'ID': cat.ID,
+        'name': str(cat.name),
+        'age': cat.age,
+        'moons': cat.moons,
+        'status': cat.status,
+        'desc': cat.describe_cat(),
+        'pelt': {
+          'name': cat.pelt.name,
+          'colour': cat.pelt.colour,
+          'skin': cat.pelt.skin,
+          'pattern': cat.pelt.pattern,
+          'tortieBase': cat.pelt.tortiebase,
+          'tortiePattern': cat.pelt.tortiepattern,
+          'tortieColour': cat.pelt.tortiecolour,
+          'spritesName': cat.pelt.get_sprites_name(),
+          'whitePatches': cat.pelt.white_patches,
+          'points': cat.pelt.points,
+          'vitiligo': cat.pelt.vitiligo,
+          'eyeColour': cat.pelt.eye_colour,
+          'eyeColour2': cat.pelt.eye_colour2,
+          'scars': cat.pelt.scars,
+          'tint': cat.pelt.tint,
+          'whitePatchesTint': cat.pelt.white_patches_tint,
+          'accessory': cat.pelt.accessory,
+          'catSprites': cat.pelt.cat_sprites
+        }
+      })
+    to_js(cats, dict_converter=js.Object.fromEntries)
+    `,
+    );
+    return cats;
+  }
+
+  public async createClan(
+    clanName: string,
+    leader: string,
+    deputy: string,
+    medCat: string,
+    biome: string,
+    camp: string,
+    gameMode: string,
+    members: string[],
+    season: string,
+  ): Promise<void> {
+    const locals = pyodide.toPy({
+      clan_name: clanName,
+      leader: leader,
+      deputy: deputy,
+      med_cat: medCat,
+      biome: biome,
+      camp: camp,
+      game_mode: gameMode,
+      members: members,
+      season: season
+     });
+    this._pyodide.runPython(
+      `
+      game.mediated.clear()
+      game.patrolled.clear()
+      game.cat_to_fade.clear()
+      Cat.outside_cats.clear()
+      Patrol.used_patrols.clear()
+      game.clan = Clan(
+        clan_name,
+        Cat.all_cats[leader],
+        Cat.all_cats[deputy],
+        Cat.all_cats[med_cat],
+        biome,
+        camp,
+        game_mode,
+        list(map(lambda cat_id : Cat.all_cats[cat_id], members)),
+        season
+      )
+      game.clan.create_clan()
+      #game.clan.starclan_cats.clear()
+      game.cur_events_list.clear()
+      game.herb_events_list.clear()
+      Cat.grief_strings.clear()
+      Cat.sort_cats()
+      `,
+      { locals: locals },
+    );
+    locals.destroy();
+    await this.saveGame();
   }
 
   public getCat(id: string | undefined): Cat | undefined {

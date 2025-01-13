@@ -11,12 +11,14 @@ import EventsPage from "./pages/EventsPage.tsx";
 import CatsPage from "./pages/CatsPage.tsx";
 import CatProfilePage from "./pages/CatProfilePage.tsx";
 import RelationshipsPage from "./pages/RelationshipsPage.tsx";
+import NewClanPage from "./pages/NewClanPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/new-clan" element={<NewClanPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/cats" element={<CatsPage />} />
         <Route path="/cats/:id" element={<CatProfilePage />} />
