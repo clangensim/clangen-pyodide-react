@@ -6,6 +6,25 @@ function EventsPage() {
   const [events, setEvents] = useState<Array<any>>();
   const [clanAge, setClanAge] = useState<Number>(0);
 
+  const regularEvents = events?.filter(
+    (event) => !event.types.includes("interaction"),
+  );
+
+  var eventsDisplay;
+  if (regularEvents !== undefined) {
+    if (regularEvents.length === 0) {
+      eventsDisplay = <li>Nothing interesting happened this moon.</li>;
+    } else {
+      eventsDisplay = (
+        <>
+          {regularEvents?.map((event, i) => {
+            return <li key={i}>{event.text}</li>;
+          })}
+        </>
+      );
+    }
+  }
+
   function handleMoonskip() {
     clangenRunner.moonskip().then(() => {
       setEvents(clangenRunner.getEvents());
@@ -23,13 +42,7 @@ function EventsPage() {
       <Nav />
       <div>{clanAge.toString()} Moons</div>
       <button onClick={handleMoonskip}>Moonskip</button>
-      <ul>
-        {events?.map((event, i) => {
-          if (!event.types.includes("interaction")) {
-            return <li key={i}>{event.text}</li>;
-          }
-        })}
-      </ul>
+      <ul>{eventsDisplay}</ul>
     </>
   );
 }
