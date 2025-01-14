@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { Cat, clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangen";
 import Nav from "../components/Nav";
 import Select from "../components/Select";
 
