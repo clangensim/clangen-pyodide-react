@@ -51,19 +51,9 @@ function PatrolsPage() {
     setPatrolText("");
     setScreenState("start");
   
-    const cats = clangenRunner.getCats();
+    const cats = clangenRunner.getPatrollableCats();
 
-    // TODO: not working & patrolled
-    const temp = cats.filter((cat) => {
-      return (
-        !cat.dead &&
-        !["elder", "kitten", "mediator", "mediator apprentice"].includes(
-          cat.status,
-        ) &&
-        !cat.outside
-      );
-    });
-    setPossibleCats(temp);
+    setPossibleCats(cats);
   }
 
   useEffect(() => {
