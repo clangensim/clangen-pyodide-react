@@ -30,7 +30,7 @@ function CatsPage() {
                     <CatDisplay pelt={cat.pelt} age={cat.age} />
                   </td>
                   <td>
-                    <Link to={`/cats/${cat.ID}`}> {cat.name} </Link>
+                    <Link to={`/cats/${cat.ID}`}> {cat.name.display} </Link>
                   </td>
                   <td> {cat.moons} </td>
                   <td>{cat.status} </td>

@@ -22,9 +22,15 @@ type Pelt = {
   catSprites: Record<string, number>;
 };
 
+type Name = {
+  prefix: string;
+  suffix: string;
+  display: string;
+};
+
 type Cat = {
   ID: string;
-  name: string;
+  name: Name;
   moons: number;
   status: string;
   pelt: Pelt;
@@ -54,11 +60,18 @@ type Event = {
   cats_involved: Array<string>;
 };
 
+type CatEdit = {
+  status: string;
+  prefix: string;
+  suffix: string;
+};
+
 type PatrolType = "hunting" | "border" | "training" | "med"
 type PatrolAction = "proceed" | "antag" | "decline";
 
 interface ClangenInterface {
   getCat(id: string): Cat;
+  editCat(id: string, edit: CatEdit): boolean;
   saveGame(): void;
   moonskip(): void;
   initializeStarterCats(): Cat[];
@@ -154,7 +167,11 @@ class Clangen implements ClangenInterface {
       def cat_to_dict(cat):
           return {
               'ID': cat.ID,
-              'name': str(cat.name),
+              'name': {
+                  'prefix': cat.name.prefix,
+                  'suffix': cat.name.suffix,
+                  'display': str(cat.name)
+              },
               'age': cat.age,
               'moons': cat.moons,
               'status': cat.status,
@@ -290,6 +307,41 @@ class Clangen implements ClangenInterface {
     );
     locals.destroy();
     return cat;
+  }
+
+  public editCat(id: string, edit: CatEdit): boolean {
+    const locals = pyodide.toPy({ cat_id: id, edit: edit });
+    this._pyodide.runPython(
+      `
+      cat = Cat.all_cats[cat_id]
+      if cat.status != edit["status"]:
+        if edit["status"] == "leader":
+          # if they're deputy, remove them from deputy
+          if game.clan.deputy and cat.ID == game.clan.deputy.ID:
+            game.clan.deputy = None
+          # demote current leader
+          if game.clan.leader:
+            game.clan.leader.status_change("warrior", resort=True)
+          game.clan.new_leader(cat)
+          Cat.sort_cats()
+        elif edit["status"] == "deputy":
+          # demote current deputy 
+          if game.clan.deputy:
+            game.clan.deputy.status_change("warrior")
+          game.clan.deputy = cat
+          cat.status_change("deputy", resort=True)
+        else:
+          cat.status_change(edit["status"], resort=True)
+      if "prefix" in edit and edit["prefix"] != cat.name.prefix:
+        cat.name.prefix = edit["prefix"]
+      if "suffix" in edit and edit["suffix"] != cat.name.suffix:
+        cat.name.suffix = edit["suffix"]
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+
+    return true;
   }
 
   public getCats(): Cat[] {

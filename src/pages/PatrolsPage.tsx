@@ -32,7 +32,7 @@ function PatrolsPage() {
 
   const catOptions: SelectOption[] = possibleCats.map((cat) => {
     return {
-      label: cat.name,
+      label: cat.name.display,
       value: cat.ID,
     };
   });

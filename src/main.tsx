@@ -13,6 +13,7 @@ import CatProfilePage from "./pages/CatProfilePage.tsx";
 import RelationshipsPage from "./pages/RelationshipsPage.tsx";
 import NewClanPage from "./pages/NewClanPage.tsx";
 import PatrolsPage from "./pages/PatrolsPage.tsx";
+import CatEditPage from "./pages/CatEditPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -24,6 +25,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/patrols" element={<PatrolsPage />} />
         <Route path="/cats" element={<CatsPage />} />
         <Route path="/cats/:id" element={<CatProfilePage />} />
+        <Route path="/cats/:id/edit" element={<CatEditPage />} />
         <Route path="/cats/:id/relationships" element={<RelationshipsPage />} />
       </Routes>
     </BrowserRouter>

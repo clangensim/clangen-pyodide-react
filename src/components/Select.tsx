@@ -11,6 +11,7 @@ function Select({
   name,
   disabled,
   value,
+  noEmpty,
   onChange,
 }: {
   options: SelectOption[];
@@ -18,6 +19,7 @@ function Select({
   name?: string;
   disabled?: boolean;
   value: string;
+  noEmpty?: boolean;
   onChange: (val: string) => void;
 }) {
   const id = useId();
@@ -34,7 +36,9 @@ function Select({
           disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
         >
-          <option value=""></option>
+          {!noEmpty && 
+            <option value=""></option>
+          }
           {options.map((optionData) => {
             return (
               <option value={optionData["value"]}>{optionData["label"]}</option>
