@@ -1,10 +1,12 @@
 import { Relationship } from "../python/clangen";
+import CatDisplay from "./CatDisplay";
 import ProgressBar from "./ProgressBar";
 
 function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   return (
     <div className="raised">
-      <h1>{relationship.cat_to_id}</h1>
+      <CatDisplay pelt={relationship.cat_to.pelt} age={relationship.cat_to.age} />
+      {relationship.cat_to.name}
       <ul>
         <li>
           romantic love

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner, Relationship } from "../python/clangen";
 import RelationshipDisplay from "../components/RelationshipDisplay";
 import Nav from "../components/Nav";
 
 function RelationshipsPage() {
-  const [relationships, setRelationships] = useState<Array<any>>();
+  const [relationships, setRelationships] = useState<Relationship[]>();
   const params = useParams();
   const catID = params.id as string;
 
@@ -18,7 +18,11 @@ function RelationshipsPage() {
     <>
       <Nav />
       {relationships?.map((rel, index) => {
-        return <RelationshipDisplay key={index} relationship={rel} />;
+        return (
+          <>
+            <RelationshipDisplay key={index} relationship={rel} />
+          </>
+        );
       })}
     </>
   );
