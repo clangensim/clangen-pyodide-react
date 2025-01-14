@@ -23,11 +23,11 @@ const selectApprenticeOptions = [
 const selectRegularCatOptions = [
   {
     value: "leader",
-    label: "Leader",
+    label: "Leader (replaces current leader)",
   },
   {
     value: "deputy",
-    label: "Deputy",
+    label: "Deputy (replaces current deputy)",
   },
   {
     value: "warrior",
