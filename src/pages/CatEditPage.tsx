@@ -43,8 +43,8 @@ const selectRegularCatOptions = [
   },
   {
     value: "elder",
-    label: "Elder (permanent)"
-  }
+    label: "Elder (permanent)",
+  },
 ];
 
 function CatEditPage() {
@@ -59,7 +59,9 @@ function CatEditPage() {
   // have to do it like this because we don't want to disable before submit
   const [disableSelectStatus, setDisableSelectStatus] = useState(false);
 
-  var statusOptions = status.includes("apprentice") ? selectApprenticeOptions : selectRegularCatOptions;
+  var statusOptions = status.includes("apprentice")
+    ? selectApprenticeOptions
+    : selectRegularCatOptions;
 
   function handleSubmit() {
     clangenRunner.editCat(catID, {
@@ -89,8 +91,16 @@ function CatEditPage() {
 
       <div>
         Name
-        <input type="text" value={prefix} onChange={(e) => setPrefix(e.currentTarget.value)} />
-        <input type="text" value={suffix} onChange={(e) => setSuffix(e.currentTarget.value)} />
+        <input
+          type="text"
+          value={prefix}
+          onChange={(e) => setPrefix(e.currentTarget.value)}
+        />
+        <input
+          type="text"
+          value={suffix}
+          onChange={(e) => setSuffix(e.currentTarget.value)}
+        />
       </div>
 
       <div>
