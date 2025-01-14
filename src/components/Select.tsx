@@ -12,7 +12,7 @@ function Select({
   value,
   onChange,
 }: {
-  options: Option[];
+  options: Record<string, string>[];
   label?: string;
   name?: string;
   value: string;

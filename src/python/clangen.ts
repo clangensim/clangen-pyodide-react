@@ -53,6 +53,8 @@ type Event = {
   cats_involved: Array<string>;
 };
 
+type PatrolType = "hunting" | "border" | "training" | "med"
+
 interface ClangenInterface {
   getCat(id: string): Cat | undefined;
   saveGame(): void;
@@ -351,7 +353,7 @@ class Clangen implements ClangenInterface {
     return events;
   }
 
-  public startPatrol(patrolMembers: string[], patrolType: "hunting" | "border" | "training" | "med") {
+  public startPatrol(patrolMembers: string[], patrolType: PatrolType) {
     const locals = pyodide.toPy({
       patrol_members: patrolMembers,
       patrol_type: patrolType
@@ -377,7 +379,9 @@ class Clangen implements ClangenInterface {
      const outcome = this._pyodide.runPython(
       `
       global current_patrol
-      current_patrol.proceed_patrol(action)
+      outcome = current_patrol.proceed_patrol(action)
+      current_patrol = None
+      outcome
     `,
       { locals: locals },
     );
@@ -399,4 +403,4 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
-export type { Cat, Pelt, Relationship, Event };
+export type { Cat, PatrolType, Pelt, Relationship, Event };
