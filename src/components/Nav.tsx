@@ -12,6 +12,9 @@ function Nav() {
       <Link className="button" to="/events">
         Events
       </Link>
+      <Link className="button" to="/patrols">
+        Patrols
+      </Link>
     </div>
   );
 }

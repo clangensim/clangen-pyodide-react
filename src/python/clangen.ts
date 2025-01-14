@@ -53,6 +53,9 @@ type Event = {
   cats_involved: Array<string>;
 };
 
+type PatrolType = "hunting" | "border" | "training" | "med"
+type PatrolAction = "proceed" | "antag" | "decline";
+
 interface ClangenInterface {
   getCat(id: string): Cat;
   saveGame(): void;
@@ -71,6 +74,7 @@ interface ClangenInterface {
   ): void;
   getEvents(): Event[];
   getCats(): Cat[];
+  getPatrollableCats(): Cat[];
   getClanAge(): Number;
   getRelationships(id: string): Relationship[];
 }
@@ -297,6 +301,20 @@ class Clangen implements ClangenInterface {
     return cats;
   }
 
+  public getPatrollableCats(): Cat[] {
+    const cats = this._pyodide.runPython(`
+      cats = []
+      for the_cat in Cat.all_cats_list:
+        if not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status not in [
+                'elder', 'kitten', 'mediator', 'mediator apprentice'
+            ] and not the_cat.outside and not the_cat.not_working():
+          
+          cats.append(cat_to_dict(the_cat))
+      to_js(cats, dict_converter=js.Object.fromEntries)
+    `);
+    return cats;
+  }
+
   public getRelationships(id: string): Relationship[] {
     // is there a better way of doing this?
     const locals = pyodide.toPy({ cat_id: id });
@@ -344,6 +362,44 @@ class Clangen implements ClangenInterface {
     return events;
   }
 
+  public startPatrol(patrolMembers: string[], patrolType: PatrolType) {
+    const locals = pyodide.toPy({
+      patrol_members: patrolMembers,
+      patrol_type: patrolType
+     });
+    const introText = this._pyodide.runPython(
+      `
+      patrol_members_obj = list(map(lambda cat_id : Cat.all_cats[cat_id], patrol_members))
+      global current_patrol
+      current_patrol = Patrol()
+      current_patrol.setup_patrol(patrol_members_obj, patrol_type)
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+
+    return introText;
+  }
+
+  public finishPatrol(action: PatrolAction) {
+    const locals = pyodide.toPy({
+      action: action,
+     });
+     const outcome = this._pyodide.runPython(
+      `
+      global current_patrol
+      outcome = current_patrol.proceed_patrol(action)
+      current_patrol = None
+      outcome
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+
+    // outcome text, results text
+    return outcome;
+  }
+
   public getClanAge(): Number {
     const age = this._pyodide.runPython(`
       game.clan.age
@@ -356,4 +412,4 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
-export type { Cat, Pelt, Relationship, Event };
+export type { Cat, PatrolAction, PatrolType, Pelt, Relationship, Event };
