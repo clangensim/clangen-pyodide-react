@@ -36,6 +36,7 @@ type Cat = {
 type Relationship = {
   cat_to_id: string;
   cat_from_id: string;
+  cat_to: Cat;
   mates: boolean;
   family: boolean;
   romantic_love: Number;
@@ -329,6 +330,7 @@ class Clangen implements ClangenInterface {
       for rel in cat_rels:
         rels.append({
           'cat_to_id': rel.cat_to.ID,
+          'cat_to': cat_to_dict(Cat.all_cats[rel.cat_to.ID]),
           'cat_from_id': cat_id,
           'mates': rel.mates,
           'family': rel.family,
