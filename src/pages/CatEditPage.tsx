@@ -94,8 +94,8 @@ function CatEditPage() {
       </div>
 
       <div>
-        Role
         <Select
+          label="Role"
           disabled={disableSelectStatus}
           options={statusOptions}
           value={status}
