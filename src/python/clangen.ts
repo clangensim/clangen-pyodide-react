@@ -22,9 +22,15 @@ type Pelt = {
   catSprites: Record<string, number>;
 };
 
+type Name = {
+  prefix: string;
+  suffix: string;
+  display: string;
+};
+
 type Cat = {
   ID: string;
-  name: string;
+  name: Name;
   moons: number;
   status: string;
   pelt: Pelt;
@@ -158,7 +164,11 @@ class Clangen implements ClangenInterface {
       def cat_to_dict(cat):
           return {
               'ID': cat.ID,
-              'name': str(cat.name),
+              'name': {
+                  'prefix': cat.name.prefix,
+                  'suffix': cat.name.suffix,
+                  'display': str(cat.name)
+              },
               'age': cat.age,
               'moons': cat.moons,
               'status': cat.status,

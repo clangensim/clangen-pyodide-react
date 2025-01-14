@@ -108,7 +108,7 @@ function NewClanPage() {
                   flexDirection: "column",
                 }}
               >
-                <div>{cat.name}</div>
+                <div>{cat.name.display}</div>
                 <div>{cat.age}</div>
                 <div>{cat.moons} moons</div>
                 <CatDisplay pelt={cat.pelt} age={cat.age} />
@@ -137,7 +137,7 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option value={cat.ID}>{cat.name}</option>;
+                      return <option value={cat.ID}>{cat.name.display}</option>;
                     }
                   })}
                 </select>
@@ -164,7 +164,7 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option value={cat.ID}>{cat.name}</option>;
+                      return <option value={cat.ID}>{cat.name.display}</option>;
                     }
                   })}
                 </select>
@@ -191,7 +191,7 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option value={cat.ID}>{cat.name}</option>;
+                      return <option value={cat.ID}>{cat.name.display}</option>;
                     }
                   })}
                 </select>
@@ -221,7 +221,7 @@ function NewClanPage() {
                     name="other-cats-checkbox"
                     type="checkbox"
                   ></input>
-                  <label htmlFor={id}>{cat.name}</label>
+                  <label htmlFor={id}>{cat.name.display}</label>
                 </div>
               );
             })}

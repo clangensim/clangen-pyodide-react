@@ -76,7 +76,7 @@ function CatEditPage() {
     if (c.status === "elder") {
       setDisableSelectStatus(true);
     }
-    setCatName(c.name);
+    setCatName(c.name.display);
     setStatus(c.status);
     setCat(c);
   }, []);
