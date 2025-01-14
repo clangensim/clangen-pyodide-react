@@ -9,12 +9,14 @@ function Select({
   options,
   label,
   name,
+  disabled,
   value,
   onChange,
 }: {
   options: Record<string, string>[];
   label?: string;
   name?: string;
+  disabled?: boolean;
   value: string;
   onChange: (val: string) => void;
 }) {
@@ -29,6 +31,7 @@ function Select({
           name={name}
           size={1}
           value={value}
+          disabled={disabled}
           onChange={(e) => onChange(e.target.value)}
         >
           <option value=""></option>
