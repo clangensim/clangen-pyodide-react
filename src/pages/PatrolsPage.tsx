@@ -3,6 +3,7 @@ import Nav from "../components/Nav";
 import { Cat, PatrolType, clangenRunner } from "../python/clangen";
 import Select from "../components/Select";
 
+// TODO: switch to reducer
 function PatrolsPage() {
   const [patrolText, setPatrolText] = useState("");
   const [resultText, setResultText] = useState("");
@@ -35,7 +36,21 @@ function PatrolsPage() {
     };
   });
 
-  useEffect(() => {
+  const [screenState, setScreenState] = useState("start");
+
+  const disabled = screenState !== "start";
+  
+  function reset() {
+    setSelectedCat1("");
+    setSelectedCat2("");
+    setSelectedCat3("");
+    setSelectedCat4("");
+    setSelectedCat5("");
+    setSelectedCat6("");
+    setResultText("");
+    setPatrolText("");
+    setScreenState("start");
+  
     const cats = clangenRunner.getCats();
 
     // TODO: not working & patrolled
@@ -49,9 +64,14 @@ function PatrolsPage() {
       );
     });
     setPossibleCats(temp);
-  }, []);
+  }
+
+  useEffect(() => {
+    reset();
+  }, [])
 
   function startPatrol() {
+    setScreenState("in-progress");
     setPatrolText(clangenRunner.startPatrol(selectedCats, patrolType));
     setResultText("");
   }
@@ -60,6 +80,7 @@ function PatrolsPage() {
     const [outcomeText, outcomeResult] = clangenRunner.finishPatrol(action);
     setPatrolText(outcomeText);
     setResultText(outcomeResult);
+    setScreenState("wrap-up");
   }
 
   return (
@@ -72,6 +93,7 @@ function PatrolsPage() {
           <Select
             value={selectedCat1}
             onChange={setSelectedCat1}
+            disabled={disabled}
             options={catOptions.filter(
               (cat) =>
                 cat.value === selectedCat1 || !selectedCats.includes(cat.value),
@@ -82,6 +104,7 @@ function PatrolsPage() {
           <Select
             value={selectedCat2}
             onChange={setSelectedCat2}
+            disabled={disabled}
             options={catOptions.filter(
               (cat) =>
                 cat.value === selectedCat2 || !selectedCats.includes(cat.value),
@@ -92,6 +115,7 @@ function PatrolsPage() {
           <Select
             value={selectedCat3}
             onChange={setSelectedCat3}
+            disabled={disabled}
             options={catOptions.filter(
               (cat) =>
                 cat.value === selectedCat3 || !selectedCats.includes(cat.value),
@@ -102,6 +126,7 @@ function PatrolsPage() {
           <Select
             value={selectedCat4}
             onChange={setSelectedCat4}
+            disabled={disabled}
             options={catOptions.filter(
               (cat) =>
                 cat.value === selectedCat4 || !selectedCats.includes(cat.value),
@@ -112,6 +137,7 @@ function PatrolsPage() {
           <Select
             value={selectedCat5}
             onChange={setSelectedCat5}
+            disabled={disabled}
             options={catOptions.filter(
               (cat) =>
                 cat.value === selectedCat5 || !selectedCats.includes(cat.value),
@@ -122,6 +148,7 @@ function PatrolsPage() {
           <Select
             value={selectedCat6}
             onChange={setSelectedCat6}
+            disabled={disabled}
             options={catOptions.filter(
               (cat) =>
                 cat.value === selectedCat6 || !selectedCats.includes(cat.value),
@@ -137,6 +164,7 @@ function PatrolsPage() {
             id="hunt-radio"
             name="patrol-type"
             type="radio"
+            disabled={disabled}
             checked={patrolType === "hunting"}
             onChange={() => setPatrolType("hunting")}
           />
@@ -148,6 +176,7 @@ function PatrolsPage() {
             id="bord-radio"
             name="patrol-type"
             type="radio"
+            disabled={disabled}
             checked={patrolType === "border"}
             onChange={() => setPatrolType("border")}
           />
@@ -159,6 +188,7 @@ function PatrolsPage() {
             id="train-radio"
             name="patrol-type"
             type="radio"
+            disabled={disabled}
             checked={patrolType === "training"}
             onChange={() => setPatrolType("training")}
           />
@@ -170,6 +200,7 @@ function PatrolsPage() {
             id="med-radio"
             name="patrol-type"
             type="radio"
+            disabled={disabled}
             checked={patrolType === "med"}
             onChange={() => setPatrolType("med")}
           />
@@ -181,10 +212,23 @@ function PatrolsPage() {
 
       <p>{resultText}</p>
 
-      <button onClick={startPatrol}>Start Patrol</button>
+      {screenState === "start" &&
+        <button onClick={startPatrol}>Start Patrol</button>
+      }
 
-      <button onClick={() => endPatrol("proceed")}>Proceed</button>
-      <button onClick={() => endPatrol("decline")}>Decline</button>
+      {(screenState === "in-progress") && 
+      <>
+        <button onClick={() => endPatrol("proceed")}>Proceed</button>
+        <button onClick={() => endPatrol("decline")}>Decline</button>
+      </>
+      }
+
+    {(screenState === "wrap-up") && 
+      <>
+        <button onClick={reset}>New Patrol</button>
+      </>
+      }
+
     </>
   );
 }
