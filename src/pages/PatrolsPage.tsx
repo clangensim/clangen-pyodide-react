@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import { Cat, PatrolAction, PatrolType, clangenRunner } from "../python/clangen";
 import Select from "../components/Select";
+import { SelectOption } from "../components/Select";
 
 // TODO: switch to reducer
 function PatrolsPage() {
@@ -29,7 +30,7 @@ function PatrolsPage() {
     selectedCat6,
   ].filter((elem) => elem !== "");
 
-  const catOptions = possibleCats.map((cat) => {
+  const catOptions: SelectOption[] = possibleCats.map((cat) => {
     return {
       label: cat.name,
       value: cat.ID,

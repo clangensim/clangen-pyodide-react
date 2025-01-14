@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-type Option = {
+type SelectOption = {
   value: string;
   label: string;
 };
@@ -13,7 +13,7 @@ function Select({
   value,
   onChange,
 }: {
-  options: Record<string, string>[];
+  options: SelectOption[];
   label?: string;
   name?: string;
   disabled?: boolean;
@@ -48,3 +48,5 @@ function Select({
 }
 
 export default Select;
+export type { SelectOption };
+
