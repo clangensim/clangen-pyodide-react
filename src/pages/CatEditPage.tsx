@@ -51,9 +51,9 @@ function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
 
-  const [cat, setCat] = useState<Cat>();
+  const [prefix, setPrefix] = useState<string>("");
+  const [suffix, setSuffix] = useState<string>("");
 
-  const [catName, setCatName] = useState("");
   const [status, setStatus] = useState("");
 
   // have to do it like this because we don't want to disable before submit
@@ -63,7 +63,9 @@ function CatEditPage() {
 
   function handleSubmit() {
     clangenRunner.editCat(catID, {
-      status: status
+      status: status,
+      prefix: prefix,
+      suffix: suffix,
     });
     if (status === "elder") {
       setDisableSelectStatus(true);
@@ -76,9 +78,9 @@ function CatEditPage() {
     if (c.status === "elder") {
       setDisableSelectStatus(true);
     }
-    setCatName(c.name.display);
+    setPrefix(c.name.prefix);
+    setSuffix(c.name.suffix);
     setStatus(c.status);
-    setCat(c);
   }, []);
 
   return (
@@ -87,7 +89,8 @@ function CatEditPage() {
 
       <div>
         Name
-        <input type="text" disabled value={catName} onChange={(e) => setCatName(e.currentTarget.value)} />
+        <input type="text" value={prefix} onChange={(e) => setPrefix(e.currentTarget.value)} />
+        <input type="text" value={suffix} onChange={(e) => setSuffix(e.currentTarget.value)} />
       </div>
 
       <div>

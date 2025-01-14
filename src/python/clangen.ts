@@ -61,6 +61,8 @@ type Event = {
 
 type CatEdit = {
   status: string;
+  prefix: string;
+  suffix: string;
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med"
@@ -329,6 +331,10 @@ class Clangen implements ClangenInterface {
           cat.status_change("deputy", resort=True)
         else:
           cat.status_change(edit["status"], resort=True)
+      if "prefix" in edit and edit["prefix"] != cat.name.prefix:
+        cat.name.prefix = edit["prefix"]
+      if "suffix" in edit and edit["suffix"] != cat.name.suffix:
+        cat.name.suffix = edit["suffix"]
     `,
       { locals: locals },
     );
