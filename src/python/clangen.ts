@@ -54,6 +54,7 @@ type Event = {
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med"
+type PatrolAction = "proceed" | "antag" | "decline";
 
 interface ClangenInterface {
   getCat(id: string): Cat | undefined;
@@ -372,7 +373,7 @@ class Clangen implements ClangenInterface {
     return introText;
   }
 
-  public finishPatrol(action: "proceed" | "antag" | "decline") {
+  public finishPatrol(action: PatrolAction) {
     const locals = pyodide.toPy({
       action: action,
      });
@@ -403,4 +404,4 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
-export type { Cat, PatrolType, Pelt, Relationship, Event };
+export type { Cat, PatrolAction, PatrolType, Pelt, Relationship, Event };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
-import { Cat, PatrolType, clangenRunner } from "../python/clangen";
+import { Cat, PatrolAction, PatrolType, clangenRunner } from "../python/clangen";
 import Select from "../components/Select";
 
 // TODO: switch to reducer
@@ -76,7 +76,7 @@ function PatrolsPage() {
     setResultText("");
   }
 
-  function endPatrol(action: "proceed" | "decline" | "antag") {
+  function endPatrol(action: PatrolAction) {
     const [outcomeText, outcomeResult] = clangenRunner.finishPatrol(action);
     setPatrolText(outcomeText);
     setResultText(outcomeResult);
