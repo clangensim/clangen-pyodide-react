@@ -39,9 +39,9 @@ function Select({
           {!noEmpty && 
             <option value=""></option>
           }
-          {options.map((optionData) => {
+          {options.map((optionData, index) => {
             return (
-              <option value={optionData["value"]}>{optionData["label"]}</option>
+              <option key={index} value={optionData["value"]}>{optionData["label"]}</option>
             );
           })}
         </select>
