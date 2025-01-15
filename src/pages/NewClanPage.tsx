@@ -81,14 +81,13 @@ function NewClanPage() {
               value="classic"
               defaultChecked
             ></input>
-            <label htmlFor="classic-radio">Classic - Probably playable</label>
+            <label htmlFor="classic-radio">Classic</label>
           </div>
 
           <div>
             <input id="expanded-radio" type="radio" name="game-mode" value="expanded"></input>
             <label htmlFor="expanded-radio">
-              Expanded - Your Clan will starve because I didn't implement
-              patrols
+              Expanded
             </label>
           </div>
         </fieldset>
