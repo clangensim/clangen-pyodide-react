@@ -110,6 +110,7 @@ function NewClanPage() {
               >
                 <div>{cat.name.display}</div>
                 <div>{cat.age}</div>
+                <div>{cat.trait}</div>
                 <div>{cat.moons} moons</div>
                 <CatDisplay pelt={cat.pelt} age={cat.age} />
               </div>

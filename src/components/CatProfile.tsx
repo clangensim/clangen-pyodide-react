@@ -5,6 +5,7 @@ function CatProfile({ cat }: { cat: Cat }) {
     <>
       <ul>
         <li>{cat.age}</li>
+        <li>{cat.trait}</li>
         <li>{cat.moons.toString()} moon(s)</li>
         <li>{cat.status} </li>
       </ul>

@@ -15,6 +15,7 @@ function CatsPage() {
               <th>Sprite</th>
               <th>Name</th>
               <th>Age (moons)</th>
+              <th>Trait</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -33,6 +34,7 @@ function CatsPage() {
                     <Link to={`/cats/${cat.ID}`}> {cat.name.display} </Link>
                   </td>
                   <td> {cat.moons} </td>
+                  <td>{cat.trait}</td>
                   <td>{cat.status} </td>
                 </tr>
               );
