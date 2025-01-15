@@ -535,6 +535,13 @@ class Clangen implements ClangenInterface {
     `);
     return binaryFile;
   }
+
+  public importClan(saveFile: Int8Array) {
+    this._pyodide.unpackArchive(saveFile, "zip", {
+      extractDir: "/mnt/saves",
+    });
+    this._syncFS(false).then(() => location.reload());
+  }
 }
 
 const clangenRunner = new Clangen(pyodide);
