@@ -28,6 +28,18 @@ type Name = {
   display: string;
 };
 
+type Severity = "major" | "minor";
+type ConditionType = "injury" | "condition" | "illness"
+
+type Condition = {
+  name: string;
+  type: ConditionType;
+  moonStart: number;
+  moonsWith: number;
+  severity: Severity;
+  infectious: boolean;
+};
+
 type Cat = {
   ID: string;
   name: Name;
@@ -406,6 +418,50 @@ class Clangen implements ClangenInterface {
     return rels;
   }
 
+  public getConditions(id: string): Condition[] {
+    const locals = pyodide.toPy({ cat_id: id });
+    const conditions = this._pyodide.runPython(
+      `
+      conditions = []
+      cat = Cat.all_cats[cat_id]
+      
+
+      for name, condition in cat.permanent_condition.items():
+        conditions.append({
+          "type": "condition",
+          "name": name,
+          "moonStart": condition["moon_start"],
+          "moonsWith": game.clan.age - condition["moon_start"],
+          "severity": condition["severity"],
+          "infectious": condition.get("infectiousness", 0) != 0
+        })
+      for name, condition in cat.illnesses.items():
+        conditions.append({
+          "type": "illness",
+          "name": name,
+          "moonStart": condition["moon_start"],
+          "moonsWith": game.clan.age - condition["moon_start"],
+          "severity": condition["severity"],
+          "infectious": condition.get("infectiousness", 0) != 0
+        })
+      for name, condition in cat.injuries.items():
+        conditions.append({
+          "type": "injury",
+          "name": name,
+          "moonStart": condition["moon_start"],
+          "moonsWith": game.clan.age - condition["moon_start"],
+          "severity": condition["severity"],
+          "infectious": condition.get("infectiousness", 0) != 0
+        })
+      to_js(conditions, dict_converter=js.Object.fromEntries)
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+    console.log(conditions);
+    return conditions;
+  }
+
   public async moonskip(): Promise<void> {
     this._pyodide.runPython(`
       events_class.one_moon()
@@ -470,4 +526,4 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
-export type { Cat, PatrolAction, PatrolType, Pelt, Relationship, Event };
+export type { Cat, PatrolAction, PatrolType, Pelt, Relationship, Condition, Event };
