@@ -100,10 +100,13 @@ interface ClangenInterface {
     members: string[],
     season: string,
   ): void;
+  startPatrol(patrolMembers: string[], patrolType: PatrolType): string;
+  finishPatrol(action: PatrolAction): [string, string];
   getEvents(): Event[];
   getCats(): Cat[];
   getPatrollableCats(): Cat[];
   getClanAge(): Number;
+  getConditions(id: string): Condition[];
   getRelationships(id: string): Relationship[];
 }
 
@@ -476,7 +479,7 @@ class Clangen implements ClangenInterface {
     return events;
   }
 
-  public startPatrol(patrolMembers: string[], patrolType: PatrolType) {
+  public startPatrol(patrolMembers: string[], patrolType: PatrolType): string {
     const locals = pyodide.toPy({
       patrol_members: patrolMembers,
       patrol_type: patrolType
@@ -495,7 +498,7 @@ class Clangen implements ClangenInterface {
     return introText;
   }
 
-  public finishPatrol(action: PatrolAction) {
+  public finishPatrol(action: PatrolAction): [string, string] {
     const locals = pyodide.toPy({
       action: action,
      });
