@@ -8,6 +8,13 @@ function App() {
     download(new Blob([f]));
   }
 
+  function handleImportClan(e: any) {
+    const f = e.target.files[0];
+    f.arrayBuffer().then((buff: Int8Array) => {
+      clangenRunner.importClan(buff);
+    });
+  }
+
   return (
     <>
       <Nav />
@@ -16,6 +23,7 @@ function App() {
         Welcome to <b>Clangen Simulator</b>, a project that aims to simulate Clan Generator in your browser.
       </p>
 
+      <input type="file" onChange={handleImportClan} /> 
       <button onClick={handleExportClan}>Export Save</button>
     </>
   );
