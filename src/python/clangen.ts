@@ -523,6 +523,18 @@ class Clangen implements ClangenInterface {
     `);
     return age;
   }
+
+  public exportClan(): Int8Array {
+    const binaryFile = this._pyodide.runPython(`
+      import shutil
+      shutil.make_archive("/exported", "zip", "saves")
+
+      with open("/exported.zip", "rb") as f:
+        binary = f.read()
+      to_js(binary)
+    `);
+    return binaryFile;
+  }
 }
 
 const clangenRunner = new Clangen(pyodide);
