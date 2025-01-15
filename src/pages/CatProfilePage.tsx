@@ -24,6 +24,7 @@ function CatProfilePage() {
           <CatDisplay pelt={cat.pelt} age={cat.age} />
           <CatProfile cat={cat} />
           <Link to={`/cats/${catID}/relationships`}>Relationships</Link>{" "}
+          <Link to={`/cats/${catID}/conditions`}>Conditions</Link>{" "}
           <Link to={`/cats/${catID}/edit`}>Edit</Link>
         </>
       )}
