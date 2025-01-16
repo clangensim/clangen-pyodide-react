@@ -85,10 +85,13 @@ function NewClanPage() {
           </div>
 
           <div>
-            <input id="expanded-radio" type="radio" name="game-mode" value="expanded"></input>
-            <label htmlFor="expanded-radio">
-              Expanded
-            </label>
+            <input
+              id="expanded-radio"
+              type="radio"
+              name="game-mode"
+              value="expanded"
+            ></input>
+            <label htmlFor="expanded-radio">Expanded</label>
           </div>
         </fieldset>
 

@@ -21,12 +21,15 @@ function App() {
       <Nav />
 
       <p>
-        Welcome to <b>Clangen Simulator</b>, a project that aims to simulate Clan Generator in your browser.
+        Welcome to <b>Clangen Simulator</b>, a project that aims to simulate
+        Clan Generator in your browser.
       </p>
 
       <p>Importing a save will delete all existing Clans. Be careful.</p>
 
-      <FileUploadButton onChange={handleImportClan}>Import Save</FileUploadButton>
+      <FileUploadButton onChange={handleImportClan}>
+        Import Save
+      </FileUploadButton>
       <button onClick={handleExportClan}>Export Save</button>
     </>
   );

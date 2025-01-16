@@ -5,6 +5,6 @@ const download = (b: Blob) => {
   document.body.appendChild(temp);
   temp.click();
   document.body.removeChild(temp);
-}
+};
 
 export { download };

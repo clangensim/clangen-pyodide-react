@@ -8,16 +8,18 @@ function CatsPage() {
   return (
     <>
       <Nav />
-      <Breadcrumbs crumbs={[
-        {
-          url: "/",
-          label: "Home"
-        },
-        {
-          url: "/cats",
-          label: "Cats"
-        },
-      ]} />
+      <Breadcrumbs
+        crumbs={[
+          {
+            url: "/",
+            label: "Home",
+          },
+          {
+            url: "/cats",
+            label: "Cats",
+          },
+        ]}
+      />
 
       <div className="list" role="listbox">
         <table className="detailed">

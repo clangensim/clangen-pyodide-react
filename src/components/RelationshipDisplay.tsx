@@ -5,7 +5,10 @@ import ProgressBar from "./ProgressBar";
 function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   return (
     <div className="raised">
-      <CatDisplay pelt={relationship.cat_to.pelt} age={relationship.cat_to.age} />
+      <CatDisplay
+        pelt={relationship.cat_to.pelt}
+        age={relationship.cat_to.age}
+      />
       {relationship.cat_to.name.display}
       <ul>
         <li>

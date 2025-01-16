@@ -29,7 +29,7 @@ type Name = {
 };
 
 type Severity = "major" | "minor";
-type ConditionType = "injury" | "condition" | "illness"
+type ConditionType = "injury" | "condition" | "illness";
 
 type Condition = {
   name: string;
@@ -80,7 +80,7 @@ type CatEdit = {
   suffix: string;
 };
 
-type PatrolType = "hunting" | "border" | "training" | "med"
+type PatrolType = "hunting" | "border" | "training" | "med";
 type PatrolAction = "proceed" | "antag" | "decline";
 
 interface ClangenInterface {
@@ -283,8 +283,8 @@ class Clangen implements ClangenInterface {
       camp: camp,
       game_mode: gameMode,
       members: members,
-      season: season
-     });
+      season: season,
+    });
     this._pyodide.runPython(
       `
       game.mediated.clear()
@@ -484,8 +484,8 @@ class Clangen implements ClangenInterface {
   public startPatrol(patrolMembers: string[], patrolType: PatrolType): string {
     const locals = pyodide.toPy({
       patrol_members: patrolMembers,
-      patrol_type: patrolType
-     });
+      patrol_type: patrolType,
+    });
     const introText = this._pyodide.runPython(
       `
       patrol_members_obj = list(map(lambda cat_id : Cat.all_cats[cat_id], patrol_members))
@@ -503,8 +503,8 @@ class Clangen implements ClangenInterface {
   public finishPatrol(action: PatrolAction): [string, string] {
     const locals = pyodide.toPy({
       action: action,
-     });
-     const outcome = this._pyodide.runPython(
+    });
+    const outcome = this._pyodide.runPython(
       `
       global current_patrol
       outcome = current_patrol.proceed_patrol(action)
@@ -542,7 +542,7 @@ class Clangen implements ClangenInterface {
     this._pyodide.runPython(`
     import shutil
     shutil.rmtree("/mnt/saves")
-    `)
+    `);
     this._pyodide.unpackArchive(saveFile, "zip", {
       extractDir: "/mnt/saves",
     });
@@ -554,4 +554,12 @@ const clangenRunner = new Clangen(pyodide);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
-export type { Cat, PatrolAction, PatrolType, Pelt, Relationship, Condition, Event };
+export type {
+  Cat,
+  PatrolAction,
+  PatrolType,
+  Pelt,
+  Relationship,
+  Condition,
+  Event,
+};

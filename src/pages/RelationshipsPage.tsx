@@ -21,26 +21,28 @@ function RelationshipsPage() {
   return (
     <>
       <Nav />
-      {cat && 
-        <Breadcrumbs crumbs={[
-          {
-            url: "/",
-            label: "Home"
-          },
-          {
-            url: "/cats",
-            label: "Cats"
-          },
-          {
-            url: `/cats/${catID}`,
-            label: cat.name.display,
-          },
-          {
-            url: `/cats/${catID}/relationships`,
-            label: "Relationships",
-          },
-        ]} />
-      }
+      {cat && (
+        <Breadcrumbs
+          crumbs={[
+            {
+              url: "/",
+              label: "Home",
+            },
+            {
+              url: "/cats",
+              label: "Cats",
+            },
+            {
+              url: `/cats/${catID}`,
+              label: cat.name.display,
+            },
+            {
+              url: `/cats/${catID}/relationships`,
+              label: "Relationships",
+            },
+          ]}
+        />
+      )}
 
       {relationships?.map((rel, index) => {
         return (

@@ -18,22 +18,24 @@ function CatProfilePage() {
   return (
     <>
       <Nav />
-      {cat && 
-        <Breadcrumbs crumbs={[
-          {
-            url: "/",
-            label: "Home"
-          },
-          {
-            url: "/cats",
-            label: "Cats"
-          },
-          {
-            url: `/cats/${catID}`,
-            label: cat.name.display,
-          },
-        ]} />
-      }
+      {cat && (
+        <Breadcrumbs
+          crumbs={[
+            {
+              url: "/",
+              label: "Home",
+            },
+            {
+              url: "/cats",
+              label: "Cats",
+            },
+            {
+              url: `/cats/${catID}`,
+              label: cat.name.display,
+            },
+          ]}
+        />
+      )}
 
       {cat && (
         <>

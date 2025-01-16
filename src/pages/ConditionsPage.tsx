@@ -12,7 +12,7 @@ function ConditionsPage() {
   const catID = params.id as string;
 
   useEffect(() => {
-    const c = (clangenRunner.getConditions(catID));
+    const c = clangenRunner.getConditions(catID);
     setConditions(c);
     setCat(clangenRunner.getCat(catID));
   }, []);
@@ -20,43 +20,43 @@ function ConditionsPage() {
   return (
     <>
       <Nav />
-      {cat && 
-        <Breadcrumbs crumbs={[
-          {
-            url: "/",
-            label: "Home"
-          },
-          {
-            url: "/cats",
-            label: "Cats"
-          },
-          {
-            url: `/cats/${catID}`,
-            label: cat.name.display,
-          },
-          {
-            url: `/cats/${catID}`,
-            label: "Conditions"
-          }
-        ]} />
-      }
-
-      {conditions === undefined || conditions.length == 0 && 
-        <p>This cat has no conditions.</p>
-      }
-      {conditions?.map((condition) => (
-          <>
-            <ul>
-              <li>{ condition.name } </li>
-              <ul>
-                <li>{ condition.type }</li>
-                <li>{ condition.severity }</li>
-                <li>has had for { condition.moonsWith } moon(s)</li>
-              </ul>
-            </ul>
-          </>
-        )
+      {cat && (
+        <Breadcrumbs
+          crumbs={[
+            {
+              url: "/",
+              label: "Home",
+            },
+            {
+              url: "/cats",
+              label: "Cats",
+            },
+            {
+              url: `/cats/${catID}`,
+              label: cat.name.display,
+            },
+            {
+              url: `/cats/${catID}`,
+              label: "Conditions",
+            },
+          ]}
+        />
       )}
+
+      {conditions === undefined ||
+        (conditions.length == 0 && <p>This cat has no conditions.</p>)}
+      {conditions?.map((condition) => (
+        <>
+          <ul>
+            <li>{condition.name} </li>
+            <ul>
+              <li>{condition.type}</li>
+              <li>{condition.severity}</li>
+              <li>has had for {condition.moonsWith} moon(s)</li>
+            </ul>
+          </ul>
+        </>
+      ))}
     </>
   );
 }

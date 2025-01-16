@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
-import { Cat, PatrolAction, PatrolType, clangenRunner } from "../python/clangen";
+import {
+  Cat,
+  PatrolAction,
+  PatrolType,
+  clangenRunner,
+} from "../python/clangen";
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
 import Breadcrumbs from "../components/Breadcrumbs";
@@ -41,7 +46,7 @@ function PatrolsPage() {
   const [screenState, setScreenState] = useState("start");
 
   const disabled = screenState !== "start";
-  
+
   function reset() {
     setSelectedCat1("");
     setSelectedCat2("");
@@ -52,7 +57,7 @@ function PatrolsPage() {
     setResultText("");
     setPatrolText("");
     setScreenState("start");
-  
+
     const cats = clangenRunner.getPatrollableCats();
 
     setPossibleCats(cats);
@@ -60,7 +65,7 @@ function PatrolsPage() {
 
   useEffect(() => {
     reset();
-  }, [])
+  }, []);
 
   function startPatrol() {
     setScreenState("in-progress");
@@ -78,16 +83,18 @@ function PatrolsPage() {
   return (
     <>
       <Nav />
-      <Breadcrumbs crumbs={[
-        {
-          url: "/",
-          label: "Home"
-        },
-        {
-          url: "/patrols",
-          label: "Patrols"
-        },
-      ]} />
+      <Breadcrumbs
+        crumbs={[
+          {
+            url: "/",
+            label: "Home",
+          },
+          {
+            url: "/patrols",
+            label: "Patrols",
+          },
+        ]}
+      />
 
       <fieldset>
         <legend>Cats</legend>
@@ -214,23 +221,22 @@ function PatrolsPage() {
 
       <p>{resultText}</p>
 
-      {screenState === "start" &&
+      {screenState === "start" && (
         <button onClick={startPatrol}>Start Patrol</button>
-      }
+      )}
 
-      {(screenState === "in-progress") && 
-      <>
-        <button onClick={() => endPatrol("proceed")}>Proceed</button>
-        <button onClick={() => endPatrol("decline")}>Decline</button>
-      </>
-      }
+      {screenState === "in-progress" && (
+        <>
+          <button onClick={() => endPatrol("proceed")}>Proceed</button>
+          <button onClick={() => endPatrol("decline")}>Decline</button>
+        </>
+      )}
 
-    {(screenState === "wrap-up") && 
-      <>
-        <button onClick={reset}>New Patrol</button>
-      </>
-      }
-
+      {screenState === "wrap-up" && (
+        <>
+          <button onClick={reset}>New Patrol</button>
+        </>
+      )}
     </>
   );
 }

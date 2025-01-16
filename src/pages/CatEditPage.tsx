@@ -92,26 +92,28 @@ function CatEditPage() {
   return (
     <>
       <Nav />
-      {cat && 
-        <Breadcrumbs crumbs={[
-          {
-            url: "/",
-            label: "Home"
-          },
-          {
-            url: "/cats",
-            label: "Cats"
-          },
-          {
-            url: `/cats/${catID}`,
-            label: cat.name.display,
-          },
-          {
-            url: `/cats/${catID}/edit`,
-            label: "Edit",
-          },
-        ]} />
-      }
+      {cat && (
+        <Breadcrumbs
+          crumbs={[
+            {
+              url: "/",
+              label: "Home",
+            },
+            {
+              url: "/cats",
+              label: "Cats",
+            },
+            {
+              url: `/cats/${catID}`,
+              label: cat.name.display,
+            },
+            {
+              url: `/cats/${catID}/edit`,
+              label: "Edit",
+            },
+          ]}
+        />
+      )}
 
       <div>
         Name

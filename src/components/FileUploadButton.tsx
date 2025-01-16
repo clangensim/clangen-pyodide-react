@@ -1,6 +1,12 @@
 import { ChangeEventHandler, useRef } from "react";
 
-function FileUploadButton({children, onChange}: {children?: JSX.Element | string, onChange?: ChangeEventHandler<HTMLInputElement>}) {
+function FileUploadButton({
+  children,
+  onChange,
+}: {
+  children?: JSX.Element | string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+}) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   function handleButtonClick() {
@@ -15,13 +21,13 @@ function FileUploadButton({children, onChange}: {children?: JSX.Element | string
       <input
         type="file"
         style={{
-          display: "none"
+          display: "none",
         }}
         ref={inputRef}
         onChange={onChange}
       />
     </>
-  )
+  );
 }
 
 export default FileUploadButton;

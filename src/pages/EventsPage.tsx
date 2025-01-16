@@ -41,16 +41,18 @@ function EventsPage() {
   return (
     <>
       <Nav />
-      <Breadcrumbs crumbs={[
-        {
-          url: "/",
-          label: "Home"
-        },
-        {
-          url: "/events",
-          label: "Events"
-        },
-      ]} />
+      <Breadcrumbs
+        crumbs={[
+          {
+            url: "/",
+            label: "Home",
+          },
+          {
+            url: "/events",
+            label: "Events",
+          },
+        ]}
+      />
 
       <div>{clanAge.toString()} Moons</div>
       <button onClick={handleMoonskip}>Moonskip</button>
