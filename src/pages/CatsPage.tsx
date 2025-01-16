@@ -2,11 +2,23 @@ import { clangenRunner } from "../python/clangen";
 import Nav from "../components/Nav";
 import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 function CatsPage() {
   return (
     <>
       <Nav />
+      <Breadcrumbs crumbs={[
+        {
+          url: "/",
+          label: "Home"
+        },
+        {
+          url: "/cats",
+          label: "Cats"
+        },
+      ]} />
+
       <div className="list" role="listbox">
         <table className="detailed">
           <thead>

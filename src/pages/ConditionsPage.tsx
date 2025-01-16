@@ -1,22 +1,45 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { clangenRunner, Condition } from "../python/clangen";
+import { Cat, clangenRunner, Condition } from "../python/clangen";
 import Nav from "../components/Nav";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 function ConditionsPage() {
   const [conditions, setConditions] = useState<Condition[]>();
+  const [cat, setCat] = useState<Cat>();
   const params = useParams();
   const catID = params.id as string;
 
   useEffect(() => {
     const c = (clangenRunner.getConditions(catID));
     setConditions(c);
+    setCat(clangenRunner.getCat(catID));
   }, []);
 
   return (
     <>
       <Nav />
+      {cat && 
+        <Breadcrumbs crumbs={[
+          {
+            url: "/",
+            label: "Home"
+          },
+          {
+            url: "/cats",
+            label: "Cats"
+          },
+          {
+            url: `/cats/${catID}`,
+            label: cat.name.display,
+          },
+          {
+            url: `/cats/${catID}`,
+            label: "Conditions"
+          }
+        ]} />
+      }
 
       {conditions === undefined || conditions.length == 0 && 
         <p>This cat has no conditions.</p>

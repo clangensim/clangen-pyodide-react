@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import CatProfile from "../components/CatProfile";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
@@ -17,6 +18,22 @@ function CatProfilePage() {
   return (
     <>
       <Nav />
+      {cat && 
+        <Breadcrumbs crumbs={[
+          {
+            url: "/",
+            label: "Home"
+          },
+          {
+            url: "/cats",
+            label: "Cats"
+          },
+          {
+            url: `/cats/${catID}`,
+            label: cat.name.display,
+          },
+        ]} />
+      }
 
       {cat && (
         <>

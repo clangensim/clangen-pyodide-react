@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { clangenRunner } from "../python/clangen";
+import { Cat, clangenRunner } from "../python/clangen";
 import Nav from "../components/Nav";
 import Select from "../components/Select";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const selectApprenticeOptions = [
   {
@@ -51,6 +52,8 @@ function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
 
+  const [cat, setCat] = useState<Cat>();
+
   const [prefix, setPrefix] = useState<string>("");
   const [suffix, setSuffix] = useState<string>("");
 
@@ -80,6 +83,7 @@ function CatEditPage() {
     if (c.status === "elder") {
       setDisableSelectStatus(true);
     }
+    setCat(c);
     setPrefix(c.name.prefix);
     setSuffix(c.name.suffix);
     setStatus(c.status);
@@ -88,6 +92,26 @@ function CatEditPage() {
   return (
     <>
       <Nav />
+      {cat && 
+        <Breadcrumbs crumbs={[
+          {
+            url: "/",
+            label: "Home"
+          },
+          {
+            url: "/cats",
+            label: "Cats"
+          },
+          {
+            url: `/cats/${catID}`,
+            label: cat.name.display,
+          },
+          {
+            url: `/cats/${catID}/edit`,
+            label: "Edit",
+          },
+        ]} />
+      }
 
       <div>
         Name

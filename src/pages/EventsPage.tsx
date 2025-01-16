@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { clangenRunner } from "../python/clangen";
 import Nav from "../components/Nav";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 function EventsPage() {
   const [events, setEvents] = useState<Array<any>>();
@@ -40,6 +41,17 @@ function EventsPage() {
   return (
     <>
       <Nav />
+      <Breadcrumbs crumbs={[
+        {
+          url: "/",
+          label: "Home"
+        },
+        {
+          url: "/events",
+          label: "Events"
+        },
+      ]} />
+
       <div>{clanAge.toString()} Moons</div>
       <button onClick={handleMoonskip}>Moonskip</button>
       <ul>{eventsDisplay}</ul>

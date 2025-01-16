@@ -3,6 +3,7 @@ import Nav from "../components/Nav";
 import { Cat, PatrolAction, PatrolType, clangenRunner } from "../python/clangen";
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 // TODO: switch to reducer
 function PatrolsPage() {
@@ -77,6 +78,16 @@ function PatrolsPage() {
   return (
     <>
       <Nav />
+      <Breadcrumbs crumbs={[
+        {
+          url: "/",
+          label: "Home"
+        },
+        {
+          url: "/patrols",
+          label: "Patrols"
+        },
+      ]} />
 
       <fieldset>
         <legend>Cats</legend>
