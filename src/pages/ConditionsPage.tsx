@@ -18,6 +18,9 @@ function ConditionsPage() {
     <>
       <Nav />
 
+      {conditions === undefined || conditions.length == 0 && 
+        <p>This cat has no conditions.</p>
+      }
       {conditions?.map((condition) => (
           <>
             <ul>
