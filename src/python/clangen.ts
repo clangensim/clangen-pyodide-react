@@ -108,6 +108,8 @@ interface ClangenInterface {
   getClanAge(): Number;
   getConditions(id: string): Condition[];
   getRelationships(id: string): Relationship[];
+  exportClan(): Int8Array;
+  importClan(saveFile: Int8Array): void;
 }
 
 class Clangen implements ClangenInterface {
