@@ -537,6 +537,10 @@ class Clangen implements ClangenInterface {
   }
 
   public importClan(saveFile: Int8Array) {
+    this._pyodide.runPython(`
+    import shutil
+    shutil.rmtree("/mnt/saves")
+    `)
     this._pyodide.unpackArchive(saveFile, "zip", {
       extractDir: "/mnt/saves",
     });
