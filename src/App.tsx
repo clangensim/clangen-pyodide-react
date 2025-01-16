@@ -1,3 +1,4 @@
+import FileUploadButton from "./components/FileUploadButton";
 import Nav from "./components/Nav";
 import { clangenRunner } from "./python/clangen";
 import { download } from "./utils";
@@ -23,7 +24,7 @@ function App() {
         Welcome to <b>Clangen Simulator</b>, a project that aims to simulate Clan Generator in your browser.
       </p>
 
-      <input type="file" onChange={handleImportClan} /> 
+      <FileUploadButton onChange={handleImportClan}>Import Save</FileUploadButton>
       <button onClick={handleExportClan}>Export Save</button>
     </>
   );
