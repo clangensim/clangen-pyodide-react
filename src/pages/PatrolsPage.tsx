@@ -222,7 +222,7 @@ function PatrolsPage() {
       <p>{resultText}</p>
 
       {screenState === "start" && (
-        <button onClick={startPatrol}>Start Patrol</button>
+        <button disabled={selectedCats.length == 0} onClick={startPatrol}>Start Patrol</button>
       )}
 
       {screenState === "in-progress" && (
