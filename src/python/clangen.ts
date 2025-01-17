@@ -287,6 +287,9 @@ class Clangen implements ClangenInterface {
     });
     this._pyodide.runPython(
       `
+      import shutil
+      shutil.rmtree("/mnt/saves")
+
       game.mediated.clear()
       game.patrolled.clear()
       game.cat_to_fade.clear()
