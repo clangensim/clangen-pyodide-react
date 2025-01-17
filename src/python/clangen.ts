@@ -84,11 +84,20 @@ type PatrolType = "hunting" | "border" | "training" | "med";
 type PatrolAction = "proceed" | "antag" | "decline";
 
 interface ClangenInterface {
+  /* Gets Cat from ID */
   getCat(id: string): Cat;
+  /* Edits cat with ID according to CatEdit object */
   editCat(id: string, edit: CatEdit): boolean;
+  /* Saves game */
   saveGame(): void;
+  /* Skips a moon */
   moonskip(): void;
+  /* Initializes starter cats used in Clan creation.
+     These get added to the cat list, so you should run refreshCats()
+     at some point after calling this if you don't run createClan().
+  */
   initializeStarterCats(): Cat[];
+  /* Creates a new Clan as specified. */
   createClan(
     clanName: string,
     leader: string,
@@ -100,16 +109,31 @@ interface ClangenInterface {
     members: string[],
     season: string,
   ): void;
+  /* Starts a patrol. There can only be one patrol at a time. */
   startPatrol(patrolMembers: string[], patrolType: PatrolType): string;
+  /* Finishes a patrol started by startPatrol() and returns 
+     [outcome text, result text]. 
+     Result text represents what happened in concrete terms.
+     Outcome text is the writing to go with the intro text. */
   finishPatrol(action: PatrolAction): [string, string];
+  /* Gets events for this moon */
   getEvents(): Event[];
+  /* Gets cats from all_cat_list */
   getCats(): Cat[];
+  /* Gets cats that can patrol */
   getPatrollableCats(): Cat[];
+  /* Gets age of the Clan */
   getClanAge(): Number;
+  /* Gets condiions of cat with given ID */
   getConditions(id: string): Condition[];
+  /* Gets relationships of cat with given ID */
   getRelationships(id: string): Relationship[];
+  /* Exports save to binary array */
   exportClan(): Int8Array;
+  /* Imports save exported by exportClan() */
   importClan(saveFile: Int8Array): void;
+  /* Removes cats that aren't in clan_cats.
+     Mainly, this is cats added in Clan creation. */
   refreshCats(): void;
 }
 
