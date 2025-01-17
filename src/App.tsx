@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import FileUploadButton from "./components/FileUploadButton";
 import Nav from "./components/Nav";
 import { clangenRunner } from "./python/clangen";
@@ -25,7 +26,11 @@ function App() {
         Clan Generator in your browser.
       </p>
 
-      <p>Importing a save will delete all existing Clans. Be careful.</p>
+      <p>Importing a save or starting a new Clan will delete your existing Clan. Be careful.</p>
+
+      <div style={{marginBottom: "1em"}}>
+        <Link className="button" to="/new-clan">New Clan</Link>
+      </div>
 
       <FileUploadButton onChange={handleImportClan}>
         Import Save
