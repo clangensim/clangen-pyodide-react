@@ -110,6 +110,7 @@ interface ClangenInterface {
   getRelationships(id: string): Relationship[];
   exportClan(): Int8Array;
   importClan(saveFile: Int8Array): void;
+  refreshCats(): void;
 }
 
 class Clangen implements ClangenInterface {
@@ -550,6 +551,16 @@ class Clangen implements ClangenInterface {
       extractDir: "/mnt/saves",
     });
     this._syncFS(false).then(() => location.reload());
+  }
+
+  public refreshCats() {
+    this._pyodide.runPython(`
+    if game.clan is not None:
+      key_copy = tuple(Cat.all_cats.keys())
+      for x in key_copy:
+        if x not in game.clan.clan_cats:
+          game.clan.remove_cat(x)
+    `);
   }
 }
 

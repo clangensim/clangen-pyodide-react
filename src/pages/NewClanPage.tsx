@@ -15,6 +15,10 @@ function NewClanPage() {
     setCats(clangenRunner.initializeStarterCats());
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("queueCatRefresh", "true");
+  }, []);
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
@@ -53,6 +57,7 @@ function NewClanPage() {
         target["season"].value,
       )
       .then(() => {
+        localStorage.removeItem("queueCatRefresh");
         navigate("/cats");
       });
   }
