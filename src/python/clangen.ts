@@ -491,7 +491,6 @@ class Clangen implements ClangenInterface {
       { locals: locals },
     );
     locals.destroy();
-    console.log(conditions);
     return conditions;
   }
 
