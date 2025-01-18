@@ -153,11 +153,12 @@ class Clangen implements ClangenInterface {
   }
 
   public async loadClangen(): Promise<void> {
+    const VERSION = "0.11.2";
     let mountDir = "/mnt";
     this._pyodide.FS.mkdirTree(mountDir);
     this._pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, {}, mountDir);
 
-    if (localStorage.getItem("resourcesLoaded") === null) {
+    if (localStorage.getItem("resourcesLoaded") !== VERSION) {
       console.log("Loading resources...");
       // load resources
       let zipResources = await fetch("/bin/resources.zip");
@@ -179,7 +180,7 @@ class Clangen implements ClangenInterface {
       });
 
       await this._syncFS(false);
-      localStorage.setItem("resourcesLoaded", "true");
+      localStorage.setItem("resourcesLoaded", VERSION);
     } else {
       console.log("Loading existing resources...");
       await this._syncFS(true);
