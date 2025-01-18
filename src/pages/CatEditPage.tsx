@@ -44,7 +44,7 @@ const selectRegularCatOptions = [
   },
   {
     value: "elder",
-    label: "Elder (permanent)",
+    label: "Elder (retired)",
   },
 ];
 
@@ -85,15 +85,12 @@ function CatEditPage() {
       prefix: prefix,
       suffix: suffix,
     });
-    if (status === "elder") {
-      setDisableSelectStatus(true);
-    }
     alert("Cat successfully edited!");
   }
 
   useEffect(() => {
     const c = clangenRunner.getCat(catID);
-    if (c.status === "elder" || c.status === "kitten") {
+    if (c.status === "kitten") {
       setDisableSelectStatus(true);
     }
     setCat(c);
