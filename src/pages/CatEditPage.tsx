@@ -48,6 +48,13 @@ const selectRegularCatOptions = [
   },
 ];
 
+const selectKittenOptions = [
+  {
+    value: "kitten",
+    label: "Kitten"
+  },
+];
+
 function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
@@ -62,9 +69,15 @@ function CatEditPage() {
   // have to do it like this because we don't want to disable before submit
   const [disableSelectStatus, setDisableSelectStatus] = useState(false);
 
-  var statusOptions = status.includes("apprentice")
-    ? selectApprenticeOptions
-    : selectRegularCatOptions;
+  var statusOptions;
+
+  if (status.includes("apprentice")) {
+    statusOptions = selectApprenticeOptions;
+  } else if (status == "kitten") {
+    statusOptions = selectKittenOptions;
+  } else {
+    statusOptions = selectRegularCatOptions;
+  }
 
   function handleSubmit() {
     clangenRunner.editCat(catID, {
@@ -80,7 +93,7 @@ function CatEditPage() {
 
   useEffect(() => {
     const c = clangenRunner.getCat(catID);
-    if (c.status === "elder") {
+    if (c.status === "elder" || c.status === "kitten") {
       setDisableSelectStatus(true);
     }
     setCat(c);
