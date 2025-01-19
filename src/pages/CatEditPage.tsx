@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { Cat, clangenRunner } from "../python/clangen";
+import { CatEdit, Cat, clangenRunner } from "../python/clangen";
 import Navbar from "../components/Navbar";
 import Select from "../components/Select";
 import Breadcrumbs from "../components/Breadcrumbs";
@@ -60,18 +60,32 @@ function CatEditPage() {
   const catID = params.id as string;
 
   const [cat, setCat] = useState<Cat>();
+  const [cats, setCats] = useState<Cat[]>();
 
   const [prefix, setPrefix] = useState<string>("");
   const [suffix, setSuffix] = useState<string>("");
 
   const [status, setStatus] = useState("");
 
+  const [mentor, setMentor] = useState("");
+
+  const isApprentice = cat?.status.includes("apprentice");
+
+  const potentialMentors = [];
+  if (cats) {
+    for (const c of cats) {
+      potentialMentors.push({
+        label: `${c.name.display} - ${c.status}`,
+        value: c.ID
+      });
+    }
+  }
+
   // have to do it like this because we don't want to disable before submit
   const [disableSelectStatus, setDisableSelectStatus] = useState(false);
 
   var statusOptions;
-
-  if (cat?.status.includes("apprentice")) {
+  if (isApprentice) {
     statusOptions = selectApprenticeOptions;
   } else if (cat?.status == "kitten") {
     statusOptions = selectKittenOptions;
@@ -80,12 +94,23 @@ function CatEditPage() {
   }
 
   function handleSubmit() {
-    clangenRunner.editCat(catID, {
+    const e: CatEdit = {
       status: status,
       prefix: prefix,
       suffix: suffix,
-    });
+    }
+    if (isApprentice) {
+      e.mentor = mentor;
+    }
+    clangenRunner.editCat(catID, e);
     alert("Cat successfully edited!");
+  }
+
+  function handleChangeRole(value: string) {
+    if (isApprentice && value !== status) {
+        setCats(clangenRunner.getPotentialMentors(value));
+    }
+    setStatus(value);
   }
 
   useEffect(() => {
@@ -97,6 +122,8 @@ function CatEditPage() {
     setPrefix(c.name.prefix);
     setSuffix(c.name.suffix);
     setStatus(c.status);
+
+    setCats(clangenRunner.getPotentialMentors(c.status));
   }, []);
 
   return (
@@ -145,10 +172,22 @@ function CatEditPage() {
           disabled={disableSelectStatus}
           options={statusOptions}
           value={status}
-          onChange={setStatus}
+          onChange={handleChangeRole}
           noEmpty
         />
       </div>
+
+      {isApprentice &&
+        <div>
+          <Select
+              label="Mentor"
+              disabled={disableSelectStatus}
+              options={potentialMentors}
+              value={mentor}
+              onChange={setMentor}
+          />
+        </div>
+      }
 
       <button onClick={handleSubmit}>Submit</button>
     </>
