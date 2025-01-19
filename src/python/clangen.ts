@@ -46,6 +46,7 @@ type Cat = {
   moons: number;
   gender: string;
   trait: string;
+  skillString: string;
   status: string;
   pelt: Pelt;
   age: string;
@@ -225,6 +226,7 @@ class Clangen implements ClangenInterface {
               'outside': cat.outside,
               'dead': cat.dead,
               'trait': cat.personality.trait,
+              'skillString': cat.skills.skill_string(),
               'pelt': {
                   'name': cat.pelt.name,
                   'colour': cat.pelt.colour,
