@@ -78,6 +78,7 @@ type CatEdit = {
   status: string;
   prefix: string;
   suffix: string;
+  mentor?: string;
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med";
@@ -388,6 +389,20 @@ class Clangen implements ClangenInterface {
 
       if "suffix" in edit and edit["suffix"] != cat.name.suffix:
         cat.name.suffix = edit["suffix"]
+
+      if "mentor" in edit:
+        new_mentor = Cat.fetch_cat(edit["mentor"])
+        old_mentor = Cat.fetch_cat(cat.mentor)
+        if new_mentor:
+          if old_mentor:
+            old_mentor.apprentice.remove(cat.ID)
+            if cat.moons > 6 and cat.ID not in old_mentor.former_apprentices:
+              old_mentor.former_apprentices.append(cat.ID)
+          cat.patrol_with_mentor = 0
+          cat.mentor = new_mentor.ID
+          new_mentor.apprentice.append(cat.ID)
+          if cat.ID in new_mentor.former_apprentices:
+            new_mentor.former_apprentices.remove(cat.ID)
     `,
       { locals: locals },
     );
