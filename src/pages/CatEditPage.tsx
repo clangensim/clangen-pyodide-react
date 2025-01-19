@@ -71,9 +71,9 @@ function CatEditPage() {
 
   var statusOptions;
 
-  if (status.includes("apprentice")) {
+  if (cat?.status.includes("apprentice")) {
     statusOptions = selectApprenticeOptions;
-  } else if (status == "kitten") {
+  } else if (cat?.status == "kitten") {
     statusOptions = selectKittenOptions;
   } else {
     statusOptions = selectRegularCatOptions;
