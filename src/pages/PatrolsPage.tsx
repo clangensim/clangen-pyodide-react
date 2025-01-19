@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 import {
   Cat,
   PatrolAction,
@@ -82,7 +82,7 @@ function PatrolsPage() {
 
   return (
     <>
-      <Nav />
+      <Navbar />
       <Breadcrumbs
         crumbs={[
           {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { clangenRunner } from "../python/clangen";
-import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 import Breadcrumbs from "../components/Breadcrumbs";
 
 function EventsPage() {
@@ -40,7 +40,7 @@ function EventsPage() {
 
   return (
     <>
-      <Nav />
+      <Navbar />
       <Breadcrumbs
         crumbs={[
           {

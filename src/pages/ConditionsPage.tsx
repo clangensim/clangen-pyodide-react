@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { Cat, clangenRunner, Condition } from "../python/clangen";
-import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 import Breadcrumbs from "../components/Breadcrumbs";
 
 function ConditionsPage() {
@@ -19,7 +19,7 @@ function ConditionsPage() {
 
   return (
     <>
-      <Nav />
+      <Navbar />
       {cat && (
         <Breadcrumbs
           crumbs={[

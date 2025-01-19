@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { Cat, clangenRunner } from "../python/clangen";
-import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 import Select from "../components/Select";
 import Breadcrumbs from "../components/Breadcrumbs";
 
@@ -101,7 +101,7 @@ function CatEditPage() {
 
   return (
     <>
-      <Nav />
+      <Navbar />
       {cat && (
         <Breadcrumbs
           crumbs={[

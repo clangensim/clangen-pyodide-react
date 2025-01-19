@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import FileUploadButton from "./components/FileUploadButton";
-import Nav from "./components/Nav";
+import Navbar from "./components/Navbar";
 import { clangenRunner } from "./python/clangen";
 import { download } from "./utils";
 
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      <Nav />
+      <Navbar />
 
       <p>
         Welcome to <b>Clangen Simulator</b>, a project that aims to simulate

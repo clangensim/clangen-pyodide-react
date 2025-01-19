@@ -1,5 +1,5 @@
 import { clangenRunner, Cat } from "../python/clangen";
-import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import CatDisplay from "../components/CatDisplay";
@@ -17,7 +17,7 @@ function CatProfilePage() {
 
   return (
     <>
-      <Nav />
+      <Navbar />
       {cat && (
         <Breadcrumbs
           crumbs={[

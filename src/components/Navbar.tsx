@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router";
 import { clangenRunner } from "../python/clangen";
 
-function Nav() {
+function Navbar() {
 
   /* 
     TODO: maybe this should be moved?
@@ -42,4 +42,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Navbar;

@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 import { Cat, clangenRunner, Relationship } from "../python/clangen";
 import RelationshipDisplay from "../components/RelationshipDisplay";
-import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 import Breadcrumbs from "../components/Breadcrumbs";
 
 function RelationshipsPage() {
@@ -20,7 +20,7 @@ function RelationshipsPage() {
 
   return (
     <>
-      <Nav />
+      <Navbar />
       {cat && (
         <Breadcrumbs
           crumbs={[
