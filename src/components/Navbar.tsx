@@ -25,20 +25,20 @@ function Navbar() {
   }, []);
 
   return (
-    <div style={{ marginBottom: "1em" }}>
-      <Link className="button" to="/">
+    <nav>
+      <Link className="button nav-item" to="/">
         Home
       </Link>
-      <Link className="button" to="/cats">
+      <Link className="button nav-item" to="/cats">
         Cats
       </Link>
-      <Link className="button" to="/events">
+      <Link className="button nav-item" to="/events">
         Events
       </Link>
-      <Link className="button" to="/patrols">
+      <Link className="button nav-item" to="/patrols">
         Patrols
       </Link>
-    </div>
+    </nav>
   );
 }
 
