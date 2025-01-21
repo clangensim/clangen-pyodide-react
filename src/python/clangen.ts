@@ -20,6 +20,7 @@ type Pelt = {
   whitePatchesTint: string;
   accessory: string | undefined;
   catSprites: Record<string, number>;
+  reverse: boolean;
 };
 
 type Name = {
@@ -245,7 +246,8 @@ class Clangen implements ClangenInterface {
                   'tint': cat.pelt.tint,
                   'whitePatchesTint': cat.pelt.white_patches_tint,
                   'accessory': cat.pelt.accessory,
-                  'catSprites': cat.pelt.cat_sprites
+                  'catSprites': cat.pelt.cat_sprites,
+                  'reverse': cat.pelt.reverse
               }
           }
 

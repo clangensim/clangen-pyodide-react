@@ -217,7 +217,12 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
       drawCat().then(() => {
         const domCanvas = canvasRef.current;
         const domCtx = domCanvas.getContext("2d");
-        domCtx.drawImage(canvas, 0, 0);
+        if (pelt.reverse) {
+          domCtx.scale(-1, 1);
+          domCtx.drawImage(canvas, -domCanvas.width, 0);
+        } else {
+          domCtx.drawImage(canvas, 0, 0);
+        }
       });
     }
   }, [canvasRef]);
