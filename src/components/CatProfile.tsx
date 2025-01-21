@@ -1,6 +1,8 @@
+import { Link } from "react-router";
 import { Cat } from "../python/clangen";
 
 function CatProfile({ cat }: { cat: Cat }) {
+  const mentorLink = `/cats/${cat.mentor}`;
   return (
     <>
       <ul>
@@ -9,7 +11,11 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>{cat.trait}</li>
         <li>{cat.moons.toString()} moon(s)</li>
         <li>{cat.status} </li>
-        <li>{cat.mentor}</li>
+        {cat.mentor && (
+          <li>
+            mentor: <Link to={mentorLink}>#{cat.mentor}</Link>
+          </li>
+        )}
       </ul>
     </>
   );
