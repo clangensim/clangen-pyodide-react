@@ -53,6 +53,7 @@ type Cat = {
   age: string;
   outside: boolean;
   dead: boolean;
+  mentor: string | undefined;
 };
 
 type Relationship = {
@@ -228,6 +229,7 @@ class Clangen implements ClangenInterface {
               'dead': cat.dead,
               'trait': cat.personality.trait,
               'skillString': cat.skills.skill_string(),
+              'mentor': cat.mentor,
               'pelt': {
                   'name': cat.pelt.name,
                   'colour': cat.pelt.colour,
@@ -397,16 +399,18 @@ class Clangen implements ClangenInterface {
       if "mentor" in edit:
         new_mentor = Cat.fetch_cat(edit["mentor"])
         old_mentor = Cat.fetch_cat(cat.mentor)
+        if old_mentor:
+          old_mentor.apprentice.remove(cat.ID)
+          if cat.moons > 6 and cat.ID not in old_mentor.former_apprentices:
+            old_mentor.former_apprentices.append(cat.ID)
         if new_mentor:
-          if old_mentor:
-            old_mentor.apprentice.remove(cat.ID)
-            if cat.moons > 6 and cat.ID not in old_mentor.former_apprentices:
-              old_mentor.former_apprentices.append(cat.ID)
           cat.patrol_with_mentor = 0
           cat.mentor = new_mentor.ID
           new_mentor.apprentice.append(cat.ID)
           if cat.ID in new_mentor.former_apprentices:
             new_mentor.former_apprentices.remove(cat.ID)
+        else:
+          cat.mentor = None
     `,
       { locals: locals },
     );
@@ -437,6 +441,27 @@ class Clangen implements ClangenInterface {
       to_js(cats, dict_converter=js.Object.fromEntries)
     `);
     return cats;
+  }
+
+  public getPotentialMentors(apprenticeRole: string): Cat[] {
+    const locals = pyodide.toPy({ apprentice_role: apprenticeRole});
+    const potentialMentors = this._pyodide.runPython(`
+      potential_mentors =[]
+
+      for cat in Cat.all_cats_list:
+        if not cat.dead and not cat.outside:
+          if cat.status in ["warrior", "leader", "deputy"] and apprentice_role == "apprentice":
+            potential_mentors.append(cat_to_dict(cat))
+          elif cat.status == "medicine cat" and apprentice_role == "medicine cat apprentice":
+            potential_mentors.append(cat_to_dict(cat))
+          elif cat.status == "mediator" and apprentice_role == "mediator apprentice":
+            potential_mentors.append(cat_to_dict(cat))
+      to_js(potential_mentors, dict_converter=js.Object.fromEntries)
+    `,
+      {locals: locals}
+    );
+    locals.destroy();
+    return potentialMentors;
   }
 
   public getRelationships(id: string): Relationship[] {
@@ -614,6 +639,7 @@ await clangenRunner.loadClangen();
 
 export { clangenRunner };
 export type {
+  CatEdit,
   Cat,
   PatrolAction,
   PatrolType,

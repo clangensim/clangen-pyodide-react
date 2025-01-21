@@ -13,7 +13,7 @@ function CatProfilePage() {
 
   useEffect(() => {
     setCat(clangenRunner.getCat(catID));
-  }, []);
+  }, [catID]);
 
   return (
     <>
@@ -40,7 +40,7 @@ function CatProfilePage() {
       {cat && (
         <>
           {cat.name.display} (#{cat.ID})
-          <CatDisplay pelt={cat.pelt} age={cat.age} />
+          <CatDisplay key={cat.ID} pelt={cat.pelt} age={cat.age} />
           <CatProfile cat={cat} />
           <Link to={`/cats/${catID}/relationships`}>Relationships</Link>{" "}
           <Link to={`/cats/${catID}/conditions`}>Conditions</Link>{" "}
