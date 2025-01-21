@@ -119,6 +119,9 @@ function CatEditPage() {
       setDisableSelectStatus(true);
     }
     setCat(c);
+    if (c.mentor) {
+      setMentor(c.mentor);
+    }
     setPrefix(c.name.prefix);
     setSuffix(c.name.suffix);
     setStatus(c.status);

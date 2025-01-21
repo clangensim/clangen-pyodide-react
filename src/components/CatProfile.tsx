@@ -9,6 +9,7 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>{cat.trait}</li>
         <li>{cat.moons.toString()} moon(s)</li>
         <li>{cat.status} </li>
+        <li>{cat.mentor}</li>
       </ul>
     </>
   );
