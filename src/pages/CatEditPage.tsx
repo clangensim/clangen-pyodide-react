@@ -60,7 +60,7 @@ function CatEditPage() {
   const catID = params.id as string;
 
   const [cat, setCat] = useState<Cat>();
-  const [cats, setCats] = useState<Cat[]>();
+  const [potentialMentors, setPotentialMentors] = useState<Cat[]>();
 
   const [prefix, setPrefix] = useState<string>("");
   const [suffix, setSuffix] = useState<string>("");
@@ -71,10 +71,10 @@ function CatEditPage() {
 
   const isApprentice = cat?.status.includes("apprentice");
 
-  const potentialMentors = [];
-  if (cats) {
-    for (const c of cats) {
-      potentialMentors.push({
+  const potentialMentorOptions = [];
+  if (potentialMentors) {
+    for (const c of potentialMentors) {
+      potentialMentorOptions.push({
         label: `${c.name.display} - ${c.status}`,
         value: c.ID
       });
@@ -108,7 +108,7 @@ function CatEditPage() {
 
   function handleChangeRole(value: string) {
     if (isApprentice && value !== status) {
-        setCats(clangenRunner.getPotentialMentors(value));
+        setPotentialMentors(clangenRunner.getPotentialMentors(value));
     }
     setStatus(value);
   }
@@ -126,7 +126,7 @@ function CatEditPage() {
     setSuffix(c.name.suffix);
     setStatus(c.status);
 
-    setCats(clangenRunner.getPotentialMentors(c.status));
+    setPotentialMentors(clangenRunner.getPotentialMentors(c.status));
   }, []);
 
   return (
@@ -185,7 +185,7 @@ function CatEditPage() {
           <Select
               label="Mentor"
               disabled={disableSelectStatus}
-              options={potentialMentors}
+              options={potentialMentorOptions}
               value={mentor}
               onChange={setMentor}
           />
