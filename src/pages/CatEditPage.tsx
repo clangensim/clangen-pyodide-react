@@ -109,6 +109,7 @@ function CatEditPage() {
   function handleChangeRole(value: string) {
     if (isApprentice && value !== status) {
         setPotentialMentors(clangenRunner.getPotentialMentors(value));
+        setMentor("");
     }
     setStatus(value);
   }
