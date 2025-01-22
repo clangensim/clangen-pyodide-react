@@ -54,6 +54,8 @@ type Cat = {
   outside: boolean;
   dead: boolean;
   mentor: string | undefined;
+  apprentices: string[];
+  formerApprentices: string[];
   parent1: string | undefined;
   parent2: string | undefined;
 };
@@ -232,6 +234,8 @@ class Clangen implements ClangenInterface {
               'trait': cat.personality.trait,
               'skillString': cat.skills.skill_string(),
               'mentor': cat.mentor,
+              'apprentices': cat.apprentice,
+              'formerApprentices': cat.former_apprentices,
               'parent1': cat.parent1,
               'parent2': cat.parent2,
               'pelt': {

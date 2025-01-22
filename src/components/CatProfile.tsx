@@ -42,6 +42,16 @@ function CatProfile({ cat }: { cat: Cat }) {
             mentor: <Link to={mentorLink}>#{cat.mentor}</Link>
           </li>
         )}
+        {cat.apprentices.length > 0 && 
+          <li>
+            apprentice(s): <CommaSeparatedProfileLinks cats={cat.apprentices} />
+          </li>
+        }
+        {cat.formerApprentices.length > 0 && 
+          <li>
+            former apprentice(s): <CommaSeparatedProfileLinks cats={cat.formerApprentices} />
+          </li>
+        }
         {parents.length > 0 && (
           <li>
             parent(s): <CommaSeparatedProfileLinks cats={parents} />
