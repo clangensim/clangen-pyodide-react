@@ -15,6 +15,7 @@ import ConditionsPage from "./pages/ConditionsPage.tsx";
 import NewClanPage from "./pages/NewClanPage.tsx";
 import PatrolsPage from "./pages/PatrolsPage.tsx";
 import CatEditPage from "./pages/CatEditPage.tsx";
+import ErrorNotFoundPage from "./pages/ErrorNotFoundPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -29,6 +30,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/cats/:id/edit" element={<CatEditPage />} />
         <Route path="/cats/:id/relationships" element={<RelationshipsPage />} />
         <Route path="/cats/:id/conditions" element={<ConditionsPage />} />
+        <Route path="*" element={<ErrorNotFoundPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
