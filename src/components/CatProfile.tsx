@@ -3,6 +3,15 @@ import { Cat } from "../python/clangen";
 
 function CatProfile({ cat }: { cat: Cat }) {
   const mentorLink = `/cats/${cat.mentor}`;
+
+  const parents = [];
+  if (cat.parent1) {
+    parents.push(cat.parent1);
+  }
+  if (cat.parent2) {
+    parents.push(cat.parent2);
+  }
+
   return (
     <>
       <ul>
@@ -15,6 +24,20 @@ function CatProfile({ cat }: { cat: Cat }) {
         {cat.mentor && (
           <li>
             mentor: <Link to={mentorLink}>#{cat.mentor}</Link>
+          </li>
+        )}
+        {parents.length > 0 && (
+          <li>
+            parent(s):{" "}
+            {parents.map((parent, index) => {
+              const divider = parents.length - 1 === index ? "" : ", ";
+              return (
+                <>
+                  <Link to={`/cats/${parent}`}>#{parent}</Link>
+                  {divider}
+                </>
+              );
+            })}
           </li>
         )}
       </ul>
