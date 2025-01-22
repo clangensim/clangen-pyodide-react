@@ -29,13 +29,13 @@ function App() {
       <p>Importing a save or starting a new Clan will delete your existing Clan. Be careful.</p>
 
       <div style={{marginBottom: "1em"}}>
-        <Link className="button" to="/new-clan">New Clan</Link>
+        <Link tabIndex={0} className="button" to="/new-clan">New Clan</Link>
       </div>
 
-      <FileUploadButton onChange={handleImportClan}>
+      <FileUploadButton tabIndex={0} onChange={handleImportClan}>
         Import Save
       </FileUploadButton>
-      <button onClick={handleExportClan}>Export Save</button>
+      <button tabIndex={0} onClick={handleExportClan}>Export Save</button>
     </>
   );
 }

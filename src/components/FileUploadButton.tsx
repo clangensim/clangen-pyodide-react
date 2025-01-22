@@ -3,9 +3,11 @@ import { ChangeEventHandler, useRef } from "react";
 function FileUploadButton({
   children,
   onChange,
+  tabIndex,
 }: {
   children?: JSX.Element | string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  tabIndex?: number;
 }) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -17,7 +19,7 @@ function FileUploadButton({
 
   return (
     <>
-      <button onClick={handleButtonClick}>{children}</button>
+      <button tabIndex={tabIndex} onClick={handleButtonClick}>{children}</button>
       <input
         type="file"
         style={{

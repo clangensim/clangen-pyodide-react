@@ -26,16 +26,16 @@ function Navbar() {
 
   return (
     <nav>
-      <Link className="button nav-item" to="/">
+      <Link tabIndex={0} className="button nav-item" to="/">
         Home
       </Link>
-      <Link className="button nav-item" to="/cats">
+      <Link tabIndex={0} className="button nav-item" to="/cats">
         Cats
       </Link>
-      <Link className="button nav-item" to="/events">
+      <Link tabIndex={0} className="button nav-item" to="/events">
         Events
       </Link>
-      <Link className="button nav-item" to="/patrols">
+      <Link tabIndex={0} className="button nav-item" to="/patrols">
         Patrols
       </Link>
     </nav>

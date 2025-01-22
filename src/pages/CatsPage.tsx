@@ -45,7 +45,7 @@ function CatsPage() {
                     <CatDisplay pelt={cat.pelt} age={cat.age} />
                   </td>
                   <td>
-                    <Link to={`/cats/${cat.ID}`}> {cat.name.display} </Link>
+                    <Link tabIndex={0} to={`/cats/${cat.ID}`}> {cat.name.display} </Link>
                   </td>
                   <td> {cat.moons} </td>
                   <td>{cat.trait}</td>

@@ -170,6 +170,7 @@ function PatrolsPage() {
         <legend>Patrol Type</legend>
         <div>
           <input
+            tabIndex={0}
             id="hunt-radio"
             name="patrol-type"
             type="radio"
@@ -182,6 +183,7 @@ function PatrolsPage() {
 
         <div>
           <input
+            tabIndex={0}
             id="bord-radio"
             name="patrol-type"
             type="radio"
@@ -194,6 +196,7 @@ function PatrolsPage() {
 
         <div>
           <input
+            tabIndex={0}
             id="train-radio"
             name="patrol-type"
             type="radio"
@@ -206,6 +209,7 @@ function PatrolsPage() {
 
         <div>
           <input
+            tabIndex={0}
             id="med-radio"
             name="patrol-type"
             type="radio"
@@ -222,19 +226,19 @@ function PatrolsPage() {
       <p>{resultText}</p>
 
       {screenState === "start" && (
-        <button disabled={selectedCats.length == 0} onClick={startPatrol}>Start Patrol</button>
+        <button tabIndex={0} disabled={selectedCats.length == 0} onClick={startPatrol}>Start Patrol</button>
       )}
 
       {screenState === "in-progress" && (
         <>
-          <button onClick={() => endPatrol("proceed")}>Proceed</button>
-          <button onClick={() => endPatrol("decline")}>Decline</button>
+          <button tabIndex={0} onClick={() => endPatrol("proceed")}>Proceed</button>
+          <button tabIndex={0} onClick={() => endPatrol("decline")}>Decline</button>
         </>
       )}
 
       {screenState === "wrap-up" && (
         <>
-          <button onClick={reset}>New Patrol</button>
+          <button tabIndex={0} onClick={reset}>New Patrol</button>
         </>
       )}
     </>

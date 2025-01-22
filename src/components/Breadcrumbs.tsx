@@ -15,7 +15,7 @@ function Breadcrumbs({ crumbs }: { crumbs: Breadcrumb[] }) {
         }
         return (
           <span key={index}>
-            <Link to={crumb.url}>{crumb.label}</Link>
+            <Link tabIndex={0} to={crumb.url}>{crumb.label}</Link>
             {separator}
           </span>
         );

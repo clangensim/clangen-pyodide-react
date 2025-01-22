@@ -68,6 +68,7 @@ function NewClanPage() {
         <fieldset>
           <legend>Clan Name*</legend>
           <input
+            tabIndex={0}
             type="text"
             name="clan-name"
             id="clan-name-input"
@@ -80,6 +81,7 @@ function NewClanPage() {
           <legend>Game Mode</legend>
           <div>
             <input
+              tabIndex={0}
               id="classic-radio"
               type="radio"
               name="game-mode"
@@ -91,6 +93,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               id="expanded-radio"
               type="radio"
               name="game-mode"
@@ -225,6 +228,7 @@ function NewClanPage() {
               return (
                 <div>
                   <input
+                    tabIndex={0}
                     id={id}
                     value={cat.ID}
                     name="other-cats-checkbox"
@@ -242,6 +246,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               type="radio"
               id="mountain-radio"
               value="Mountainous"
@@ -252,6 +257,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               type="radio"
               id="plains-radio"
               value="Plains"
@@ -263,6 +269,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               type="radio"
               id="forest-radio"
               value="Forest"
@@ -273,6 +280,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               type="radio"
               id="beach-radio"
               value="Beach"
@@ -287,6 +295,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               type="radio"
               id="fall-radio"
               value="Leaf-fall"
@@ -297,6 +306,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               type="radio"
               id="winter-radio"
               value="Leaf-bare"
@@ -307,6 +317,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               type="radio"
               id="spring-radio"
               value="Newleaf"
@@ -318,6 +329,7 @@ function NewClanPage() {
 
           <div>
             <input
+              tabIndex={0}
               type="radio"
               id="summer-radio"
               value="Greenleaf"
@@ -328,7 +340,7 @@ function NewClanPage() {
         </fieldset>
 
         <div>
-          <button type="submit">Submit</button>
+          <button tabIndex={0} type="submit">Submit</button>
         </div>
       </form>
     </>

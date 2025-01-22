@@ -193,7 +193,7 @@ function CatEditPage() {
         </div>
       }
 
-      <button onClick={handleSubmit}>Submit</button>
+      <button tabIndex={0} onClick={handleSubmit}>Submit</button>
     </>
   );
 }

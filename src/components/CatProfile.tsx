@@ -8,7 +8,7 @@ function CommaSeparatedProfileLinks({ cats }: { cats: string[] }) {
         const divider = cats.length - 1 === index ? "" : ", ";
         return (
           <>
-            <Link to={`/cats/${cat}`}>#{cat}</Link>
+            <Link tabIndex={0} to={`/cats/${cat}`}>#{cat}</Link>
             {divider}
           </>
         );
