@@ -13,4 +13,15 @@ select {
 dialog {
   padding: 0;
   border-style: none;
+  min-width: 500px;
+}
+
+dialog div.dialog-body {
+  padding: 8px;
+}
+
+dialog div.dialog-footer {
+  padding: 0 8px 8px 8px;
+  display: flex;
+  justify-content: flex-end;
 }
