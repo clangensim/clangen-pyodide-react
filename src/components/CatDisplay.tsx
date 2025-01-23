@@ -84,9 +84,19 @@ async function drawMaskedSprite(
 
 /* 
   TODO:
-    missing scars, dead lineart
+    missing scars
 */
-function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
+function CatDisplay({
+  pelt,
+  age,
+  dead,
+  darkForest,
+}: {
+  pelt: Pelt;
+  age: string;
+  dead?: boolean;
+  darkForest?: boolean;
+}) {
   const canvasRef = useRef<any>(null);
   const catSprite = pelt.catSprites[age];
 
@@ -201,7 +211,16 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
           }
         }
 
-        await drawSprite("lines", catSprite, ctx);
+        if (dead) {
+          if (darkForest) {
+            await drawSprite("lineartdf", catSprite, ctx);
+          } else {
+            await drawSprite("lineartdead", catSprite, ctx);
+          }
+        } else {
+          await drawSprite("lines", catSprite, ctx);
+        }
+
         await drawSprite(`skin${pelt.skin}`, catSprite, ctx);
 
         if (pelt.accessory !== undefined) {

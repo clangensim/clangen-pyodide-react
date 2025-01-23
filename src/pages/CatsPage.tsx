@@ -42,7 +42,12 @@ function CatsPage() {
                 <tr key={index}>
                   <td>{cat.ID}</td>
                   <td>
-                    <CatDisplay pelt={cat.pelt} age={cat.age} />
+                    <CatDisplay
+                      pelt={cat.pelt}
+                      age={cat.age}
+                      dead={cat.dead}
+                      darkForest={cat.inDarkForest}
+                    />
                   </td>
                   <td>
                     <Link tabIndex={0} to={`/cats/${cat.ID}`}> {cat.name.display} </Link>

@@ -53,6 +53,7 @@ type Cat = {
   age: string;
   outside: boolean;
   dead: boolean;
+  inDarkForest: boolean;
   /* TODO: fix these types
      The following fields are only Cats for the first "layer".
      After that, they're strings. */
@@ -256,6 +257,7 @@ class Clangen implements ClangenInterface {
               'status': cat.status,
               'outside': cat.outside,
               'dead': cat.dead,
+              'inDarkForest': cat.df,
               'trait': cat.personality.trait,
               'skillString': cat.skills.skill_string(),
               'mentor': mentor,

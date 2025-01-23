@@ -9,6 +9,8 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
       <CatDisplay
         pelt={relationship.cat_to.pelt}
         age={relationship.cat_to.age}
+        dead={relationship.cat_to.dead}
+        darkForest={relationship.cat_to.inDarkForest}
       />
       <Link to={`/cats/${relationship.cat_to_id}/relationships`}>{relationship.cat_to.name.display}</Link>
       <ul>

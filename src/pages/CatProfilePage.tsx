@@ -40,7 +40,13 @@ function CatProfilePage() {
       {cat && (
         <>
           {cat.name.display} (#{cat.ID})
-          <CatDisplay key={cat.ID} pelt={cat.pelt} age={cat.age} />
+          <CatDisplay
+            key={cat.ID}
+            pelt={cat.pelt}
+            age={cat.age}
+            dead={cat.dead}
+            darkForest={cat.inDarkForest}
+          />
           <CatProfile cat={cat} />
           <Link tabIndex={0} to={`/cats/${catID}/relationships`}>Relationships</Link>{" "}
           <Link tabIndex={0} to={`/cats/${catID}/conditions`}>Conditions</Link>{" "}
