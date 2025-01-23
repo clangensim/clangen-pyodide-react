@@ -121,7 +121,7 @@ function CatEditPage() {
     }
     setCat(c);
     if (c.mentor) {
-      setMentor(c.mentor);
+      setMentor(c.mentor.ID);
     }
     setPrefix(c.name.prefix);
     setSuffix(c.name.suffix);

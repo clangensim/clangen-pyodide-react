@@ -53,11 +53,14 @@ type Cat = {
   age: string;
   outside: boolean;
   dead: boolean;
-  mentor: string | undefined;
-  apprentices: string[];
-  formerApprentices: string[];
-  parent1: string | undefined;
-  parent2: string | undefined;
+  /* TODO: fix these types
+     The following fields are only Cats for the first "layer".
+     After that, they're strings. */
+  mentor: Cat | undefined;
+  apprentices: Cat[];
+  formerApprentices: Cat[];
+  parent1: Cat | undefined;
+  parent2: Cat | undefined;
 };
 
 type Relationship = {
@@ -217,7 +220,26 @@ class Clangen implements ClangenInterface {
       from scripts.clan import clan_class
       from scripts.utility import quit as clangen_quit
 
-      def cat_to_dict(cat):
+      def cat_to_dict(cat, depth=1):
+          def id_list_to_dict_list(lst):
+              return list(map(lambda cat_id : cat_to_dict(Cat.all_cats[cat_id], 0), lst))
+
+          if cat is None:
+              return None
+
+          if depth <= 0:
+              former_apprentices = cat.former_apprentices
+              apprentices = cat.apprentice
+              parent1 = cat.parent1
+              parent2 = cat.parent2
+              mentor = cat.mentor
+          else:
+              former_apprentices = id_list_to_dict_list(cat.former_apprentices)
+              apprentices = id_list_to_dict_list(cat.apprentice)
+              parent1 = cat_to_dict(Cat.fetch_cat(cat.parent1), 0)
+              parent2 = cat_to_dict(Cat.fetch_cat(cat.parent2), 0)
+              mentor = cat_to_dict(Cat.fetch_cat(cat.mentor), 0)
+
           return {
               'ID': cat.ID,
               'name': {
@@ -233,11 +255,11 @@ class Clangen implements ClangenInterface {
               'dead': cat.dead,
               'trait': cat.personality.trait,
               'skillString': cat.skills.skill_string(),
-              'mentor': cat.mentor,
-              'apprentices': cat.apprentice,
-              'formerApprentices': cat.former_apprentices,
-              'parent1': cat.parent1,
-              'parent2': cat.parent2,
+              'mentor': mentor,
+              'apprentices': apprentices,
+              'formerApprentices': former_apprentices,
+              'parent1': parent1,
+              'parent2': parent2,
               'pelt': {
                   'name': cat.pelt.name,
                   'colour': cat.pelt.colour,

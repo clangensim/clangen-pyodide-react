@@ -1,14 +1,14 @@
 import { Link } from "react-router";
 import { Cat } from "../python/clangen";
 
-function CommaSeparatedProfileLinks({ cats }: { cats: string[] }) {
+function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
   return (
     <>
       {cats.map((cat, index) => {
         const divider = cats.length - 1 === index ? "" : ", ";
         return (
           <>
-            <Link tabIndex={0} to={`/cats/${cat}`}>#{cat}</Link>
+            <Link tabIndex={0} to={`/cats/${cat.ID}`}>{cat.name.display}</Link>
             {divider}
           </>
         );
@@ -18,8 +18,6 @@ function CommaSeparatedProfileLinks({ cats }: { cats: string[] }) {
 }
 
 function CatProfile({ cat }: { cat: Cat }) {
-  const mentorLink = `/cats/${cat.mentor}`;
-
   const parents = [];
   if (cat.parent1) {
     parents.push(cat.parent1);
@@ -39,7 +37,7 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>{cat.status} </li>
         {cat.mentor && (
           <li>
-            mentor: <Link to={mentorLink}>#{cat.mentor}</Link>
+            mentor: <Link to={`/cats/${cat.mentor.ID}`}>{cat.mentor.name.display}</Link>
           </li>
         )}
         {cat.apprentices.length > 0 && 
