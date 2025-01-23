@@ -55,6 +55,11 @@ function CatProfile({ cat }: { cat: Cat }) {
             parent(s): <CommaSeparatedProfileLinks cats={parents} />
           </li>
         )}
+        {cat.mates.length > 0 && (
+          <li>
+            mate(s): <CommaSeparatedProfileLinks cats={cat.mates} />
+          </li>
+        )}
       </ul>
     </>
   );

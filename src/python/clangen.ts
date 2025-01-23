@@ -61,6 +61,7 @@ type Cat = {
   formerApprentices: Cat[];
   parent1: Cat | undefined;
   parent2: Cat | undefined;
+  mates: Cat[];
 };
 
 type Relationship = {
@@ -229,12 +230,14 @@ class Clangen implements ClangenInterface {
 
           if depth <= 0:
               former_apprentices = cat.former_apprentices
+              mates = cat.mate
               apprentices = cat.apprentice
               parent1 = cat.parent1
               parent2 = cat.parent2
               mentor = cat.mentor
           else:
               former_apprentices = id_list_to_dict_list(cat.former_apprentices)
+              mates = id_list_to_dict_list(cat.mate)
               apprentices = id_list_to_dict_list(cat.apprentice)
               parent1 = cat_to_dict(Cat.fetch_cat(cat.parent1), 0)
               parent2 = cat_to_dict(Cat.fetch_cat(cat.parent2), 0)
@@ -260,6 +263,7 @@ class Clangen implements ClangenInterface {
               'formerApprentices': former_apprentices,
               'parent1': parent1,
               'parent2': parent2,
+              'mates': mates,
               'pelt': {
                   'name': cat.pelt.name,
                   'colour': cat.pelt.colour,
