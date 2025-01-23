@@ -96,6 +96,9 @@ function PatrolsPage() {
         ]}
       />
 
+
+      <p>If a medicine cat or medicine cat apprentice is added to the patrol, the selected patrol type will be ignored, and the patrol will automatically become a herb gathering patrol.</p>
+
       <fieldset>
         <legend>Cats</legend>
         <div>
@@ -205,19 +208,6 @@ function PatrolsPage() {
             onChange={() => setPatrolType("training")}
           />
           <label htmlFor="train-radio">Training</label>
-        </div>
-
-        <div>
-          <input
-            tabIndex={0}
-            id="med-radio"
-            name="patrol-type"
-            type="radio"
-            disabled={disabled}
-            checked={patrolType === "med"}
-            onChange={() => setPatrolType("med")}
-          />
-          <label htmlFor="med-radio">Herb Gathering</label>
         </div>
       </fieldset>
 

@@ -571,6 +571,9 @@ class Clangen implements ClangenInterface {
     const introText = this._pyodide.runPython(
       `
       patrol_members_obj = list(map(lambda cat_id : Cat.all_cats[cat_id], patrol_members))
+      for cat in patrol_members_obj:
+        if cat.status == "medicine cat" or cat.status == "medicine cat apprentice":
+          patrol_type = "med"
       global current_patrol
       current_patrol = Patrol()
       current_patrol.setup_patrol(patrol_members_obj, patrol_type)
