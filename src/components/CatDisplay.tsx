@@ -216,6 +216,9 @@ function CatDisplay({ pelt, age }: { pelt: Pelt; age: string }) {
       };
       drawCat().then(() => {
         const domCanvas = canvasRef.current;
+        if (!domCanvas) {
+          return;
+        }
         const domCtx = domCanvas.getContext("2d");
         domCtx.clearRect(0, 0, domCanvas.width, domCanvas.height);
         if (pelt.reverse) {
