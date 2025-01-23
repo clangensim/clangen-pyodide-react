@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import "../vendors/classic-stylesheets-win9x-2.0/win9x/theme.min.css";
-import "../vendors/classic-stylesheets-win9x-2.0/win9x/skins/teal-2000.css";
+import "../vendors/classic-stylesheets-win9x-2.0/win9x/skins/plum-2000.css";
 import "./styles/base.css";
 
 import App from "./App.tsx";
