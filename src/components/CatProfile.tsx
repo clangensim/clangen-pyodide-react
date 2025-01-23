@@ -37,7 +37,7 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>{cat.status} </li>
         {cat.mentor && (
           <li>
-            mentor: <Link to={`/cats/${cat.mentor.ID}`}>{cat.mentor.name.display}</Link>
+            mentor: <Link tabIndex={0} to={`/cats/${cat.mentor.ID}`}>{cat.mentor.name.display}</Link>
           </li>
         )}
         {cat.apprentices.length > 0 && 
