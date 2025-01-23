@@ -36,6 +36,8 @@ function App() {
         Import Save
       </FileUploadButton>
       <button tabIndex={0} onClick={handleExportClan}>Export Save</button>
+
+      <p>See <Link to="/credits">here</Link> for credits information.</p>
     </>
   );
 }
