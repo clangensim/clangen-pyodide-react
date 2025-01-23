@@ -9,3 +9,8 @@ nav {
 select {
   min-width: 250px;
 }
+
+dialog {
+  padding: 0;
+  border-style: none;
+}
