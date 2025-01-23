@@ -16,7 +16,7 @@ function RelationshipsPage() {
   useEffect(() => {
     setRelationships(clangenRunner.getRelationships(catID));
     setCat(clangenRunner.getCat(catID));
-  }, []);
+  }, [catID]);
 
   return (
     <>
@@ -44,10 +44,10 @@ function RelationshipsPage() {
         />
       )}
 
-      {relationships?.map((rel, index) => {
+      {relationships?.map((rel) => {
         return (
           <>
-            <RelationshipDisplay key={index} relationship={rel} />
+            <RelationshipDisplay key={`${catID}_${rel.cat_to_id}`} relationship={rel} />
           </>
         );
       })}
