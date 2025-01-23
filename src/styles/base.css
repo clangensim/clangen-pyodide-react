@@ -5,3 +5,7 @@ a.button {
 nav {
   margin-bottom: 1em;
 }
+
+select {
+  min-width: 250px;
+}
