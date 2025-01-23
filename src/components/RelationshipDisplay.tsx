@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Relationship } from "../python/clangen";
 import CatDisplay from "./CatDisplay";
 import ProgressBar from "./ProgressBar";
@@ -9,7 +10,7 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
         pelt={relationship.cat_to.pelt}
         age={relationship.cat_to.age}
       />
-      {relationship.cat_to.name.display}
+      <Link to={`/cats/${relationship.cat_to_id}/relationships`}>{relationship.cat_to.name.display}</Link>
       <ul>
         <li>
           romantic love
