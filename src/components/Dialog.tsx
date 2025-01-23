@@ -29,7 +29,7 @@ function Dialog({
 
   return (
     <>
-      <dialog ref={dialogRef} style={{ minWidth: 250 }}>
+      <dialog ref={dialogRef}>
         <div className="window">
           <div className="title-bar active">
             <div className="title-bar-text">{title}</div>
