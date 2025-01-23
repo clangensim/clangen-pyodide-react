@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 import { CatEdit, Cat, clangenRunner } from "../python/clangen";
 import Navbar from "../components/Navbar";
@@ -59,6 +59,8 @@ function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
 
+  const navigate = useNavigate();
+
   const [cat, setCat] = useState<Cat>();
   const [potentialMentors, setPotentialMentors] = useState<Cat[]>();
 
@@ -103,7 +105,7 @@ function CatEditPage() {
       e.mentor = mentor;
     }
     clangenRunner.editCat(catID, e);
-    alert("Cat successfully edited!");
+    navigate(`/cats/${catID}`);
   }
 
   function handleChangeRole(value: string) {
