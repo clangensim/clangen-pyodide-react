@@ -38,7 +38,7 @@ function PatrolsPage() {
 
   const catOptions: SelectOption[] = possibleCats.map((cat) => {
     return {
-      label: cat.name.display,
+      label: `${cat.name.display} - ${cat.status}`,
       value: cat.ID,
     };
   });
