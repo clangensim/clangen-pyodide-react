@@ -44,6 +44,8 @@ function RelationshipsPage() {
         />
       )}
 
+      {relationships === undefined || relationships.length <= 0 && 
+        <p>This cat has no relationships you can view.</p>}
       {relationships?.map((rel) => {
         return (
           <>
