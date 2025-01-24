@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router";
 import { CatEdit, Cat, clangenRunner } from "../python/clangen";
 import Navbar from "../components/Navbar";
 import Select from "../components/Select";
+import { SelectOption } from "../components/Select";
+
 import Breadcrumbs from "../components/Breadcrumbs";
 
 const selectApprenticeOptions = [
@@ -48,13 +50,6 @@ const selectRegularCatOptions = [
   },
 ];
 
-const selectKittenOptions = [
-  {
-    value: "kitten",
-    label: "Kitten"
-  },
-];
-
 function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
@@ -83,16 +78,25 @@ function CatEditPage() {
     }
   }
 
-  // have to do it like this because we don't want to disable before submit
-  const [disableSelectStatus, setDisableSelectStatus] = useState(false);
-
-  var statusOptions;
-  if (isApprentice) {
-    statusOptions = selectApprenticeOptions;
-  } else if (cat?.status == "kitten") {
-    statusOptions = selectKittenOptions;
-  } else {
-    statusOptions = selectRegularCatOptions;
+  var disableSelectStatus = false;
+  var statusOptions: SelectOption[] = [];
+  if (cat) {
+    if (isApprentice) {
+      disableSelectStatus = false;
+      statusOptions = selectApprenticeOptions;
+    } else if (selectRegularCatOptions.find((elem) => elem.value === cat.status)) {
+      // if the cat's status is under regular cat options
+      disableSelectStatus = false;
+      statusOptions = selectRegularCatOptions;
+    } else {
+      disableSelectStatus = true;
+      statusOptions = [
+        {
+          value: cat?.status,
+          label: cat?.status,
+        },
+      ];
+    }
   }
 
   function handleSubmit() {
@@ -118,9 +122,6 @@ function CatEditPage() {
 
   useEffect(() => {
     const c = clangenRunner.getCat(catID);
-    if (c.status === "kitten") {
-      setDisableSelectStatus(true);
-    }
     setCat(c);
     if (c.mentor) {
       setMentor(c.mentor.ID);
