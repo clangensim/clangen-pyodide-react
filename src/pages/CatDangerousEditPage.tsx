@@ -84,6 +84,7 @@ function CatDangerousEditPage() {
       {cat && (
         <div style={{ marginTop: "1em" }}>
           <button
+            tabIndex={0}
             disabled={cat.dead || cat.status === "leader"}
             onClick={() => {
               setKillModalOpen(true);
@@ -92,10 +93,11 @@ function CatDangerousEditPage() {
           >
             Kill
           </button>
-          <button disabled={cat.dead || cat.outside} onClick={handleExile}>
+          <button tabIndex={0} disabled={cat.dead || cat.outside} onClick={handleExile}>
             Exile
           </button>
           <button
+            tabIndex={0}
             disabled={!cat.pelt.accessory}
             onClick={handleDestroyAccessory}
           >
