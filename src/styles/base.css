@@ -13,7 +13,6 @@ select {
 dialog {
   padding: 0;
   border-style: none;
-  min-width: 500px;
 }
 
 dialog div.dialog-body {
