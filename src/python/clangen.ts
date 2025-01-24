@@ -97,6 +97,10 @@ type CatEdit = {
 
 type PatrolType = "hunting" | "border" | "training" | "med";
 type PatrolAction = "proceed" | "antag" | "decline";
+type PatrolIntro = {
+  text: string;
+  canAntagonize: boolean;
+}
 
 interface ClangenInterface {
   /* Gets Cat from ID */
@@ -125,7 +129,7 @@ interface ClangenInterface {
     season: string,
   ): void;
   /* Starts a patrol. There can only be one patrol at a time. */
-  startPatrol(patrolMembers: string[], patrolType: PatrolType): string;
+  startPatrol(patrolMembers: string[], patrolType: PatrolType): PatrolIntro;
   /* Finishes a patrol started by startPatrol() and returns 
      [outcome text, result text]. 
      Result text represents what happened in concrete terms.
@@ -647,12 +651,12 @@ class Clangen implements ClangenInterface {
     return events;
   }
 
-  public startPatrol(patrolMembers: string[], patrolType: PatrolType): string {
+  public startPatrol(patrolMembers: string[], patrolType: PatrolType): PatrolIntro {
     const locals = pyodide.toPy({
       patrol_members: patrolMembers,
       patrol_type: patrolType,
     });
-    const introText = this._pyodide.runPython(
+    const patrol = this._pyodide.runPython(
       `
       patrol_members_obj = list(map(lambda cat_id : Cat.all_cats[cat_id], patrol_members))
       for cat in patrol_members_obj:
@@ -660,13 +664,18 @@ class Clangen implements ClangenInterface {
           patrol_type = "med"
       global current_patrol
       current_patrol = Patrol()
-      current_patrol.setup_patrol(patrol_members_obj, patrol_type)
+
+      p = {
+        "text": current_patrol.setup_patrol(patrol_members_obj, patrol_type),
+        "canAntagonize": len(current_patrol.patrol_event.antag_success_outcomes) > 0
+      }
+      to_js(p, dict_converter=js.Object.fromEntries)
     `,
       { locals: locals },
     );
     locals.destroy();
 
-    return introText;
+    return patrol;
   }
 
   public finishPatrol(action: PatrolAction): [string, string] {

@@ -13,6 +13,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 // TODO: switch to reducer
 function PatrolsPage() {
   const [patrolText, setPatrolText] = useState("");
+  const [canAntagonize, setCanAntagonize] = useState(false);
   const [resultText, setResultText] = useState("");
 
   const [patrolType, setPatrolType] = useState<PatrolType>("hunting");
@@ -69,7 +70,9 @@ function PatrolsPage() {
 
   function startPatrol() {
     setScreenState("in-progress");
-    setPatrolText(clangenRunner.startPatrol(selectedCats, patrolType));
+    const p = clangenRunner.startPatrol(selectedCats, patrolType);
+    setPatrolText(p.text);
+    setCanAntagonize(p.canAntagonize);
     setResultText("");
   }
 
@@ -223,6 +226,9 @@ function PatrolsPage() {
         <>
           <button tabIndex={0} onClick={() => endPatrol("proceed")}>Proceed</button>
           <button tabIndex={0} onClick={() => endPatrol("decline")}>Decline</button>
+          { canAntagonize && 
+            <button tabIndex={0} onClick={() => endPatrol("antag")}>Antagonize</button>
+          }
         </>
       )}
 
