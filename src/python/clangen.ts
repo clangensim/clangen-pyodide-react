@@ -148,6 +148,9 @@ interface ClangenInterface {
   /* Removes cats that aren't in clan_cats.
      Mainly, this is cats added in Clan creation. */
   refreshCats(): void;
+  destroyAccessory(id: string): void;
+  killCat(id: string, history: string): void;
+  exileCat(id: string): void;
 }
 
 class Clangen implements ClangenInterface {
@@ -216,6 +219,7 @@ class Clangen implements ClangenInterface {
       from scripts.game_structure.load_cat import load_cats, version_convert
       from scripts.game_structure.game_essentials import game
       from scripts.cat.cats import Cat, create_example_cats
+      from scripts.cat.history import History
       from scripts.patrol.patrol import Patrol
       from scripts.clan import Clan
       from scripts.events import events_class
@@ -453,6 +457,45 @@ class Clangen implements ClangenInterface {
     locals.destroy();
 
     return true;
+  }
+
+  destroyAccessory(id: string): void {
+    const locals = pyodide.toPy({ cat_id: id });
+    this._pyodide.runPython(
+      `
+      cat = Cat.all_cats[cat_id]
+      cat.pelt.accessory = None
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+  }
+
+  exileCat(id: string): void {
+    const locals = pyodide.toPy({ cat_id: id });
+    this._pyodide.runPython(
+      `
+      cat = Cat.all_cats[cat_id]
+      cat.exile()
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+  }
+
+  killCat(id: string, history: string): void {
+    const locals = pyodide.toPy({ cat_id: id, history: history });
+    this._pyodide.runPython(
+      `
+      cat = Cat.all_cats[cat_id]
+      if (cat.status == "leader"):
+        game.clan.leader_lives -= 1
+      cat.die()
+      History.add_death(cat, history)
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
   }
 
   public getCats(): Cat[] {
