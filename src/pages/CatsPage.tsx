@@ -3,8 +3,15 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { useState } from "react";
+import Checkbox from "../components/Checkbox";
 
 function CatsPage() {
+
+  const [showLiving, setShowLiving] = useState(true);
+  const [showDead, setShowDead] = useState(false);
+  const [showOutside, setShowOutside] = useState(false);
+
   return (
     <>
       <Navbar />
@@ -21,6 +28,22 @@ function CatsPage() {
         ]}
       />
 
+      <Checkbox
+        label="Show living"
+        checked={showLiving}
+        onChange={() => setShowLiving(!showLiving)}
+      />
+      <Checkbox
+        label="Show deceased"
+        checked={showDead}
+        onChange={() => setShowDead(!showDead)}
+      />
+      <Checkbox
+        label="Show cats outside the Clan"
+        checked={showOutside}
+        onChange={() => setShowOutside(!showOutside)}
+      />
+
       <div className="list" role="listbox">
         <table className="detailed">
           <thead>
@@ -35,7 +58,13 @@ function CatsPage() {
           </thead>
           <tbody>
             {clangenRunner.getCats().map((cat, index) => {
-              if (cat.dead || cat.outside) {
+              if (cat.dead && !showDead) {
+                return;
+              }
+              if (!cat.dead && !showLiving) {
+                return;
+              }
+              if (cat.outside && !showOutside) {
                 return;
               }
               return (
