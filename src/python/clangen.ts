@@ -52,6 +52,8 @@ type Cat = {
   pelt: Pelt;
   age: string;
   outside: boolean;
+  /* this is the display text of the backstory */
+  backstory: string;
   dead: boolean;
   inDarkForest: boolean;
   /* TODO: fix these types
@@ -218,7 +220,7 @@ class Clangen implements ClangenInterface {
 
       from scripts.game_structure.load_cat import load_cats, version_convert
       from scripts.game_structure.game_essentials import game
-      from scripts.cat.cats import Cat, create_example_cats
+      from scripts.cat.cats import Cat, create_example_cats, BACKSTORIES
       from scripts.cat.history import History
       from scripts.patrol.patrol import Patrol
       from scripts.clan import Clan
@@ -232,6 +234,16 @@ class Clangen implements ClangenInterface {
 
           if cat is None:
               return None
+
+          if cat.status in ['kittypet', 'loner', 'rogue', 'former Clancat']:
+              backstory = cat.status
+          elif cat.backstory:
+              for category in BACKSTORIES["backstory_categories"]:
+                  if cat.backstory in BACKSTORIES["backstory_categories"][category]:
+                      backstory = BACKSTORIES["backstory_display"][category]
+                      break
+          else:
+              backstory = 'Clanborn'
 
           if depth <= 0:
               former_apprentices = cat.former_apprentices
@@ -260,6 +272,7 @@ class Clangen implements ClangenInterface {
               'gender': cat.genderalign,
               'status': cat.status,
               'outside': cat.outside,
+              'backstory': backstory,
               'dead': cat.dead,
               'inDarkForest': cat.df,
               'trait': cat.personality.trait,
