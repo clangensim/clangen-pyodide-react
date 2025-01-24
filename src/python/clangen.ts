@@ -526,7 +526,7 @@ class Clangen implements ClangenInterface {
       cats = []
       for the_cat in Cat.all_cats_list:
         if not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status not in [
-                'elder', 'kitten', 'mediator', 'mediator apprentice'
+                'newborn', 'elder', 'kitten', 'mediator', 'mediator apprentice'
             ] and not the_cat.outside and not the_cat.not_working():
           
           cats.append(cat_to_dict(the_cat))
