@@ -36,6 +36,7 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>{cat.moons.toString()} moon(s)</li>
         <li>{cat.status} </li>
         <li>backstory: {cat.backstory}</li>
+        <li>experience: {cat.experienceLevel}</li>
         {cat.mentor && (
           <li>
             mentor: <Link tabIndex={0} to={`/cats/${cat.mentor.ID}`}>{cat.mentor.name.display}</Link>
