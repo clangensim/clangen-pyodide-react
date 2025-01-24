@@ -14,7 +14,7 @@ function Checkbox({
   return (
     <>
       <div>
-        <input id={ID} checked={checked} onChange={onChange} type="checkbox" />
+        <input tabIndex={0} id={ID} checked={checked} onChange={onChange} type="checkbox" />
         <label htmlFor={ID}>{label}</label>
       </div>
     </>
