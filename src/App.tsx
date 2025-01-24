@@ -23,7 +23,12 @@ function App() {
 
       <p>
         Welcome to <b>Clangen Simulator</b>, a project that aims to simulate
-        Clan Generator in your browser.
+        Clan Generator in your browser. This site is a work in progress, so some features may
+        be missing.
+      </p>
+
+      <p>
+        Current Clangen version: <b>v0.11.2</b>
       </p>
 
       <p>Importing a save or starting a new Clan will delete your existing Clan. Be careful.</p>
