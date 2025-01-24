@@ -33,6 +33,13 @@ function App() {
       </p>
 
       <p>
+        <b>
+          This site does not support being opened in multiple tabs. If you open
+          it in multiple tabs, data may be lost.
+        </b>
+      </p>
+
+      <p>
         Current Clangen version: <b>v0.11.2</b>
       </p>
 
