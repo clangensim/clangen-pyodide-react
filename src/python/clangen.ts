@@ -155,7 +155,7 @@ interface ClangenInterface {
      Mainly, this is cats added in Clan creation. */
   refreshCats(): void;
   destroyAccessory(id: string): void;
-  killCat(id: string, history: string): void;
+  killCat(id: string, history: string, takeNineLives?: boolean): void;
   exileCat(id: string): void;
 }
 
@@ -500,14 +500,22 @@ class Clangen implements ClangenInterface {
     locals.destroy();
   }
 
-  killCat(id: string, history: string): void {
-    const locals = pyodide.toPy({ cat_id: id, history: history });
+  killCat(id: string, history: string, takeNineLives?: boolean): void {
+    const locals = pyodide.toPy({ cat_id: id, history: history, take_nine_lives: takeNineLives });
     this._pyodide.runPython(
       `
       cat = Cat.all_cats[cat_id]
       if (cat.status == "leader"):
-        game.clan.leader_lives -= 1
+        if take_nine_lives:
+          game.clan.leader_lives = 0
+        else:
+          game.clan.leader_lives -= 1
+
+        history = "{VERB/m_c/were/was} " + history
+      else:
+        history = "This cat {VERB/m_c/were/was} " + history
       cat.die()
+      print(cat.dead)
       History.add_death(cat, history)
     `,
       { locals: locals },

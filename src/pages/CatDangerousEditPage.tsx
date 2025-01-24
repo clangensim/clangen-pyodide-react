@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { Cat, clangenRunner } from "../python/clangen";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Dialog from "../components/Dialog";
+import Checkbox from "../components/Checkbox";
 
-const defaultDeathHistory = "This cat was killed by a higher power";
+const defaultDeathHistory = "killed by a higher power";
 
-// TODO: support killing the leader
 function CatDangerousEditPage() {
   const [cat, setCat] = useState<Cat>();
   const params = useParams();
@@ -16,14 +16,15 @@ function CatDangerousEditPage() {
   const navigate = useNavigate();
 
   const [killModalOpen, setKillModalOpen] = useState(false);
-  const [deathHistory, setDeathHistory] = useState(defaultDeathHistory);
+  const [takeNineLives, setTakeNineLives] = useState(false);
+  const [deathHistory, setDeathHistory] = useState("");
 
   useEffect(() => {
     setCat(clangenRunner.getCat(catID));
   }, [catID]);
 
   function handleDeath() {
-    clangenRunner.killCat(catID, deathHistory);
+    clangenRunner.killCat(catID, deathHistory, takeNineLives);
     navigate(`/cats/${catID}`);
   }
 
@@ -66,16 +67,23 @@ function CatDangerousEditPage() {
       <Dialog
         opened={killModalOpen}
         onClose={() => setKillModalOpen(false)}
-        title={`Kill ${cat?.name.display}`}
+        title={`${cat?.name.display}'s Cause of Death`}
       >
         <div className="dialog-body">
-          <label htmlFor="death-cause">How did this cat die?</label>
+          <label htmlFor="death-cause">This cat died when they were...</label>
           <textarea
             id="death-cause"
             value={deathHistory}
             onChange={(e) => setDeathHistory(e.currentTarget.value)}
             style={{ resize: "none", minWidth: "100%" }}
           />
+          { cat && cat.status === "leader" &&
+            <Checkbox
+              label="Take all the leader's lives"
+              checked={takeNineLives}
+              onChange={() => setTakeNineLives(!takeNineLives)}
+            />
+          }
         </div>
         <div className="dialog-footer">
           <button onClick={handleDeath}>OK</button>
@@ -86,7 +94,7 @@ function CatDangerousEditPage() {
         <div style={{ marginTop: "1em" }}>
           <button
             tabIndex={0}
-            disabled={cat.dead || cat.status === "leader"}
+            disabled={cat.dead}
             onClick={() => {
               setKillModalOpen(true);
               setDeathHistory(defaultDeathHistory);
@@ -104,9 +112,6 @@ function CatDangerousEditPage() {
           >
             Destroy accessory
           </button>
-          {cat.status === "leader" && (
-            <p>NOTE: Killing the leader is currently not supported.</p>
-          )}
         </div>
       )}
     </>
