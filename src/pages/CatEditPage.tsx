@@ -173,27 +173,31 @@ function CatEditPage() {
         />
       </div>
 
-      <div>
-        <Select
-          label="Role"
-          disabled={disableSelectStatus}
-          options={statusOptions}
-          value={status}
-          onChange={handleChangeRole}
-          noEmpty
-        />
-      </div>
-
-      {isApprentice &&
-        <div>
-          <Select
-              label="Mentor"
+      {cat && !cat.dead && !cat.outside &&
+        <>
+          <div>
+            <Select
+              label="Role"
               disabled={disableSelectStatus}
-              options={potentialMentorOptions}
-              value={mentor}
-              onChange={setMentor}
-          />
-        </div>
+              options={statusOptions}
+              value={status}
+              onChange={handleChangeRole}
+              noEmpty
+            />
+          </div>
+
+          {isApprentice &&
+            <div>
+              <Select
+                  label="Mentor"
+                  disabled={disableSelectStatus}
+                  options={potentialMentorOptions}
+                  value={mentor}
+                  onChange={setMentor}
+              />
+            </div>
+          }
+        </>
       }
 
       <button tabIndex={0} onClick={handleSubmit}>Submit</button>
