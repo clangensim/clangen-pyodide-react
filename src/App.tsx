@@ -3,6 +3,7 @@ import FileUploadButton from "./components/FileUploadButton";
 import Navbar from "./components/Navbar";
 import { clangenRunner } from "./python/clangen";
 import { download } from "./utils";
+import { useEffect } from "react";
 
 function App() {
   function handleExportClan() {
@@ -16,6 +17,10 @@ function App() {
       clangenRunner.importClan(buff);
     });
   }
+
+  useEffect(() => {
+    document.title = " Clangen Simulator"
+  }, []);
 
   return (
     <>

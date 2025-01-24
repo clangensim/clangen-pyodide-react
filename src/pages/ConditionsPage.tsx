@@ -14,7 +14,9 @@ function ConditionsPage() {
   useEffect(() => {
     const c = clangenRunner.getConditions(catID);
     setConditions(c);
-    setCat(clangenRunner.getCat(catID));
+    const c2 = clangenRunner.getCat(catID);
+    document.title = `${c2.name.display}'s Conditions | Clangen Simulator`
+    setCat(c2);
   }, []);
 
   return (

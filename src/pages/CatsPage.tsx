@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import Breadcrumbs from "../components/Breadcrumbs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Checkbox from "../components/Checkbox";
 
 function CatsPage() {
@@ -11,6 +11,10 @@ function CatsPage() {
   const [showLiving, setShowLiving] = useState(true);
   const [showDead, setShowDead] = useState(false);
   const [showOutside, setShowOutside] = useState(false);
+
+  useEffect(() => {
+    document.title = "Cats | Clangen Simulator"
+  }, []);
 
   return (
     <>

@@ -15,7 +15,11 @@ function RelationshipsPage() {
 
   useEffect(() => {
     setRelationships(clangenRunner.getRelationships(catID));
-    setCat(clangenRunner.getCat(catID));
+    const c = clangenRunner.getCat(catID);
+    if (c) {
+      document.title = `${c.name.display}'s Relationships | Clangen Simulator`;
+    }
+    setCat(c);
   }, [catID]);
 
   return (

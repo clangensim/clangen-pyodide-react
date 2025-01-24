@@ -46,6 +46,10 @@ function SettingsPage() {
   const [settings, setSettings] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
+    document.title = "Settings | Clangen Simulator"
+  }, []);
+
+  useEffect(() => {
     const s = clangenRunner.getSettings();
     const temp: Record<string, boolean> = {};
 

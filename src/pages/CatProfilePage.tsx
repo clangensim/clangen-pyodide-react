@@ -12,7 +12,12 @@ function CatProfilePage() {
   const catID = params.id as string;
 
   useEffect(() => {
-    setCat(clangenRunner.getCat(catID));
+    const c = clangenRunner.getCat(catID);
+    setCat(c);
+
+    if (c) {
+      document.title = `${c.name.display} | Clangen Simulator`
+    }
   }, [catID]);
 
   return (

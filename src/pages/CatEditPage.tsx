@@ -122,6 +122,9 @@ function CatEditPage() {
 
   useEffect(() => {
     const c = clangenRunner.getCat(catID);
+    if (c) {
+      document.title = `Editing ${c.name.display} | Clangen Simulator`
+    }
     setCat(c);
     if (c.mentor) {
       setMentor(c.mentor.ID);

@@ -7,6 +7,11 @@ function EventsPage() {
   const [events, setEvents] = useState<Array<any>>();
   const [clanAge, setClanAge] = useState<Number>(0);
 
+
+  useEffect(() => {
+    document.title = "Events | Clangen Simulator"
+  }, []);
+
   const regularEvents = events?.filter(
     (event) => !event.types.includes("interaction"),
   );

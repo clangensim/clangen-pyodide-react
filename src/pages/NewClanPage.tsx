@@ -19,6 +19,10 @@ function NewClanPage() {
     localStorage.setItem("queueCatRefresh", "true");
   }, []);
 
+  useEffect(() => {
+    document.title = "New Clan | Clangen Simulator";
+  }, []);
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const target = e.target as HTMLFormElement;

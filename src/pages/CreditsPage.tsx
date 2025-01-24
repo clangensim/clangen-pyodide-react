@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 
 function CreditsPage() {
+  useEffect(() => {
+    document.title = "Credits | Clangen Simulator";
+  }, []);
+
   return (
     <>
       <Navbar />

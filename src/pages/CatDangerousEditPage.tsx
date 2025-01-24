@@ -20,7 +20,11 @@ function CatDangerousEditPage() {
   const [deathHistory, setDeathHistory] = useState("");
 
   useEffect(() => {
-    setCat(clangenRunner.getCat(catID));
+    const c = clangenRunner.getCat(catID);
+    if (c) {
+      document.title = `Editing ${c.name.display} | Clangen Simulator`
+    }
+    setCat(c);
   }, [catID]);
 
   function handleDeath() {

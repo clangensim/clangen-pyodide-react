@@ -68,6 +68,10 @@ function PatrolsPage() {
     reset();
   }, []);
 
+  useEffect(() => {
+    document.title = "Patrols | Clangen Simulator"
+  }, []);
+
   function startPatrol() {
     setScreenState("in-progress");
     const p = clangenRunner.startPatrol(selectedCats, patrolType);
