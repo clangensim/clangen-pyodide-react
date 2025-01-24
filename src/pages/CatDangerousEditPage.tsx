@@ -69,8 +69,9 @@ function CatDangerousEditPage() {
         title={`Kill ${cat?.name.display}`}
       >
         <div className="dialog-body">
-          <label>How did this cat die?</label>
+          <label htmlFor="death-cause">How did this cat die?</label>
           <textarea
+            id="death-cause"
             value={deathHistory}
             onChange={(e) => setDeathHistory(e.currentTarget.value)}
             style={{ resize: "none", minWidth: "100%" }}
