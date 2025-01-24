@@ -744,6 +744,24 @@ class Clangen implements ClangenInterface {
           game.clan.remove_cat(x)
     `);
   }
+
+  public getSettings(): Record<string, boolean> {
+    return this._pyodide.runPython(`
+      to_js(game.clan.clan_settings, dict_converter=js.Object.fromEntries)
+    `);  
+  }
+
+  public setSettings(settings: Record<string, boolean>) {
+    const locals = pyodide.toPy({ settings: settings });
+    this._pyodide.runPython(
+      `
+      for name, setting in settings.items():
+        game.clan.clan_settings[name] = setting
+      `,
+      { locals: locals },
+    );
+    locals.destroy();
+  }
 }
 
 const clangenRunner = new Clangen(pyodide);
