@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Cat, clangenRunner } from "../python/clangen";
 import CatDisplay from "../components/CatDisplay";
+import Checkbox from "../components/Checkbox";
 
 function NewClanPage() {
   const [cats, setCats] = useState<Cat[]>([]);
@@ -230,7 +231,7 @@ function NewClanPage() {
                 return;
               }
               return (
-                <div>
+                <div className="checkbox-row">
                   <input
                     tabIndex={0}
                     id={id}

@@ -10,6 +10,11 @@ select {
   min-width: 250px;
 }
 
+.checkbox-row {
+  display: flex;
+  padding-bottom: 0.25em;
+}
+
 dialog {
   padding: 0;
   border-style: none;
