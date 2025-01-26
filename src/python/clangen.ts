@@ -737,19 +737,21 @@ class Clangen implements ClangenInterface {
     return outcome;
   }
 
-  public mediate(mediator: string, mediated1: string, mediated2: string, sabotage = false): string {
+  public mediate(mediator: string, mediated1: string, mediated2: string, sabotage = false, allowRomantic = false): string {
     const locals = pyodide.toPy({
       mediator: mediator,
       mediated1: mediated1,
       mediated2: mediated2,
       sabotage: sabotage,
+      allow_romantic: allowRomantic
     });
     const outcome = this._pyodide.runPython(
       `
       game.mediated.append([mediated1, mediated2])
       game.patrolled.append(mediator)
       Cat.mediate_relationship(Cat.all_cats[mediator], 
-        Cat.all_cats[mediated1], Cat.all_cats[mediated2], allow_romantic=False,
+        Cat.all_cats[mediated1], Cat.all_cats[mediated2],
+        allow_romantic=allow_romantic,
         sabotage=sabotage)
     `,
       { locals: locals },

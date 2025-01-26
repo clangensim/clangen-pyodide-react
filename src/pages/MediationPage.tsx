@@ -7,6 +7,7 @@ import {
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
 import Breadcrumbs from "../components/Breadcrumbs";
+import Checkbox from "../components/Checkbox";
 
 // TODO: switch to reducer
 function MediationPage() {
@@ -14,6 +15,8 @@ function MediationPage() {
 
   const [possibleMediators, setPossibleMediators] = useState<Cat[]>([]);
   const [possibleCats, setPossibleCats] = useState<Cat[]>([]);
+
+  const [allowRomantic, setAllowRomantic] = useState<boolean>(false);
 
   const [selectedCat1, setSelectedCat1] = useState("");
   const [selectedCat2, setSelectedCat2] = useState("");
@@ -63,7 +66,7 @@ function MediationPage() {
     document.title = "Mediation | Clangen Simulator"
   }, []);
 
-  function doMediate(kind: "sabotage" | "mediate") {
+  function doMediate(kind: "sabotage" | "mediate", allowRomantic: boolean) {
     setScreenState("in-progress");
     var doSabotage;
     if (kind == "sabotage") {
@@ -71,7 +74,7 @@ function MediationPage() {
     } else {
       doSabotage = false;
     }
-    const m = clangenRunner.mediate(selectedCat1, selectedCat2, selectedCat3, doSabotage);
+    const m = clangenRunner.mediate(selectedCat1, selectedCat2, selectedCat3, doSabotage, allowRomantic);
     setMediationText(m);
   }
 
@@ -132,12 +135,21 @@ function MediationPage() {
         </div>
       </fieldset>
 
+      <fieldset>
+        <legend>Options</legend>
+        <Checkbox
+          label="Allow effects on romantic like, if possible"
+          checked={allowRomantic}
+          onChange={() => setAllowRomantic(!allowRomantic)}
+        />
+      </fieldset>
+
       <p>{mediationText}</p>
 
       {screenState === "start" && (
         <>
-          <button tabIndex={0} disabled={selectedCats.length < 3} onClick={() => doMediate("mediate")}>Mediate</button>
-          <button tabIndex={0} disabled={selectedCats.length < 3} onClick={() => doMediate("sabotage")}>Sabotage</button>
+          <button tabIndex={0} disabled={selectedCats.length < 3} onClick={() => doMediate("mediate", allowRomantic)}>Mediate</button>
+          <button tabIndex={0} disabled={selectedCats.length < 3} onClick={() => doMediate("sabotage", allowRomantic)}>Sabotage</button>
         </>
       )}
 
