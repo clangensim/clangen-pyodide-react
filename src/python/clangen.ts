@@ -517,7 +517,6 @@ class Clangen implements ClangenInterface {
       else:
         history = "This cat {VERB/m_c/were/was} " + history
       cat.die()
-      print(cat.dead)
       History.add_death(cat, history)
     `,
       { locals: locals },
