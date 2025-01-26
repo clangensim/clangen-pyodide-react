@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 function Dialog({
   title,
@@ -12,6 +12,12 @@ function Dialog({
   children?: React.ReactNode;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (dialogRef.current) {
+      dialogRef.current.addEventListener("cancel", () => onClose());
+    }  
+  }, [dialogRef.current])
 
   if (opened) {
     if (dialogRef.current && !dialogRef.current.open) {
