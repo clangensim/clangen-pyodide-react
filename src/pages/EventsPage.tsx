@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner, Event } from "../python/clangen";
 import Navbar from "../components/Navbar";
 import Breadcrumbs from "../components/Breadcrumbs";
+import Checkbox from "../components/Checkbox";
 
 function EventsPage() {
-  const [events, setEvents] = useState<Array<any>>();
+  const [events, setEvents] = useState<Event[]>([]);
   const [clanAge, setClanAge] = useState<Number>(0);
 
+  const [showRelEvents, setShowRelEvents] = useState(false);
+  const [showRegEvents, setShowRegEvents] = useState(true);
 
   useEffect(() => {
     document.title = "Events | Clangen Simulator"
@@ -18,12 +21,18 @@ function EventsPage() {
 
   var eventsDisplay;
   if (regularEvents !== undefined) {
-    if (regularEvents.length === 0) {
+    if (regularEvents.length === 0 && showRegEvents && !showRelEvents) {
       eventsDisplay = <li>Nothing interesting happened this moon.</li>;
     } else {
       eventsDisplay = (
         <>
-          {regularEvents?.map((event, i) => {
+          {events.map((event, i) => {
+            if (!showRelEvents && event.types.includes("interaction")) {
+              return;
+            }
+            if (!showRegEvents && !event.types.includes("interaction")) {
+              return;
+            }
             return <li key={i}>{event.text}</li>;
           })}
         </>
@@ -57,6 +66,17 @@ function EventsPage() {
             label: "Events",
           },
         ]}
+      />
+
+      <Checkbox
+        label="Show regular events"
+        checked={showRegEvents}
+        onChange={() => setShowRegEvents(!showRegEvents)}
+      />
+      <Checkbox
+        label="Show relationship events"
+        checked={showRelEvents}
+        onChange={() => setShowRelEvents(!showRelEvents)}
       />
 
       <div>{clanAge.toString()} Moons</div>
