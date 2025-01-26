@@ -36,7 +36,7 @@ function Navbar() {
         Events
       </Link>
       <Link tabIndex={0} className="button nav-item" to="/patrols">
-        Patrols
+        Patrol
       </Link>
       <Link tabIndex={0} className="button nav-item" to="/settings">
         Settings

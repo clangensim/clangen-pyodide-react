@@ -98,7 +98,7 @@ function PatrolsPage() {
           },
           {
             url: "/patrols",
-            label: "Patrols",
+            label: "Patrol",
           },
         ]}
       />
