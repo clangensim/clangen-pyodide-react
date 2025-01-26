@@ -15,9 +15,17 @@ select {
   padding-bottom: 0.25em;
 }
 
+.checkbox-row input[type="checkbox"]{
+  flex: none;
+}
+
 .radio-row {
   display: flex;
   padding-bottom: 0.25em;
+}
+
+.radio-row input[type="radio"]{
+  flex: none;
 }
 
 dialog {
