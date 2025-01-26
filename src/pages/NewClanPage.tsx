@@ -84,7 +84,7 @@ function NewClanPage() {
 
         <fieldset>
           <legend>Game Mode</legend>
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               id="classic-radio"
@@ -96,7 +96,7 @@ function NewClanPage() {
             <label htmlFor="classic-radio">Classic</label>
           </div>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               id="expanded-radio"
@@ -249,7 +249,7 @@ function NewClanPage() {
         <fieldset>
           <legend>Biome</legend>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               type="radio"
@@ -260,7 +260,7 @@ function NewClanPage() {
             <label htmlFor="mountain-radio">Mountainous</label>
           </div>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               type="radio"
@@ -272,7 +272,7 @@ function NewClanPage() {
             <label htmlFor="plains-radio">Plains</label>
           </div>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               type="radio"
@@ -283,7 +283,7 @@ function NewClanPage() {
             <label htmlFor="forest-radio">Forest</label>
           </div>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               type="radio"
@@ -298,7 +298,7 @@ function NewClanPage() {
         <fieldset>
           <legend>Starting Season</legend>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               type="radio"
@@ -309,7 +309,7 @@ function NewClanPage() {
             <label htmlFor="fall-radio">Leaf-fall (Fall)</label>
           </div>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               type="radio"
@@ -320,7 +320,7 @@ function NewClanPage() {
             <label htmlFor="winter-radio">Leaf-bare (Winter)</label>
           </div>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               type="radio"
@@ -332,7 +332,7 @@ function NewClanPage() {
             <label htmlFor="spring-radio">Newleaf (Spring)</label>
           </div>
 
-          <div>
+          <div className="radio-row">
             <input
               tabIndex={0}
               type="radio"

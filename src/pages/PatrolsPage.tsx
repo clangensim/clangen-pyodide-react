@@ -178,7 +178,7 @@ function PatrolsPage() {
 
       <fieldset>
         <legend>Patrol Type</legend>
-        <div>
+        <div className="radio-row">
           <input
             tabIndex={0}
             id="hunt-radio"
@@ -191,7 +191,7 @@ function PatrolsPage() {
           <label htmlFor="hunt-radio">Hunting</label>
         </div>
 
-        <div>
+        <div className="radio-row">
           <input
             tabIndex={0}
             id="bord-radio"
@@ -204,7 +204,7 @@ function PatrolsPage() {
           <label htmlFor="bord-radio">Border</label>
         </div>
 
-        <div>
+        <div className="radio-row">
           <input
             tabIndex={0}
             id="train-radio"
