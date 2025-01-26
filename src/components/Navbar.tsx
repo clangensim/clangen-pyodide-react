@@ -38,6 +38,9 @@ function Navbar() {
       <Link tabIndex={0} className="button nav-item" to="/patrols">
         Patrol
       </Link>
+      <Link tabIndex={0} className="button nav-item" to="/mediate">
+        Mediate
+      </Link>
       <Link tabIndex={0} className="button nav-item" to="/settings">
         Settings
       </Link>

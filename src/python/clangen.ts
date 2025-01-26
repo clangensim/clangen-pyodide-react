@@ -549,6 +549,36 @@ class Clangen implements ClangenInterface {
     return cats;
   }
 
+  public getPossibleMediators(): Cat[] {
+    const cats = this._pyodide.runPython(`
+      cats = []
+      for the_cat in Cat.all_cats_list:
+        if not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status in [
+              'mediator', 'mediator apprentice'
+            ] and not the_cat.outside and not the_cat.not_working():
+          cats.append(cat_to_dict(the_cat))
+      to_js(cats, dict_converter=js.Object.fromEntries)
+    `);
+    return cats;
+  }
+
+  public getPossibleMediated(): Cat[] {
+    const cats = this._pyodide.runPython(`
+      cats = []
+      for the_cat in Cat.all_cats_list:
+        if the_cat.outside or the_cat.dead:
+          continue
+        mediated = False
+        for cat1, cat2 in game.mediated:
+          if the_cat.ID == cat1 or the_cat.ID == cat2:
+            mediated = True
+        if not mediated:
+          cats.append(cat_to_dict(the_cat))
+      to_js(cats, dict_converter=js.Object.fromEntries)
+    `);
+    return cats;
+  }
+
   public getPotentialMentors(apprenticeRole: string): Cat[] {
     const locals = pyodide.toPy({ apprentice_role: apprenticeRole});
     const potentialMentors = this._pyodide.runPython(`
@@ -704,6 +734,28 @@ class Clangen implements ClangenInterface {
     locals.destroy();
 
     // outcome text, results text
+    return outcome;
+  }
+
+  public mediate(mediator: string, mediated1: string, mediated2: string, sabotage = false): string {
+    const locals = pyodide.toPy({
+      mediator: mediator,
+      mediated1: mediated1,
+      mediated2: mediated2,
+      sabotage: sabotage,
+    });
+    const outcome = this._pyodide.runPython(
+      `
+      game.mediated.append([mediated1, mediated2])
+      game.patrolled.append(mediator)
+      Cat.mediate_relationship(Cat.all_cats[mediator], 
+        Cat.all_cats[mediated1], Cat.all_cats[mediated2], allow_romantic=False,
+        sabotage=sabotage)
+    `,
+      { locals: locals },
+    );
+    locals.destroy();
+
     return outcome;
   }
 

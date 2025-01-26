@@ -19,6 +19,7 @@ import ErrorNotFoundPage from "./pages/ErrorNotFoundPage.tsx";
 import CreditsPage from "./pages/CreditsPage.tsx";
 import CatDangerousEditPage from "./pages/CatDangerousEditPage.tsx";
 import SettingsPage from "./pages/SettingsPage.tsx";
+import MediationPage from "./pages/MediationPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -28,6 +29,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/new-clan" element={<NewClanPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/patrols" element={<PatrolsPage />} />
+        <Route path="/mediate" element={<MediationPage />} />
         <Route path="/cats" element={<CatsPage />} />
         <Route path="/cats/:id" element={<CatProfilePage />} />
         <Route path="/cats/:id/edit" element={<CatEditPage />} />
