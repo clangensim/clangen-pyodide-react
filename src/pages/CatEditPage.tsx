@@ -58,6 +58,7 @@ function CatEditPage() {
 
   const [cat, setCat] = useState<Cat>();
   const [potentialMentors, setPotentialMentors] = useState<Cat[]>();
+  const [potentialMates, setPotentialMates] = useState<Cat[]>();
 
   const [prefix, setPrefix] = useState<string>("");
   const [suffix, setSuffix] = useState<string>("");
@@ -65,6 +66,9 @@ function CatEditPage() {
   const [status, setStatus] = useState("");
 
   const [mentor, setMentor] = useState("");
+  const [selectedMate, setSelectedMate] = useState("");
+
+  const [mates, setMates] = useState<string[]>([]);
 
   const isApprentice = cat?.status.includes("apprentice");
 
@@ -74,6 +78,21 @@ function CatEditPage() {
       potentialMentorOptions.push({
         label: `${c.name.display} - ${c.status}`,
         value: c.ID
+      });
+    }
+  }
+
+  const potentialMateOptions = [];
+  const potentialMateMap: Record<string, Cat> = {};
+  if (potentialMates) {
+    for (const c of potentialMates) {
+      potentialMateMap[c.ID] = c;
+      if (mates.includes(c.ID)) {
+        continue;
+      }
+      potentialMateOptions.push({
+        label: `${c.name.display}`,
+        value: c.ID,
       });
     }
   }
@@ -104,6 +123,7 @@ function CatEditPage() {
       status: status,
       prefix: prefix,
       suffix: suffix,
+      mates: mates,
     }
     if (isApprentice) {
       e.mentor = mentor;
@@ -120,6 +140,10 @@ function CatEditPage() {
     setStatus(value);
   }
 
+  function handleRemoveMate(index: number) {
+    setMates(mates.filter((_, i) => i !== index));
+  }
+
   useEffect(() => {
     const c = clangenRunner.getCat(catID);
     if (c) {
@@ -132,8 +156,10 @@ function CatEditPage() {
     setPrefix(c.name.prefix);
     setSuffix(c.name.suffix);
     setStatus(c.status);
+    setMates(c.mates.map((mate) => mate.ID));
 
     setPotentialMentors(clangenRunner.getPotentialMentors(c.status));
+    setPotentialMates(clangenRunner.getPotentialMates(catID));
   }, []);
 
   return (
@@ -188,6 +214,27 @@ function CatEditPage() {
               noEmpty
             />
           </div>
+
+        {["young adult", "adult", "senior adult", "senior"].includes(cat.age) &&
+          <fieldset>
+            <legend>Mates</legend>
+            {mates.map((mateID, index) => <div key={mateID + "_" + index}>
+              {potentialMateMap[mateID].name.display} <button onClick={() => handleRemoveMate(index)}>Remove</button>
+            </div>)}
+
+            <Select
+              value={selectedMate}
+              options={potentialMateOptions}
+              onChange={(value) => {
+                setSelectedMate(value)
+              }}
+            />
+            <button onClick={() => {
+              setMates([...mates, selectedMate]);
+              setSelectedMate("");
+            }}>Add mate</button>
+          </fieldset>
+        }
 
           {isApprentice &&
             <div>

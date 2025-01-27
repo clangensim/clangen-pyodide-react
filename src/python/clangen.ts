@@ -94,6 +94,7 @@ type CatEdit = {
   prefix: string;
   suffix: string;
   mentor?: string;
+  mates?: string[];
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med";
@@ -470,6 +471,15 @@ class Clangen implements ClangenInterface {
             new_mentor.former_apprentices.remove(cat.ID)
         else:
           cat.mentor = None
+
+      if "mates" in edit:
+        for mateID in edit["mates"]:
+          if mateID not in cat.mate:
+            cat.set_mate(Cat.fetch_cat(mateID))
+
+        for mateID in cat.mate:
+          if mateID not in edit["mates"]:
+            cat.unset_mate(Cat.fetch_cat(mateID))
     `,
       { locals: locals },
     );
@@ -532,6 +542,37 @@ class Clangen implements ClangenInterface {
       to_js(cats, dict_converter=js.Object.fromEntries)
     `);
     return cats;
+  }
+
+  public getPotentialMates(id: string): Cat[] {
+  /* WARNING: This includes CURRENT MATES of the selected cat. 
+              You have to filter them out on the frontend. */
+
+    const locals = pyodide.toPy({ cat_id: id});
+    const potentialMates = this._pyodide.runPython(`
+      valid_mates = []
+
+      single_only = False
+      have_kits_only = False
+
+      cat = Cat.all_cats[cat_id]
+
+      valid_mates = [cat_to_dict(i, 0) for i in Cat.all_cats_list if
+                      not i.faded
+                      and cat.is_potential_mate(
+                          i, for_love_interest=False,
+                          age_restriction=False, ignore_no_mates=True)
+                      and (not single_only or not i.mate)
+                      and (not have_kits_only 
+                          or game.clan.clan_settings["same sex birth"]
+                          or i.gender != cat.gender)]
+
+      to_js(valid_mates, dict_converter=js.Object.fromEntries)
+    `,
+      {locals: locals}
+    );
+    locals.destroy();
+    return potentialMates;
   }
 
   public getPatrollableCats(): Cat[] {
