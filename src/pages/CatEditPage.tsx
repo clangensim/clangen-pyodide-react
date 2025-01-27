@@ -243,6 +243,7 @@ function CatEditPage() {
                   setMates([...mates, selectedMate]);
                   setSelectedMate("");
                 }}
+                disabled={selectedMate === ""}
               >
                 Add mate
               </button>
