@@ -228,7 +228,7 @@ function CatEditPage() {
               <legend>Mates</legend>
               {mates.map((mateID, index) => (
                 <div key={mateID + "_" + index}>
-                  {potentialMateMap.current[mateID].name.display}{" "}
+                  {potentialMateMap.current[mateID]?.name.display}{" "}
                   <button onClick={() => handleRemoveMate(index)}>
                     Remove
                   </button>
