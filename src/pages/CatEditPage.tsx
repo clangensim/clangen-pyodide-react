@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
 import { CatEdit, Cat, clangenRunner } from "../python/clangen";
@@ -83,10 +83,10 @@ function CatEditPage() {
   }
 
   const potentialMateOptions = [];
-  const potentialMateMap: Record<string, Cat> = {};
+  const potentialMateMap = useRef<Record<string, Cat>>({});
   if (potentialMates) {
     for (const c of potentialMates) {
-      potentialMateMap[c.ID] = c;
+      potentialMateMap.current[c.ID] = c;
       if (mates.includes(c.ID)) {
         continue;
       }
@@ -162,6 +162,10 @@ function CatEditPage() {
 
     setPotentialMentors(clangenRunner.getPotentialMentors(c.status));
     setPotentialMates(clangenRunner.getPotentialMates(catID));
+
+    for (const mate of c.mates) {
+      potentialMateMap.current[mate.ID] = mate;
+    }
   }, []);
 
   return (
@@ -224,7 +228,7 @@ function CatEditPage() {
               <legend>Mates</legend>
               {mates.map((mateID, index) => (
                 <div key={mateID + "_" + index}>
-                  {potentialMateMap[mateID].name.display}{" "}
+                  {potentialMateMap.current[mateID].name.display}{" "}
                   <button onClick={() => handleRemoveMate(index)}>
                     Remove
                   </button>
