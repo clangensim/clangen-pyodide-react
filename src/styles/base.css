@@ -1,9 +1,6 @@
 a.button {
+  display: inline-block;
   text-decoration-line: none;
-}
-
-nav {
-  margin-bottom: 1em;
 }
 
 select {
