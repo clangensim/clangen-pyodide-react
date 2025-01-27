@@ -77,7 +77,7 @@ function CatEditPage() {
     for (const c of potentialMentors) {
       potentialMentorOptions.push({
         label: `${c.name.display} - ${c.status}`,
-        value: c.ID
+        value: c.ID,
       });
     }
   }
@@ -103,7 +103,9 @@ function CatEditPage() {
     if (isApprentice) {
       disableSelectStatus = false;
       statusOptions = selectApprenticeOptions;
-    } else if (selectRegularCatOptions.find((elem) => elem.value === cat.status)) {
+    } else if (
+      selectRegularCatOptions.find((elem) => elem.value === cat.status)
+    ) {
       // if the cat's status is under regular cat options
       disableSelectStatus = false;
       statusOptions = selectRegularCatOptions;
@@ -124,7 +126,7 @@ function CatEditPage() {
       prefix: prefix,
       suffix: suffix,
       mates: mates,
-    }
+    };
     if (isApprentice) {
       e.mentor = mentor;
     }
@@ -134,8 +136,8 @@ function CatEditPage() {
 
   function handleChangeRole(value: string) {
     if (isApprentice && value !== status) {
-        setPotentialMentors(clangenRunner.getPotentialMentors(value));
-        setMentor("");
+      setPotentialMentors(clangenRunner.getPotentialMentors(value));
+      setMentor("");
     }
     setStatus(value);
   }
@@ -147,7 +149,7 @@ function CatEditPage() {
   useEffect(() => {
     const c = clangenRunner.getCat(catID);
     if (c) {
-      document.title = `Editing ${c.name.display} | Clangen Simulator`
+      document.title = `Editing ${c.name.display} | Clangen Simulator`;
     }
     setCat(c);
     if (c.mentor) {
@@ -202,7 +204,7 @@ function CatEditPage() {
         />
       </div>
 
-      {cat && !cat.dead && !cat.outside &&
+      {cat && !cat.dead && !cat.outside && (
         <>
           <div>
             <Select
@@ -215,42 +217,55 @@ function CatEditPage() {
             />
           </div>
 
-        {["young adult", "adult", "senior adult", "senior"].includes(cat.age) &&
-          <fieldset>
-            <legend>Mates</legend>
-            {mates.map((mateID, index) => <div key={mateID + "_" + index}>
-              {potentialMateMap[mateID].name.display} <button onClick={() => handleRemoveMate(index)}>Remove</button>
-            </div>)}
+          {["young adult", "adult", "senior adult", "senior"].includes(
+            cat.age,
+          ) && (
+            <fieldset>
+              <legend>Mates</legend>
+              {mates.map((mateID, index) => (
+                <div key={mateID + "_" + index}>
+                  {potentialMateMap[mateID].name.display}{" "}
+                  <button onClick={() => handleRemoveMate(index)}>
+                    Remove
+                  </button>
+                </div>
+              ))}
 
-            <Select
-              value={selectedMate}
-              options={potentialMateOptions}
-              onChange={(value) => {
-                setSelectedMate(value)
-              }}
-            />
-            <button onClick={() => {
-              setMates([...mates, selectedMate]);
-              setSelectedMate("");
-            }}>Add mate</button>
-          </fieldset>
-        }
+              <Select
+                value={selectedMate}
+                options={potentialMateOptions}
+                onChange={(value) => {
+                  setSelectedMate(value);
+                }}
+              />
+              <button
+                onClick={() => {
+                  setMates([...mates, selectedMate]);
+                  setSelectedMate("");
+                }}
+              >
+                Add mate
+              </button>
+            </fieldset>
+          )}
 
-          {isApprentice &&
+          {isApprentice && (
             <div>
               <Select
-                  label="Mentor"
-                  disabled={disableSelectStatus}
-                  options={potentialMentorOptions}
-                  value={mentor}
-                  onChange={setMentor}
+                label="Mentor"
+                disabled={disableSelectStatus}
+                options={potentialMentorOptions}
+                value={mentor}
+                onChange={setMentor}
               />
             </div>
-          }
+          )}
         </>
-      }
+      )}
 
-      <button tabIndex={0} onClick={handleSubmit}>Submit</button>
+      <button tabIndex={0} onClick={handleSubmit}>
+        Submit
+      </button>
     </>
   );
 }
