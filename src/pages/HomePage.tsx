@@ -1,11 +1,11 @@
 import { Link } from "react-router";
-import FileUploadButton from "./components/FileUploadButton";
-import Navbar from "./components/Navbar";
-import { clangenRunner } from "./python/clangen";
-import { download } from "./utils";
+import FileUploadButton from "../components/FileUploadButton";
+import Navbar from "../components/Navbar";
+import { clangenRunner } from "../python/clangen";
+import { download } from "../utils";
 import { useEffect } from "react";
 
-function App() {
+function HomePage() {
   function handleExportClan() {
     const f: Int8Array = clangenRunner.exportClan();
     download(new Blob([f]));
@@ -59,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;

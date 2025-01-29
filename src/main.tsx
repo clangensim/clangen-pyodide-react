@@ -6,7 +6,6 @@ import "../vendors/classic-stylesheets-win9x-2.0/win9x/theme.min.css";
 import "../vendors/classic-stylesheets-win9x-2.0/win9x/skins/teal-2000.css";
 import "./styles/base.css";
 
-import App from "./App.tsx";
 import EventsPage from "./pages/EventsPage.tsx";
 import CatsPage from "./pages/CatsPage.tsx";
 import CatProfilePage from "./pages/CatProfilePage.tsx";
@@ -20,12 +19,13 @@ import CreditsPage from "./pages/CreditsPage.tsx";
 import CatDangerousEditPage from "./pages/CatDangerousEditPage.tsx";
 import SettingsPage from "./pages/SettingsPage.tsx";
 import MediationPage from "./pages/MediationPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/new-clan" element={<NewClanPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/patrols" element={<PatrolsPage />} />
