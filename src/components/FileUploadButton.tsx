@@ -4,10 +4,12 @@ function FileUploadButton({
   children,
   onChange,
   tabIndex,
+  accept,
 }: {
   children?: JSX.Element | string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   tabIndex?: number;
+  accept?: string;
 }) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -29,6 +31,7 @@ function FileUploadButton({
         }}
         ref={inputRef}
         onChange={onChange}
+        accept={accept}
       />
     </>
   );

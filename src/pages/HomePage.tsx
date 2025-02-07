@@ -57,7 +57,7 @@ function HomePage() {
         </Link>
       </div>
 
-      <FileUploadButton tabIndex={0} onChange={handleImportClan}>
+      <FileUploadButton accept=".sav" tabIndex={0} onChange={handleImportClan}>
         Import Save
       </FileUploadButton>
       <button tabIndex={0} onClick={handleExportClan}>
