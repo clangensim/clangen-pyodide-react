@@ -817,6 +817,11 @@ class Clangen implements ClangenInterface {
 
   public exportClan(): Int8Array {
     const binaryFile = this._pyodide.runPython(`
+      game.save_cats()
+      game.clan.save_clan()
+      game.clan.save_pregnancy(game.clan)
+      game.save_events()
+
       import shutil
       shutil.make_archive("/exported", "zip", "saves")
 
