@@ -69,7 +69,7 @@ function PatrolsPage() {
   }, []);
 
   useEffect(() => {
-    document.title = "Patrols | Clangen Simulator"
+    document.title = "Patrols | Clangen Simulator";
   }, []);
 
   function startPatrol() {
@@ -103,8 +103,11 @@ function PatrolsPage() {
         ]}
       />
 
-
-      <p>If a medicine cat or medicine cat apprentice is added to the patrol, the selected patrol type will be ignored, and the patrol will automatically become a herb gathering patrol.</p>
+      <p>
+        If a medicine cat or medicine cat apprentice is added to the patrol, the
+        selected patrol type will be ignored, and the patrol will automatically
+        become a herb gathering patrol.
+      </p>
 
       <fieldset>
         <legend>Cats</legend>
@@ -223,22 +226,36 @@ function PatrolsPage() {
       <p>{resultText}</p>
 
       {screenState === "start" && (
-        <button tabIndex={0} disabled={selectedCats.length == 0} onClick={startPatrol}>Start Patrol</button>
+        <button
+          tabIndex={0}
+          disabled={selectedCats.length == 0}
+          onClick={startPatrol}
+        >
+          Start Patrol
+        </button>
       )}
 
       {screenState === "in-progress" && (
         <>
-          <button tabIndex={0} onClick={() => endPatrol("proceed")}>Proceed</button>
-          <button tabIndex={0} onClick={() => endPatrol("decline")}>Decline</button>
-          { canAntagonize && 
-            <button tabIndex={0} onClick={() => endPatrol("antag")}>Antagonize</button>
-          }
+          <button tabIndex={0} onClick={() => endPatrol("proceed")}>
+            Proceed
+          </button>
+          <button tabIndex={0} onClick={() => endPatrol("decline")}>
+            Decline
+          </button>
+          {canAntagonize && (
+            <button tabIndex={0} onClick={() => endPatrol("antag")}>
+              Antagonize
+            </button>
+          )}
         </>
       )}
 
       {screenState === "wrap-up" && (
         <>
-          <button tabIndex={0} onClick={reset}>New Patrol</button>
+          <button tabIndex={0} onClick={reset}>
+            New Patrol
+          </button>
         </>
       )}
     </>

@@ -16,8 +16,8 @@ function Dialog({
   useEffect(() => {
     if (dialogRef.current) {
       dialogRef.current.addEventListener("cancel", () => onClose());
-    }  
-  }, [dialogRef.current])
+    }
+  }, [dialogRef.current]);
 
   if (opened) {
     if (dialogRef.current && !dialogRef.current.open) {

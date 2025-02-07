@@ -12,7 +12,9 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
         dead={relationship.cat_to.dead}
         darkForest={relationship.cat_to.inDarkForest}
       />
-      <Link to={`/cats/${relationship.cat_to_id}/relationships`}>{relationship.cat_to.name.display}</Link>
+      <Link to={`/cats/${relationship.cat_to_id}/relationships`}>
+        {relationship.cat_to.name.display}
+      </Link>
       <ul>
         <li>
           romantic love

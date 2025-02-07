@@ -12,7 +12,7 @@ function EventsPage() {
   const [showRegEvents, setShowRegEvents] = useState(true);
 
   useEffect(() => {
-    document.title = "Events | Clangen Simulator"
+    document.title = "Events | Clangen Simulator";
   }, []);
 
   const regularEvents = events?.filter(
@@ -80,7 +80,9 @@ function EventsPage() {
       />
 
       <div>{clanAge.toString()} Moons</div>
-      <button tabIndex={0} onClick={handleMoonskip}>Moonskip</button>
+      <button tabIndex={0} onClick={handleMoonskip}>
+        Moonskip
+      </button>
       <ul>{eventsDisplay}</ul>
     </>
   );

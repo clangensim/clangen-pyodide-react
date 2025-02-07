@@ -27,8 +27,14 @@ function App() {
           <Route path="/cats" element={<CatsPage />} />
           <Route path="/cats/:id" element={<CatProfilePage />} />
           <Route path="/cats/:id/edit" element={<CatEditPage />} />
-          <Route path="/cats/:id/edit/dangerous" element={<CatDangerousEditPage />} />
-          <Route path="/cats/:id/relationships" element={<RelationshipsPage />} />
+          <Route
+            path="/cats/:id/edit/dangerous"
+            element={<CatDangerousEditPage />}
+          />
+          <Route
+            path="/cats/:id/relationships"
+            element={<RelationshipsPage />}
+          />
           <Route path="/cats/:id/conditions" element={<ConditionsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/credits" element={<CreditsPage />} />
@@ -36,7 +42,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
 export default App;

@@ -3,13 +3,13 @@ import Checkbox from "../components/Checkbox";
 import Navbar from "../components/Navbar";
 import { clangenRunner } from "../python/clangen";
 
-
 const settingLabels: Record<string, Record<string, string>> = {
   disasters: {
     label: "Allow mass extinction events",
   },
   deputy: {
-    label: "Allow leaders to automatically choose a new deputy. The Warrior Code rules will be taken into account when choosing a deputy.",
+    label:
+      "Allow leaders to automatically choose a new deputy. The Warrior Code rules will be taken into account when choosing a deputy.",
   },
   "12_moon_graduation": {
     label: "Disable experience-based apprentice graduation.",
@@ -38,15 +38,13 @@ const settingLabels: Record<string, Record<string, string>> = {
   "first cousin mates": {
     label: "Allow first cousins to be mates and have romantic interactions",
   },
-
-}
+};
 
 function SettingsPage() {
-  
   const [settings, setSettings] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    document.title = "Settings | Clangen Simulator"
+    document.title = "Settings | Clangen Simulator";
   }, []);
 
   useEffect(() => {
@@ -60,7 +58,7 @@ function SettingsPage() {
       }
     }
     setSettings(temp);
-  }, [])
+  }, []);
 
   function handleSave() {
     clangenRunner.setSettings(settings);
@@ -75,12 +73,12 @@ function SettingsPage() {
           key={settingName}
           label={settingLabels[settingName]?.label}
           checked={value}
-          onChange={() => setSettings({...settings, [settingName]: !value})}
+          onChange={() => setSettings({ ...settings, [settingName]: !value })}
         />
       ))}
       <button onClick={handleSave}>Save</button>
     </>
-  )
+  );
 }
 
 export default SettingsPage;

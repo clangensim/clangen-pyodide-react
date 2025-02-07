@@ -10,22 +10,14 @@ function ClanInfoDisplay() {
 
   return (
     <div id="clan-info">
-        <>
-          <div className="clan-name">
-            {clanInfo?.name}
-          </div>
-          <div className="clan-moons">
-            {clanInfo?.age} moon(s)
-          </div>
-          <div className="clan-season">
-            Season: {clanInfo?.season}
-          </div>
-          <div className="clan-gamemode">
-            Game Mode: {clanInfo?.gameMode}
-          </div>
-        </>
+      <>
+        <div className="clan-name">{clanInfo?.name}</div>
+        <div className="clan-moons">{clanInfo?.age} moon(s)</div>
+        <div className="clan-season">Season: {clanInfo?.season}</div>
+        <div className="clan-gamemode">Game Mode: {clanInfo?.gameMode}</div>
+      </>
     </div>
-  )
+  );
 }
 
 export default ClanInfoDisplay;

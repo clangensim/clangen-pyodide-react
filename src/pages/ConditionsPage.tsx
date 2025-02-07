@@ -15,7 +15,7 @@ function ConditionsPage() {
     const c = clangenRunner.getConditions(catID);
     setConditions(c);
     const c2 = clangenRunner.getCat(catID);
-    document.title = `${c2.name.display}'s Conditions | Clangen Simulator`
+    document.title = `${c2.name.display}'s Conditions | Clangen Simulator`;
     setCat(c2);
   }, []);
 

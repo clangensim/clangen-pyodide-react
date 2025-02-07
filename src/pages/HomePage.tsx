@@ -20,7 +20,7 @@ function HomePage() {
   }
 
   useEffect(() => {
-    document.title = " Clangen Simulator"
+    document.title = " Clangen Simulator";
   }, []);
 
   return (
@@ -31,8 +31,8 @@ function HomePage() {
 
       <p>
         Welcome to <b>Clangen Simulator</b>, a project that aims to simulate
-        Clan Generator in your browser. This site is a work in progress, so some features may
-        be missing.
+        Clan Generator in your browser. This site is a work in progress, so some
+        features may be missing.
       </p>
 
       <p>
@@ -46,18 +46,27 @@ function HomePage() {
         Current Clangen version: <b>v0.11.2</b>
       </p>
 
-      <p>Importing a save or starting a new Clan will delete your existing Clan. Be careful.</p>
+      <p>
+        Importing a save or starting a new Clan will delete your existing Clan.
+        Be careful.
+      </p>
 
-      <div style={{marginBottom: "1em"}}>
-        <Link tabIndex={0} className="button" to="/new-clan">New Clan</Link>
+      <div style={{ marginBottom: "1em" }}>
+        <Link tabIndex={0} className="button" to="/new-clan">
+          New Clan
+        </Link>
       </div>
 
       <FileUploadButton tabIndex={0} onChange={handleImportClan}>
         Import Save
       </FileUploadButton>
-      <button tabIndex={0} onClick={handleExportClan}>Export Save</button>
+      <button tabIndex={0} onClick={handleExportClan}>
+        Export Save
+      </button>
 
-      <p>See <Link to="/credits">here</Link> for credits information.</p>
+      <p>
+        See <Link to="/credits">here</Link> for credits information.
+      </p>
     </>
   );
 }

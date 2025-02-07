@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import {
-  Cat,
-  clangenRunner,
-} from "../python/clangen";
+import { Cat, clangenRunner } from "../python/clangen";
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
 import Breadcrumbs from "../components/Breadcrumbs";
@@ -23,11 +20,9 @@ function MediationPage() {
   const [selectedCat3, setSelectedCat3] = useState("");
 
   // non-empty cats only
-  const selectedCats = [
-    selectedCat1,
-    selectedCat2,
-    selectedCat3,
-  ].filter((elem) => elem !== "");
+  const selectedCats = [selectedCat1, selectedCat2, selectedCat3].filter(
+    (elem) => elem !== "",
+  );
 
   const mediatorOptions: SelectOption[] = possibleMediators.map((cat) => {
     return {
@@ -63,18 +58,24 @@ function MediationPage() {
   }, []);
 
   useEffect(() => {
-    document.title = "Mediation | Clangen Simulator"
+    document.title = "Mediation | Clangen Simulator";
   }, []);
 
   function doMediate(kind: "sabotage" | "mediate", allowRomantic: boolean) {
     setScreenState("in-progress");
     var doSabotage;
     if (kind == "sabotage") {
-      doSabotage = true
+      doSabotage = true;
     } else {
       doSabotage = false;
     }
-    const m = clangenRunner.mediate(selectedCat1, selectedCat2, selectedCat3, doSabotage, allowRomantic);
+    const m = clangenRunner.mediate(
+      selectedCat1,
+      selectedCat2,
+      selectedCat3,
+      doSabotage,
+      allowRomantic,
+    );
     setMediationText(m);
   }
 
@@ -95,13 +96,11 @@ function MediationPage() {
       />
 
       <p>
-        A cat must have the "mediator" role to be allowed to mediate.
-        Mediator cats cannot patrol.
+        A cat must have the "mediator" role to be allowed to mediate. Mediator
+        cats cannot patrol.
       </p>
 
-      <p>
-        Roles can be set on a cat's edit page.
-      </p>
+      <p>Roles can be set on a cat's edit page.</p>
 
       <fieldset>
         <legend>Mediator</legend>
@@ -157,14 +156,28 @@ function MediationPage() {
 
       {screenState === "start" && (
         <>
-          <button tabIndex={0} disabled={selectedCats.length < 3} onClick={() => doMediate("mediate", allowRomantic)}>Mediate</button>
-          <button tabIndex={0} disabled={selectedCats.length < 3} onClick={() => doMediate("sabotage", allowRomantic)}>Sabotage</button>
+          <button
+            tabIndex={0}
+            disabled={selectedCats.length < 3}
+            onClick={() => doMediate("mediate", allowRomantic)}
+          >
+            Mediate
+          </button>
+          <button
+            tabIndex={0}
+            disabled={selectedCats.length < 3}
+            onClick={() => doMediate("sabotage", allowRomantic)}
+          >
+            Sabotage
+          </button>
         </>
       )}
 
       {screenState === "in-progress" && (
         <>
-          <button tabIndex={0} onClick={reset}>Mediate Again</button>
+          <button tabIndex={0} onClick={reset}>
+            Mediate Again
+          </button>
         </>
       )}
     </>

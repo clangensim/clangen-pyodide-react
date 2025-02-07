@@ -7,13 +7,12 @@ import { useEffect, useState } from "react";
 import Checkbox from "../components/Checkbox";
 
 function CatsPage() {
-
   const [showLiving, setShowLiving] = useState(true);
   const [showDead, setShowDead] = useState(false);
   const [showOutside, setShowOutside] = useState(false);
 
   useEffect(() => {
-    document.title = "Cats | Clangen Simulator"
+    document.title = "Cats | Clangen Simulator";
   }, []);
 
   return (
@@ -83,7 +82,10 @@ function CatsPage() {
                     />
                   </td>
                   <td>
-                    <Link tabIndex={0} to={`/cats/${cat.ID}`}> {cat.name.display} </Link>
+                    <Link tabIndex={0} to={`/cats/${cat.ID}`}>
+                      {" "}
+                      {cat.name.display}{" "}
+                    </Link>
                   </td>
                   <td> {cat.moons} </td>
                   <td>{cat.trait}</td>

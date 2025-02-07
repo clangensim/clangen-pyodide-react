@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import { clangenRunner } from "../python/clangen";
 
 function Navbar() {
-
   /* 
     TODO: maybe this should be moved?
     it's only here because this element is on every page.

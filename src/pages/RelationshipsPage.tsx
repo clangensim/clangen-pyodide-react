@@ -48,12 +48,17 @@ function RelationshipsPage() {
         />
       )}
 
-      {relationships === undefined || relationships.length <= 0 && 
-        <p>This cat has no relationships you can view.</p>}
+      {relationships === undefined ||
+        (relationships.length <= 0 && (
+          <p>This cat has no relationships you can view.</p>
+        ))}
       {relationships?.map((rel) => {
         return (
           <>
-            <RelationshipDisplay key={`${catID}_${rel.cat_to_id}`} relationship={rel} />
+            <RelationshipDisplay
+              key={`${catID}_${rel.cat_to_id}`}
+              relationship={rel}
+            />
           </>
         );
       })}

@@ -22,7 +22,7 @@ function CatDangerousEditPage() {
   useEffect(() => {
     const c = clangenRunner.getCat(catID);
     if (c) {
-      document.title = `Editing ${c.name.display} | Clangen Simulator`
+      document.title = `Editing ${c.name.display} | Clangen Simulator`;
     }
     setCat(c);
   }, [catID]);
@@ -81,13 +81,13 @@ function CatDangerousEditPage() {
             onChange={(e) => setDeathHistory(e.currentTarget.value)}
             style={{ resize: "none", minWidth: "100%" }}
           />
-          { cat && cat.status === "leader" &&
+          {cat && cat.status === "leader" && (
             <Checkbox
               label="Take all the leader's lives"
               checked={takeNineLives}
               onChange={() => setTakeNineLives(!takeNineLives)}
             />
-          }
+          )}
         </div>
         <div className="dialog-footer">
           <button onClick={handleDeath}>OK</button>
@@ -106,7 +106,11 @@ function CatDangerousEditPage() {
           >
             Kill
           </button>
-          <button tabIndex={0} disabled={cat.dead || cat.outside} onClick={handleExile}>
+          <button
+            tabIndex={0}
+            disabled={cat.dead || cat.outside}
+            onClick={handleExile}
+          >
             Exile
           </button>
           <button

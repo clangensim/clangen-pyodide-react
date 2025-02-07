@@ -8,7 +8,9 @@ function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
         const divider = cats.length - 1 === index ? "" : ", ";
         return (
           <>
-            <Link tabIndex={0} to={`/cats/${cat.ID}`}>{cat.name.display}</Link>
+            <Link tabIndex={0} to={`/cats/${cat.ID}`}>
+              {cat.name.display}
+            </Link>
             {divider}
           </>
         );
@@ -39,19 +41,23 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>experience: {cat.experienceLevel}</li>
         {cat.mentor && (
           <li>
-            mentor: <Link tabIndex={0} to={`/cats/${cat.mentor.ID}`}>{cat.mentor.name.display}</Link>
+            mentor:{" "}
+            <Link tabIndex={0} to={`/cats/${cat.mentor.ID}`}>
+              {cat.mentor.name.display}
+            </Link>
           </li>
         )}
-        {cat.apprentices.length > 0 && 
+        {cat.apprentices.length > 0 && (
           <li>
             apprentice(s): <CommaSeparatedProfileLinks cats={cat.apprentices} />
           </li>
-        }
-        {cat.formerApprentices.length > 0 && 
+        )}
+        {cat.formerApprentices.length > 0 && (
           <li>
-            former apprentice(s): <CommaSeparatedProfileLinks cats={cat.formerApprentices} />
+            former apprentice(s):{" "}
+            <CommaSeparatedProfileLinks cats={cat.formerApprentices} />
           </li>
-        }
+        )}
         {parents.length > 0 && (
           <li>
             parent(s): <CommaSeparatedProfileLinks cats={parents} />

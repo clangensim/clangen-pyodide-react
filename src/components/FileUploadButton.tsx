@@ -19,7 +19,9 @@ function FileUploadButton({
 
   return (
     <>
-      <button tabIndex={tabIndex} onClick={handleButtonClick}>{children}</button>
+      <button tabIndex={tabIndex} onClick={handleButtonClick}>
+        {children}
+      </button>
       <input
         type="file"
         style={{

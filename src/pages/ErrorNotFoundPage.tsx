@@ -7,7 +7,7 @@ function ErrorNotFoundPage() {
 
       <p>ERROR: The requested page can't be found.</p>
     </>
-  )
+  );
 }
 
 export default ErrorNotFoundPage;

@@ -16,7 +16,7 @@ function CatProfilePage() {
     setCat(c);
 
     if (c) {
-      document.title = `${c.name.display} | Clangen Simulator`
+      document.title = `${c.name.display} | Clangen Simulator`;
     }
   }, [catID]);
 
@@ -53,10 +53,18 @@ function CatProfilePage() {
             darkForest={cat.inDarkForest}
           />
           <CatProfile cat={cat} />
-          <Link tabIndex={0} to={`/cats/${catID}/relationships`}>Relationships</Link>{" "}
-          <Link tabIndex={0} to={`/cats/${catID}/conditions`}>Conditions</Link>{" "}
-          <Link tabIndex={0} to={`/cats/${catID}/edit`}>Edit</Link>{" "}
-          <Link tabIndex={0} to={`/cats/${catID}/edit/dangerous`}>Dangerous</Link>
+          <Link tabIndex={0} to={`/cats/${catID}/relationships`}>
+            Relationships
+          </Link>{" "}
+          <Link tabIndex={0} to={`/cats/${catID}/conditions`}>
+            Conditions
+          </Link>{" "}
+          <Link tabIndex={0} to={`/cats/${catID}/edit`}>
+            Edit
+          </Link>{" "}
+          <Link tabIndex={0} to={`/cats/${catID}/edit/dangerous`}>
+            Dangerous
+          </Link>
         </>
       )}
     </>
