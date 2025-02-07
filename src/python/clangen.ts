@@ -1,6 +1,13 @@
 import { PyodideInterface } from "pyodide";
 import pyodide from "./pyodide";
 
+type ClanInfo = {
+  name: string;
+  age: number;
+  gameMode: string;
+  season: string;
+}
+
 type Pelt = {
   name: string;
   colour: string;
@@ -831,6 +838,20 @@ class Clangen implements ClangenInterface {
     this._syncFS(false).then(() => location.reload());
   }
 
+  public getClanInfo(): ClanInfo {
+    return this._pyodide.runPython(`
+    clan_info = {
+      "name": game.clan.name + "Clan",
+      "age": game.clan.age,
+      "gameMode": game.clan.game_mode,
+      "season": game.clan.current_season
+    }
+    if game.clan.game_mode != "classic":
+      clan_info["freshkill"]: round(game.clan.freshkill_pile.total_amount, 2)
+    to_js(clan_info, dict_converter=js.Object.fromEntries)
+    `);
+  }
+
   public refreshCats() {
     this._pyodide.runPython(`
     if game.clan is not None:
@@ -867,6 +888,7 @@ export { clangenRunner };
 export type {
   CatEdit,
   Cat,
+  ClanInfo,
   PatrolAction,
   PatrolType,
   Pelt,

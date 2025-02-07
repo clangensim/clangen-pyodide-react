@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { clangenRunner } from "../python/clangen";
 import { download } from "../utils";
 import { useEffect } from "react";
+import ClanInfoDisplay from "../components/ClanInfoDisplay";
 
 function HomePage() {
   function handleExportClan() {
@@ -25,6 +26,8 @@ function HomePage() {
   return (
     <>
       <Navbar />
+
+      <ClanInfoDisplay />
 
       <p>
         Welcome to <b>Clangen Simulator</b>, a project that aims to simulate
