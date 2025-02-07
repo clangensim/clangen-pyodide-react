@@ -94,6 +94,15 @@ function MediationPage() {
         ]}
       />
 
+      <p>
+        A cat must have the "mediator" role to be allowed to mediate.
+        Mediator cats cannot patrol.
+      </p>
+
+      <p>
+        Roles can be set on a cat's edit page.
+      </p>
+
       <fieldset>
         <legend>Mediator</legend>
         <div>
