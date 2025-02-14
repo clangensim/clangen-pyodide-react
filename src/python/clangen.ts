@@ -194,19 +194,14 @@ class Clangen implements ClangenInterface {
     if (localStorage.getItem("resourcesLoaded") !== VERSION) {
       console.log("Loading resources...");
       // load resources
-      let zipResources = await fetch("/bin/resources.zip");
+      let zipResources = await fetch("/res.zip");
       let binaryResources = await zipResources.arrayBuffer();
       this._pyodide.unpackArchive(binaryResources, "zip", {
         extractDir: "/mnt",
       });
 
-      // load "sprites" (actually just tints)
-      let zipSprites = await fetch("/bin/sprites.zip");
-      let binarySprites = await zipSprites.arrayBuffer();
-      this._pyodide.unpackArchive(binarySprites, "zip", { extractDir: "/mnt" });
-
       // loag DEBUG SAVE
-      let zipSaves = await fetch("/bin/saves-no-folder.zip");
+      let zipSaves = await fetch("/saves-no-folder.zip");
       let binarySaves = await zipSaves.arrayBuffer();
       this._pyodide.unpackArchive(binarySaves, "zip", {
         extractDir: "/mnt/saves",
@@ -221,7 +216,7 @@ class Clangen implements ClangenInterface {
 
     // install "clangen-lite"
     await this._pyodide.loadPackage(
-      "/bin/clangen_lite-0.0.1-py2.py3-none-any.whl",
+      "/clangen_lite-0.0.1-py2.py3-none-any.whl",
     );
 
     // load clan
