@@ -4,6 +4,7 @@ import {
   Cat,
   PatrolAction,
   PatrolType,
+  ClanInfo,
   clangenRunner,
 } from "../python/clangen";
 import Select from "../components/Select";
@@ -26,6 +27,8 @@ function PatrolsPage() {
   const [selectedCat4, setSelectedCat4] = useState("");
   const [selectedCat5, setSelectedCat5] = useState("");
   const [selectedCat6, setSelectedCat6] = useState("");
+
+  const [clanInfo, setClanInfo] = useState<ClanInfo>();
 
   // non-empty cats only
   const selectedCats = [
@@ -60,8 +63,10 @@ function PatrolsPage() {
     setScreenState("start");
 
     const cats = clangenRunner.getPatrollableCats();
+    const info = clangenRunner.getClanInfo();
 
     setPossibleCats(cats);
+    setClanInfo(info);
   }
 
   useEffect(() => {
@@ -220,6 +225,17 @@ function PatrolsPage() {
           <label htmlFor="train-radio">Training</label>
         </div>
       </fieldset>
+
+      {clanInfo && clanInfo.gameMode !== "classic" &&
+        <>
+          <div>
+            Current Food: {clanInfo.freshkill}
+          </div>
+          <div>
+            Required Food: {clanInfo.requiredFreshkill}
+          </div>
+        </>
+      }
 
       <p>{patrolText}</p>
 

@@ -6,6 +6,8 @@ type ClanInfo = {
   age: number;
   gameMode: string;
   season: string;
+  freshkill?: number;
+  requiredFreshkill?: number;
 }
 
 type Pelt = {
@@ -852,7 +854,8 @@ class Clangen implements ClangenInterface {
       "season": game.clan.current_season
     }
     if game.clan.game_mode != "classic":
-      clan_info["freshkill"]: round(game.clan.freshkill_pile.total_amount, 2)
+      clan_info["freshkill"] = round(game.clan.freshkill_pile.total_amount, 2)
+      clan_info["requiredFreshkill"] = round(game.clan.freshkill_pile.amount_food_needed(), 2)
     to_js(clan_info, dict_converter=js.Object.fromEntries)
     `);
   }
