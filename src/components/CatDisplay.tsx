@@ -82,6 +82,150 @@ async function drawMaskedSprite(
   }
 }
 
+async function drawCat(
+  outCanvas: HTMLCanvasElement,
+  pelt: Pelt,
+  catSprite: number,
+  dead = false,
+  darkForest = false,
+) {
+  const canvas = new OffscreenCanvas(50, 50);
+  const ctx = canvas.getContext("2d");
+  const outCtx = outCanvas.getContext("2d");
+
+  if (ctx === null || outCtx == null) {
+    return;
+  }
+
+  if (pelt.name !== "Tortie" && pelt.name !== "Calico") {
+    await drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
+  } else {
+    await drawSprite(`${pelt.tortieBase}${pelt.colour}`, catSprite, ctx);
+
+    var tortiePattern;
+    if (pelt.tortiePattern == "Single") {
+      tortiePattern = "SingleColour";
+    } else {
+      tortiePattern = pelt.tortiePattern;
+    }
+
+    await drawMaskedSprite(
+      `${tortiePattern}${pelt.tortieColour}`,
+      `tortiemask${pelt.pattern}`,
+      catSprite,
+      ctx,
+    );
+  }
+
+  if (
+    pelt.tint !== "none" &&
+    Object.keys(tints.tint_colours).includes(pelt.tint)
+  ) {
+    const tint = pelt.tint as keyof typeof tints.tint_colours;
+    await drawTint(tints.tint_colours[tint], "multiply", ctx);
+  }
+  if (
+    pelt.tint !== "none" &&
+    Object.keys(tints.dilute_tint_colours).includes(pelt.tint)
+  ) {
+    const tint = pelt.tint as keyof typeof tints.tint_colours;
+    await drawTint(tints.tint_colours[tint], "lighter", ctx);
+  }
+
+  if (pelt.whitePatches !== undefined) {
+    const offscreen = new OffscreenCanvas(50, 50);
+    const offscreenContext = offscreen.getContext("2d");
+    if (
+      pelt.whitePatchesTint !== "none" &&
+      Object.keys(whitePatchesTints.tint_colours).includes(
+        pelt.whitePatchesTint,
+      )
+    ) {
+      await drawSprite(
+        `white${pelt.whitePatches}`,
+        catSprite,
+        offscreenContext,
+      );
+      const tint =
+        pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
+      await drawTint(
+        whitePatchesTints.tint_colours[tint],
+        "multiply",
+        offscreenContext,
+      );
+    }
+    ctx.drawImage(offscreen, 0, 0);
+  }
+  if (pelt.points !== undefined) {
+    const offscreen = new OffscreenCanvas(50, 50);
+    const offscreenContext = offscreen.getContext("2d");
+    if (
+      pelt.whitePatchesTint !== "none" &&
+      Object.keys(whitePatchesTints.tint_colours).includes(
+        pelt.whitePatchesTint,
+      )
+    ) {
+      await drawSprite(`white${pelt.points}`, catSprite, offscreenContext);
+      const tint =
+        pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
+      await drawTint(
+        whitePatchesTints.tint_colours[tint],
+        "multiply",
+        offscreenContext,
+      );
+    }
+    ctx.drawImage(offscreen, 0, 0);
+  }
+  if (pelt.vitiligo !== undefined) {
+    await drawSprite(`white${pelt.vitiligo}`, catSprite, ctx);
+  }
+  await drawSprite(`eyes${pelt.eyeColour}`, catSprite, ctx);
+  if (pelt.eyeColour2 !== undefined) {
+    await drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
+  }
+
+  if (pelt.scars !== undefined) {
+    for (const scar of pelt.scars) {
+      if (peltInfo.scars1.includes(scar)) {
+        await drawSprite(`scars${scar}`, catSprite, ctx);
+      }
+      if (peltInfo.scars3.includes(scar)) {
+        await drawSprite(`scars${scar}`, catSprite, ctx);
+      }
+    }
+  }
+
+  if (dead) {
+    if (darkForest) {
+      await drawSprite("lineartdf", catSprite, ctx);
+    } else {
+      await drawSprite("lineartdead", catSprite, ctx);
+    }
+  } else {
+    await drawSprite("lines", catSprite, ctx);
+  }
+
+  await drawSprite(`skin${pelt.skin}`, catSprite, ctx);
+
+  if (pelt.accessory !== undefined) {
+    if (peltInfo.plant_accessories.includes(pelt.accessory)) {
+      await drawSprite(`acc_herbs${pelt.accessory}`, catSprite, ctx);
+    } else if (peltInfo.wild_accessories.includes(pelt.accessory)) {
+      await drawSprite(`acc_wild${pelt.accessory}`, catSprite, ctx);
+    } else if (peltInfo.collars.includes(pelt.accessory)) {
+      await drawSprite(`collars${pelt.accessory}`, catSprite, ctx);
+    }
+  }
+
+  outCtx.clearRect(0, 0, outCanvas.width, outCanvas.height);
+  if (pelt.reverse) {
+    outCtx.scale(-1, 1);
+    outCtx.drawImage(canvas, -outCanvas.width, 0);
+  } else {
+    outCtx.drawImage(canvas, 0, 0);
+  }
+}
+
 /* 
   TODO:
     missing scars
@@ -102,151 +246,7 @@ function CatDisplay({
 
   useEffect(() => {
     if (canvasRef.current !== null) {
-      const canvas = new OffscreenCanvas(50, 50);
-      const ctx = canvas.getContext("2d");
-      if (ctx === null) {
-        return;
-      }
-
-      const drawCat = async () => {
-        if (pelt.name !== "Tortie" && pelt.name !== "Calico") {
-          await drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
-        } else {
-          await drawSprite(`${pelt.tortieBase}${pelt.colour}`, catSprite, ctx);
-
-          var tortiePattern;
-          if (pelt.tortiePattern == "Single") {
-            tortiePattern = "SingleColour";
-          } else {
-            tortiePattern = pelt.tortiePattern;
-          }
-
-          await drawMaskedSprite(
-            `${tortiePattern}${pelt.tortieColour}`,
-            `tortiemask${pelt.pattern}`,
-            catSprite,
-            ctx,
-          );
-        }
-
-        if (
-          pelt.tint !== "none" &&
-          Object.keys(tints.tint_colours).includes(pelt.tint)
-        ) {
-          const tint = pelt.tint as keyof typeof tints.tint_colours;
-          await drawTint(tints.tint_colours[tint], "multiply", ctx);
-        }
-        if (
-          pelt.tint !== "none" &&
-          Object.keys(tints.dilute_tint_colours).includes(pelt.tint)
-        ) {
-          const tint = pelt.tint as keyof typeof tints.tint_colours;
-          await drawTint(tints.tint_colours[tint], "lighter", ctx);
-        }
-
-        if (pelt.whitePatches !== undefined) {
-          const offscreen = new OffscreenCanvas(50, 50);
-          const offscreenContext = offscreen.getContext("2d");
-          if (
-            pelt.whitePatchesTint !== "none" &&
-            Object.keys(whitePatchesTints.tint_colours).includes(
-              pelt.whitePatchesTint,
-            )
-          ) {
-            await drawSprite(
-              `white${pelt.whitePatches}`,
-              catSprite,
-              offscreenContext,
-            );
-            const tint =
-              pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
-            await drawTint(
-              whitePatchesTints.tint_colours[tint],
-              "multiply",
-              offscreenContext,
-            );
-          }
-          ctx.drawImage(offscreen, 0, 0);
-        }
-        if (pelt.points !== undefined) {
-          const offscreen = new OffscreenCanvas(50, 50);
-          const offscreenContext = offscreen.getContext("2d");
-          if (
-            pelt.whitePatchesTint !== "none" &&
-            Object.keys(whitePatchesTints.tint_colours).includes(
-              pelt.whitePatchesTint,
-            )
-          ) {
-            await drawSprite(
-              `white${pelt.points}`,
-              catSprite,
-              offscreenContext,
-            );
-            const tint =
-              pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
-            await drawTint(
-              whitePatchesTints.tint_colours[tint],
-              "multiply",
-              offscreenContext,
-            );
-          }
-          ctx.drawImage(offscreen, 0, 0);
-        }
-        if (pelt.vitiligo !== undefined) {
-          await drawSprite(`white${pelt.vitiligo}`, catSprite, ctx);
-        }
-        await drawSprite(`eyes${pelt.eyeColour}`, catSprite, ctx);
-        if (pelt.eyeColour2 !== undefined) {
-          await drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
-        }
-
-        if (pelt.scars !== undefined) {
-          for (const scar of pelt.scars) {
-            if (peltInfo.scars1.includes(scar)) {
-              await drawSprite(`scars${scar}`, catSprite, ctx);
-            }
-            if (peltInfo.scars3.includes(scar)) {
-              await drawSprite(`scars${scar}`, catSprite, ctx);
-            }
-          }
-        }
-
-        if (dead) {
-          if (darkForest) {
-            await drawSprite("lineartdf", catSprite, ctx);
-          } else {
-            await drawSprite("lineartdead", catSprite, ctx);
-          }
-        } else {
-          await drawSprite("lines", catSprite, ctx);
-        }
-
-        await drawSprite(`skin${pelt.skin}`, catSprite, ctx);
-
-        if (pelt.accessory !== undefined) {
-          if (peltInfo.plant_accessories.includes(pelt.accessory)) {
-            await drawSprite(`acc_herbs${pelt.accessory}`, catSprite, ctx);
-          } else if (peltInfo.wild_accessories.includes(pelt.accessory)) {
-            await drawSprite(`acc_wild${pelt.accessory}`, catSprite, ctx);
-          } else if (peltInfo.collars.includes(pelt.accessory)) {
-            await drawSprite(`collars${pelt.accessory}`, catSprite, ctx);
-          }
-        }
-      };
-      drawCat().then(() => {
-        const domCanvas = canvasRef.current;
-        if (!domCanvas) {
-          return;
-        }
-        const domCtx = domCanvas.getContext("2d");
-        domCtx.clearRect(0, 0, domCanvas.width, domCanvas.height);
-        if (pelt.reverse) {
-          domCtx.scale(-1, 1);
-          domCtx.drawImage(canvas, -domCanvas.width, 0);
-        } else {
-          domCtx.drawImage(canvas, 0, 0);
-        }
-      });
+      drawCat(canvasRef.current, pelt, catSprite, dead, darkForest);
     }
   }, [canvasRef]);
 
