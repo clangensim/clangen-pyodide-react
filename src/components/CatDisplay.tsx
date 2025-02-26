@@ -181,7 +181,7 @@ async function drawCat(
   }
   await drawSprite(`eyes${pelt.eyeColour}`, catSprite, ctx);
   if (pelt.eyeColour2 !== undefined) {
-    await drawSprite(`eyes2${pelt.eyeColour}`, catSprite, ctx);
+    await drawSprite(`eyes2${pelt.eyeColour2}`, catSprite, ctx);
   }
 
   if (pelt.scars !== undefined) {
