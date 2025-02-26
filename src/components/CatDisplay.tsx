@@ -135,17 +135,17 @@ async function drawCat(
   if (pelt.whitePatches !== undefined) {
     const offscreen = new OffscreenCanvas(50, 50);
     const offscreenContext = offscreen.getContext("2d");
+    await drawSprite(
+      `white${pelt.whitePatches}`,
+      catSprite,
+      offscreenContext,
+    );
     if (
       pelt.whitePatchesTint !== "none" &&
       Object.keys(whitePatchesTints.tint_colours).includes(
         pelt.whitePatchesTint,
       )
     ) {
-      await drawSprite(
-        `white${pelt.whitePatches}`,
-        catSprite,
-        offscreenContext,
-      );
       const tint =
         pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
       await drawTint(
@@ -159,13 +159,13 @@ async function drawCat(
   if (pelt.points !== undefined) {
     const offscreen = new OffscreenCanvas(50, 50);
     const offscreenContext = offscreen.getContext("2d");
+    await drawSprite(`white${pelt.points}`, catSprite, offscreenContext);
     if (
       pelt.whitePatchesTint !== "none" &&
       Object.keys(whitePatchesTints.tint_colours).includes(
         pelt.whitePatchesTint,
       )
     ) {
-      await drawSprite(`white${pelt.points}`, catSprite, offscreenContext);
       const tint =
         pelt.whitePatchesTint as keyof typeof whitePatchesTints.tint_colours;
       await drawTint(
