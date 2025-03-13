@@ -13,6 +13,11 @@ li {
   margin-bottom: 5px;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+}
+
 body {
   max-width: 1000px;
   margin: 20px auto;
@@ -90,4 +95,14 @@ details {
 .row-list {
   list-style-type: none;
   padding-inline-start: 20px;
+}
+
+.icon-button {
+  background-color: transparent;
+  color: darkgrey;
+  padding: 0;
+}
+.icon-button:hover {
+  color: grey;
+  background-color: transparent;
 }
