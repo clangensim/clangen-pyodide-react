@@ -48,6 +48,7 @@ body {
 
 .navbar {
   /* background-color: rgb(237 229 208); */
+  font-family: "Bubblegum Sans", sans-serif;
   background-color: #655934;
   background: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
   border-bottom: 1px solid black;
