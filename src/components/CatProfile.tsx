@@ -30,7 +30,7 @@ function CatProfile({ cat }: { cat: Cat }) {
 
   return (
     <>
-      <ul>
+      <ul className="row-list">
         <li>{cat.gender}</li>
         <li>{cat.age}</li>
         <li>{cat.trait}</li>

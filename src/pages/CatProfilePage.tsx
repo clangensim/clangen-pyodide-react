@@ -55,8 +55,11 @@ function CatProfilePage() {
           <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button">
             <IconFileAlert />
           </Link>
+
+          <div>Thought goes here.</div>
         </div>
 
+        <div className="flex">
           <CatDisplay
             key={cat.ID}
             pelt={cat.pelt}
@@ -67,6 +70,7 @@ function CatProfilePage() {
             h="100px"
           />
           <CatProfile cat={cat} />
+        </div>
           <Link tabIndex={0} to={`/cats/${catID}/relationships`}>
             Relationships
           </Link>{" "}
