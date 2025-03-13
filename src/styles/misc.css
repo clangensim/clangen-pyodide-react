@@ -1,0 +1,36 @@
+select {
+  min-width: 250px;
+}
+
+.checkbox-row {
+  display: flex;
+  padding-bottom: 0.25em;
+}
+
+.checkbox-row input[type="checkbox"]{
+  flex: none;
+}
+
+.radio-row {
+  display: flex;
+  padding-bottom: 0.25em;
+}
+
+.radio-row input[type="radio"]{
+  flex: none;
+}
+
+dialog {
+  padding: 0;
+  border-style: none;
+}
+
+dialog div.dialog-body {
+  padding: 8px;
+}
+
+dialog div.dialog-footer {
+  padding: 0 8px 8px 8px;
+  display: flex;
+  justify-content: flex-end;
+}

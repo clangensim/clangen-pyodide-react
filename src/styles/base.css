@@ -1,41 +1,92 @@
-a.button {
+:root {
+  background-color: rgb(56 50 38);
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a {
+  color: rgb(106 57 69);
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+body {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+.body {
+  background-color: white;
+  padding-bottom: 10px;
+}
+
+.head {
+  background-image: url("img/bg.png");
+  background-size: cover;
+  image-rendering: pixelated;
+}
+
+.profile-info {
+  background-color: white;
+  max-width: 300px;
+  margin-left: auto;
+  padding: 10px 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.profile-info ul {
+  margin: 0;
+}
+.profile-info_next-moon {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.navbar {
+  /* background-color: rgb(237 229 208); */
+  background-color: #655934;
+  background: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+.navbar a {
   display: inline-block;
   text-decoration-line: none;
+  padding: 10px;
+  font-size: large;
+  color: #EFE5CE;
+}
+.navbar a:hover {
+  background-color: rgba(48,41,28,1);
 }
 
-select {
-  min-width: 250px;
+.breadcrumbs {
+  background-color: rgb(234, 234, 234);
+  width: 98%;
+  margin: 10px auto;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-.checkbox-row {
+main {
+  margin: 0 10px;
+}
+
+
+details {
+  display: inline-block;
+}
+
+.flex {
   display: flex;
-  padding-bottom: 0.25em;
+  flex-wrap: wrap;
 }
 
-.checkbox-row input[type="checkbox"]{
-  flex: none;
-}
-
-.radio-row {
-  display: flex;
-  padding-bottom: 0.25em;
-}
-
-.radio-row input[type="radio"]{
-  flex: none;
-}
-
-dialog {
-  padding: 0;
-  border-style: none;
-}
-
-dialog div.dialog-body {
-  padding: 8px;
-}
-
-dialog div.dialog-footer {
-  padding: 0 8px 8px 8px;
-  display: flex;
-  justify-content: flex-end;
+.row-list {
+  list-style-type: none;
+  padding-inline-start: 20px;
 }
