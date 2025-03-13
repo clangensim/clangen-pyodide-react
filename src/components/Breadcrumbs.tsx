@@ -7,7 +7,7 @@ type Breadcrumb = {
 
 function Breadcrumbs({ crumbs }: { crumbs: Breadcrumb[] }) {
   return (
-    <div>
+    <div className="breadcrumbs">
       {crumbs.map((crumb, index) => {
         const separator = crumbs.length - 1 === index ? "" : " / ";
         if (index === crumbs.length - 1) {

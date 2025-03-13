@@ -24,7 +24,7 @@ function Navbar() {
   }, []);
 
   return (
-    <nav>
+    <nav className="navbar">
       <Link tabIndex={0} className="button nav-item" to="/">
         Home
       </Link>
