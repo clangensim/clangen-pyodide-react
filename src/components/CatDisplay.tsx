@@ -7,11 +7,15 @@ function CatDisplay({
   age,
   dead,
   darkForest,
+  w="50px",
+  h="50px"
 }: {
   pelt: Pelt;
   age: string;
   dead?: boolean;
   darkForest?: boolean;
+  w?: string;
+  h?: string;
 }) {
   const canvasRef = useRef<any>(null);
   const catSprite = pelt.catSprites[age];
@@ -25,7 +29,7 @@ function CatDisplay({
   return (
     <>
       <canvas
-        style={{ imageRendering: "pixelated" }}
+        style={{ imageRendering: "pixelated", width: w, height: h }}
         width={50}
         height={50}
         ref={canvasRef}
