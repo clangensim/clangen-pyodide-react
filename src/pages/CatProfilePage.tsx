@@ -1,10 +1,9 @@
 import { clangenRunner, Cat } from "../python/clangen";
-import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import CatProfile from "../components/CatProfile";
-import Breadcrumbs from "../components/Breadcrumbs";
+import BasePage from "../layout/basepage";
 
 function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
@@ -20,28 +19,27 @@ function CatProfilePage() {
     }
   }, [catID]);
 
-  return (
-    <>
-      <Navbar />
-      {cat && (
-        <Breadcrumbs
-          crumbs={[
-            {
-              url: "/",
-              label: "Home",
-            },
-            {
-              url: "/cats",
-              label: "Cats",
-            },
-            {
-              url: `/cats/${catID}`,
-              label: cat.name.display,
-            },
-          ]}
-        />
-      )}
 
+  var crumbs = undefined;
+  if (cat) {
+    crumbs = [
+      {
+        url: "/",
+        label: "Home",
+      },
+      {
+        url: "/cats",
+        label: "Cats",
+      },
+      {
+        url: `/cats/${catID}`,
+        label: cat.name.display,
+      },
+    ];  
+  }
+
+  return (
+    <BasePage crumbs={crumbs}>
       {cat && (
         <>
           {cat.name.display} (#{cat.ID})
@@ -67,7 +65,7 @@ function CatProfilePage() {
           </Link>
         </>
       )}
-    </>
+    </BasePage>
   );
 }
 
