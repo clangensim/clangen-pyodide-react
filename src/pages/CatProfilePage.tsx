@@ -72,12 +72,6 @@ function CatProfilePage() {
           </Link>{" "}
           <Link tabIndex={0} to={`/cats/${catID}/conditions`}>
             Conditions
-          </Link>{" "}
-          <Link tabIndex={0} to={`/cats/${catID}/edit`}>
-            Edit
-          </Link>{" "}
-          <Link tabIndex={0} to={`/cats/${catID}/edit/dangerous`}>
-            Dangerous
           </Link>
         </>
       )}
