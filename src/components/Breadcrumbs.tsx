@@ -27,3 +27,4 @@ function Breadcrumbs({ crumbs }: { crumbs: Breadcrumb[] }) {
 }
 
 export default Breadcrumbs;
+export type { Breadcrumb };
