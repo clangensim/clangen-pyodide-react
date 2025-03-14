@@ -5,7 +5,7 @@ import { IconPencil } from '@tabler/icons-react';
 import { IconFileAlert } from '@tabler/icons-react';
 import CatDisplay from "../components/CatDisplay";
 import CatProfile from "../components/CatProfile";
-import BasePage from "../layout/basepage";
+import BasePage from "../layout/BasePage";
 
 import "../styles/cat-profile-page.css";
 

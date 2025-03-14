@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { clangenRunner, Event } from "../python/clangen";
-import Navbar from "../components/Navbar";
-import Breadcrumbs from "../components/Breadcrumbs";
 import Checkbox from "../components/Checkbox";
-import BasePage from "../layout/basepage";
+import BasePage from "../layout/BasePage";
 
 const crumbs = [
   {

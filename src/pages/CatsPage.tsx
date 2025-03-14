@@ -1,10 +1,20 @@
 import { clangenRunner } from "../python/clangen";
-import Navbar from "../components/Navbar";
 import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
-import Breadcrumbs from "../components/Breadcrumbs";
 import { useEffect, useState } from "react";
 import Checkbox from "../components/Checkbox";
+import BasePage from "../layout/BasePage";
+
+const crumbs = [
+  {
+    url: "/",
+    label: "Home",
+  },
+  {
+    url: "/cats",
+    label: "Cats",
+  },
+];
 
 function CatsPage() {
   const [showLiving, setShowLiving] = useState(true);
@@ -16,21 +26,9 @@ function CatsPage() {
   }, []);
 
   return (
-    <>
-      <Navbar />
-      <Breadcrumbs
-        crumbs={[
-          {
-            url: "/",
-            label: "Home",
-          },
-          {
-            url: "/cats",
-            label: "Cats",
-          },
-        ]}
-      />
-
+    <BasePage
+      crumbs={crumbs
+    }>
       <Checkbox
         label="Show living"
         checked={showLiving}
@@ -96,7 +94,7 @@ function CatsPage() {
           </tbody>
         </table>
       </div>
-    </>
+    </BasePage>
   );
 }
 

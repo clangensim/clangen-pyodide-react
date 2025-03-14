@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Checkbox from "../components/Checkbox";
-import Navbar from "../components/Navbar";
 import { clangenRunner } from "../python/clangen";
+import BasePage from "../layout/BasePage";
 
 const settingLabels: Record<string, Record<string, string>> = {
   disasters: {
@@ -65,9 +65,7 @@ function SettingsPage() {
   }
 
   return (
-    <>
-      <Navbar />
-
+    <BasePage>
       {Object.entries(settings).map(([settingName, value]) => (
         <Checkbox
           key={settingName}
@@ -76,8 +74,8 @@ function SettingsPage() {
           onChange={() => setSettings({ ...settings, [settingName]: !value })}
         />
       ))}
-      <button onClick={handleSave}>Save</button>
-    </>
+      <button className="btn" onClick={handleSave}>Save</button>
+    </BasePage>
   );
 }
 
