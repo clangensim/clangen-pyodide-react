@@ -58,6 +58,7 @@ body {
   background: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
   border-bottom: 1px solid black;
   border-top: 1px solid black;
+  margin-bottom: 5px;
 }
 .navbar a {
   display: inline-block;
@@ -73,7 +74,7 @@ body {
 .breadcrumbs {
   background-color: rgb(234, 234, 234);
   width: 98%;
-  margin: 10px auto;
+  margin: 0px auto 10px auto;
   padding: 5px;
   border-radius: 5px;
 }
