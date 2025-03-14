@@ -3,6 +3,18 @@ import { clangenRunner, Event } from "../python/clangen";
 import Navbar from "../components/Navbar";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Checkbox from "../components/Checkbox";
+import BasePage from "../layout/basepage";
+
+const crumbs = [
+  {
+    url: "/",
+    label: "Home",
+  },
+  {
+    url: "/events",
+    label: "Events",
+  },
+];
 
 function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -53,21 +65,8 @@ function EventsPage() {
   }, []);
 
   return (
-    <>
-      <Navbar />
-      <Breadcrumbs
-        crumbs={[
-          {
-            url: "/",
-            label: "Home",
-          },
-          {
-            url: "/events",
-            label: "Events",
-          },
-        ]}
-      />
-
+    <BasePage
+      crumbs={crumbs}>
       <Checkbox
         label="Show regular events"
         checked={showRegEvents}
@@ -80,11 +79,11 @@ function EventsPage() {
       />
 
       <div>{clanAge.toString()} Moons</div>
-      <button tabIndex={0} onClick={handleMoonskip}>
+      <button className="btn" tabIndex={0} onClick={handleMoonskip}>
         Moonskip
       </button>
       <ul>{eventsDisplay}</ul>
-    </>
+    </BasePage>
   );
 }
 
