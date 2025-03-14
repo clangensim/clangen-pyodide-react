@@ -7,6 +7,13 @@ function BasePage({ children, crumbs }: { children: React.ReactNode, crumbs?: Br
   return (
     <>
       <div className="head">
+        <div className="profile-info">
+          <ul className="row-list">
+            <li>ClanName</li>
+            <li>?? Moons</li>
+          </ul>
+          <a href="#" className="profile-info_next-moon">Next Moon →</a>
+        </div>
       </div>
 
       <div className="body">
