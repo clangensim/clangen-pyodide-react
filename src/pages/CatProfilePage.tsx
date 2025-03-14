@@ -1,8 +1,8 @@
 import { clangenRunner, Cat } from "../python/clangen";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { IconPencil } from '@tabler/icons-react';
-import { IconFileAlert } from '@tabler/icons-react';
+import { TbPencil } from "react-icons/tb";
+import { TbFileAlert } from "react-icons/tb";
 import CatDisplay from "../components/CatDisplay";
 import CatProfile from "../components/CatProfile";
 import BasePage from "../layout/BasePage";
@@ -50,10 +50,10 @@ function CatProfilePage() {
           <h2 className="cat-profile__header">{cat.name.display}</h2>
           {" "}#{cat.ID}
           <Link to={`/cats/${catID}/edit`} className="icon-button">
-            <IconPencil />
+            <TbPencil />
           </Link>
           <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button">
-            <IconFileAlert />
+            <TbFileAlert />
           </Link>
 
           <div>Thought goes here.</div>
