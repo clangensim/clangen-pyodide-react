@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 import FileUploadButton from "../components/FileUploadButton";
-import Navbar from "../components/Navbar";
 import { clangenRunner } from "../python/clangen";
 import { download } from "../utils";
 import { useEffect } from "react";
 import ClanInfoDisplay from "../components/ClanInfoDisplay";
+import BasePage from "../layout/BasePage";
 
 function HomePage() {
   function handleExportClan() {
@@ -24,9 +24,7 @@ function HomePage() {
   }, []);
 
   return (
-    <>
-      <Navbar />
-
+    <BasePage>
       <ClanInfoDisplay />
 
       <p>
@@ -68,7 +66,7 @@ function HomePage() {
       <p>
         See <Link to="/credits">here</Link> for credits information.
       </p>
-    </>
+    </BasePage>
   );
 }
 
