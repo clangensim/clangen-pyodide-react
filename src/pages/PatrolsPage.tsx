@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import {
   Cat,
   PatrolAction,
@@ -9,7 +8,18 @@ import {
 } from "../python/clangen";
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
-import Breadcrumbs from "../components/Breadcrumbs";
+import BasePage from "../layout/BasePage";
+
+const crumbs = [
+  {
+    url: "/",
+    label: "Home",
+  },
+  {
+    url: "/patrols",
+    label: "Patrol",
+  },
+];
 
 // TODO: switch to reducer
 function PatrolsPage() {
@@ -93,21 +103,9 @@ function PatrolsPage() {
   }
 
   return (
-    <>
-      <Navbar />
-      <Breadcrumbs
-        crumbs={[
-          {
-            url: "/",
-            label: "Home",
-          },
-          {
-            url: "/patrols",
-            label: "Patrol",
-          },
-        ]}
-      />
-
+    <BasePage
+      crumbs={crumbs}
+    >
       <p>
         If a medicine cat or medicine cat apprentice is added to the patrol, the
         selected patrol type will be ignored, and the patrol will automatically
@@ -243,6 +241,7 @@ function PatrolsPage() {
 
       {screenState === "start" && (
         <button
+          className="btn"
           tabIndex={0}
           disabled={selectedCats.length == 0}
           onClick={startPatrol}
@@ -253,14 +252,14 @@ function PatrolsPage() {
 
       {screenState === "in-progress" && (
         <>
-          <button tabIndex={0} onClick={() => endPatrol("proceed")}>
+          <button className="btn" tabIndex={0} onClick={() => endPatrol("proceed")}>
             Proceed
           </button>
-          <button tabIndex={0} onClick={() => endPatrol("decline")}>
+          <button className="btn" tabIndex={0} onClick={() => endPatrol("decline")}>
             Decline
           </button>
           {canAntagonize && (
-            <button tabIndex={0} onClick={() => endPatrol("antag")}>
+            <button className="btn" tabIndex={0} onClick={() => endPatrol("antag")}>
               Antagonize
             </button>
           )}
@@ -269,12 +268,12 @@ function PatrolsPage() {
 
       {screenState === "wrap-up" && (
         <>
-          <button tabIndex={0} onClick={reset}>
+          <button className="btn" tabIndex={0} onClick={reset}>
             New Patrol
           </button>
         </>
       )}
-    </>
+    </BasePage>
   );
 }
 
