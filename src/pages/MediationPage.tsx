@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import { Cat, clangenRunner } from "../python/clangen";
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
-import Breadcrumbs from "../components/Breadcrumbs";
 import Checkbox from "../components/Checkbox";
+import BasePage from "../layout/BasePage";
+
+const crumbs = [
+  {
+    url: "/",
+    label: "Home",
+  },
+  {
+    url: "/mediate",
+    label: "Mediate",
+  },
+];
 
 // TODO: switch to reducer
 function MediationPage() {
@@ -80,21 +90,9 @@ function MediationPage() {
   }
 
   return (
-    <>
-      <Navbar />
-      <Breadcrumbs
-        crumbs={[
-          {
-            url: "/",
-            label: "Home",
-          },
-          {
-            url: "/mediate",
-            label: "Mediate",
-          },
-        ]}
-      />
-
+    <BasePage
+      crumbs={crumbs}
+    >
       <p>
         A cat must have the "mediator" role to be allowed to mediate. Mediator
         cats cannot patrol.
@@ -180,7 +178,7 @@ function MediationPage() {
           </button>
         </>
       )}
-    </>
+    </BasePage>
   );
 }
 
