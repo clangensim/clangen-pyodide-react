@@ -25,22 +25,22 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link tabIndex={0} className="button nav-item" to="/">
+      <Link tabIndex={0} className=" nav-item" to="/">
         Home
       </Link>
-      <Link tabIndex={0} className="button nav-item" to="/cats">
+      <Link tabIndex={0} className=" nav-item" to="/cats">
         Cats
       </Link>
-      <Link tabIndex={0} className="button nav-item" to="/events">
+      <Link tabIndex={0} className=" nav-item" to="/events">
         Events
       </Link>
-      <Link tabIndex={0} className="button nav-item" to="/patrols">
+      <Link tabIndex={0} className=" nav-item" to="/patrols">
         Patrol
       </Link>
-      <Link tabIndex={0} className="button nav-item" to="/mediate">
+      <Link tabIndex={0} className=" nav-item" to="/mediate">
         Mediate
       </Link>
-      <Link tabIndex={0} className="button nav-item" to="/settings">
+      <Link tabIndex={0} className=" nav-item" to="/settings">
         Settings
       </Link>
     </nav>

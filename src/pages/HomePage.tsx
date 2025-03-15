@@ -51,7 +51,7 @@ function HomePage() {
       </p>
 
       <div style={{ marginBottom: "1em" }}>
-        <Link tabIndex={0} className="button" to="/new-clan">
+        <Link tabIndex={0} to="/new-clan">
           New Clan
         </Link>
       </div>
