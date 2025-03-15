@@ -1,12 +1,10 @@
-import Navbar from "../components/Navbar";
+import BasePage from "../layout/BasePage";
 
 function ErrorNotFoundPage() {
   return (
-    <>
-      <Navbar />
-
+    <BasePage>
       <p>ERROR: The requested page can't be found.</p>
-    </>
+    </BasePage>
   );
 }
 
