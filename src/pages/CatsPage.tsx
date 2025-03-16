@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Checkbox from "../components/Checkbox";
 import BasePage from "../layout/BasePage";
 
+import "../styles/cats-page.css";
+
 const crumbs = [
   {
     url: "/",
@@ -44,20 +46,7 @@ function CatsPage() {
         checked={showOutside}
         onChange={() => setShowOutside(!showOutside)}
       />
-
-      <div className="list" role="listbox">
-        <table className="detailed">
-          <thead>
-            <tr>
-              <th>#ID</th>
-              <th>Sprite</th>
-              <th>Name</th>
-              <th>Age (moons)</th>
-              <th>Trait</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="cats-list">
             {clangenRunner.getCats().map((cat, index) => {
               if (cat.dead && !showDead) {
                 return;
@@ -69,30 +58,21 @@ function CatsPage() {
                 return;
               }
               return (
-                <tr key={index}>
-                  <td>{cat.ID}</td>
-                  <td>
-                    <CatDisplay
-                      pelt={cat.pelt}
-                      age={cat.age}
-                      dead={cat.dead}
-                      darkForest={cat.inDarkForest}
-                    />
-                  </td>
-                  <td>
-                    <Link tabIndex={0} to={`/cats/${cat.ID}`}>
-                      {" "}
-                      {cat.name.display}{" "}
-                    </Link>
-                  </td>
-                  <td> {cat.moons} </td>
-                  <td>{cat.trait}</td>
-                  <td>{cat.status} </td>
-                </tr>
+                <Link to={`/cats/${cat.ID}`}>
+                  <div className="cat" key={index}>
+                      <CatDisplay
+                        pelt={cat.pelt}
+                        age={cat.age}
+                        dead={cat.dead}
+                        darkForest={cat.inDarkForest}
+                        w="75px"
+                        h="75px"
+                      />
+                    <div>{cat.name.display}</div>
+                  </div>
+                </Link>
               );
             })}
-          </tbody>
-        </table>
       </div>
     </BasePage>
   );

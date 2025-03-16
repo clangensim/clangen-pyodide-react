@@ -1,0 +1,19 @@
+.cats-list {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+.cats-list .cat {
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+}
+.cats-list .cat:hover {
+  background-color: #EFE5CE;
+  border-radius: 10px;
+}
