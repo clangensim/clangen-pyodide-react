@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Navbar from "../components/Navbar";
+import BasePage from "../layout/BasePage";
 
 function CreditsPage() {
   useEffect(() => {
@@ -7,8 +7,7 @@ function CreditsPage() {
   }, []);
 
   return (
-    <>
-      <Navbar />
+    <BasePage>
 
       <h1>Credits</h1>
       <p>
@@ -103,7 +102,7 @@ function CreditsPage() {
         <li>whitepatches.png</li>
         <li>mackerelcolours.png</li>
       </ul>
-    </>
+    </BasePage>
   );
 }
 
