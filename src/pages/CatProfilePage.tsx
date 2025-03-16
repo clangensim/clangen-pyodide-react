@@ -50,10 +50,10 @@ function CatProfilePage() {
           <h2 className="cat-profile__header">{cat.name.display}</h2>
           {" "}#{cat.ID}
           <Link to={`/cats/${catID}/edit`} className="icon-button">
-            <TbPencil />
+            <TbPencil size={25} />
           </Link>
           <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button">
-            <TbFileAlert />
+            <TbFileAlert size={25}/>
           </Link>
 
           <div>Thought goes here.</div>
