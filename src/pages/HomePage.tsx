@@ -51,7 +51,7 @@ function HomePage() {
       </p>
 
       <div style={{ marginBottom: "1em" }}>
-        <Link tabIndex={0} to="/new-clan">
+        <Link className="btn" tabIndex={0} to="/new-clan">
           New Clan
         </Link>
       </div>
@@ -59,7 +59,7 @@ function HomePage() {
       <FileUploadButton accept=".sav" tabIndex={0} onChange={handleImportClan}>
         Import Save
       </FileUploadButton>
-      <button tabIndex={0} onClick={handleExportClan}>
+      <button className="btn" tabIndex={0} onClick={handleExportClan}>
         Export Save
       </button>
 

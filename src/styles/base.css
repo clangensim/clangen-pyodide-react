@@ -116,6 +116,7 @@ details {
   font-family: "Bubblegum Sans", sans-serif;
   font-size: large;
   border-radius: 10px;
+  text-decoration-line: none;
 }
 .btn:disabled {
   background-color: #938764;
