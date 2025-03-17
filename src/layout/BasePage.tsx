@@ -12,7 +12,7 @@ function BasePage({ children, crumbs }: { children: React.ReactNode, crumbs?: Br
             <li>ClanName</li>
             <li>?? Moons</li>
           </ul>
-          <a href="#" className="profile-info_next-moon">Next Moon →</a>
+          <a href="#" className="btn btn-secondary profile-info_next-moon">Next Moon →</a>
         </div>
       </div>
 
