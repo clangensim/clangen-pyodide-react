@@ -4,6 +4,18 @@
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
+@media (500px < width <= 700px) {
+  .cats-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (width <= 500px) {
+  .cats-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
 .cats-list .cat {
   aspect-ratio: 1;
   display: flex;
