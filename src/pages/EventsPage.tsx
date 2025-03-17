@@ -77,7 +77,7 @@ function EventsPage() {
       />
 
       <div>{clanAge.toString()} Moons</div>
-      <button className="btn" tabIndex={0} onClick={handleMoonskip}>
+      <button tabIndex={0} onClick={handleMoonskip}>
         Moonskip
       </button>
       <ul>{eventsDisplay}</ul>

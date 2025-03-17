@@ -21,7 +21,7 @@ function FileUploadButton({
 
   return (
     <>
-      <button className="btn" tabIndex={tabIndex} onClick={handleButtonClick}>
+      <button tabIndex={tabIndex} onClick={handleButtonClick}>
         {children}
       </button>
       <input

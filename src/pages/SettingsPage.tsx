@@ -74,7 +74,7 @@ function SettingsPage() {
           onChange={() => setSettings({ ...settings, [settingName]: !value })}
         />
       ))}
-      <button className="btn" onClick={handleSave}>Save</button>
+      <button onClick={handleSave}>Save</button>
     </BasePage>
   );
 }

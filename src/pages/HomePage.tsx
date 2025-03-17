@@ -56,12 +56,14 @@ function HomePage() {
         </Link>
       </div>
 
-      <FileUploadButton accept=".sav" tabIndex={0} onChange={handleImportClan}>
-        Import Save
-      </FileUploadButton>
-      <button className="btn" tabIndex={0} onClick={handleExportClan}>
-        Export Save
-      </button>
+      <div className="button-row">
+        <FileUploadButton accept=".sav" tabIndex={0} onChange={handleImportClan}>
+          Import Save
+        </FileUploadButton>
+        <button tabIndex={0} onClick={handleExportClan}>
+          Export Save
+        </button>
+      </div>
 
       <p>
         See <Link to="/credits">here</Link> for credits information.

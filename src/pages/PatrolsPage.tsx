@@ -241,7 +241,6 @@ function PatrolsPage() {
 
       {screenState === "start" && (
         <button
-          className="btn"
           tabIndex={0}
           disabled={selectedCats.length == 0}
           onClick={startPatrol}
@@ -251,24 +250,24 @@ function PatrolsPage() {
       )}
 
       {screenState === "in-progress" && (
-        <>
-          <button className="btn" tabIndex={0} onClick={() => endPatrol("proceed")}>
+        <div className="button-row">
+          <button tabIndex={0} onClick={() => endPatrol("proceed")}>
             Proceed
           </button>
-          <button className="btn" tabIndex={0} onClick={() => endPatrol("decline")}>
+          <button tabIndex={0} onClick={() => endPatrol("decline")}>
             Decline
           </button>
           {canAntagonize && (
-            <button className="btn" tabIndex={0} onClick={() => endPatrol("antag")}>
+            <button tabIndex={0} onClick={() => endPatrol("antag")}>
               Antagonize
             </button>
           )}
-        </>
+        </div>
       )}
 
       {screenState === "wrap-up" && (
         <>
-          <button className="btn" tabIndex={0} onClick={reset}>
+          <button tabIndex={0} onClick={reset}>
             New Patrol
           </button>
         </>

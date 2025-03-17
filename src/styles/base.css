@@ -17,6 +17,11 @@ button {
   border: none;
   cursor: pointer;
 }
+.button-row {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
 
 body {
   max-width: 1000px;
@@ -109,7 +114,7 @@ details {
   background-color: transparent;
 }
 
-.btn {
+button, .btn {
   background-color: #655934;
   padding: 10px;
   color:#EFE5CE;
@@ -118,13 +123,16 @@ details {
   border-radius: 10px;
   text-decoration-line: none;
 }
+button:disabled,
 .btn:disabled {
   background-color: #938764;
 }
+button:disabled:hover,
 .btn:disabled:hover {
   background-color: #938764;
   cursor: default;
 }
+button:hover,
 .btn:hover {
   background-color: rgb(82, 73, 55);
 }

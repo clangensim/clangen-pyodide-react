@@ -153,7 +153,7 @@ function MediationPage() {
       <p>{mediationText}</p>
 
       {screenState === "start" && (
-        <>
+        <div className="button-row">
           <button
             tabIndex={0}
             disabled={selectedCats.length < 3}
@@ -168,7 +168,7 @@ function MediationPage() {
           >
             Sabotage
           </button>
-        </>
+        </div>
       )}
 
       {screenState === "in-progress" && (

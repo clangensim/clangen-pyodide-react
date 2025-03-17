@@ -95,7 +95,7 @@ function CatDangerousEditPage() {
       </Dialog>
 
       {cat && (
-        <div style={{ marginTop: "1em" }}>
+        <div className="button-row">
           <button
             tabIndex={0}
             disabled={cat.dead}
