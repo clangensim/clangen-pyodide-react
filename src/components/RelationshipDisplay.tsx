@@ -15,7 +15,7 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
       <Link to={`/cats/${relationship.cat_to_id}/relationships`}>
         {relationship.cat_to.name.display}
       </Link>
-      <ul>
+      <ul className="row-list">
         <li>
           romantic love
           <ProgressBar value={relationship.romantic_love.valueOf()} />

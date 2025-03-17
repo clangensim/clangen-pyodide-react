@@ -89,6 +89,14 @@ main {
   margin: 0 10px;
 }
 
+.progress-bar {
+  height: 15px;
+  border: 1px solid black;
+}
+.progress-bar-value {
+  background-color: #80bc08;
+  height: inherit;
+}
 
 details {
   display: inline-block;

@@ -3,8 +3,9 @@ import { useParams } from "react-router";
 
 import { Cat, clangenRunner, Relationship } from "../python/clangen";
 import RelationshipDisplay from "../components/RelationshipDisplay";
-import Navbar from "../components/Navbar";
-import Breadcrumbs from "../components/Breadcrumbs";
+import BasePage from "../layout/BasePage";
+
+import "../styles/relationships-page.css";
 
 function RelationshipsPage() {
   const [relationships, setRelationships] = useState<Relationship[]>();
@@ -12,6 +13,28 @@ function RelationshipsPage() {
   const catID = params.id as string;
 
   const [cat, setCat] = useState<Cat>();
+
+  var crumbs = undefined;
+  if (cat) {
+    crumbs = [
+      {
+        url: "/",
+        label: "Home",
+      },
+      {
+        url: "/cats",
+        label: "Cats",
+      },
+      {
+        url: `/cats/${catID}`,
+        label: cat.name.display,
+      },
+      {
+        url: `/cats/${catID}/relationships`,
+        label: "Relationships",
+      },
+    ];
+  }
 
   useEffect(() => {
     setRelationships(clangenRunner.getRelationships(catID));
@@ -23,46 +46,27 @@ function RelationshipsPage() {
   }, [catID]);
 
   return (
-    <>
-      <Navbar />
-      {cat && (
-        <Breadcrumbs
-          crumbs={[
-            {
-              url: "/",
-              label: "Home",
-            },
-            {
-              url: "/cats",
-              label: "Cats",
-            },
-            {
-              url: `/cats/${catID}`,
-              label: cat.name.display,
-            },
-            {
-              url: `/cats/${catID}/relationships`,
-              label: "Relationships",
-            },
-          ]}
-        />
-      )}
+    <BasePage
+      crumbs={crumbs}
+    >
 
       {relationships === undefined ||
         (relationships.length <= 0 && (
           <p>This cat has no relationships you can view.</p>
         ))}
-      {relationships?.map((rel) => {
-        return (
-          <>
-            <RelationshipDisplay
-              key={`${catID}_${rel.cat_to_id}`}
-              relationship={rel}
-            />
-          </>
-        );
-      })}
-    </>
+      <div className="relationships-list">
+        {relationships?.map((rel) => {
+          return (
+            <>
+              <RelationshipDisplay
+                key={`${catID}_${rel.cat_to_id}`}
+                relationship={rel}
+              />
+            </>
+          );
+        })}
+      </div>
+    </BasePage>
   );
 }
 
