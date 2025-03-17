@@ -1,10 +1,9 @@
 import { useNavigate, useParams } from "react-router";
-import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { Cat, clangenRunner } from "../python/clangen";
-import Breadcrumbs from "../components/Breadcrumbs";
 import Dialog from "../components/Dialog";
 import Checkbox from "../components/Checkbox";
+import BasePage from "../layout/BasePage";
 
 const defaultDeathHistory = "killed by a higher power";
 
@@ -42,31 +41,32 @@ function CatDangerousEditPage() {
     navigate(`/cats/${catID}`);
   }
 
+  var crumbs = undefined;
+  if (cat) {
+    crumbs = [
+      {
+        url: "/",
+        label: "Home",
+      },
+      {
+        url: "/cats",
+        label: "Cats",
+      },
+      {
+        url: `/cats/${catID}`,
+        label: cat.name.display,
+      },
+      {
+        url: `/cats/${catID}/edit/dangerous`,
+        label: "Dangerous",
+      },
+    ]
+  }
+
   return (
-    <>
-      <Navbar />
-      {cat && (
-        <Breadcrumbs
-          crumbs={[
-            {
-              url: "/",
-              label: "Home",
-            },
-            {
-              url: "/cats",
-              label: "Cats",
-            },
-            {
-              url: `/cats/${catID}`,
-              label: cat.name.display,
-            },
-            {
-              url: `/cats/${catID}/edit/dangerous`,
-              label: "Dangerous",
-            },
-          ]}
-        />
-      )}
+    <BasePage
+      crumbs={crumbs}
+    >
 
       <Dialog
         opened={killModalOpen}
@@ -122,7 +122,7 @@ function CatDangerousEditPage() {
           </button>
         </div>
       )}
-    </>
+    </BasePage>
   );
 }
 
