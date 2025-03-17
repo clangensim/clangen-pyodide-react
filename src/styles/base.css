@@ -118,8 +118,9 @@ button, .btn {
   background-color: #655934;
   padding: 10px;
   color:#EFE5CE;
-  font-family: "Bubblegum Sans", sans-serif;
-  font-size: large;
+  font-family: "Outfit Variable", sans-serif;
+  font-weight: 700;
+  font-size: medium;
   border-radius: 10px;
   text-decoration-line: none;
 }
