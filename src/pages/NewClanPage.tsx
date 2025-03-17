@@ -68,7 +68,7 @@ function NewClanPage() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} style={{ maxWidth: 500, margin: "auto" }}>
+      <form onSubmit={handleSubmit} style={{ backgroundColor: "white", padding: "20px", maxWidth: 500, margin: "auto" }}>
         <fieldset>
           <legend>Clan Name*</legend>
           <input
@@ -122,12 +122,12 @@ function NewClanPage() {
                   flexDirection: "column",
                 }}
               >
+                <CatDisplay pelt={cat.pelt} age={cat.age} />
                 <div>{cat.name.display}</div>
                 <div>{cat.gender}</div>
                 <div>{cat.age}</div>
                 <div>{cat.trait}</div>
                 <div>{cat.moons} moons</div>
-                <CatDisplay pelt={cat.pelt} age={cat.age} />
               </div>
             ))}
           </div>
