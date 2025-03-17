@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
 import { CatEdit, Cat, clangenRunner } from "../python/clangen";
-import Navbar from "../components/Navbar";
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
 
-import Breadcrumbs from "../components/Breadcrumbs";
+import BasePage from "../layout/BasePage";
 
 const selectApprenticeOptions = [
   {
@@ -53,6 +52,7 @@ const selectRegularCatOptions = [
 function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
+  var crumbs = undefined;
 
   const navigate = useNavigate();
 
@@ -118,6 +118,25 @@ function CatEditPage() {
         },
       ];
     }
+
+    crumbs = [
+      {
+        url: "/",
+        label: "Home",
+      },
+      {
+        url: "/cats",
+        label: "Cats",
+      },
+      {
+        url: `/cats/${catID}`,
+        label: cat.name.display,
+      },
+      {
+        url: `/cats/${catID}/edit`,
+        label: "Edit",
+      },
+    ];
   }
 
   function handleSubmit() {
@@ -169,31 +188,7 @@ function CatEditPage() {
   }, []);
 
   return (
-    <>
-      <Navbar />
-      {cat && (
-        <Breadcrumbs
-          crumbs={[
-            {
-              url: "/",
-              label: "Home",
-            },
-            {
-              url: "/cats",
-              label: "Cats",
-            },
-            {
-              url: `/cats/${catID}`,
-              label: cat.name.display,
-            },
-            {
-              url: `/cats/${catID}/edit`,
-              label: "Edit",
-            },
-          ]}
-        />
-      )}
-
+    <BasePage crumbs={crumbs}>
       <div>
         Name
         <input
@@ -271,7 +266,7 @@ function CatEditPage() {
       <button tabIndex={0} onClick={handleSubmit}>
         Submit
       </button>
-    </>
+    </BasePage>
   );
 }
 
