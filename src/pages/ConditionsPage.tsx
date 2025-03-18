@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { Cat, clangenRunner, Condition } from "../python/clangen";
-import Navbar from "../components/Navbar";
-import Breadcrumbs from "../components/Breadcrumbs";
+import BasePage from "../layout/BasePage";
 
 function ConditionsPage() {
   const [conditions, setConditions] = useState<Condition[]>();
@@ -19,32 +18,32 @@ function ConditionsPage() {
     setCat(c2);
   }, []);
 
-  return (
-    <>
-      <Navbar />
-      {cat && (
-        <Breadcrumbs
-          crumbs={[
-            {
-              url: "/",
-              label: "Home",
-            },
-            {
-              url: "/cats",
-              label: "Cats",
-            },
-            {
-              url: `/cats/${catID}`,
-              label: cat.name.display,
-            },
-            {
-              url: `/cats/${catID}`,
-              label: "Conditions",
-            },
-          ]}
-        />
-      )}
+  var crumbs = undefined;
+  if (cat) {
+    crumbs = [
+      {
+        url: "/",
+        label: "Home",
+      },
+      {
+        url: "/cats",
+        label: "Cats",
+      },
+      {
+        url: `/cats/${catID}`,
+        label: cat.name.display,
+      },
+      {
+        url: `/cats/${catID}`,
+        label: "Conditions",
+      },
+    ];
+  }
 
+  return (
+    <BasePage
+      crumbs={crumbs}
+    >
       {conditions === undefined ||
         (conditions.length == 0 && <p>This cat has no conditions.</p>)}
       {conditions?.map((condition) => (
@@ -59,7 +58,7 @@ function ConditionsPage() {
           </ul>
         </>
       ))}
-    </>
+    </BasePage>
   );
 }
 
