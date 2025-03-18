@@ -23,7 +23,6 @@ function CatProfilePage() {
     }
   }, [catID]);
 
-
   var crumbs = undefined;
   if (cat) {
     crumbs = [
@@ -39,38 +38,36 @@ function CatProfilePage() {
         url: `/cats/${catID}`,
         label: cat.name.display,
       },
-    ];  
+    ];
   }
 
   return (
     <BasePage crumbs={crumbs}>
       {cat && (
         <>
-        <div>
-          <h2 className="cat-profile__header">{cat.name.display}</h2>
-          {" "}#{cat.ID}
-          <Link to={`/cats/${catID}/edit`} className="icon-button">
-            <TbPencil size={25} />
-          </Link>
-          <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button">
-            <TbFileAlert size={25}/>
-          </Link>
-
-          <div>Thought goes here.</div>
-        </div>
-
-        <div className="flex">
-          <CatDisplay
-            key={cat.ID}
-            pelt={cat.pelt}
-            age={cat.age}
-            dead={cat.dead}
-            darkForest={cat.inDarkForest}
-            w="100px"
-            h="100px"
-          />
-          <CatProfile cat={cat} />
-        </div>
+          <div>
+            <h2 className="cat-profile__header">{cat.name.display}</h2> #
+            {cat.ID}
+            <Link to={`/cats/${catID}/edit`} className="icon-button">
+              <TbPencil size={25} />
+            </Link>
+            <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button">
+              <TbFileAlert size={25} />
+            </Link>
+            <div>Thought goes here.</div>
+          </div>
+          <div className="flex">
+            <CatDisplay
+              key={cat.ID}
+              pelt={cat.pelt}
+              age={cat.age}
+              dead={cat.dead}
+              darkForest={cat.inDarkForest}
+              w="100px"
+              h="100px"
+            />
+            <CatProfile cat={cat} />
+          </div>
           <Link tabIndex={0} to={`/cats/${catID}/relationships`}>
             Relationships
           </Link>{" "}

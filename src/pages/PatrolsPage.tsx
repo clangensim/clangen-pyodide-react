@@ -103,9 +103,7 @@ function PatrolsPage() {
   }
 
   return (
-    <BasePage
-      crumbs={crumbs}
-    >
+    <BasePage crumbs={crumbs}>
       <p>
         If a medicine cat or medicine cat apprentice is added to the patrol, the
         selected patrol type will be ignored, and the patrol will automatically
@@ -224,16 +222,12 @@ function PatrolsPage() {
         </div>
       </fieldset>
 
-      {clanInfo && clanInfo.gameMode !== "classic" &&
+      {clanInfo && clanInfo.gameMode !== "classic" && (
         <>
-          <div>
-            Current Food: {clanInfo.freshkill}
-          </div>
-          <div>
-            Required Food: {clanInfo.requiredFreshkill}
-          </div>
+          <div>Current Food: {clanInfo.freshkill}</div>
+          <div>Required Food: {clanInfo.requiredFreshkill}</div>
         </>
-      }
+      )}
 
       <p>{patrolText}</p>
 

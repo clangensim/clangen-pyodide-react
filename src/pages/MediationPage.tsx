@@ -90,9 +90,7 @@ function MediationPage() {
   }
 
   return (
-    <BasePage
-      crumbs={crumbs}
-    >
+    <BasePage crumbs={crumbs}>
       <p>
         A cat must have the "mediator" role to be allowed to mediate. Mediator
         cats cannot patrol.

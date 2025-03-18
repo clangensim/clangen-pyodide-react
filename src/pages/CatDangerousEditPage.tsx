@@ -60,14 +60,11 @@ function CatDangerousEditPage() {
         url: `/cats/${catID}/edit/dangerous`,
         label: "Dangerous",
       },
-    ]
+    ];
   }
 
   return (
-    <BasePage
-      crumbs={crumbs}
-    >
-
+    <BasePage crumbs={crumbs}>
       <Dialog
         opened={killModalOpen}
         onClose={() => setKillModalOpen(false)}

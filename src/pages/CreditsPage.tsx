@@ -8,7 +8,6 @@ function CreditsPage() {
 
   return (
     <BasePage>
-
       <h1>Credits</h1>
       <p>
         This site uses code from and adapted from Clangen (Clan Generator),

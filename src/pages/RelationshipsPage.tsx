@@ -46,10 +46,7 @@ function RelationshipsPage() {
   }, [catID]);
 
   return (
-    <BasePage
-      crumbs={crumbs}
-    >
-
+    <BasePage crumbs={crumbs}>
       {relationships === undefined ||
         (relationships.length <= 0 && (
           <p>This cat has no relationships you can view.</p>

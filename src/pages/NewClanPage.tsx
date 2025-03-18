@@ -68,7 +68,15 @@ function NewClanPage() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} style={{ backgroundColor: "white", padding: "20px", maxWidth: 500, margin: "auto" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          backgroundColor: "white",
+          padding: "20px",
+          maxWidth: 500,
+          margin: "auto",
+        }}
+      >
         <fieldset>
           <legend>Clan Name*</legend>
           <input

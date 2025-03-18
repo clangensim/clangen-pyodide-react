@@ -63,8 +63,7 @@ function EventsPage() {
   }, []);
 
   return (
-    <BasePage
-      crumbs={crumbs}>
+    <BasePage crumbs={crumbs}>
       <Checkbox
         label="Show regular events"
         checked={showRegEvents}

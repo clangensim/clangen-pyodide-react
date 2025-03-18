@@ -7,8 +7,8 @@ function CatDisplay({
   age,
   dead,
   darkForest,
-  w="50px",
-  h="50px"
+  w = "50px",
+  h = "50px",
 }: {
   pelt: Pelt;
   age: string;

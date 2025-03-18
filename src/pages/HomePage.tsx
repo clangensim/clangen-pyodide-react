@@ -36,8 +36,8 @@ function HomePage() {
       <p>
         <b>
           This site does not support being opened in multiple tabs. If you open
-          it in multiple tabs, data may be lost. Also, this site currently only saves
-          whenever you skip a moon.
+          it in multiple tabs, data may be lost. Also, this site currently only
+          saves whenever you skip a moon.
         </b>
       </p>
 
@@ -57,7 +57,11 @@ function HomePage() {
       </div>
 
       <div className="button-row">
-        <FileUploadButton accept=".sav" tabIndex={0} onChange={handleImportClan}>
+        <FileUploadButton
+          accept=".sav"
+          tabIndex={0}
+          onChange={handleImportClan}
+        >
           Import Save
         </FileUploadButton>
         <button tabIndex={0} onClick={handleExportClan}>

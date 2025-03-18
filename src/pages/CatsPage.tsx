@@ -28,9 +28,7 @@ function CatsPage() {
   }, []);
 
   return (
-    <BasePage
-      crumbs={crumbs
-    }>
+    <BasePage crumbs={crumbs}>
       <Checkbox
         label="Show living"
         checked={showLiving}
@@ -47,32 +45,32 @@ function CatsPage() {
         onChange={() => setShowOutside(!showOutside)}
       />
       <div className="cats-list">
-            {clangenRunner.getCats().map((cat, index) => {
-              if (cat.dead && !showDead) {
-                return;
-              }
-              if (!cat.dead && !showLiving) {
-                return;
-              }
-              if (cat.outside && !showOutside) {
-                return;
-              }
-              return (
-                <Link to={`/cats/${cat.ID}`}>
-                  <div className="cat" key={index}>
-                      <CatDisplay
-                        pelt={cat.pelt}
-                        age={cat.age}
-                        dead={cat.dead}
-                        darkForest={cat.inDarkForest}
-                        w="75px"
-                        h="75px"
-                      />
-                    <div>{cat.name.display}</div>
-                  </div>
-                </Link>
-              );
-            })}
+        {clangenRunner.getCats().map((cat, index) => {
+          if (cat.dead && !showDead) {
+            return;
+          }
+          if (!cat.dead && !showLiving) {
+            return;
+          }
+          if (cat.outside && !showOutside) {
+            return;
+          }
+          return (
+            <Link to={`/cats/${cat.ID}`}>
+              <div className="cat" key={index}>
+                <CatDisplay
+                  pelt={cat.pelt}
+                  age={cat.age}
+                  dead={cat.dead}
+                  darkForest={cat.inDarkForest}
+                  w="75px"
+                  h="75px"
+                />
+                <div>{cat.name.display}</div>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </BasePage>
   );
