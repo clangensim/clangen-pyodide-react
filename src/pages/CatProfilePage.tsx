@@ -1,7 +1,7 @@
 import { clangenRunner, Cat, Relationship, Condition } from "../python/clangen";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { TbPencil } from "react-icons/tb";
+import { TbExclamationCircleFilled, TbPencil } from "react-icons/tb";
 import { TbFileAlert } from "react-icons/tb";
 import CatDisplay from "../components/CatDisplay";
 import CatProfile from "../components/CatProfile";
@@ -82,7 +82,12 @@ function CatProfilePage() {
           </div>
           <div>
             <details>
-              <summary>Conditions</summary>
+              <summary>
+                Conditions
+                {conditions && conditions.length > 0 && 
+                  <TbExclamationCircleFilled />
+                }
+              </summary>
               <ConditionsDisplay conditions={conditions} />
             </details>
           </div>
