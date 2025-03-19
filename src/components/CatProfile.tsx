@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Cat } from "../python/clangen";
+import Pluralize from "./Pluralize";
 
 function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
   return (
@@ -35,7 +36,9 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>{cat.age}</li>
         <li>{cat.trait}</li>
         <li>{cat.skillString} </li>
-        <li>{cat.moons.toString()} moon(s)</li>
+        <li>
+          {cat.moons.toString()} <Pluralize num={cat.moons}>moon</Pluralize>
+        </li>
         <li>{cat.status} </li>
         <li>backstory: {cat.backstory}</li>
         <li>experience: {cat.experienceLevel}</li>
@@ -49,23 +52,28 @@ function CatProfile({ cat }: { cat: Cat }) {
         )}
         {cat.apprentices.length > 0 && (
           <li>
-            apprentice(s): <CommaSeparatedProfileLinks cats={cat.apprentices} />
+            <Pluralize num={cat.apprentices.length}>apprentice</Pluralize>:{" "}
+            <CommaSeparatedProfileLinks cats={cat.apprentices} />
           </li>
         )}
         {cat.formerApprentices.length > 0 && (
           <li>
-            former apprentice(s):{" "}
-            <CommaSeparatedProfileLinks cats={cat.formerApprentices} />
+            <Pluralize num={cat.formerApprentices.length}>
+              former apprentice
+            </Pluralize>
+            : <CommaSeparatedProfileLinks cats={cat.formerApprentices} />
           </li>
         )}
         {parents.length > 0 && (
           <li>
-            parent(s): <CommaSeparatedProfileLinks cats={parents} />
+            <Pluralize num={parents.length}>parent</Pluralize>:{" "}
+            <CommaSeparatedProfileLinks cats={parents} />
           </li>
         )}
         {cat.mates.length > 0 && (
           <li>
-            mate(s): <CommaSeparatedProfileLinks cats={cat.mates} />
+            <Pluralize num={cat.mates.length}>mate</Pluralize>:{" "}
+            <CommaSeparatedProfileLinks cats={cat.mates} />
           </li>
         )}
       </ul>

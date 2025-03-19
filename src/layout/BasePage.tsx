@@ -3,6 +3,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import { Breadcrumb } from "../components/Breadcrumbs";
 import Navbar from "../components/Navbar";
 import { clangenRunner } from "../python/clangen";
+import Pluralize from "../components/Pluralize";
 
 function BasePage({
   children,
@@ -19,7 +20,7 @@ function BasePage({
   const clanInfo = query.data;
 
   if (query.status === "error") {
-    return <>Error</>
+    return <>Error</>;
   }
 
   return (
@@ -27,7 +28,10 @@ function BasePage({
       <div className="head">
         <div className="profile-info">
           <ul className="row-list">
-            <li>{clanInfo?.name} - {clanInfo?.age} moons</li>
+            <li>
+              {clanInfo?.name} - {clanInfo?.age}{" "}
+              <Pluralize num={clanInfo?.age}>moon</Pluralize>
+            </li>
             <li>{clanInfo?.season}</li>
           </ul>
           <a href="#" className="btn btn-secondary profile-info_next-moon">
