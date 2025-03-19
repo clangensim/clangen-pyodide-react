@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clangen Simulator</title>
+
+
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+
+    <script>
+      function deleteAllData() {
+        const deleted = document.getElementById("data-deleted-notif");
+
+        localStorage.clear();
+        indexedDB.deleteDatabase("/mnt");
+        deleted.classList = ""
+      }
+    </script>
+  </head>
+  <body>
+    <p>
+      Clicking this button will delete all ClanGen resources, <b>including your save data</b>:
+    </p>
+    <button onclick="deleteAllData()">Delete All Data</button>
+    <div id="data-deleted-notif" class="hidden">
+      <p>Data has been deleted!</p>
+
+      <p>Return <a href="/">home</a></p>
+    </div>
+  </body>
+</html>
