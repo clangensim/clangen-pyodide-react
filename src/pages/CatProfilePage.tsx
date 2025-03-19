@@ -59,10 +59,7 @@ function CatProfilePage() {
           <div className="flex">
             <CatDisplay
               key={cat.ID}
-              pelt={cat.pelt}
-              age={cat.age}
-              dead={cat.dead}
-              darkForest={cat.inDarkForest}
+              cat={cat}
               w="100px"
               h="100px"
             />

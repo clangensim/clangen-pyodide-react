@@ -1,8 +1,29 @@
-import { Pelt } from "../python/clangen";
+import { Cat, Pelt } from "../python/clangen";
 import drawCat from "../python/drawCat";
 import { useEffect, useRef } from "react";
 
 function CatDisplay({
+  cat,
+  w = "50px",
+  h = "50px",
+}: {
+  cat: Cat;
+  w?: string;
+  h?: string;
+}) {
+  return (
+    <CatSprite
+      pelt={cat.pelt}
+      age={cat.age}
+      dead={cat.dead}
+      darkForest={cat.inDarkForest}
+      w={w}
+      h={h}
+    />
+  );
+}
+
+function CatSprite({
   pelt,
   age,
   dead,

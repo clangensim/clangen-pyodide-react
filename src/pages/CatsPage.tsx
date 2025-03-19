@@ -59,10 +59,7 @@ function CatsPage() {
             <Link to={`/cats/${cat.ID}`}>
               <div className="cat" key={index}>
                 <CatDisplay
-                  pelt={cat.pelt}
-                  age={cat.age}
-                  dead={cat.dead}
-                  darkForest={cat.inDarkForest}
+                  cat={cat}
                   w="75px"
                   h="75px"
                 />
