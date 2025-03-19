@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
-import { clangenRunner, ClanInfo } from "../python/clangen";
+import { clangenRunner } from "../python/clangen";
+import { useQuery } from "@tanstack/react-query";
 
 function ClanInfoDisplay() {
-  const [clanInfo, setClanInfo] = useState<ClanInfo>();
+  const query = useQuery({
+    queryKey: ["claninfo"],
+    queryFn: clangenRunner.getClanInfo.bind(clangenRunner),
+  });
 
-  useEffect(() => {
-    setClanInfo(clangenRunner.getClanInfo());
-  }, []);
+  const clanInfo = query.data;
+
+  if (query.status === "error") {
+    console.error(query.error.message);
+  }
 
   return (
     <div id="clan-info">
