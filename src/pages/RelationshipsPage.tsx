@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { Cat, clangenRunner, Relationship } from "../python/clangen";
-import RelationshipDisplay from "../components/RelationshipDisplay";
+import RelationshipsDisplay from "../components/RelationshipDisplay";
 import BasePage from "../layout/BasePage";
 
 import "../styles/relationships-page.css";
@@ -47,22 +47,7 @@ function RelationshipsPage() {
 
   return (
     <BasePage crumbs={crumbs}>
-      {relationships === undefined ||
-        (relationships.length <= 0 && (
-          <p>This cat has no relationships you can view.</p>
-        ))}
-      <div className="relationships-list">
-        {relationships?.map((rel) => {
-          return (
-            <>
-              <RelationshipDisplay
-                key={`${catID}_${rel.cat_to_id}`}
-                relationship={rel}
-              />
-            </>
-          );
-        })}
-      </div>
+      <RelationshipsDisplay relationships={relationships}/>
     </BasePage>
   );
 }

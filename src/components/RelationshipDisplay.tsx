@@ -44,4 +44,27 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   );
 }
 
-export default RelationshipDisplay;
+function RelationshipsDisplay({ relationships }: { relationships: Relationship[] | undefined}) {
+  return (
+    <>
+      {relationships === undefined ||
+        (relationships.length <= 0 && (
+          <p>This cat has no relationships you can view.</p>
+        ))}
+      <div className="relationships-list">
+        {relationships?.map((rel) => {
+          return (
+            <>
+              <RelationshipDisplay
+                key={`${rel.cat_from_id}_${rel.cat_to_id}`}
+                relationship={rel}
+              />
+            </>
+          );
+        })}
+      </div>
+    </>
+  )
+}
+
+export default RelationshipsDisplay;
