@@ -249,6 +249,7 @@ class Clangen implements ClangenInterface {
           if cat.status in ['kittypet', 'loner', 'rogue', 'former Clancat']:
               backstory = cat.status
           elif cat.backstory:
+              backstory = 'Clanborn'
               for category in BACKSTORIES["backstory_categories"]:
                   if cat.backstory in BACKSTORIES["backstory_categories"][category]:
                       backstory = BACKSTORIES["backstory_display"][category]
