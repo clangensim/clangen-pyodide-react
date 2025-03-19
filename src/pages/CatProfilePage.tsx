@@ -54,7 +54,7 @@ function CatProfilePage() {
             <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button">
               <TbFileAlert size={25} />
             </Link>
-            <div>Thought goes here.</div>
+            <div>{cat.thought}</div>
           </div>
           <div className="flex">
             <CatDisplay

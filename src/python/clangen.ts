@@ -62,6 +62,7 @@ type Cat = {
   age: string;
   outside: boolean;
   experienceLevel: string;
+  thought: string;
   /* this is the display text of the backstory */
   backstory: string;
   dead: boolean;
@@ -294,6 +295,7 @@ class Clangen implements ClangenInterface {
               'parent2': parent2,
               'mates': mates,
               'experienceLevel': cat.experience_level,
+              'thought': cat.thought,
               'pelt': {
                   'name': cat.pelt.name,
                   'colour': cat.pelt.colour,
