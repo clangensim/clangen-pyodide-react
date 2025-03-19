@@ -1,4 +1,4 @@
-import { clangenRunner, Cat, Relationship } from "../python/clangen";
+import { clangenRunner, Cat, Relationship, Condition } from "../python/clangen";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { TbPencil } from "react-icons/tb";
@@ -9,10 +9,12 @@ import BasePage from "../layout/BasePage";
 
 import "../styles/cat-profile-page.css";
 import RelationshipsDisplay from "../components/RelationshipDisplay";
+import ConditionsDisplay from "../components/ConditionsDisplay";
 
 function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
   const [relationships, setRelationships] = useState<Relationship[]>();
+  const [conditions, setConditions] = useState<Condition[]>();
 
   const params = useParams();
   const catID = params.id as string;
@@ -26,6 +28,7 @@ function CatProfilePage() {
     }
 
     setRelationships(clangenRunner.getRelationships(catID));
+    setConditions(clangenRunner.getConditions(catID));
   }, [catID]);
 
   var crumbs = undefined;
@@ -77,9 +80,12 @@ function CatProfilePage() {
               <RelationshipsDisplay relationships={relationships} />
             </details>
           </div>
-          <Link tabIndex={0} to={`/cats/${catID}/conditions`}>
-            Conditions
-          </Link>
+          <div>
+            <details>
+              <summary>Conditions</summary>
+              <ConditionsDisplay conditions={conditions} />
+            </details>
+          </div>
         </>
       )}
     </BasePage>
