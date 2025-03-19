@@ -14,33 +14,38 @@ import SettingsPage from "./pages/SettingsPage";
 import CreditsPage from "./pages/CreditsPage";
 import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/new-clan" element={<NewClanPage />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/patrols" element={<PatrolsPage />} />
-          <Route path="/mediate" element={<MediationPage />} />
-          <Route path="/cats" element={<CatsPage />} />
-          <Route path="/cats/:id" element={<CatProfilePage />} />
-          <Route path="/cats/:id/edit" element={<CatEditPage />} />
-          <Route
-            path="/cats/:id/edit/dangerous"
-            element={<CatDangerousEditPage />}
-          />
-          <Route
-            path="/cats/:id/relationships"
-            element={<RelationshipsPage />}
-          />
-          <Route path="/cats/:id/conditions" element={<ConditionsPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/credits" element={<CreditsPage />} />
-          <Route path="*" element={<ErrorNotFoundPage />} />
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/new-clan" element={<NewClanPage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/patrols" element={<PatrolsPage />} />
+            <Route path="/mediate" element={<MediationPage />} />
+            <Route path="/cats" element={<CatsPage />} />
+            <Route path="/cats/:id" element={<CatProfilePage />} />
+            <Route path="/cats/:id/edit" element={<CatEditPage />} />
+            <Route
+              path="/cats/:id/edit/dangerous"
+              element={<CatDangerousEditPage />}
+            />
+            <Route
+              path="/cats/:id/relationships"
+              element={<RelationshipsPage />}
+            />
+            <Route path="/cats/:id/conditions" element={<ConditionsPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/credits" element={<CreditsPage />} />
+            <Route path="*" element={<ErrorNotFoundPage />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </>
   );
 }
