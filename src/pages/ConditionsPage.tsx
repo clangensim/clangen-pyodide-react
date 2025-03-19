@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 
 import { Cat, clangenRunner, Condition } from "../python/clangen";
 import BasePage from "../layout/BasePage";
+import ConditionsDisplay from "../components/ConditionsDisplay";
 
 function ConditionsPage() {
   const [conditions, setConditions] = useState<Condition[]>();
@@ -42,20 +43,7 @@ function ConditionsPage() {
 
   return (
     <BasePage crumbs={crumbs}>
-      {conditions === undefined ||
-        (conditions.length == 0 && <p>This cat has no conditions.</p>)}
-      {conditions?.map((condition) => (
-        <>
-          <ul>
-            <li>{condition.name} </li>
-            <ul>
-              <li>{condition.type}</li>
-              <li>{condition.severity}</li>
-              <li>has had for {condition.moonsWith} moon(s)</li>
-            </ul>
-          </ul>
-        </>
-      ))}
+      <ConditionsDisplay conditions={conditions} />
     </BasePage>
   );
 }

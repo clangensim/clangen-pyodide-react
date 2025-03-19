@@ -130,7 +130,7 @@ function NewClanPage() {
                   flexDirection: "column",
                 }}
               >
-                <CatDisplay pelt={cat.pelt} age={cat.age} />
+                <CatDisplay cat={cat} />
                 <div>{cat.name.display}</div>
                 <div>{cat.gender}</div>
                 <div>{cat.age}</div>
