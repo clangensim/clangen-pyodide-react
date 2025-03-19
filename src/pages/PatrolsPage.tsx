@@ -10,6 +10,8 @@ import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
 import BasePage from "../layout/BasePage";
 
+import confusedCat from "../assets/images/gen_med_newmed.png";
+
 const crumbs = [
   {
     url: "/",
@@ -100,6 +102,16 @@ function PatrolsPage() {
     setPatrolText(outcomeText);
     setResultText(outcomeResult);
     setScreenState("wrap-up");
+  }
+
+  if (possibleCats.length <= 0) {
+    return (
+      <BasePage crumbs={crumbs}>
+        <img src={confusedCat}></img>
+
+        <p>No cats in the Clan can currently patrol. Cats without major injuries or illnesses can patrol once every moon.</p>
+      </BasePage>
+    )
   }
 
   return (

@@ -5,6 +5,8 @@ import { SelectOption } from "../components/Select";
 import Checkbox from "../components/Checkbox";
 import BasePage from "../layout/BasePage";
 
+import confusedCat from "../assets/images/gen_med_newmed.png";
+
 const crumbs = [
   {
     url: "/",
@@ -87,6 +89,16 @@ function MediationPage() {
       allowRomantic,
     );
     setMediationText(m);
+  }
+
+  if (possibleMediators.length <= 0) {
+    return (
+      <BasePage crumbs={crumbs}>
+        <img style={{imageRendering: "pixelated"}} src={confusedCat}></img>
+
+        <p>No cats in the Clan can currently mediate. Cats with the “mediator” or "mediator apprentice" role without major injuries or illnesses can mediate once every moon.</p>
+      </BasePage>
+    )
   }
 
   return (

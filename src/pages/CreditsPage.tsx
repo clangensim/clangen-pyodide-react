@@ -100,6 +100,7 @@ function CreditsPage() {
         <li>lineartdf.png</li>
         <li>whitepatches.png</li>
         <li>mackerelcolours.png</li>
+        <li>gen_med_newmed.png</li>
       </ul>
     </BasePage>
   );
