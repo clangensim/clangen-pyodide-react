@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { clangenRunner, Event } from "../python/clangen";
+import { clangenRunner } from "../python/clangen";
 import Checkbox from "../components/Checkbox";
 import BasePage from "../layout/BasePage";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const crumbs = [
   {
@@ -15,8 +16,18 @@ const crumbs = [
 ];
 
 function EventsPage() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [clanAge, setClanAge] = useState<Number>(0);
+  const queryClient = useQueryClient();
+  const clanAgeQuery = useQuery({
+    queryKey: ["claninfo"],
+    queryFn: clangenRunner.getClanInfo.bind(clangenRunner),
+  });
+  const eventsQuery = useQuery({
+    queryKey: ["events"],
+    queryFn: clangenRunner.getEvents.bind(clangenRunner),
+  });
+
+  const events = eventsQuery.data === undefined ? [] : eventsQuery.data;
+  const clanAge = clanAgeQuery.data?.age;
 
   const [showRelEvents, setShowRelEvents] = useState(false);
   const [showRegEvents, setShowRegEvents] = useState(true);
@@ -52,15 +63,10 @@ function EventsPage() {
 
   function handleMoonskip() {
     clangenRunner.moonskip().then(() => {
-      setEvents(clangenRunner.getEvents());
-      setClanAge(clangenRunner.getClanAge());
+      queryClient.invalidateQueries({queryKey: ["events"]});
+      queryClient.invalidateQueries({queryKey: ["claninfo"]});
     });
   }
-
-  useEffect(() => {
-    setClanAge(clangenRunner.getClanAge());
-    setEvents(clangenRunner.getEvents());
-  }, []);
 
   return (
     <BasePage crumbs={crumbs}>
@@ -75,7 +81,7 @@ function EventsPage() {
         onChange={() => setShowRelEvents(!showRelEvents)}
       />
 
-      <div>{clanAge.toString()} Moons</div>
+      <div>{clanAge?.toString()} Moons</div>
       <button tabIndex={0} onClick={handleMoonskip}>
         Moonskip
       </button>
