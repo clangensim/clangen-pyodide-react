@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { Breadcrumb } from "../components/Breadcrumbs";
 import Navbar from "../components/Navbar";
+import { clangenRunner } from "../python/clangen";
 
 function BasePage({
   children,
@@ -9,13 +11,24 @@ function BasePage({
   children: React.ReactNode;
   crumbs?: Breadcrumb[];
 }) {
+  const query = useQuery({
+    queryKey: ["claninfo"],
+    queryFn: clangenRunner.getClanInfo.bind(clangenRunner),
+  });
+
+  const clanInfo = query.data;
+
+  if (query.status === "error") {
+    return <>Error</>
+  }
+
   return (
     <>
       <div className="head">
         <div className="profile-info">
           <ul className="row-list">
-            <li>ClanName</li>
-            <li>?? Moons</li>
+            <li>{clanInfo?.name} - {clanInfo?.age} moons</li>
+            <li>{clanInfo?.season}</li>
           </ul>
           <a href="#" className="btn btn-secondary profile-info_next-moon">
             Next Moon →
