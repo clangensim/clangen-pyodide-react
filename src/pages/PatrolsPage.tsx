@@ -5,7 +5,7 @@ import {
   PatrolType,
   ClanInfo,
 } from "../python/types";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
 import BasePage from "../layout/BasePage";

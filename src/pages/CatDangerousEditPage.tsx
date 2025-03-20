@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { Cat } from "../python/types";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import Dialog from "../components/Dialog";
 import Checkbox from "../components/Checkbox";
 import BasePage from "../layout/BasePage";

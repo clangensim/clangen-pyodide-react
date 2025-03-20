@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import Checkbox from "../components/Checkbox";
 import BasePage from "../layout/BasePage";
 import { useQuery, useQueryClient } from "@tanstack/react-query";

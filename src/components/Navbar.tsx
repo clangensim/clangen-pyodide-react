@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 
 function Navbar() {
   /* 

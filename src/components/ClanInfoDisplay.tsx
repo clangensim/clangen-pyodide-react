@@ -1,4 +1,4 @@
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import { useQuery } from "@tanstack/react-query";
 
 function ClanInfoDisplay() {

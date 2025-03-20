@@ -1,4 +1,4 @@
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import { useEffect, useState } from "react";

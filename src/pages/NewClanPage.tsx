@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Cat } from "../python/types";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 
 import CatDisplay from "../components/CatDisplay";
 

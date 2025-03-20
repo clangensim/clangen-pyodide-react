@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { Breadcrumb } from "../components/Breadcrumbs";
 import Navbar from "../components/Navbar";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import Pluralize from "../components/Pluralize";
 
 function BasePage({

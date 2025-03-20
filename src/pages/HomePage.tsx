@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import FileUploadButton from "../components/FileUploadButton";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import { download } from "../utils";
 import { useEffect } from "react";
 import ClanInfoDisplay from "../components/ClanInfoDisplay";

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { Cat, Condition } from "../python/types";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import BasePage from "../layout/BasePage";
 import ConditionsDisplay from "../components/ConditionsDisplay";
 

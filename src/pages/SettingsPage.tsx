@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Checkbox from "../components/Checkbox";
-import { clangenRunner } from "../python/clangen";
+import { clangenRunner } from "../python/clangenRunner";
 import BasePage from "../layout/BasePage";
 
 const settingLabels: Record<string, Record<string, string>> = {
