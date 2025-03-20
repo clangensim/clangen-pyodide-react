@@ -1,5 +1,4 @@
 import { PyodideInterface } from "pyodide";
-import pyodide from "./pyodide";
 
 import type {
   CatEdit,
@@ -89,7 +88,7 @@ class Clangen implements ClangenInterface {
     const VERSION = "0.11.2";
     let mountDir = "/mnt";
     this._pyodide.FS.mkdirTree(mountDir);
-    this._pyodide.FS.mount(pyodide.FS.filesystems.IDBFS, {}, mountDir);
+    this._pyodide.FS.mount(this._pyodide.FS.filesystems.IDBFS, {}, mountDir);
 
     if (localStorage.getItem("resourcesLoaded") !== VERSION) {
       console.log("Loading resources...");
@@ -273,7 +272,7 @@ class Clangen implements ClangenInterface {
     members: string[],
     season: string,
   ): Promise<void> {
-    const locals = pyodide.toPy({
+    const locals = this._pyodide.toPy({
       clan_name: clanName,
       leader: leader,
       deputy: deputy,
@@ -320,7 +319,7 @@ class Clangen implements ClangenInterface {
 
   public getCat(id: string): Cat {
     // is there a better way of doing this?
-    const locals = pyodide.toPy({ cat_id: id });
+    const locals = this._pyodide.toPy({ cat_id: id });
     const cat = this._pyodide.runPython(
       `
       cat = Cat.all_cats[cat_id]
@@ -333,7 +332,7 @@ class Clangen implements ClangenInterface {
   }
 
   public editCat(id: string, edit: CatEdit): boolean {
-    const locals = pyodide.toPy({ cat_id: id, edit: edit });
+    const locals = this._pyodide.toPy({ cat_id: id, edit: edit });
     this._pyodide.runPython(
       `
       cat = Cat.all_cats[cat_id]
@@ -395,7 +394,7 @@ class Clangen implements ClangenInterface {
   }
 
   destroyAccessory(id: string): void {
-    const locals = pyodide.toPy({ cat_id: id });
+    const locals = this._pyodide.toPy({ cat_id: id });
     this._pyodide.runPython(
       `
       cat = Cat.all_cats[cat_id]
@@ -407,7 +406,7 @@ class Clangen implements ClangenInterface {
   }
 
   exileCat(id: string): void {
-    const locals = pyodide.toPy({ cat_id: id });
+    const locals = this._pyodide.toPy({ cat_id: id });
     this._pyodide.runPython(
       `
       cat = Cat.all_cats[cat_id]
@@ -419,7 +418,7 @@ class Clangen implements ClangenInterface {
   }
 
   killCat(id: string, history: string, takeNineLives?: boolean): void {
-    const locals = pyodide.toPy({ cat_id: id, history: history, take_nine_lives: takeNineLives });
+    const locals = this._pyodide.toPy({ cat_id: id, history: history, take_nine_lives: takeNineLives });
     this._pyodide.runPython(
       `
       cat = Cat.all_cats[cat_id]
@@ -454,7 +453,7 @@ class Clangen implements ClangenInterface {
   /* WARNING: This includes CURRENT MATES of the selected cat. 
               You have to filter them out on the frontend. */
 
-    const locals = pyodide.toPy({ cat_id: id});
+    const locals = this._pyodide.toPy({ cat_id: id});
     const potentialMates = this._pyodide.runPython(`
       valid_mates = []
 
@@ -526,7 +525,7 @@ class Clangen implements ClangenInterface {
   }
 
   public getPotentialMentors(apprenticeRole: string): Cat[] {
-    const locals = pyodide.toPy({ apprentice_role: apprenticeRole});
+    const locals = this._pyodide.toPy({ apprentice_role: apprenticeRole});
     const potentialMentors = this._pyodide.runPython(`
       potential_mentors =[]
 
@@ -548,7 +547,7 @@ class Clangen implements ClangenInterface {
 
   public getRelationships(id: string): Relationship[] {
     // is there a better way of doing this?
-    const locals = pyodide.toPy({ cat_id: id });
+    const locals = this._pyodide.toPy({ cat_id: id });
     const rels = this._pyodide.runPython(
       `
       rels = []
@@ -581,7 +580,7 @@ class Clangen implements ClangenInterface {
   }
 
   public getConditions(id: string): Condition[] {
-    const locals = pyodide.toPy({ cat_id: id });
+    const locals = this._pyodide.toPy({ cat_id: id });
     const conditions = this._pyodide.runPython(
       `
       conditions = []
@@ -638,7 +637,7 @@ class Clangen implements ClangenInterface {
   }
 
   public startPatrol(patrolMembers: string[], patrolType: PatrolType): PatrolIntro {
-    const locals = pyodide.toPy({
+    const locals = this._pyodide.toPy({
       patrol_members: patrolMembers,
       patrol_type: patrolType,
     });
@@ -665,7 +664,7 @@ class Clangen implements ClangenInterface {
   }
 
   public finishPatrol(action: PatrolAction): [string, string] {
-    const locals = pyodide.toPy({
+    const locals = this._pyodide.toPy({
       action: action,
     });
     const outcome = this._pyodide.runPython(
@@ -684,7 +683,7 @@ class Clangen implements ClangenInterface {
   }
 
   public mediate(mediator: string, mediated1: string, mediated2: string, sabotage = false, allowRomantic = false): string {
-    const locals = pyodide.toPy({
+    const locals = this._pyodide.toPy({
       mediator: mediator,
       mediated1: mediated1,
       mediated2: mediated2,
@@ -774,7 +773,7 @@ class Clangen implements ClangenInterface {
   }
 
   public setSettings(settings: Record<string, boolean>) {
-    const locals = pyodide.toPy({ settings: settings });
+    const locals = this._pyodide.toPy({ settings: settings });
     this._pyodide.runPython(
       `
       for name, setting in settings.items():
