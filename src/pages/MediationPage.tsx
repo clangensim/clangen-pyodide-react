@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Cat, clangenRunner } from "../python/clangen";
+import { Cat } from "../python/types";
+import { clangenRunner } from "../python/clangen";
 import Select from "../components/Select";
 import { SelectOption } from "../components/Select";
 import Checkbox from "../components/Checkbox";

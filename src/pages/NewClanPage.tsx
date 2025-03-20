@@ -1,6 +1,8 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Cat, clangenRunner } from "../python/clangen";
+import { Cat } from "../python/types";
+import { clangenRunner } from "../python/clangen";
+
 import CatDisplay from "../components/CatDisplay";
 
 function NewClanPage() {

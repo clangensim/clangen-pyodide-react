@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Relationship } from "../python/clangen";
+import { Relationship } from "../python/types";
 import CatDisplay from "./CatDisplay";
 import ProgressBar from "./ProgressBar";
 

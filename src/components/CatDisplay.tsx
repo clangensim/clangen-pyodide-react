@@ -1,4 +1,4 @@
-import { Cat, Pelt } from "../python/clangen";
+import { Cat, Pelt } from "../python/types";
 import drawCat from "../python/drawCat";
 import { useEffect, useRef } from "react";
 

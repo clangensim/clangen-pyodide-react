@@ -1,4 +1,4 @@
-import { Condition } from "../python/clangen";
+import { Condition } from "../python/types";
 import Pluralize from "./Pluralize";
 
 function ConditionsDisplay({conditions}: {conditions: Condition[] | undefined}) {

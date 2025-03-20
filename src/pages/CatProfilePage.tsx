@@ -1,4 +1,5 @@
-import { clangenRunner, Cat, Relationship, Condition } from "../python/clangen";
+import { Cat, Relationship, Condition } from "../python/types";
+import { clangenRunner } from "../python/clangen";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { TbExclamationCircleFilled, TbPencil } from "react-icons/tb";

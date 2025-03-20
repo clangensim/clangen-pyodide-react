@@ -5,7 +5,7 @@
   ClanGen source code is licensed under MPL-2.0.
 */
 
-import { Pelt } from "./clangen";
+import { Pelt } from "./types";
 import tints from "../assets/tints/tint.json";
 import whitePatchesTints from "../assets/tints/white_patches_tint.json";
 import peltInfo from "../assets/peltInfo.json";

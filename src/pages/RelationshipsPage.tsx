@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { Cat, clangenRunner, Relationship } from "../python/clangen";
+import { Cat, Relationship } from "../python/types"
+import { clangenRunner } from "../python/clangen";;
 import RelationshipsDisplay from "../components/RelationshipDisplay";
 import BasePage from "../layout/BasePage";
 
