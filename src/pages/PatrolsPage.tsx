@@ -107,7 +107,7 @@ function PatrolsPage() {
   if (possibleCats.length <= 0) {
     return (
       <BasePage crumbs={crumbs}>
-        <img src={confusedCat}></img>
+        <img style={{imageRendering: "pixelated"}} src={confusedCat}></img>
 
         <p>No cats in the Clan can currently patrol. Cats without major injuries or illnesses can patrol once every moon.</p>
       </BasePage>
