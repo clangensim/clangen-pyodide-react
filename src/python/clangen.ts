@@ -124,20 +124,7 @@ class Clangen implements ClangenInterface {
     try {
       this._pyodide.runPython(clangenApi);
       this._pyodide.runPython(`
-      clan_list = game.read_clans()
-      if clan_list:
-          game.switches['clan_list'] = clan_list
-          try:
-              load_cats()
-              version_info = clan_class.load_clan()
-              version_convert(version_info)
-              game.load_events()
-          except Exception as e:
-              logger.exception("File failed to load")
-              if not game.switches['error_message']:
-                  game.switches[
-                      'error_message'] = 'There was an error loading the cats file!'
-                  game.switches['traceback'] = e
+      load_clan()
     `);
     } catch (err) {
       console.error(err);
