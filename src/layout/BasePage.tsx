@@ -4,6 +4,7 @@ import { Breadcrumb } from "./Breadcrumbs";
 import Navbar from "./Navbar";
 import { clangenRunner } from "../python/clangenRunner";
 import Pluralize from "../components/Pluralize";
+import { Link } from "react-router";
 
 function BasePage({
   children,
@@ -34,9 +35,9 @@ function BasePage({
             </li>
             <li>{clanInfo?.season}</li>
           </ul>
-          <a href="#" className="btn btn-secondary profile-info_next-moon">
+          <Link to="/events" className="btn btn-secondary profile-info_next-moon">
             Next Moon →
-          </a>
+          </Link>
         </div>
       </div>
 
