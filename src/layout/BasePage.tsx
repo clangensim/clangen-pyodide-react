@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import Breadcrumbs from "../components/Breadcrumbs";
-import { Breadcrumb } from "../components/Breadcrumbs";
-import Navbar from "../components/Navbar";
+import Breadcrumbs from "./Breadcrumbs";
+import { Breadcrumb } from "./Breadcrumbs";
+import Navbar from "./Navbar";
 import { clangenRunner } from "../python/clangenRunner";
 import Pluralize from "../components/Pluralize";
 
