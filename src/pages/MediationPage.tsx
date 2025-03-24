@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Cat } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
-import Select from "../components/Select";
-import { SelectOption } from "../components/Select";
-import Checkbox from "../components/Checkbox";
+import Select from "../components/generic/Select";
+import { SelectOption } from "../components/generic/Select";
+import Checkbox from "../components/generic/Checkbox";
 import BasePage from "../layout/BasePage";
 
 import confusedCat from "../assets/images/gen_med_newmed.png";

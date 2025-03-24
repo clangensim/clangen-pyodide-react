@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router";
 
 import { CatEdit, Cat } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
-import Select from "../components/Select";
-import { SelectOption } from "../components/Select";
+import Select from "../components/generic/Select";
+import { SelectOption } from "../components/generic/Select";
 
 import BasePage from "../layout/BasePage";
 

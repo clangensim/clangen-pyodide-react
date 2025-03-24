@@ -2,7 +2,7 @@ import { clangenRunner } from "../python/clangenRunner";
 import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import { useEffect, useState } from "react";
-import Checkbox from "../components/Checkbox";
+import Checkbox from "../components/generic/Checkbox";
 import BasePage from "../layout/BasePage";
 
 import "../styles/cats-page.css";

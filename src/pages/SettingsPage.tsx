@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Checkbox from "../components/Checkbox";
+import Checkbox from "../components/generic/Checkbox";
 import { clangenRunner } from "../python/clangenRunner";
 import BasePage from "../layout/BasePage";
 

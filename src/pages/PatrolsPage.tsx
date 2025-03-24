@@ -6,8 +6,8 @@ import {
   ClanInfo,
 } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
-import Select from "../components/Select";
-import { SelectOption } from "../components/Select";
+import Select from "../components/generic/Select";
+import { SelectOption } from "../components/generic/Select";
 import BasePage from "../layout/BasePage";
 
 import confusedCat from "../assets/images/gen_med_newmed.png";

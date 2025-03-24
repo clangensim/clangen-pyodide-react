@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { Relationship } from "../python/types";
 import CatDisplay from "./CatDisplay";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./generic/ProgressBar";
 
 function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   return (
