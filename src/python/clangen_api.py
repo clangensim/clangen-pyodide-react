@@ -163,7 +163,8 @@ def get_cat(cat_id):
   cat = Cat.all_cats[cat_id]
   return to_js(cat_to_dict(cat), dict_converter=js.Object.fromEntries)
 
-def edit_cat(cat_id, edit):
+def edit_cat(cat_id, editObj):
+  edit = editObj.to_py()
   cat = Cat.all_cats[cat_id]
   if cat.status != edit["status"]:
     if edit["status"] == "leader":
@@ -437,6 +438,7 @@ def refresh_cats():
 def get_settings():
   return to_js(game.clan.clan_settings, dict_converter=js.Object.fromEntries)
 
-def set_settings(settings):
+def set_settings(settingsObj):
+  settings = settingsObj.to_py()
   for name, setting in settings.items():
     game.clan.clan_settings[name] = setting
