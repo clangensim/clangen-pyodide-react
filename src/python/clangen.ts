@@ -12,7 +12,7 @@ import type {
   Event,
 } from "./types";
 
-import clangenApi from "./clangen_api.py?raw"
+import clangenApiUrl from "./clangen_api.py?url";
 
 interface ClangenInterface {
   /* Gets Cat from ID */
@@ -53,8 +53,6 @@ interface ClangenInterface {
   getCats(): Cat[];
   /* Gets cats that can patrol */
   getPatrollableCats(): Cat[];
-  /* Gets age of the Clan */
-  getClanAge(): Number;
   /* Gets condiions of cat with given ID */
   getConditions(id: string): Condition[];
   /* Gets relationships of cat with given ID */
@@ -73,6 +71,7 @@ interface ClangenInterface {
 
 class Clangen implements ClangenInterface {
   private _pyodide;
+  private _clangenApi: any;
 
   constructor(pyodide: PyodideInterface) {
     this._pyodide = pyodide;
@@ -116,35 +115,30 @@ class Clangen implements ClangenInterface {
     }
 
     // install "clangen-lite"
-    await this._pyodide.loadPackage(
-      "/clangen_lite-0.0.1-py2.py3-none-any.whl",
-    );
+    await this._pyodide.loadPackage("/clangen_lite-0.0.1-py2.py3-none-any.whl");
+    await this._pyodide.runPythonAsync(`
+      from pyodide.http import pyfetch
+      response = await pyfetch("${clangenApiUrl}")
+      with open("clangen_api.py", "wb") as f:
+          f.write(await response.bytes())
+      `);
+    this._clangenApi = this._pyodide.pyimport("clangen_api");
 
     // load clan
     try {
-      this._pyodide.runPython(clangenApi);
-      this._pyodide.runPython(`
-      load_clan()
-    `);
+      this._clangenApi.load_clan();
     } catch (err) {
       console.error(err);
     }
   }
 
   public async saveGame(): Promise<void> {
-    this._pyodide.runPython(`
-      save_game()
-    `);
+    this._clangenApi.save_game();
     await this._syncFS(false);
   }
 
   public initializeStarterCats(): Cat[] {
-    const cats = this._pyodide.runPython(
-      `
-      initialize_starting_cats()
-      `,
-    );
-    return cats;
+    return this._clangenApi.initialize_starting_cats();
   }
 
   public async createClan(
@@ -158,247 +152,116 @@ class Clangen implements ClangenInterface {
     members: string[],
     season: string,
   ): Promise<void> {
-    const locals = this._pyodide.toPy({
-      clan_name: clanName,
-      leader: leader,
-      deputy: deputy,
-      med_cat: medCat,
-      biome: biome,
-      camp: camp,
-      game_mode: gameMode,
-      members: members,
-      season: season,
-    });
-    this._pyodide.runPython(
-      `
-      create_clan(clan_name, leader, deputy, med_cat, biome, camp, game_mode, members, season)
-      `,
-      { locals: locals },
+    this._clangenApi.create_clan(
+      clanName,
+      leader,
+      deputy,
+      medCat,
+      biome,
+      camp,
+      gameMode,
+      members,
+      season,
     );
-    locals.destroy();
     await this.saveGame();
   }
 
   public getCat(id: string): Cat {
-    // is there a better way of doing this?
-    const locals = this._pyodide.toPy({ cat_id: id });
-    const cat = this._pyodide.runPython(
-      `
-      get_cat(cat_id)
-    `,
-      { locals: locals },
-    );
-    locals.destroy();
-    return cat;
+    return this._clangenApi.get_cat(id);
   }
 
   public editCat(id: string, edit: CatEdit): boolean {
-    const locals = this._pyodide.toPy({ cat_id: id, edit: edit });
-    this._pyodide.runPython(
-      `
-      edit_cat(cat_id, edit)
-      `,
-      { locals: locals },
-    );
-    locals.destroy();
-
+    this._clangenApi.edit_cat(id, edit);
     return true;
   }
 
   destroyAccessory(id: string): void {
-    const locals = this._pyodide.toPy({ cat_id: id });
-    this._pyodide.runPython(
-      `
-      destroy_accessory(cat_id)
-    `,
-      { locals: locals },
-    );
-    locals.destroy();
+    this._clangenApi.destroy_accessory(id);
   }
 
   exileCat(id: string): void {
-    const locals = this._pyodide.toPy({ cat_id: id });
-    this._pyodide.runPython(
-      `
-      exile_cat(cat_id)
-    `,
-      { locals: locals },
-    );
-    locals.destroy();
+    this._clangenApi.exile_cat(id);
   }
 
   killCat(id: string, history: string, takeNineLives?: boolean): void {
-    const locals = this._pyodide.toPy({ cat_id: id, history: history, take_nine_lives: takeNineLives });
-    this._pyodide.runPython(
-      `
-      kill_cat(cat_id, history, take_nine_lives)
-    `,
-      { locals: locals },
-    );
-    locals.destroy();
+    this._clangenApi.kill_cat(id, history, takeNineLives);
   }
 
   public getCats(): Cat[] {
-    const cats = this._pyodide.runPython(`
-      get_cats()
-    `);
-    return cats;
+    return this._clangenApi.get_cats();
   }
 
   public getPotentialMates(id: string): Cat[] {
-  /* WARNING: This includes CURRENT MATES of the selected cat. 
-              You have to filter them out on the frontend. */
-
-    const locals = this._pyodide.toPy({ cat_id: id});
-    const potentialMates = this._pyodide.runPython(`
-      get_potential_mates(cat_id)
-    `,
-      {locals: locals}
-    );
-    locals.destroy();
-    return potentialMates;
+    return this._clangenApi.get_potential_mates(id);
   }
 
   public getPatrollableCats(): Cat[] {
-    const cats = this._pyodide.runPython(`
-      get_patrollable_cats()
-    `);
-    return cats;
+    return this._clangenApi.get_patrollable_cats();
   }
 
   public getPossibleMediators(): Cat[] {
-    const cats = this._pyodide.runPython(`
-      get_possible_mediators()
-    `);
-    return cats;
+    return this._clangenApi.get_possible_mediators();
   }
 
   public getPossibleMediated(): Cat[] {
-    const cats = this._pyodide.runPython(`
-      get_possible_mediated()
-    `);
-    return cats;
+    return this._clangenApi.get_possible_mediated();
   }
 
   public getPotentialMentors(apprenticeRole: string): Cat[] {
-    const locals = this._pyodide.toPy({ apprentice_role: apprenticeRole});
-    const potentialMentors = this._pyodide.runPython(`
-      get_potential_mentors(apprentice_role)
-    `,
-      {locals: locals}
-    );
-    locals.destroy();
-    return potentialMentors;
+    return this._clangenApi.get_potential_mentors(apprenticeRole);
   }
 
   public getRelationships(id: string): Relationship[] {
-    // is there a better way of doing this?
-    const locals = this._pyodide.toPy({ cat_id: id });
-    const rels = this._pyodide.runPython(
-      `
-      get_relationships(cat_id)
-    `,
-      { locals: locals },
-    );
-    locals.destroy();
-    return rels;
+    return this._clangenApi.get_relationships(id);
   }
 
   public getConditions(id: string): Condition[] {
-    const locals = this._pyodide.toPy({ cat_id: id });
-    const conditions = this._pyodide.runPython(
-      `
-      get_conditions(cat_id)
-    `,
-      { locals: locals },
-    );
-    locals.destroy();
-    return conditions;
+    return this._clangenApi.get_conditions(id);
   }
 
   public async moonskip(): Promise<void> {
-    this._pyodide.runPython(`
-      moonskip()
-    `);
+    this._clangenApi.moonskip();
     await this.saveGame();
   }
 
   public getEvents(): Event[] {
-    const events = this._pyodide.runPython(`
-      get_events()
-    `);
-    return events;
+    return this._clangenApi.get_events();
   }
 
-  public startPatrol(patrolMembers: string[], patrolType: PatrolType): PatrolIntro {
-    const locals = this._pyodide.toPy({
-      patrol_members: patrolMembers,
-      patrol_type: patrolType,
-    });
-    const patrol = this._pyodide.runPython(
-      `
-      start_patrol(patrol_members, patrol_type)
-    `,
-      { locals: locals },
-    );
-    locals.destroy();
-
-    return patrol;
+  public startPatrol(
+    patrolMembers: string[],
+    patrolType: PatrolType,
+  ): PatrolIntro {
+    return this._clangenApi.start_patrol(patrolMembers, patrolType);
   }
 
   public finishPatrol(action: PatrolAction): [string, string] {
-    const locals = this._pyodide.toPy({
-      action: action,
-    });
-    const outcome = this._pyodide.runPython(
-      `
-      finish_patrol(action)
-    `,
-      { locals: locals },
-    );
-    locals.destroy();
-
     // outcome text, results text
-    return outcome;
+    return this._clangenApi.finish_patrol(action);
   }
 
-  public mediate(mediator: string, mediated1: string, mediated2: string, sabotage = false, allowRomantic = false): string {
-    const locals = this._pyodide.toPy({
-      mediator: mediator,
-      mediated1: mediated1,
-      mediated2: mediated2,
-      sabotage: sabotage,
-      allow_romantic: allowRomantic
-    });
-    const outcome = this._pyodide.runPython(
-      `
-      mediate(mediator, mediated1, mediated2, sabotage, allow_romantic)
-    `,
-      { locals: locals },
+  public mediate(
+    mediator: string,
+    mediated1: string,
+    mediated2: string,
+    sabotage = false,
+    allowRomantic = false,
+  ): string {
+    return this._clangenApi.mediate(
+      mediator,
+      mediated1,
+      mediated2,
+      sabotage,
+      allowRomantic,
     );
-    locals.destroy();
-
-    return outcome;
-  }
-
-  public getClanAge(): Number {
-    const age = this._pyodide.runPython(`
-      game.clan.age
-    `);
-    return age;
   }
 
   public exportClan(): Int8Array {
-    const binaryFile = this._pyodide.runPython(`
-      export_clan()
-    `);
-    return binaryFile;
+    return this._clangenApi.export_clan();
   }
 
   public importClan(saveFile: Int8Array) {
-    this._pyodide.runPython(`
-    erase_clan()
-    `);
+    this._clangenApi.erase_clan();
     this._pyodide.unpackArchive(saveFile, "zip", {
       extractDir: "/mnt/saves",
     });
@@ -406,32 +269,19 @@ class Clangen implements ClangenInterface {
   }
 
   public getClanInfo(): ClanInfo {
-    return this._pyodide.runPython(`
-    get_clan_info()
-    `);
+    return this._clangenApi.get_clan_info();
   }
 
   public refreshCats() {
-    this._pyodide.runPython(`
-    refresh_cats()
-    `);
+    this._clangenApi.refresh_cats();
   }
 
   public getSettings(): Record<string, boolean> {
-    return this._pyodide.runPython(`
-      get_settings()
-    `);  
+    return this._clangenApi.get_settings();
   }
 
   public setSettings(settings: Record<string, boolean>) {
-    const locals = this._pyodide.toPy({ settings: settings });
-    this._pyodide.runPython(
-      `
-      set_settings(settings)
-      `,
-      { locals: locals },
-    );
-    locals.destroy();
+    this._clangenApi.set_settings(settings);
   }
 }
 
