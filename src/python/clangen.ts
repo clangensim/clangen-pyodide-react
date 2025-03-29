@@ -1,4 +1,5 @@
 import { PyodideInterface } from "pyodide";
+import localforage from "localforage";
 
 import type {
   CatEdit,
@@ -91,7 +92,8 @@ class Clangen implements ClangenInterface {
     this._pyodide.FS.mkdirTree(mountDir);
     this._pyodide.FS.mount(this._pyodide.FS.filesystems.IDBFS, {}, mountDir);
 
-    if (localStorage.getItem("resourcesLoaded") !== VERSION) {
+    const storedVersion = await localforage.getItem("resourcesLoaded");
+    if (storedVersion !== VERSION) {
       console.log("Loading resources...");
       // load resources
       let zipResources = await fetch("/res.zip");
@@ -108,7 +110,7 @@ class Clangen implements ClangenInterface {
       });
 
       await this._syncFS(false);
-      localStorage.setItem("resourcesLoaded", VERSION);
+      await localforage.setItem("resourcesLoaded", VERSION);
     } else {
       console.log("Loading existing resources...");
       await this._syncFS(true);
