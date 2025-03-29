@@ -1,4 +1,4 @@
-import { PyodideInterface } from "pyodide";
+import { loadPyodide, PyodideInterface } from "pyodide";
 import localforage from "localforage";
 
 import type {
@@ -71,22 +71,20 @@ interface ClangenInterface {
 }
 
 class Clangen implements ClangenInterface {
-  private _pyodide;
+  private _pyodide?: PyodideInterface;
   private _clangenApi: any;
-
-  constructor(pyodide: PyodideInterface) {
-    this._pyodide = pyodide;
-  }
 
   private async _syncFS(populate: boolean) {
     return new Promise((resolve) => {
-      this._pyodide.FS.syncfs(populate, (err: Error) => {
+      this._pyodide!.FS.syncfs(populate, (err: Error) => {
         resolve(err);
       });
     });
   }
 
   public async loadClangen(): Promise<void> {
+    this._pyodide = await loadPyodide();
+
     const VERSION = "0.11.2";
     let mountDir = "/mnt";
     this._pyodide.FS.mkdirTree(mountDir);
@@ -264,7 +262,7 @@ class Clangen implements ClangenInterface {
 
   public importClan(saveFile: Int8Array) {
     this._clangenApi.erase_clan();
-    this._pyodide.unpackArchive(saveFile, "zip", {
+    this._pyodide!.unpackArchive(saveFile, "zip", {
       extractDir: "/mnt/saves",
     });
     this._syncFS(false).then(() => location.reload());

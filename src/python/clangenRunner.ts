@@ -1,9 +1,6 @@
-import { loadPyodide } from "pyodide";
-
 import Clangen from "./clangen";
 
-const pyodide = await loadPyodide();
-const clangenRunner = new Clangen(pyodide);
+const clangenRunner = new Clangen();
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
