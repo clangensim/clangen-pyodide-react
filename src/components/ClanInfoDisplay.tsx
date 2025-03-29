@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 function ClanInfoDisplay() {
   const query = useQuery({
     queryKey: ["claninfo"],
-    queryFn: clangenRunner.getClanInfo.bind(clangenRunner),
+    queryFn: async () => await clangenRunner.getClanInfo(),
   });
 
   const clanInfo = query.data;

@@ -7,8 +7,8 @@ import ClanInfoDisplay from "../components/ClanInfoDisplay";
 import BasePage from "../layout/BasePage";
 
 function HomePage() {
-  function handleExportClan() {
-    const f: Int8Array = clangenRunner.exportClan();
+  async function handleExportClan() {
+    const f: Int8Array = await clangenRunner.exportClan();
     download(new Blob([f]));
   }
 

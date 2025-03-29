@@ -19,11 +19,11 @@ function EventsPage() {
   const queryClient = useQueryClient();
   const clanAgeQuery = useQuery({
     queryKey: ["claninfo"],
-    queryFn: clangenRunner.getClanInfo.bind(clangenRunner),
+    queryFn: async () => clangenRunner.getClanInfo(),
   });
   const eventsQuery = useQuery({
     queryKey: ["events"],
-    queryFn: clangenRunner.getEvents.bind(clangenRunner),
+    queryFn: async () => clangenRunner.getEvents(),
   });
 
   const events = eventsQuery.data === undefined ? [] : eventsQuery.data;

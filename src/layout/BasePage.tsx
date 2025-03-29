@@ -15,12 +15,13 @@ function BasePage({
 }) {
   const query = useQuery({
     queryKey: ["claninfo"],
-    queryFn: clangenRunner.getClanInfo.bind(clangenRunner),
+    queryFn: async () => await clangenRunner.getClanInfo(),
   });
 
   const clanInfo = query.data;
 
   if (query.status === "error") {
+    console.error(query.error);
     return <>Error</>;
   }
 
