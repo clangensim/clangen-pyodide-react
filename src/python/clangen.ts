@@ -132,11 +132,20 @@ class Clangen implements ClangenInterface {
     }
   }
 
+  /**
+   * Saves the game.
+   */
   public async saveGame(): Promise<void> {
     this._clangenApi.save_game();
     await this._syncFS(false);
   }
 
+  /**
+   * Initializes starter cats used in Clan creation.
+   * 
+   * These get added to the cat list, so you should run `refreshCats()`
+   * at some point after calling this if you don't run `createClan()`.
+   */
   public initializeStarterCats(): Cat[] {
     return this._clangenApi.initialize_starting_cats();
   }
@@ -166,68 +175,118 @@ class Clangen implements ClangenInterface {
     await this.saveGame();
   }
 
+  /**
+   * Gets Cat from ID.
+   */
   public getCat(id: string): Cat {
     return this._clangenApi.get_cat(id);
   }
 
+  /**
+   * Edits cat with ID according to CatEdit object.
+   */
   public editCat(id: string, edit: CatEdit): boolean {
     this._clangenApi.edit_cat(id, edit);
     return true;
   }
 
+  /**
+   * Destroys accessory belonging to cat with specified ID.
+   */
   destroyAccessory(id: string): void {
     this._clangenApi.destroy_accessory(id);
   }
 
+  /**
+   * Exiles cat with specified ID.
+   */
   exileCat(id: string): void {
     this._clangenApi.exile_cat(id);
   }
 
+  /**
+   * Kills cat with specified ID.
+   */
   killCat(id: string, history: string, takeNineLives?: boolean): void {
     this._clangenApi.kill_cat(id, history, takeNineLives);
   }
 
+  /**
+   * Gets every cat in the save.
+   */
   public getCats(): Cat[] {
     return this._clangenApi.get_cats();
   }
 
+  /**
+   * Gets potential mates for cat of specified ID.
+   * 
+   * WARNING: This includes CURRENT MATES of the selected cat.
+   */
   public getPotentialMates(id: string): Cat[] {
     return this._clangenApi.get_potential_mates(id);
   }
 
+  /**
+   * Gets cats who can patrol this moon.
+   */
   public getPatrollableCats(): Cat[] {
     return this._clangenApi.get_patrollable_cats();
   }
 
+  /**
+   * Gets cats who can mediate this moon.
+   */
   public getPossibleMediators(): Cat[] {
     return this._clangenApi.get_possible_mediators();
   }
 
+  /**
+   * Gets cats who can be mediated this moon.
+   */
   public getPossibleMediated(): Cat[] {
     return this._clangenApi.get_possible_mediated();
   }
 
+  /**
+   * Gets possible mentors for a cat with specified apprentice role.
+   */
   public getPotentialMentors(apprenticeRole: string): Cat[] {
     return this._clangenApi.get_potential_mentors(apprenticeRole);
   }
 
+  /**
+   * Gets relationships for cat with specified ID.
+   */
   public getRelationships(id: string): Relationship[] {
     return this._clangenApi.get_relationships(id);
   }
 
+  /**
+   * Gets conditions for cat with specified ID.
+   */
   public getConditions(id: string): Condition[] {
     return this._clangenApi.get_conditions(id);
   }
 
+  /**
+   * Skips one moon. Also saves the game.
+   */
   public async moonskip(): Promise<void> {
     this._clangenApi.moonskip();
     await this.saveGame();
   }
 
+  /**
+   * Gets this moon's events.
+   */
   public getEvents(): Event[] {
     return this._clangenApi.get_events();
   }
 
+  /**
+   * Starts a patrol. There can only be one patrol at a time.
+   */
   public startPatrol(
     patrolMembers: string[],
     patrolType: PatrolType,
@@ -235,11 +294,19 @@ class Clangen implements ClangenInterface {
     return this._clangenApi.start_patrol(patrolMembers, patrolType);
   }
 
+  /**
+   * Finishes a patrol. There can only be one patrol at a time.
+   * 
+   * Returns [outcome text, results text].
+   */
   public finishPatrol(action: PatrolAction): [string, string] {
     // outcome text, results text
     return this._clangenApi.finish_patrol(action);
   }
 
+  /**
+   * Completes a mediation between specified cats by specified mediator.
+   */
   public mediate(
     mediator: string,
     mediated1: string,
@@ -256,10 +323,16 @@ class Clangen implements ClangenInterface {
     );
   }
 
+  /**
+   * Exports Clan to a binary array that can be imported by `importClan()`.
+   */
   public exportClan(): Int8Array {
     return this._clangenApi.export_clan();
   }
 
+  /**
+   * Imports binary array of a Clan exported by `exportClan()`.
+   */
   public importClan(saveFile: Int8Array) {
     this._clangenApi.erase_clan();
     this._pyodide!.unpackArchive(saveFile, "zip", {
@@ -268,18 +341,30 @@ class Clangen implements ClangenInterface {
     this._syncFS(false).then(() => location.reload());
   }
 
+  /**
+   * Gets info about Clan.
+   */
   public getClanInfo(): ClanInfo {
     return this._clangenApi.get_clan_info();
   }
 
+  /**
+   * Completes a mediation between specified cats by specified mediator.
+   */
   public refreshCats() {
     this._clangenApi.refresh_cats();
   }
 
+  /**
+   * Gets current game settings.
+   */
   public getSettings(): Record<string, boolean> {
     return this._clangenApi.get_settings();
   }
 
+  /**
+   * Sets new game settings.
+   */
   public setSettings(settings: Record<string, boolean>) {
     this._clangenApi.set_settings(settings);
   }
