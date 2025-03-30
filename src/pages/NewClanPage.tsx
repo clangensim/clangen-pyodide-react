@@ -14,7 +14,7 @@ function NewClanPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCats(clangenRunner.initializeStarterCats());
+    clangenRunner.initializeStarterCats().then((cats) => setCats(cats));
   }, []);
 
   useEffect(() => {

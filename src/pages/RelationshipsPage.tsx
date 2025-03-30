@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { Cat, Relationship } from "../python/types"
-import { clangenRunner } from "../python/clangenRunner";;
+import { Cat, Relationship } from "../python/types";
+import { clangenRunner } from "../python/clangenRunner";
 import RelationshipsDisplay from "../components/RelationshipDisplay";
 import BasePage from "../layout/BasePage";
 
@@ -38,17 +38,19 @@ function RelationshipsPage() {
   }
 
   useEffect(() => {
-    setRelationships(clangenRunner.getRelationships(catID));
-    const c = clangenRunner.getCat(catID);
-    if (c) {
-      document.title = `${c.name.display}'s Relationships | Clangen Simulator`;
-    }
-    setCat(c);
+    clangenRunner.getRelationships(catID).then((r) => setRelationships(r));
+
+    clangenRunner.getCat(catID).then((c) => {
+      if (c) {
+        document.title = `${c.name.display}'s Relationships | Clangen Simulator`;
+      }
+      setCat(c);
+    });
   }, [catID]);
 
   return (
     <BasePage crumbs={crumbs}>
-      <RelationshipsDisplay relationships={relationships}/>
+      <RelationshipsDisplay relationships={relationships} />
     </BasePage>
   );
 }

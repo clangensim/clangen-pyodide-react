@@ -15,62 +15,7 @@ import type {
 
 import clangenApiUrl from "./clangen_api.py?url";
 
-interface ClangenInterface {
-  /* Gets Cat from ID */
-  getCat(id: string): Cat;
-  /* Edits cat with ID according to CatEdit object */
-  editCat(id: string, edit: CatEdit): boolean;
-  /* Saves game */
-  saveGame(): void;
-  /* Skips a moon */
-  moonskip(): void;
-  /* Initializes starter cats used in Clan creation.
-     These get added to the cat list, so you should run refreshCats()
-     at some point after calling this if you don't run createClan().
-  */
-  initializeStarterCats(): Cat[];
-  /* Creates a new Clan as specified. */
-  createClan(
-    clanName: string,
-    leader: string,
-    deputy: string,
-    medCat: string,
-    biome: string,
-    camp: string,
-    gameMode: string,
-    members: string[],
-    season: string,
-  ): void;
-  /* Starts a patrol. There can only be one patrol at a time. */
-  startPatrol(patrolMembers: string[], patrolType: PatrolType): PatrolIntro;
-  /* Finishes a patrol started by startPatrol() and returns 
-     [outcome text, result text]. 
-     Result text represents what happened in concrete terms.
-     Outcome text is the writing to go with the intro text. */
-  finishPatrol(action: PatrolAction): [string, string];
-  /* Gets events for this moon */
-  getEvents(): Event[];
-  /* Gets cats from all_cat_list */
-  getCats(): Cat[];
-  /* Gets cats that can patrol */
-  getPatrollableCats(): Cat[];
-  /* Gets condiions of cat with given ID */
-  getConditions(id: string): Condition[];
-  /* Gets relationships of cat with given ID */
-  getRelationships(id: string): Relationship[];
-  /* Exports save to binary array */
-  exportClan(): Int8Array;
-  /* Imports save exported by exportClan() */
-  importClan(saveFile: Int8Array): void;
-  /* Removes cats that aren't in clan_cats.
-     Mainly, this is cats added in Clan creation. */
-  refreshCats(): void;
-  destroyAccessory(id: string): void;
-  killCat(id: string, history: string, takeNineLives?: boolean): void;
-  exileCat(id: string): void;
-}
-
-class Clangen implements ClangenInterface {
+class Clangen {
   private _pyodide?: PyodideInterface;
   private _clangenApi: any;
 
@@ -146,7 +91,7 @@ class Clangen implements ClangenInterface {
    * These get added to the cat list, so you should run `refreshCats()`
    * at some point after calling this if you don't run `createClan()`.
    */
-  public initializeStarterCats(): Cat[] {
+  public async initializeStarterCats(): Promise<Cat[]> {
     return this._clangenApi.initialize_starting_cats();
   }
 
@@ -178,14 +123,14 @@ class Clangen implements ClangenInterface {
   /**
    * Gets Cat from ID.
    */
-  public getCat(id: string): Cat {
+  public async getCat(id: string): Promise<Cat> {
     return this._clangenApi.get_cat(id);
   }
 
   /**
    * Edits cat with ID according to CatEdit object.
    */
-  public editCat(id: string, edit: CatEdit): boolean {
+  public async editCat(id: string, edit: CatEdit): Promise<boolean> {
     this._clangenApi.edit_cat(id, edit);
     return true;
   }
@@ -193,28 +138,28 @@ class Clangen implements ClangenInterface {
   /**
    * Destroys accessory belonging to cat with specified ID.
    */
-  destroyAccessory(id: string): void {
+  public async destroyAccessory(id: string): Promise<void> {
     this._clangenApi.destroy_accessory(id);
   }
 
   /**
    * Exiles cat with specified ID.
    */
-  exileCat(id: string): void {
+  public async exileCat(id: string): Promise<void> {
     this._clangenApi.exile_cat(id);
   }
 
   /**
    * Kills cat with specified ID.
    */
-  killCat(id: string, history: string, takeNineLives?: boolean): void {
+  public async killCat(id: string, history: string, takeNineLives?: boolean): Promise<void> {
     this._clangenApi.kill_cat(id, history, takeNineLives);
   }
 
   /**
    * Gets every cat in the save.
    */
-  public getCats(): Cat[] {
+  public async getCats(): Promise<Cat[]> {
     return this._clangenApi.get_cats();
   }
 
@@ -223,49 +168,49 @@ class Clangen implements ClangenInterface {
    * 
    * WARNING: This includes CURRENT MATES of the selected cat.
    */
-  public getPotentialMates(id: string): Cat[] {
+  public async getPotentialMates(id: string): Promise<Cat[]> {
     return this._clangenApi.get_potential_mates(id);
   }
 
   /**
    * Gets cats who can patrol this moon.
    */
-  public getPatrollableCats(): Cat[] {
+  public async getPatrollableCats(): Promise<Cat[]> {
     return this._clangenApi.get_patrollable_cats();
   }
 
   /**
    * Gets cats who can mediate this moon.
    */
-  public getPossibleMediators(): Cat[] {
+  public async getPossibleMediators(): Promise<Cat[]> {
     return this._clangenApi.get_possible_mediators();
   }
 
   /**
    * Gets cats who can be mediated this moon.
    */
-  public getPossibleMediated(): Cat[] {
+  public async getPossibleMediated(): Promise<Cat[]> {
     return this._clangenApi.get_possible_mediated();
   }
 
   /**
    * Gets possible mentors for a cat with specified apprentice role.
    */
-  public getPotentialMentors(apprenticeRole: string): Cat[] {
+  public async getPotentialMentors(apprenticeRole: string): Promise<Cat[]> {
     return this._clangenApi.get_potential_mentors(apprenticeRole);
   }
 
   /**
    * Gets relationships for cat with specified ID.
    */
-  public getRelationships(id: string): Relationship[] {
+  public async getRelationships(id: string): Promise<Relationship[]> {
     return this._clangenApi.get_relationships(id);
   }
 
   /**
    * Gets conditions for cat with specified ID.
    */
-  public getConditions(id: string): Condition[] {
+  public async getConditions(id: string): Promise<Condition[]> {
     return this._clangenApi.get_conditions(id);
   }
 
@@ -280,17 +225,17 @@ class Clangen implements ClangenInterface {
   /**
    * Gets this moon's events.
    */
-  public getEvents(): Event[] {
+  public async getEvents(): Promise<Event[]> {
     return this._clangenApi.get_events();
   }
 
   /**
    * Starts a patrol. There can only be one patrol at a time.
    */
-  public startPatrol(
+  public async startPatrol(
     patrolMembers: string[],
     patrolType: PatrolType,
-  ): PatrolIntro {
+  ): Promise<PatrolIntro> {
     return this._clangenApi.start_patrol(patrolMembers, patrolType);
   }
 
@@ -299,7 +244,7 @@ class Clangen implements ClangenInterface {
    * 
    * Returns [outcome text, results text].
    */
-  public finishPatrol(action: PatrolAction): [string, string] {
+  public async finishPatrol(action: PatrolAction): Promise<[string, string]> {
     // outcome text, results text
     return this._clangenApi.finish_patrol(action);
   }
@@ -307,13 +252,13 @@ class Clangen implements ClangenInterface {
   /**
    * Completes a mediation between specified cats by specified mediator.
    */
-  public mediate(
+  public async mediate(
     mediator: string,
     mediated1: string,
     mediated2: string,
     sabotage = false,
     allowRomantic = false,
-  ): string {
+  ): Promise<string> {
     return this._clangenApi.mediate(
       mediator,
       mediated1,
@@ -326,14 +271,14 @@ class Clangen implements ClangenInterface {
   /**
    * Exports Clan to a binary array that can be imported by `importClan()`.
    */
-  public exportClan(): Int8Array {
+  public async exportClan(): Promise<Int8Array> {
     return this._clangenApi.export_clan();
   }
 
   /**
    * Imports binary array of a Clan exported by `exportClan()`.
    */
-  public importClan(saveFile: Int8Array) {
+  public async importClan(saveFile: Int8Array) {
     this._clangenApi.erase_clan();
     this._pyodide!.unpackArchive(saveFile, "zip", {
       extractDir: "/mnt/saves",
@@ -344,28 +289,28 @@ class Clangen implements ClangenInterface {
   /**
    * Gets info about Clan.
    */
-  public getClanInfo(): ClanInfo {
+  public async getClanInfo(): Promise<ClanInfo> {
     return this._clangenApi.get_clan_info();
   }
 
   /**
    * Completes a mediation between specified cats by specified mediator.
    */
-  public refreshCats() {
+  public async refreshCats() {
     this._clangenApi.refresh_cats();
   }
 
   /**
    * Gets current game settings.
    */
-  public getSettings(): Record<string, boolean> {
+  public async getSettings(): Promise<Record<string, boolean>> {
     return this._clangenApi.get_settings();
   }
 
   /**
    * Sets new game settings.
    */
-  public setSettings(settings: Record<string, boolean>) {
+  public async setSettings(settings: Record<string, boolean>) {
     this._clangenApi.set_settings(settings);
   }
 }

@@ -6,6 +6,7 @@ import Checkbox from "../components/generic/Checkbox";
 import BasePage from "../layout/BasePage";
 
 import "../styles/cats-page.css";
+import { Cat } from "../python/types";
 
 const crumbs = [
   {
@@ -22,9 +23,11 @@ function CatsPage() {
   const [showLiving, setShowLiving] = useState(true);
   const [showDead, setShowDead] = useState(false);
   const [showOutside, setShowOutside] = useState(false);
+  const [cats, setCats] = useState<Cat[]>([]);
 
   useEffect(() => {
     document.title = "Cats | Clangen Simulator";
+    clangenRunner.getCats().then((c) => setCats(c));
   }, []);
 
   return (
@@ -45,7 +48,7 @@ function CatsPage() {
         onChange={() => setShowOutside(!showOutside)}
       />
       <div className="cats-list">
-        {clangenRunner.getCats().map((cat, index) => {
+        {cats.map((cat, index) => {
           if (cat.dead && !showDead) {
             return;
           }
@@ -58,11 +61,7 @@ function CatsPage() {
           return (
             <Link to={`/cats/${cat.ID}`}>
               <div className="cat" key={index}>
-                <CatDisplay
-                  cat={cat}
-                  w="75px"
-                  h="75px"
-                />
+                <CatDisplay cat={cat} w="75px" h="75px" />
                 <div>{cat.name.display}</div>
               </div>
             </Link>

@@ -21,15 +21,15 @@ function CatProfilePage() {
   const catID = params.id as string;
 
   useEffect(() => {
-    const c = clangenRunner.getCat(catID);
-    setCat(c);
+    clangenRunner.getCat(catID).then((c) => {
+      setCat(c);
+      if (c) {
+        document.title = `${c.name.display} | Clangen Simulator`;
+      }
+    });
 
-    if (c) {
-      document.title = `${c.name.display} | Clangen Simulator`;
-    }
-
-    setRelationships(clangenRunner.getRelationships(catID));
-    setConditions(clangenRunner.getConditions(catID));
+    clangenRunner.getRelationships(catID).then((r) => setRelationships(r));
+    clangenRunner.getConditions(catID).then((c) => setConditions(c));
   }, [catID]);
 
   var crumbs = undefined;
@@ -66,12 +66,7 @@ function CatProfilePage() {
             <div>{cat.thought}</div>
           </div>
           <div className="flex">
-            <CatDisplay
-              key={cat.ID}
-              cat={cat}
-              w="100px"
-              h="100px"
-            />
+            <CatDisplay key={cat.ID} cat={cat} w="100px" h="100px" />
             <CatProfile cat={cat} />
           </div>
 
@@ -85,9 +80,9 @@ function CatProfilePage() {
             <details>
               <summary>
                 Conditions
-                {conditions && conditions.length > 0 && 
+                {conditions && conditions.length > 0 && (
                   <TbExclamationCircleFilled />
-                }
+                )}
               </summary>
               <ConditionsDisplay conditions={conditions} />
             </details>

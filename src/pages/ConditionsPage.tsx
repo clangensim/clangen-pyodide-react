@@ -13,11 +13,11 @@ function ConditionsPage() {
   const catID = params.id as string;
 
   useEffect(() => {
-    const c = clangenRunner.getConditions(catID);
-    setConditions(c);
-    const c2 = clangenRunner.getCat(catID);
-    document.title = `${c2.name.display}'s Conditions | Clangen Simulator`;
-    setCat(c2);
+    clangenRunner.getConditions(catID).then((c) => setConditions(c));
+    clangenRunner.getCat(catID).then((c) => {
+      document.title = `${c.name.display}'s Conditions | Clangen Simulator`;
+      setCat(c);
+    });
   }, []);
 
   var crumbs = undefined;

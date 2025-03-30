@@ -48,16 +48,17 @@ function SettingsPage() {
   }, []);
 
   useEffect(() => {
-    const s = clangenRunner.getSettings();
-    const temp: Record<string, boolean> = {};
+    clangenRunner.getSettings().then((s) => {
+      const temp: Record<string, boolean> = {};
 
-    // only add settings with corresponding labels
-    for (const [key, value] of Object.entries(s)) {
-      if (settingLabels[key] !== undefined) {
-        temp[key] = value;
+      // only add settings with corresponding labels
+      for (const [key, value] of Object.entries(s)) {
+        if (settingLabels[key] !== undefined) {
+          temp[key] = value;
+        }
       }
-    }
-    setSettings(temp);
+      setSettings(temp);
+    });
   }, []);
 
   function handleSave() {

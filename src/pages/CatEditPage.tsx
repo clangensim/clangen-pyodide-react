@@ -156,7 +156,9 @@ function CatEditPage() {
 
   function handleChangeRole(value: string) {
     if (isApprentice && value !== status) {
-      setPotentialMentors(clangenRunner.getPotentialMentors(value));
+      clangenRunner
+        .getPotentialMentors(value)
+        .then((mentors) => setPotentialMentors(mentors));
       setMentor("");
     }
     setStatus(value);
@@ -167,25 +169,30 @@ function CatEditPage() {
   }
 
   useEffect(() => {
-    const c = clangenRunner.getCat(catID);
-    if (c) {
-      document.title = `Editing ${c.name.display} | Clangen Simulator`;
-    }
-    setCat(c);
-    if (c.mentor) {
-      setMentor(c.mentor.ID);
-    }
-    setPrefix(c.name.prefix);
-    setSuffix(c.name.suffix);
-    setStatus(c.status);
-    setMates(c.mates.map((mate) => mate.ID));
+    clangenRunner.getCat(catID).then((c) => {
+      if (c) {
+        document.title = `Editing ${c.name.display} | Clangen Simulator`;
+      }
+      setCat(c);
+      if (c.mentor) {
+        setMentor(c.mentor.ID);
+      }
+      setPrefix(c.name.prefix);
+      setSuffix(c.name.suffix);
+      setStatus(c.status);
+      setMates(c.mates.map((mate) => mate.ID));
 
-    setPotentialMentors(clangenRunner.getPotentialMentors(c.status));
-    setPotentialMates(clangenRunner.getPotentialMates(catID));
+      clangenRunner
+        .getPotentialMentors(c.status)
+        .then((mentors) => setPotentialMentors(mentors));
+      for (const mate of c.mates) {
+        potentialMateMap.current[mate.ID] = mate;
+      }
+    });
 
-    for (const mate of c.mates) {
-      potentialMateMap.current[mate.ID] = mate;
-    }
+    clangenRunner.getPotentialMates(catID).then((mates) => {
+      setPotentialMates(mates);
+    });
   }, []);
 
   return (

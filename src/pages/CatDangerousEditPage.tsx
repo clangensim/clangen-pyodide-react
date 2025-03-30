@@ -20,26 +20,29 @@ function CatDangerousEditPage() {
   const [deathHistory, setDeathHistory] = useState("");
 
   useEffect(() => {
-    const c = clangenRunner.getCat(catID);
-    if (c) {
-      document.title = `Editing ${c.name.display} | Clangen Simulator`;
-    }
-    setCat(c);
+    clangenRunner.getCat(catID).then((c) => {
+      if (c) {
+        document.title = `Editing ${c.name.display} | Clangen Simulator`;
+      }
+      setCat(c);
+    });
   }, [catID]);
 
   function handleDeath() {
-    clangenRunner.killCat(catID, deathHistory, takeNineLives);
+    clangenRunner
+      .killCat(catID, deathHistory, takeNineLives)
+      .then(() => navigate(`/cats/${catID}`));
     navigate(`/cats/${catID}`);
   }
 
   function handleExile() {
-    clangenRunner.exileCat(catID);
-    navigate(`/cats/${catID}`);
+    clangenRunner.exileCat(catID).then(() => navigate(`/cats/${catID}`));
   }
 
   function handleDestroyAccessory() {
-    clangenRunner.destroyAccessory(catID);
-    navigate(`/cats/${catID}`);
+    clangenRunner
+      .destroyAccessory(catID)
+      .then(() => navigate(`/cats/${catID}`));
   }
 
   var crumbs = undefined;

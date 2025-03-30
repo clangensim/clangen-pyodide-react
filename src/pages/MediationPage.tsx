@@ -62,8 +62,8 @@ function MediationPage() {
     setMediationText("");
     setScreenState("start");
 
-    setPossibleMediators(clangenRunner.getPossibleMediators());
-    setPossibleCats(clangenRunner.getPossibleMediated());
+    clangenRunner.getPossibleMediators().then((m) => setPossibleMediators(m));
+    clangenRunner.getPossibleMediated().then((m) => setPossibleCats(m));
   }
 
   useEffect(() => {
@@ -82,24 +82,29 @@ function MediationPage() {
     } else {
       doSabotage = false;
     }
-    const m = clangenRunner.mediate(
-      selectedCat1,
-      selectedCat2,
-      selectedCat3,
-      doSabotage,
-      allowRomantic,
-    );
-    setMediationText(m);
+    clangenRunner
+      .mediate(
+        selectedCat1,
+        selectedCat2,
+        selectedCat3,
+        doSabotage,
+        allowRomantic,
+      )
+      .then((m) => setMediationText(m));
   }
 
   if (possibleMediators.length <= 0) {
     return (
       <BasePage crumbs={crumbs}>
-        <img style={{imageRendering: "pixelated"}} src={confusedCat}></img>
+        <img style={{ imageRendering: "pixelated" }} src={confusedCat}></img>
 
-        <p>No cats in the Clan can currently mediate. Cats with the “mediator” or "mediator apprentice" role without major injuries or illnesses can mediate once every moon.</p>
+        <p>
+          No cats in the Clan can currently mediate. Cats with the “mediator” or
+          "mediator apprentice" role without major injuries or illnesses can
+          mediate once every moon.
+        </p>
       </BasePage>
-    )
+    );
   }
 
   return (

@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Cat,
-  PatrolAction,
-  PatrolType,
-  ClanInfo,
-} from "../python/types";
+import { Cat, PatrolAction, PatrolType, ClanInfo } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
 import Select from "../components/generic/Select";
 import { SelectOption } from "../components/generic/Select";
@@ -63,7 +58,7 @@ function PatrolsPage() {
 
   const disabled = screenState !== "start";
 
-  function reset() {
+  async function reset() {
     setSelectedCat1("");
     setSelectedCat2("");
     setSelectedCat3("");
@@ -74,8 +69,8 @@ function PatrolsPage() {
     setPatrolText("");
     setScreenState("start");
 
-    const cats = clangenRunner.getPatrollableCats();
-    const info = clangenRunner.getClanInfo();
+    const cats = await clangenRunner.getPatrollableCats();
+    const info = await clangenRunner.getClanInfo();
 
     setPossibleCats(cats);
     setClanInfo(info);
@@ -89,16 +84,17 @@ function PatrolsPage() {
     document.title = "Patrols | Clangen Simulator";
   }, []);
 
-  function startPatrol() {
+  async function startPatrol() {
     setScreenState("in-progress");
-    const p = clangenRunner.startPatrol(selectedCats, patrolType);
+    const p = await clangenRunner.startPatrol(selectedCats, patrolType);
     setPatrolText(p.text);
     setCanAntagonize(p.canAntagonize);
     setResultText("");
   }
 
-  function endPatrol(action: PatrolAction) {
-    const [outcomeText, outcomeResult] = clangenRunner.finishPatrol(action);
+  async function endPatrol(action: PatrolAction) {
+    const [outcomeText, outcomeResult] =
+      await clangenRunner.finishPatrol(action);
     setPatrolText(outcomeText);
     setResultText(outcomeResult);
     setScreenState("wrap-up");
@@ -107,11 +103,14 @@ function PatrolsPage() {
   if (possibleCats.length <= 0) {
     return (
       <BasePage crumbs={crumbs}>
-        <img style={{imageRendering: "pixelated"}} src={confusedCat}></img>
+        <img style={{ imageRendering: "pixelated" }} src={confusedCat}></img>
 
-        <p>No cats in the Clan can currently patrol. Cats without major injuries or illnesses can patrol once every moon.</p>
+        <p>
+          No cats in the Clan can currently patrol. Cats without major injuries
+          or illnesses can patrol once every moon.
+        </p>
       </BasePage>
-    )
+    );
   }
 
   return (
