@@ -63,8 +63,7 @@ function EventsPage() {
 
   function handleMoonskip() {
     clangenRunner.moonskip().then(() => {
-      queryClient.invalidateQueries({queryKey: ["events"]});
-      queryClient.invalidateQueries({queryKey: ["claninfo"]});
+      queryClient.invalidateQueries();
     });
   }
 
