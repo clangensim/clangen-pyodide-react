@@ -1,0 +1,3 @@
+[submodule "vendors/clangen-lite"]
+	path = vendors/clangen-lite
+	url = https://github.com/clangensim/clangen-lite.git
