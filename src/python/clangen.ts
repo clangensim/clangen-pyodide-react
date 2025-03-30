@@ -33,16 +33,16 @@ class Clangen {
   }
 
   public async loadClangen(): Promise<void> {
+    if (this._loaded === true) {
+      return;
+    }
+
     this._pyodide = await loadPyodide();
 
     const VERSION = "0.11.2";
     let mountDir = "/mnt";
     this._pyodide.FS.mkdirTree(mountDir);
     this._pyodide.FS.mount(this._pyodide.FS.filesystems.IDBFS, {}, mountDir);
-
-    if (this._loaded === true) {
-      return;
-    }
 
     const storedVersion = await localforage.getItem("resourcesLoaded");
     if (storedVersion !== VERSION) {
