@@ -125,6 +125,7 @@ function NewClanPage() {
             {cats.map((cat) => (
               <div
                 className="raised"
+                key={cat.ID}
                 style={{
                   display: "flex",
                   minWidth: 0,
