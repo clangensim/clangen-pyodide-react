@@ -18,6 +18,11 @@ import clangenApiUrl from "./clangen_api.py?url";
 class Clangen {
   private _pyodide?: PyodideInterface;
   private _clangenApi: any;
+  private _loaded;
+
+  constructor() {
+    this._loaded = false;
+  }
 
   private async _syncFS(populate: boolean) {
     return new Promise((resolve) => {
@@ -34,6 +39,10 @@ class Clangen {
     let mountDir = "/mnt";
     this._pyodide.FS.mkdirTree(mountDir);
     this._pyodide.FS.mount(this._pyodide.FS.filesystems.IDBFS, {}, mountDir);
+
+    if (this._loaded === true) {
+      return;
+    }
 
     const storedVersion = await localforage.getItem("resourcesLoaded");
     if (storedVersion !== VERSION) {
@@ -72,6 +81,7 @@ class Clangen {
     // load clan
     try {
       this._clangenApi.load_clan();
+      this._loaded = true;
     } catch (err) {
       console.error(err);
     }
