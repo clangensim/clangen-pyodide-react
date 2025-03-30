@@ -256,7 +256,9 @@ class Clangen {
    */
   public async finishPatrol(action: PatrolAction): Promise<[string, string]> {
     // outcome text, results text
-    return this._clangenApi.finish_patrol(action);
+    const p = this._clangenApi.finish_patrol(action);
+    // for some reason it doesn't work with comlink unless you do this
+    return [p[0], p[1]];
   }
 
   /**
