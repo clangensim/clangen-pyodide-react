@@ -40,5 +40,8 @@ export default defineConfig({
     supported: {
       'top-level-await': true
     }
+  },
+  worker: {
+    format: "es",
   }
 })

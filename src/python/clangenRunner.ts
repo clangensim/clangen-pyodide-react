@@ -1,6 +1,19 @@
 import Clangen from "./clangen";
 
-const clangenRunner = new Clangen();
+import * as Comlink from "Comlink";
+
+var worker;
+if ("SharedWorker" in window) {
+  worker = new SharedWorker(new URL('./ClangenWorker.ts', import.meta.url), {
+    type: 'module',
+  }).port;
+} else {
+  worker = new Worker(new URL('./ClangenWorker.ts', import.meta.url), {
+    type: 'module',
+  });
+}
+
+const clangenRunner = Comlink.wrap<Clangen>(worker);
 await clangenRunner.loadClangen();
 
 export { clangenRunner };
