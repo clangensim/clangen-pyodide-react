@@ -101,6 +101,8 @@ function CreditsPage() {
         <li>whitepatches.png</li>
         <li>mackerelcolours.png</li>
         <li>gen_med_newmed.png</li>
+        <li>greenleaf_camp1_light.png</li>
+        <li>pln_UFO.png (edited to remove the UFO)</li>
       </ul>
     </BasePage>
   );
