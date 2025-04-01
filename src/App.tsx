@@ -13,6 +13,7 @@ import ConditionsPage from "./pages/ConditionsPage";
 import SettingsPage from "./pages/SettingsPage";
 import CreditsPage from "./pages/CreditsPage";
 import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
+import NextMoonPage from "./pages/NextMoonPage";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/new-clan" element={<NewClanPage />} />
+            <Route path="/moonskip" element={<NextMoonPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/patrols" element={<PatrolsPage />} />
             <Route path="/mediate" element={<MediationPage />} />
