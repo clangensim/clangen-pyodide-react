@@ -86,10 +86,15 @@ function PatrolsPage() {
 
   async function startPatrol() {
     setScreenState("in-progress");
-    const p = await clangenRunner.startPatrol(selectedCats, patrolType);
-    setPatrolText(p.text);
-    setCanAntagonize(p.canAntagonize);
-    setResultText("");
+    try {
+      const p = await clangenRunner.startPatrol(selectedCats, patrolType);
+      setPatrolText(p.text);
+      setCanAntagonize(p.canAntagonize);
+      setResultText("");  
+    } catch {
+      alert("Invalid patrol");
+      reset();
+    }
   }
 
   async function endPatrol(action: PatrolAction) {

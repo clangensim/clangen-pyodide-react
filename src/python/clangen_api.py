@@ -377,6 +377,8 @@ def get_events():
 def start_patrol(patrol_members, patrol_type):
   patrol_members_obj = list(map(lambda cat_id : Cat.all_cats[cat_id], patrol_members))
   for cat in patrol_members_obj:
+    if not _is_patrollable(cat):
+      raise Exception(f"{cat} can't patrol!")
     if cat.status == "medicine cat" or cat.status == "medicine cat apprentice":
       patrol_type = "med"
   global current_patrol
