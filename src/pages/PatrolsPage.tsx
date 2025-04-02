@@ -36,6 +36,8 @@ function PatrolsPage() {
   const [selectedCat5, setSelectedCat5] = useState("");
   const [selectedCat6, setSelectedCat6] = useState("");
 
+  const [patrolUuid, setPatrolUuid] = useState("");
+
   const [clanInfo, setClanInfo] = useState<ClanInfo>();
 
   // non-empty cats only
@@ -91,6 +93,7 @@ function PatrolsPage() {
       const p = await clangenRunner.startPatrol(selectedCats, patrolType);
       setPatrolText(p.text);
       setCanAntagonize(p.canAntagonize);
+      setPatrolUuid(p.uuid);
       setResultText("");  
     } catch {
       alert("Invalid patrol");
@@ -100,7 +103,7 @@ function PatrolsPage() {
 
   async function endPatrol(action: PatrolAction) {
     const [outcomeText, outcomeResult] =
-      await clangenRunner.finishPatrol(action);
+      await clangenRunner.finishPatrol(patrolUuid, action);
     setPatrolText(outcomeText);
     setResultText(outcomeResult);
     setScreenState("wrap-up");

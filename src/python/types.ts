@@ -110,6 +110,7 @@ type PatrolAction = "proceed" | "antag" | "decline";
 type PatrolIntro = {
   text: string;
   canAntagonize: boolean;
+  uuid: string;
 }
 
 export type {

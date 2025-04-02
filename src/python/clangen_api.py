@@ -5,6 +5,7 @@ os.chdir("/mnt")
 
 from pyodide.ffi import to_js
 import js
+import uuid
 
 from scripts.game_structure.load_cat import load_cats, version_convert
 from scripts.game_structure.game_essentials import game
@@ -18,7 +19,7 @@ from scripts.utility import quit as clangen_quit
 
 import shutil
 
-current_patrol = None
+current_patrols = {}
 
 def load_clan():
   clan_list = game.read_clans()
@@ -370,6 +371,7 @@ def get_conditions(cat_id):
 
 def moonskip():
   events_class.one_moon()
+  current_patrols.clear()
 
 def get_events():
   return to_js([vars(event) for event in game.cur_events_list], dict_converter=js.Object.fromEntries)
@@ -381,19 +383,19 @@ def start_patrol(patrol_members, patrol_type):
       raise Exception(f"{cat} can't patrol!")
     if cat.status == "medicine cat" or cat.status == "medicine cat apprentice":
       patrol_type = "med"
-  global current_patrol
-  current_patrol = Patrol()
+
+  id = str(uuid.uuid4())
+  current_patrols[id] = Patrol()
 
   p = {
-    "text": current_patrol.setup_patrol(patrol_members_obj, patrol_type),
-    "canAntagonize": len(current_patrol.patrol_event.antag_success_outcomes) > 0
+    "text": current_patrols[id].setup_patrol(patrol_members_obj, patrol_type),
+    "canAntagonize": len(current_patrols[id].patrol_event.antag_success_outcomes) > 0,
+    "uuid": id
   }
   return to_js(p, dict_converter=js.Object.fromEntries)
 
-def finish_patrol(action):
-  global current_patrol
-  outcome = current_patrol.proceed_patrol(action)
-  current_patrol = None
+def finish_patrol(id, action):
+  outcome = current_patrols.pop(id).proceed_patrol(action)
   return outcome
 
 def mediate(mediator, mediated1, mediated2, sabotage, allow_romantic):
