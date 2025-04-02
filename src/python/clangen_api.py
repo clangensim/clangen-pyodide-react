@@ -264,13 +264,15 @@ def get_potential_mates(cat_id):
 
   return to_js(valid_mates, dict_converter=js.Object.fromEntries)
 
+def _is_patrollable(the_cat):
+  return not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status not in [
+          'newborn', 'elder', 'kitten', 'mediator', 'mediator apprentice'
+      ] and not the_cat.outside and not the_cat.not_working()
+
 def get_patrollable_cats():
   cats = []
   for the_cat in Cat.all_cats_list:
-    if not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status not in [
-            'newborn', 'elder', 'kitten', 'mediator', 'mediator apprentice'
-        ] and not the_cat.outside and not the_cat.not_working():
-      
+    if _is_patrollable(the_cat):
       cats.append(cat_to_dict(the_cat))
   return to_js(cats, dict_converter=js.Object.fromEntries)
 
