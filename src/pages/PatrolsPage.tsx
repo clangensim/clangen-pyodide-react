@@ -7,6 +7,7 @@ import BasePage from "../layout/BasePage";
 
 import confusedCat from "../assets/images/gen_med_newmed.png";
 
+type ScreenState = "start" | "in-progress" | "wrap-up"
 const crumbs = [
   {
     url: "/",
@@ -54,7 +55,7 @@ function PatrolsPage() {
     };
   });
 
-  const [screenState, setScreenState] = useState("start");
+  const [screenState, setScreenState] = useState<ScreenState>("start");
 
   const disabled = screenState !== "start";
 
