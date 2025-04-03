@@ -5,8 +5,10 @@ import { download } from "../utils";
 import { useEffect } from "react";
 import ClanInfoDisplay from "../components/ClanInfoDisplay";
 import BasePage from "../layout/BasePage";
+import { useQueryClient } from "@tanstack/react-query";
 
 function HomePage() {
+  const queryClient = useQueryClient();
   async function handleExportClan() {
     const f: Int8Array = await clangenRunner.exportClan();
     download(new Blob([f]));
@@ -14,9 +16,12 @@ function HomePage() {
 
   function handleImportClan(e: any) {
     const f = e.target.files[0];
-    f.arrayBuffer().then((buff: Int8Array) => {
-      clangenRunner.importClan(buff);
-    });
+    f.arrayBuffer()
+      .then((buff: Int8Array) => {
+        clangenRunner.importClan(buff);
+      })
+      .then(() => clangenRunner.reloadClan())
+      .then(() => queryClient.invalidateQueries());
   }
 
   useEffect(() => {

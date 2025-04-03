@@ -87,6 +87,10 @@ class Clangen {
     }
   }
 
+  public async reloadClan() {
+    this._clangenApi.reload_clan();
+  }
+
   /**
    * Saves the game.
    */
@@ -295,7 +299,7 @@ class Clangen {
     this._pyodide!.unpackArchive(saveFile, "zip", {
       extractDir: "/mnt/saves",
     });
-    this._syncFS(false).then(() => location.reload());
+    this._syncFS(false);
   }
 
   /**

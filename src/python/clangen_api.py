@@ -37,6 +37,19 @@ def load_clan():
                   'error_message'] = 'There was an error loading the cats file!'
               game.switches['traceback'] = e
 
+def reload_clan():
+  game.mediated.clear()
+  game.patrolled.clear()
+  game.cat_to_fade.clear()
+  Cat.outside_cats.clear()
+  Cat.all_cats_list.clear()
+  Cat.ordered_cat_list.clear()
+  Cat.all_cats.clear()
+  Patrol.used_patrols.clear()
+  load_clan()
+  Cat.sort_cats()
+  refresh_cats()
+
 def erase_clan():
   shutil.rmtree("/mnt/saves")
 
