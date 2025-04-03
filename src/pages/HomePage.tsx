@@ -38,7 +38,7 @@ function HomePage() {
         features may be missing.
       </p>
 
-      {("SharedWorker" in window) && 
+      {!("SharedWorker" in window) && 
         <p>
           <b>Your browser does not support opening this site in multiple tabs.</b> If you try, data may be lost.
         </p>
