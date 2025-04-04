@@ -19,6 +19,9 @@ from scripts.utility import quit as clangen_quit
 
 import shutil
 
+class CatCantWork(Exception):
+  """Error thrown when a cat who can't work is made to work"""
+
 current_patrols = {}
 
 def load_clan():
@@ -396,7 +399,7 @@ def start_patrol(patrol_members, patrol_type):
   patrol_members_obj = list(map(lambda cat_id : Cat.all_cats[cat_id], patrol_members))
   for cat in patrol_members_obj:
     if not _is_patrollable(cat):
-      raise Exception(f"{cat} can't patrol!")
+      raise CatCantWork
     if cat.status == "medicine cat" or cat.status == "medicine cat apprentice":
       patrol_type = "med"
 

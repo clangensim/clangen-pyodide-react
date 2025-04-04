@@ -95,8 +95,8 @@ function PatrolsPage() {
       setCanAntagonize(p.canAntagonize);
       setPatrolUuid(p.uuid);
       setResultText("");  
-    } catch {
-      alert("Invalid patrol");
+    } catch (exception) {
+      alert(exception);
       reset();
     }
   }

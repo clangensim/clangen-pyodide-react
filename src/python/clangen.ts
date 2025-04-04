@@ -250,7 +250,18 @@ class Clangen {
     patrolMembers: string[],
     patrolType: PatrolType,
   ): Promise<PatrolIntro> {
-    return this._clangenApi.start_patrol(patrolMembers, patrolType);
+    try {
+      return this._clangenApi.start_patrol(patrolMembers, patrolType);
+    } catch (exception: any) {
+      // have to throw again because the pyodide errors don't work with comlink
+      if (exception.type === "CatCantWork") {
+        throw Error("A selected cat can't patrol this moon!");
+      } else if (exception.type === "KeyError") {
+        throw Error("A selected cat doesn't seem to exist!")
+      }
+      console.error(exception);
+      throw Error("Unknown");
+    }
   }
 
   /**
