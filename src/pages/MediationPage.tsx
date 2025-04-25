@@ -90,7 +90,11 @@ function MediationPage() {
         doSabotage,
         allowRomantic,
       )
-      .then((m) => setMediationText(m));
+      .then((m) => setMediationText(m))
+      .catch((exception) => {
+        alert(exception);
+        reset();
+      });
   }
 
   if (possibleMediators.length <= 0) {
