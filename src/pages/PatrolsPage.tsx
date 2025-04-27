@@ -102,11 +102,16 @@ function PatrolsPage() {
   }
 
   async function endPatrol(action: PatrolAction) {
-    const [outcomeText, outcomeResult] =
+    try {
+      const [outcomeText, outcomeResult] =
       await clangenRunner.finishPatrol(patrolUuid, action);
-    setPatrolText(outcomeText);
-    setResultText(outcomeResult);
-    setScreenState("wrap-up");
+      setPatrolText(outcomeText);
+      setResultText(outcomeResult);
+      setScreenState("wrap-up");
+    } catch (exception: any) {
+      alert(exception);
+      reset();
+    }
   }
 
   if (possibleCats.length <= 0) {
@@ -129,6 +134,8 @@ function PatrolsPage() {
         selected patrol type will be ignored, and the patrol will automatically
         become a herb gathering patrol.
       </p>
+
+      <p>If you edit a cat that is currently on patrol, the patrol will end.</p>
 
       <fieldset>
         <legend>Cats</legend>

@@ -236,14 +236,17 @@ def edit_cat(cat_id, editObj):
     for mateID in cat.mate:
       if mateID not in edit["mates"]:
         cat.unset_mate(Cat.fetch_cat(mateID))
+  _end_patrol_containing(cat_id)
 
 def destroy_accessory(cat_id):
   cat = Cat.all_cats[cat_id]
   cat.pelt.accessory = None
+  _end_patrol_containing(cat_id)
 
 def exile_cat(cat_id):
   cat = Cat.all_cats[cat_id]
   cat.exile()
+  _end_patrol_containing(cat_id)
 
 def kill_cat(cat_id, history, take_nine_lives):
   cat = Cat.all_cats[cat_id]
@@ -258,6 +261,7 @@ def kill_cat(cat_id, history, take_nine_lives):
     history = "This cat {VERB/m_c/were/was} " + history
   cat.die()
   History.add_death(cat, history)
+  _end_patrol_containing(cat_id)
 
 def get_cats():
   cats = []
@@ -289,6 +293,14 @@ def _is_patrollable(the_cat):
   return not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status not in [
           'newborn', 'elder', 'kitten', 'mediator', 'mediator apprentice'
       ] and not the_cat.outside and not the_cat.not_working()
+
+def _end_patrol_containing(cat_id):
+  for key, patrol in current_patrols.items():
+    for cat in patrol.patrol_cats:
+      if cat.ID == cat_id:
+        patrol.proceed_patrol("decline")
+        del current_patrols[key]
+        return
 
 def get_patrollable_cats():
   cats = []
