@@ -143,31 +143,38 @@ class Clangen {
 
   /**
    * Edits cat with ID according to CatEdit object.
+   * Also saves the game.
    */
-  public async editCat(id: string, edit: CatEdit): Promise<boolean> {
+  public async editCat(id: string, edit: CatEdit): Promise<void> {
     this._clangenApi.edit_cat(id, edit);
-    return true;
+    await this.saveGame();
   }
 
   /**
    * Destroys accessory belonging to cat with specified ID.
+   * Also saves the game.
    */
   public async destroyAccessory(id: string): Promise<void> {
     this._clangenApi.destroy_accessory(id);
+    await this.saveGame();
   }
 
   /**
    * Exiles cat with specified ID.
+   * Also saves the game.
    */
   public async exileCat(id: string): Promise<void> {
     this._clangenApi.exile_cat(id);
+    await this.saveGame();
   }
 
   /**
    * Kills cat with specified ID.
+   * Also saves the game.
    */
   public async killCat(id: string, history: string, takeNineLives?: boolean): Promise<void> {
     this._clangenApi.kill_cat(id, history, takeNineLives);
+    await this.saveGame();
   }
 
   /**
@@ -266,18 +273,21 @@ class Clangen {
 
   /**
    * Finishes a patrol. There can only be one patrol at a time.
+   * Also saves the game.
    * 
    * Returns [outcome text, results text].
    */
   public async finishPatrol(uuid: string, action: PatrolAction): Promise<[string, string]> {
     // outcome text, results text
     const p = this._clangenApi.finish_patrol(uuid, action);
+    await this.saveGame();
     // for some reason it doesn't work with comlink unless you do this
     return [p[0], p[1]];
   }
 
   /**
    * Completes a mediation between specified cats by specified mediator.
+   * Also saves the game.
    */
   public async mediate(
     mediator: string,
@@ -286,13 +296,15 @@ class Clangen {
     sabotage = false,
     allowRomantic = false,
   ): Promise<string> {
-    return this._clangenApi.mediate(
+    const s = this._clangenApi.mediate(
       mediator,
       mediated1,
       mediated2,
       sabotage,
       allowRomantic,
     );
+    await this.saveGame();
+    return s;
   }
 
   /**
@@ -321,7 +333,7 @@ class Clangen {
   }
 
   /**
-   * Completes a mediation between specified cats by specified mediator.
+   * Removes cats that "don't exist".
    */
   public async refreshCats() {
     this._clangenApi.refresh_cats();
@@ -339,6 +351,7 @@ class Clangen {
    */
   public async setSettings(settings: Record<string, boolean>) {
     this._clangenApi.set_settings(settings);
+    await this.saveGame();
   }
 }
 
