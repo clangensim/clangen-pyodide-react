@@ -114,11 +114,11 @@ function MediationPage() {
   return (
     <BasePage crumbs={crumbs}>
       <p>
-        A cat must have the "mediator" role to be allowed to mediate. Mediator
-        cats cannot patrol.
+        Cats with the “mediator” or "mediator apprentice" role without major injuries or
+        illnesses can mediate once every moon. Mediator cats cannot patrol. Roles can be set on a cat's edit page.
       </p>
 
-      <p>Roles can be set on a cat's edit page.</p>
+      <p>Any particular pair of cats can only be mediated once per moon.</p>
 
       <fieldset>
         <legend>Mediator</legend>
