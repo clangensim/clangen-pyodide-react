@@ -310,12 +310,15 @@ def get_patrollable_cats():
       cats.append(cat_to_dict(the_cat))
   return to_js(cats, dict_converter=js.Object.fromEntries)
 
+def _can_mediate(the_cat):
+  return not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status in [
+            'mediator', 'mediator apprentice'
+          ] and not the_cat.outside and not the_cat.not_working()
+
 def get_possible_mediators():
   cats = []
   for the_cat in Cat.all_cats_list:
-    if not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status in [
-          'mediator', 'mediator apprentice'
-        ] and not the_cat.outside and not the_cat.not_working():
+    if _can_mediate(the_cat):
       cats.append(cat_to_dict(the_cat))
   return to_js(cats, dict_converter=js.Object.fromEntries)
 
