@@ -55,6 +55,7 @@ def reload_clan():
   load_clan()
   Cat.sort_cats()
   refresh_cats()
+  current_patrols.clear()
 
 def erase_clan():
   shutil.rmtree("/mnt/saves")
