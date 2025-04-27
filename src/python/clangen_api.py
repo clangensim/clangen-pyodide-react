@@ -179,6 +179,7 @@ def create_clan(clan_name, leader, deputy, med_cat, biome, camp, game_mode, memb
   game.herb_events_list.clear()
   Cat.grief_strings.clear()
   Cat.sort_cats()
+  current_patrols.clear()
 
 def get_cat(cat_id):
   cat = Cat.all_cats[cat_id]
