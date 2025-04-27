@@ -330,12 +330,7 @@ def get_possible_mediated():
   for the_cat in Cat.all_cats_list:
     if the_cat.outside or the_cat.dead:
       continue
-    mediated = False
-    for cat1, cat2 in game.mediated:
-      if the_cat.ID == cat1 or the_cat.ID == cat2:
-        mediated = True
-    if not mediated:
-      cats.append(cat_to_dict(the_cat))
+    cats.append(cat_to_dict(the_cat))
   return to_js(cats, dict_converter=js.Object.fromEntries)
 
 def get_potential_mentors(apprentice_role):
