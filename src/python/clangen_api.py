@@ -22,6 +22,9 @@ import shutil
 class CatCantWork(Exception):
   """Error thrown when a cat who can't work is made to work"""
 
+class PairAlreadyMediatedError(Exception):
+  """Error thrown when already mediated pair is made to mediate again."""
+
 current_patrols = {}
 
 def load_clan():
@@ -435,6 +438,10 @@ def finish_patrol(id, action):
   return outcome
 
 def mediate(mediator, mediated1, mediated2, sabotage, allow_romantic):
+  if _mediated_together(mediated1, mediated2):
+    raise PairAlreadyMediatedError
+  if not _can_mediate(Cat.all_cats[mediator]):
+    raise CatCantWork
   game.mediated.append([mediated1, mediated2])
   game.patrolled.append(mediator)
   return Cat.mediate_relationship(Cat.all_cats[mediator], 

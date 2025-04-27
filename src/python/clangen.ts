@@ -306,15 +306,25 @@ class Clangen {
     sabotage = false,
     allowRomantic = false,
   ): Promise<string> {
-    const s = this._clangenApi.mediate(
-      mediator,
-      mediated1,
-      mediated2,
-      sabotage,
-      allowRomantic,
-    );
-    await this.saveGame();
-    return s;
+    try {
+      const s = this._clangenApi.mediate(
+        mediator,
+        mediated1,
+        mediated2,
+        sabotage,
+        allowRomantic,
+      );
+      await this.saveGame();
+      return s;
+    } catch (exception: any) {
+      if (exception.type === "PairAlreadyMediatedError") {
+        throw Error("This pair has already been mediated!");
+      } else if (exception.type === "CatCantWork") {
+        throw Error("This mediator can't currently work!");
+      }
+      console.error(exception)
+      throw Error("Unknown");
+    }
   }
 
   /**
