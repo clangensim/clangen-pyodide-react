@@ -88,13 +88,13 @@ function PatrolsPage() {
   }, []);
 
   async function startPatrol() {
-    setScreenState("in-progress");
     try {
       const p = await clangenRunner.startPatrol(selectedCats, patrolType);
       setPatrolText(p.text);
       setCanAntagonize(p.canAntagonize);
       setPatrolUuid(p.uuid);
-      setResultText("");  
+      setResultText("");
+      setScreenState("in-progress");
     } catch (exception) {
       alert(exception);
       reset();
