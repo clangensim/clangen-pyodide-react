@@ -4,7 +4,7 @@ import { Breadcrumb } from "./Breadcrumbs";
 import Navbar from "./Navbar";
 import { clangenRunner } from "../python/clangenRunner";
 import Pluralize from "../components/generic/Pluralize";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 function BasePage({
   children,
@@ -13,6 +13,7 @@ function BasePage({
   children: React.ReactNode;
   crumbs?: Breadcrumb[];
 }) {
+  const navigator = useNavigate();
   const query = useQuery({
     queryKey: ["claninfo"],
     queryFn: async () => await clangenRunner.getClanInfo(),
@@ -23,6 +24,11 @@ function BasePage({
   if (query.status === "error") {
     console.error(query.error);
     return <>Error</>;
+  }
+
+  if (clanInfo === null) {
+    navigator("/signup");
+    return <></>;
   }
 
   return (
