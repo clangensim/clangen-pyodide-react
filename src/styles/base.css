@@ -123,6 +123,7 @@ details {
 }
 
 button, .btn {
+  text-align: center;
   background-color: #655934;
   padding: 10px;
   color:#EFE5CE;
