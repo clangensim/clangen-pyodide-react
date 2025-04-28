@@ -4,7 +4,7 @@ import BasePage from "../layout/BasePage";
 
 import nextMoonImage from "../assets/images/pln_no_UFO.png";
 import { Cat } from "../python/types";
-import Pluralize from "../components/Pluralize";
+import Pluralize from "../components/generic/Pluralize";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 function NextMoonPage() {

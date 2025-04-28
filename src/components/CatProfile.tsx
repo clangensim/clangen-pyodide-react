@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { Cat } from "../python/types";
-import Pluralize from "./Pluralize";
+import Pluralize from "./generic/Pluralize";
 
 function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
   return (

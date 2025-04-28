@@ -3,7 +3,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import { Breadcrumb } from "./Breadcrumbs";
 import Navbar from "./Navbar";
 import { clangenRunner } from "../python/clangenRunner";
-import Pluralize from "../components/Pluralize";
+import Pluralize from "../components/generic/Pluralize";
 import { Link } from "react-router";
 
 function BasePage({

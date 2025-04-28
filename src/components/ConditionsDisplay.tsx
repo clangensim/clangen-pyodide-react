@@ -1,5 +1,5 @@
 import { Condition } from "../python/types";
-import Pluralize from "./Pluralize";
+import Pluralize from "./generic/Pluralize";
 
 function ConditionsDisplay({conditions}: {conditions: Condition[] | undefined}) {
   return (
