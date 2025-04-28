@@ -45,6 +45,13 @@ function NextMoonPage() {
         <p>{canMediate.length} <Pluralize num={canMediate.length}>mediator</Pluralize> can still mediate this moon.</p>
       }
 
+      {clanInfo?.gameMode !== "classic" &&
+        <p>
+          Current Food: {clanInfo?.freshkill} <br />
+          Food Required to Feed Everyone: {clanInfo?.requiredFreshkill}
+        </p>
+      }
+
       <button onClick={handleMoonskip}>Timeskip One Moon</button>
     </BasePage>
   );
