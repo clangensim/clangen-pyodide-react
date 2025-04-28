@@ -36,7 +36,7 @@ function BasePage({
             </li>
             <li>{clanInfo?.season}</li>
           </ul>
-          <Link to="/moonskip" className="btn btn-secondary profile-info_next-moon">
+          <Link to="/moonskip" tabIndex={0} className="btn btn-secondary profile-info_next-moon">
             Next Moon →
           </Link>
         </div>

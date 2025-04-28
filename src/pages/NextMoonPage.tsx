@@ -52,7 +52,7 @@ function NextMoonPage() {
         </p>
       }
 
-      <button onClick={handleMoonskip}>Timeskip One Moon</button>
+      <button tabIndex={0} onClick={handleMoonskip}>Timeskip One Moon</button>
     </BasePage>
   );
 }
