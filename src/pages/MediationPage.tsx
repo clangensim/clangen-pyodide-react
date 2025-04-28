@@ -55,6 +55,8 @@ function MediationPage() {
 
   const disabled = screenState !== "start";
 
+  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
+
   function reset() {
     setSelectedCat1("");
     setSelectedCat2("");
@@ -68,6 +70,7 @@ function MediationPage() {
 
   useEffect(() => {
     reset();
+    setIsFirstLoad(false);
   }, []);
 
   useEffect(() => {
@@ -95,6 +98,14 @@ function MediationPage() {
         alert(exception);
         reset();
       });
+  }
+
+  if (isFirstLoad) {
+    return (
+      <BasePage crumbs={crumbs}>
+        <p>Loading...</p>
+      </BasePage>
+    );
   }
 
   if (possibleMediators.length <= 0) {

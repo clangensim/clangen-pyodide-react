@@ -61,6 +61,8 @@ function PatrolsPage() {
 
   const disabled = screenState !== "start";
 
+  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
+
   async function reset() {
     setSelectedCat1("");
     setSelectedCat2("");
@@ -81,6 +83,7 @@ function PatrolsPage() {
 
   useEffect(() => {
     reset();
+    setIsFirstLoad(false);
   }, []);
 
   useEffect(() => {
@@ -112,6 +115,14 @@ function PatrolsPage() {
       alert(exception);
       reset();
     }
+  }
+
+  if (isFirstLoad) {
+    return (
+      <BasePage crumbs={crumbs}>
+        <p>Loading...</p>
+      </BasePage>
+    );
   }
 
   if (possibleCats.length <= 0) {
