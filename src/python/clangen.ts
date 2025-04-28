@@ -54,13 +54,6 @@ class Clangen {
         extractDir: "/mnt",
       });
 
-      // loag DEBUG SAVE
-      let zipSaves = await fetch("/saves-no-folder.zip");
-      let binarySaves = await zipSaves.arrayBuffer();
-      this._pyodide.unpackArchive(binarySaves, "zip", {
-        extractDir: "/mnt/saves",
-      });
-
       await this._syncFS(false);
       await localforage.setItem("resourcesLoaded", VERSION);
     } else {
@@ -348,8 +341,14 @@ class Clangen {
   /**
    * Gets info about Clan.
    */
-  public async getClanInfo(): Promise<ClanInfo> {
-    return this._clangenApi.get_clan_info();
+  public async getClanInfo(): Promise<ClanInfo | null> {
+    const clanInfo = this._clangenApi.get_clan_info();
+    if (clanInfo) {
+      return clanInfo
+    } else {
+      // have to return null or tanstack complains
+      return null;
+    }
   }
 
   /**
