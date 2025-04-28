@@ -1,0 +1,32 @@
+#signup {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 15px 10px;
+  display: block;
+  width: 300px;
+}
+
+#signup p {
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+#signup .signup-buttons {
+  border-top: 1px solid darkgrey;
+  padding: 10px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#signup .or {
+  display: block;
+  margin: auto;
+}
+
+#signup .or::before,
+#signup .or::after
+{
+  content: " - ";
+}
