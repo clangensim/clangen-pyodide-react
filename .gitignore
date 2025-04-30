@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ClanGen generated files
+public/sprites/*
+*.whl
+*.zip
