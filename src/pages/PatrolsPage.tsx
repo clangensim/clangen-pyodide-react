@@ -38,7 +38,7 @@ function PatrolsPage() {
 
   const [patrolUuid, setPatrolUuid] = useState("");
 
-  const [clanInfo, setClanInfo] = useState<ClanInfo>();
+  const [clanInfo, setClanInfo] = useState<ClanInfo | null>();
 
   // non-empty cats only
   const selectedCats = [
