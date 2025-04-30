@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { TbX } from "react-icons/tb";
 
 function Dialog({
   title,
@@ -37,10 +38,10 @@ function Dialog({
     <>
       <dialog ref={dialogRef}>
         <div className="window">
-          <div className="title-bar active">
+          <div className="title-bar">
             <div className="title-bar-text">{title}</div>
             <div className="title-bar-buttons">
-              <button data-close="" onClick={handleClose} />
+              <button className="icon-button" onClick={handleClose}><TbX /></button>
             </div>
           </div>
           <div className="window-body">{children}</div>

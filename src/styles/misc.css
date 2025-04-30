@@ -21,8 +21,9 @@ select {
 }
 
 dialog {
-  padding: 0;
-  border-style: none;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 10px;
 }
 
 dialog div.dialog-body {
@@ -33,4 +34,14 @@ dialog div.dialog-footer {
   padding: 0 8px 8px 8px;
   display: flex;
   justify-content: flex-end;
+}
+
+.title-bar {
+  display: flex;
+}
+.title-bar-text {
+  font-weight: bold;
+}
+.title-bar-buttons {
+  margin-left: auto;
 }
