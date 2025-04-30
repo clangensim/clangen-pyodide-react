@@ -66,7 +66,7 @@ function CatProfilePage() {
             <div>{cat.thought}</div>
           </div>
           <div className="flex">
-            <CatDisplay key={cat.ID} cat={cat} w="100px" h="100px" />
+            <CatDisplay cat={cat} w="100px" h="100px" />
             <CatProfile cat={cat} />
           </div>
 

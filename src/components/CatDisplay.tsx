@@ -45,7 +45,7 @@ function CatSprite({
     if (canvasRef.current !== null) {
       drawCat(canvasRef.current, pelt, catSprite, dead, darkForest);
     }
-  }, [canvasRef]);
+  }, [canvasRef, pelt, catSprite, darkForest, dead]);
 
   return (
     <>
