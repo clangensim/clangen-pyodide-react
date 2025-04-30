@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 
 import { CatEdit, Cat } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
@@ -231,7 +231,9 @@ function CatEditPage() {
               <legend>Mates</legend>
               {mates.map((mateID, index) => (
                 <div key={mateID + "_" + index}>
-                  {potentialMateMap.current[mateID]?.name.display}{" "}
+                  <Link to={`/cats/${mateID}`} target="_blank">
+                    {potentialMateMap.current[mateID]?.name.display}
+                  </Link>{" "}
                   <button onClick={() => handleRemoveMate(index)}>
                     Remove
                   </button>
