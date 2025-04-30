@@ -18,7 +18,7 @@ function ConditionsPage() {
       document.title = `${c.name.display}'s Conditions | Clangen Simulator`;
       setCat(c);
     });
-  }, []);
+  }, [catID]);
 
   let crumbs = undefined;
   if (cat) {

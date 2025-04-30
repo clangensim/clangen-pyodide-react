@@ -193,7 +193,7 @@ function CatEditPage() {
     clangenRunner.getPotentialMates(catID).then((mates) => {
       setPotentialMates(mates);
     });
-  }, []);
+  }, [catID]);
 
   return (
     <BasePage crumbs={crumbs}>

@@ -17,7 +17,7 @@ function Dialog({
     if (dialogRef.current) {
       dialogRef.current.addEventListener("cancel", () => onClose());
     }
-  }, [dialogRef.current]);
+  }, [dialogRef]);
 
   if (opened) {
     if (dialogRef.current && !dialogRef.current.open) {
