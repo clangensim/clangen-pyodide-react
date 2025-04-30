@@ -2,7 +2,7 @@ import Clangen from "./clangen";
 
 import * as Comlink from "Comlink";
 
-var worker;
+let worker;
 if ("SharedWorker" in window) {
   worker = new SharedWorker(new URL('./ClangenWorker.ts', import.meta.url), {
     type: 'module',

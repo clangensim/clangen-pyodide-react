@@ -40,7 +40,7 @@ class Clangen {
     this._pyodide = await loadPyodide();
 
     const VERSION = "0.11.2";
-    let mountDir = "/mnt";
+    const mountDir = "/mnt";
     this._pyodide.FS.mkdirTree(mountDir);
     this._pyodide.FS.mount(this._pyodide.FS.filesystems.IDBFS, {}, mountDir);
 
@@ -48,8 +48,8 @@ class Clangen {
     if (storedVersion !== VERSION) {
       console.log("Loading resources...");
       // load resources
-      let zipResources = await fetch("/res.zip");
-      let binaryResources = await zipResources.arrayBuffer();
+      const zipResources = await fetch("/res.zip");
+      const binaryResources = await zipResources.arrayBuffer();
       this._pyodide.unpackArchive(binaryResources, "zip", {
         extractDir: "/mnt",
       });

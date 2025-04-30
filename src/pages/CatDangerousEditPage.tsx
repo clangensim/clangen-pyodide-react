@@ -45,7 +45,7 @@ function CatDangerousEditPage() {
       .then(() => navigate(`/cats/${catID}`));
   }
 
-  var crumbs = undefined;
+  let crumbs = undefined;
   if (cat) {
     crumbs = [
       {

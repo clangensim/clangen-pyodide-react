@@ -34,7 +34,7 @@ function EventsPage() {
     (event) => !event.types.includes("interaction"),
   );
 
-  var eventsDisplay;
+  let eventsDisplay;
   if (regularEvents !== undefined) {
     if (regularEvents.length === 0 && showRegEvents && !showRelEvents) {
       eventsDisplay = <li>Nothing interesting happened this moon.</li>;

@@ -168,7 +168,7 @@ async function drawCat(
   } else {
     await drawSprite(`${pelt.tortieBase}${pelt.colour}`, catSprite, ctx);
 
-    var tortiePattern;
+    let tortiePattern;
     if (pelt.tortiePattern == "Single") {
       tortiePattern = "SingleColour";
     } else {

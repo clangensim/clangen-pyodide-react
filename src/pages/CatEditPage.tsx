@@ -53,7 +53,7 @@ const selectRegularCatOptions = [
 function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
-  var crumbs = undefined;
+  let crumbs = undefined;
 
   const navigate = useNavigate();
 
@@ -98,8 +98,8 @@ function CatEditPage() {
     }
   }
 
-  var disableSelectStatus = false;
-  var statusOptions: SelectOption[] = [];
+  let disableSelectStatus = false;
+  let statusOptions: SelectOption[] = [];
   if (cat) {
     if (isApprentice) {
       disableSelectStatus = false;

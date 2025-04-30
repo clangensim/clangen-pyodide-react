@@ -20,7 +20,7 @@ function ConditionsPage() {
     });
   }, []);
 
-  var crumbs = undefined;
+  let crumbs = undefined;
   if (cat) {
     crumbs = [
       {

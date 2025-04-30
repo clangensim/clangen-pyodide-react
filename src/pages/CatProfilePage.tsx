@@ -32,7 +32,7 @@ function CatProfilePage() {
     clangenRunner.getConditions(catID).then((c) => setConditions(c));
   }, [catID]);
 
-  var crumbs = undefined;
+  let crumbs = undefined;
   if (cat) {
     crumbs = [
       {

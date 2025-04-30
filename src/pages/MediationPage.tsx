@@ -79,7 +79,7 @@ function MediationPage() {
 
   function doMediate(kind: "sabotage" | "mediate", allowRomantic: boolean) {
     setScreenState("in-progress");
-    var doSabotage;
+    let doSabotage;
     if (kind == "sabotage") {
       doSabotage = true;
     } else {

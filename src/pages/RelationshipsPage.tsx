@@ -15,7 +15,7 @@ function RelationshipsPage() {
 
   const [cat, setCat] = useState<Cat>();
 
-  var crumbs = undefined;
+  let crumbs = undefined;
   if (cat) {
     crumbs = [
       {

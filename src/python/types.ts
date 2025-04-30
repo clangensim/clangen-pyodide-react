@@ -82,13 +82,13 @@ type Relationship = {
   cat_to: Cat;
   mates: boolean;
   family: boolean;
-  romantic_love: Number;
-  platonic_like: Number;
-  dislike: Number;
-  admiration: Number;
-  comfortable: Number;
-  jealousy: Number;
-  trust: Number;
+  romantic_love: number;
+  platonic_like: number;
+  dislike: number;
+  admiration: number;
+  comfortable: number;
+  jealousy: number;
+  trust: number;
 };
 
 type Event = {
