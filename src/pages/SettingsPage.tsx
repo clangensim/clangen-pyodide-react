@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Checkbox from "../components/generic/Checkbox";
 import { clangenRunner } from "../python/clangenRunner";
 import BasePage from "../layout/BasePage";
+import { useNavigate } from "react-router";
 
 const settingLabels: Record<string, Record<string, string>> = {
   disasters: {
@@ -42,6 +43,7 @@ const settingLabels: Record<string, Record<string, string>> = {
 
 function SettingsPage() {
   const [settings, setSettings] = useState<Record<string, boolean>>({});
+  const navigator = useNavigate();
 
   useEffect(() => {
     document.title = "Settings | Clangen Simulator";
@@ -62,7 +64,9 @@ function SettingsPage() {
   }, []);
 
   function handleSave() {
-    clangenRunner.setSettings(settings);
+    clangenRunner.setSettings(settings).then(() => {
+      navigator("/");
+    });
   }
 
   return (
