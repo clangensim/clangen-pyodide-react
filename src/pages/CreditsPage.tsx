@@ -14,6 +14,8 @@ function CreditsPage() {
         which is licensed under the Mozilla Public License 2.0. Clangen source
         code and credits can be found{" "}
         <a href="https://github.com/ClanGenOfficial/clangen">here</a>.
+        The source code for the fork of Clangen used in this site can be found{" "}
+        <a href="https://github.com/clangensim/clangen-lite/tree/clangen-lite">here</a>.
       </p>
 
       <p>
