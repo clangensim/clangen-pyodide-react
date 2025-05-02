@@ -461,6 +461,8 @@ def export_clan():
   return to_js(binary)
 
 def get_clan_info():
+  if not game.clan:
+    return None
   clan_info = {
     "name": game.clan.name + "Clan",
     "age": game.clan.age,
