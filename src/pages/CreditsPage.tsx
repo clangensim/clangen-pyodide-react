@@ -10,7 +10,7 @@ function CreditsPage() {
     <BasePage>
       <h1>Credits</h1>
       <p>
-        This site uses code from and adapted from Clangen (Clan Generator),
+        This site incorporates work from Clangen (Clan Generator),
         which is licensed under the Mozilla Public License 2.0. Clangen source
         code and credits can be found{" "}
         <a href="https://github.com/ClanGenOfficial/clangen">here</a>.
@@ -19,7 +19,7 @@ function CreditsPage() {
       </p>
 
       <p>
-        The following images used in this software are by the Clan Generator
+        The following images used in this software are by the Clangen
         team and are licensed under{" "}
         <a href="https://creativecommons.org/licenses/by-nc/4.0/">
           CC BY-NC 4.0
