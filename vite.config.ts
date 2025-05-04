@@ -10,6 +10,8 @@ const PYODIDE_EXCLUDE = [
   "!**/*.d.ts",
   "!**/*.whl",
   "!**/node_modules",
+  "!**/package.json",
+  "!**/package-lock.json",
 ];
 
 export function viteStaticCopyPyodide() {
