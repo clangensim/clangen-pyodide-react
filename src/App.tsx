@@ -11,7 +11,6 @@ import CatDangerousEditPage from "./pages/CatDangerousEditPage";
 import RelationshipsPage from "./pages/RelationshipsPage";
 import ConditionsPage from "./pages/ConditionsPage";
 import SettingsPage from "./pages/SettingsPage";
-import CreditsPage from "./pages/CreditsPage";
 import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
 import NextMoonPage from "./pages/NextMoonPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -44,7 +43,6 @@ function App() {
             />
             <Route path="/cats/:id/conditions" element={<ConditionsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/credits" element={<CreditsPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="*" element={<ErrorNotFoundPage />} />
           </Routes>
