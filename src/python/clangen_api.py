@@ -43,7 +43,7 @@ def load_clan():
                   'error_message'] = 'There was an error loading the cats file!'
               game.switches['traceback'] = e
 
-def reload_clan():
+def unload_clan():
   game.mediated.clear()
   game.patrolled.clear()
   game.cat_to_fade.clear()
@@ -55,6 +55,9 @@ def reload_clan():
   game.cur_events_list.clear()
   game.herb_events_list.clear()
   Cat.grief_strings.clear()
+
+def reload_clan():
+  unload_clan()
   load_clan()
   Cat.sort_cats()
   refresh_cats()
