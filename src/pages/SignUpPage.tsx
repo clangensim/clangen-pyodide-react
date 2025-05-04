@@ -18,14 +18,14 @@ function SignUpPage() {
   }
 
   useEffect(() => {
-    document.title = "Welcome! | Clangen Simulator";
+    document.title = "Welcome! | ClanGen Simulator";
   })
 
   return (
     <>
       <div id="signup">
         <p>
-          Welcome to <b>Clangen Simulator</b>, a project that aims to simulate
+          Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate
           Clan Generator in your browser.
         </p>
 

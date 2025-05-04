@@ -22,7 +22,7 @@ function NewClanPage() {
   }, []);
 
   useEffect(() => {
-    document.title = "New Clan | Clangen Simulator";
+    document.title = "New Clan | ClanGen Simulator";
   }, []);
 
   function handleSubmit(e: FormEvent) {

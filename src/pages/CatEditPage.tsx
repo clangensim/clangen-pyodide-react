@@ -171,7 +171,7 @@ function CatEditPage() {
   useEffect(() => {
     clangenRunner.getCat(catID).then((c) => {
       if (c) {
-        document.title = `Editing ${c.name.display} | Clangen Simulator`;
+        document.title = `Editing ${c.name.display} | ClanGen Simulator`;
       }
       setCat(c);
       if (c.mentor) {

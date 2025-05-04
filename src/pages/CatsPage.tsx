@@ -26,7 +26,7 @@ function CatsPage() {
   const [cats, setCats] = useState<Cat[]>([]);
 
   useEffect(() => {
-    document.title = "Cats | Clangen Simulator";
+    document.title = "Cats | ClanGen Simulator";
     clangenRunner.getCats().then((c) => setCats(c));
   }, []);
 

@@ -3,23 +3,23 @@ import BasePage from "../layout/BasePage";
 
 function CreditsPage() {
   useEffect(() => {
-    document.title = "Credits | Clangen Simulator";
+    document.title = "Credits | ClanGen Simulator";
   }, []);
 
   return (
     <BasePage>
       <h1>Credits</h1>
       <p>
-        This site incorporates work from Clangen (Clan Generator),
-        which is licensed under the Mozilla Public License 2.0. Clangen source
+        This site incorporates work from ClanGen (Clan Generator),
+        which is licensed under the Mozilla Public License 2.0. ClanGen source
         code and credits can be found{" "}
         <a href="https://github.com/ClanGenOfficial/clangen">here</a>.
-        The source code for the fork of Clangen used in this site can be found{" "}
+        The source code for the fork of ClanGen used in this site can be found{" "}
         <a href="https://github.com/clangensim/clangen-lite/tree/clangen-lite">here</a>.
       </p>
 
       <p>
-        The following images used in this software are by the Clangen
+        The following images used in this software are by the ClanGen
         team and are licensed under{" "}
         <a href="https://creativecommons.org/licenses/by-nc/4.0/">
           CC BY-NC 4.0

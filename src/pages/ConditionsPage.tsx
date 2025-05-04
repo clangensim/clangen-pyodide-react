@@ -15,7 +15,7 @@ function ConditionsPage() {
   useEffect(() => {
     clangenRunner.getConditions(catID).then((c) => setConditions(c));
     clangenRunner.getCat(catID).then((c) => {
-      document.title = `${c.name.display}'s Conditions | Clangen Simulator`;
+      document.title = `${c.name.display}'s Conditions | ClanGen Simulator`;
       setCat(c);
     });
   }, [catID]);

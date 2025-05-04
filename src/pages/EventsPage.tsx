@@ -27,7 +27,7 @@ function EventsPage() {
   const [showRegEvents, setShowRegEvents] = useState(true);
 
   useEffect(() => {
-    document.title = "Events | Clangen Simulator";
+    document.title = "Events | ClanGen Simulator";
   }, []);
 
   const regularEvents = events?.filter(

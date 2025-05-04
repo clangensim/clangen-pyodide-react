@@ -19,7 +19,7 @@ function NextMoonPage() {
   const [canMediate, setCanMediate] = useState<Cat[]>([]);
 
   useEffect(() => {
-    document.title = "Clangen Simulator";
+    document.title = "ClanGen Simulator";
     clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
     clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));
   }, []);

@@ -74,7 +74,7 @@ function MediationPage() {
   }, []);
 
   useEffect(() => {
-    document.title = "Mediation | Clangen Simulator";
+    document.title = "Mediation | ClanGen Simulator";
   }, []);
 
   function doMediate(kind: "sabotage" | "mediate", allowRomantic: boolean) {

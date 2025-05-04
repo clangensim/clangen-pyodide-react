@@ -46,7 +46,7 @@ function SettingsPage() {
   const navigator = useNavigate();
 
   useEffect(() => {
-    document.title = "Settings | Clangen Simulator";
+    document.title = "Settings | ClanGen Simulator";
   }, []);
 
   useEffect(() => {

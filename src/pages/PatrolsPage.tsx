@@ -87,7 +87,7 @@ function PatrolsPage() {
   }, []);
 
   useEffect(() => {
-    document.title = "Patrols | Clangen Simulator";
+    document.title = "Patrols | ClanGen Simulator";
   }, []);
 
   async function startPatrol() {

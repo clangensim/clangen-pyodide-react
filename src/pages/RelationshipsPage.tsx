@@ -42,7 +42,7 @@ function RelationshipsPage() {
 
     clangenRunner.getCat(catID).then((c) => {
       if (c) {
-        document.title = `${c.name.display}'s Relationships | Clangen Simulator`;
+        document.title = `${c.name.display}'s Relationships | ClanGen Simulator`;
       }
       setCat(c);
     });

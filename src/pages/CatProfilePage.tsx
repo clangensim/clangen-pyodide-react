@@ -24,7 +24,7 @@ function CatProfilePage() {
     clangenRunner.getCat(catID).then((c) => {
       setCat(c);
       if (c) {
-        document.title = `${c.name.display} | Clangen Simulator`;
+        document.title = `${c.name.display} | ClanGen Simulator`;
       }
     });
 
