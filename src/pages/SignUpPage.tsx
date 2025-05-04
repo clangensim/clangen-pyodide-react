@@ -45,6 +45,9 @@ function SignUpPage() {
           Import Save
         </FileUploadButton>
         </div>
+        <div className="footer">
+          <a target="_blank" rel="noopener noreferrer" href="/credits">Credits</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source</a>
+        </div>
       </div>
     </>
   )
