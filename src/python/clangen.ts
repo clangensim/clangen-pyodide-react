@@ -330,14 +330,14 @@ class Clangen {
   /**
    * Exports Clan to a binary array that can be imported by `importClan()`.
    */
-  public async exportClan(): Promise<Int8Array> {
+  public async exportClan(): Promise<ArrayBuffer> {
     return this._clangenApi.export_clan();
   }
 
   /**
    * Imports binary array of a Clan exported by `exportClan()`.
    */
-  public async importClan(saveFile: Int8Array) {
+  public async importClan(saveFile: ArrayBuffer) {
     this._clangenApi.erase_clan();
     this._pyodide!.unpackArchive(saveFile, "zip", {
       extractDir: "/mnt/saves",

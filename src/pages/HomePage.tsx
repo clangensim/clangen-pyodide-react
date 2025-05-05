@@ -10,7 +10,7 @@ import { useQueryClient } from "@tanstack/react-query";
 function HomePage() {
   const queryClient = useQueryClient();
   async function handleExportClan() {
-    const f: Int8Array = await clangenRunner.exportClan();
+    const f: ArrayBuffer = await clangenRunner.exportClan();
     download(new Blob([f]));
   }
 
