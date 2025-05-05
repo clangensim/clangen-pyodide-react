@@ -46,8 +46,15 @@ class Clangen {
 
     const storedVersion = await localforage.getItem("resourcesLoaded");
     if (storedVersion !== VERSION) {
+ 
+      console.log("Delete existing resources...");
+      this._pyodide.runPython(`
+      import shutil
+      shutil.rmtree("/mnt/sprites", True)
+      shutil.rmtree("/mnt/resources", True)
+      `);
+
       console.log("Loading resources...");
-      // load resources
       const zipResources = await fetch("/res.zip");
       const binaryResources = await zipResources.arrayBuffer();
       this._pyodide.unpackArchive(binaryResources, "zip", {
