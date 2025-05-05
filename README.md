@@ -30,6 +30,6 @@ The following images:
 * `assets/images/pln_no_UFO.png` - Edited version of pln_UFO.png from Clangen to remove the UFO
 * `public/static/bg.png` - Renamed from greenleaf_camp1_light.png
 
-are by the Clangen team and are licensed under [https://creativecommons.org/licenses/by-nc/4.0/](CC BY-NC 4.0). The original images can be found at https://github.com/ClanGenOfficial/clangen/tree/development.
+are by the Clangen team and are licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). The original images can be found at https://github.com/ClanGenOfficial/clangen/tree/development.
 
 The full licenses text can be found in `LICENSE_MPL.txt` and `LICENSE_CC_BY_NC.txt`.
