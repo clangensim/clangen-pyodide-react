@@ -65,6 +65,10 @@ function NewClanPage() {
       .then(() => {
         localStorage.removeItem("queueCatRefresh");
         navigate("/cats");
+      })
+      .catch(() => {
+        alert("Something went wrong when creating your Clan!");
+        document.location.reload();
       });
   }
 
