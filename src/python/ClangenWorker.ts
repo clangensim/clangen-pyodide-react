@@ -1,4 +1,4 @@
-import * as Comlink from "Comlink";
+import * as Comlink from "comlink";
 import Clangen from "./clangen";
 
 const clangen = new Clangen();

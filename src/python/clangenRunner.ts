@@ -1,6 +1,6 @@
 import Clangen from "./clangen";
 
-import * as Comlink from "Comlink";
+import * as Comlink from "comlink";
 
 let worker;
 if ("SharedWorker" in window) {
