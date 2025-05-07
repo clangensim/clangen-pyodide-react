@@ -1,0 +1,27 @@
+name: Deploy to Pages
+
+on:
+  workflow_dispatch
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - name: Build
+        run: docker build --output type=local,dest=dist .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: dist
