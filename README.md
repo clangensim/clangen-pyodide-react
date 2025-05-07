@@ -11,6 +11,7 @@ Clangen running in your browser using Pyodide with a frontend written in React.
 ```
 git clone --recurse-submodules https://github.com/clangensim/clangen-pyodide-react.git
 cd clangen-pyodide-react
+uv sync
 uv run vendors/clangen-lite/build.py vendors/clangen-lite public
 npm install
 npm run dev
