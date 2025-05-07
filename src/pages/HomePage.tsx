@@ -35,7 +35,7 @@ function HomePage() {
       <p>
         Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate
         Clan Generator in your browser. This site is a work in progress, so some
-        features may be missing.
+        features may be missing and there may be bugs.
       </p>
 
       {!("SharedWorker" in window) && 

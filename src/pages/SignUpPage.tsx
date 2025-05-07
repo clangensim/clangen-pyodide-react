@@ -31,7 +31,7 @@ function SignUpPage() {
 
         <p>
           This site is a work in progress, so some
-          features may be missing.
+          features may be missing and there may be bugs.
         </p>
 
         <div className="signup-buttons">
