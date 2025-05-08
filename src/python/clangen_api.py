@@ -321,6 +321,12 @@ def _can_mediate(the_cat):
             'mediator', 'mediator apprentice'
           ] and not the_cat.outside and not the_cat.not_working()
 
+def _mediated_together(cat_id1, cat_id2):
+  for pair in game.mediated:
+    if cat_id1 in pair and cat_id2 in pair:
+      return True
+  return False
+
 def get_possible_mediators():
   cats = []
   for the_cat in Cat.all_cats_list:
