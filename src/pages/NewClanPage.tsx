@@ -67,7 +67,7 @@ function NewClanPage() {
         navigate("/cats");
       })
       .catch(() => {
-        alert("Something went wrong when creating your Clan!");
+        alert("Something went wrong when creating your Clan! Please close all other ClanGen Simulator tabs then refresh this page.");
         document.location.reload();
       });
   }
