@@ -1,13 +1,11 @@
 name: Deploy to Pages
 
 on:
-  workflow_dispatch
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Choose an environment to deploy to: <staging|prod>"
+        required: true
 
 jobs:
   deploy:
@@ -25,3 +23,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: dist
+      - name: Deploy to Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: pages deploy dist --project-name=clangensim --branch=${{ github.event.inputs.environment }}
