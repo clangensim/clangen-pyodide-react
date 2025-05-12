@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 
-import { CatEdit, Cat } from "../python/types";
+import { CatEdit, Cat, Toggles } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
 import Select from "../components/generic/Select";
 import { SelectOption } from "../components/generic/Select";
 
 import BasePage from "../layout/BasePage";
+import Checkbox from "../components/generic/Checkbox";
 
 const selectApprenticeOptions = [
   {
@@ -70,6 +71,10 @@ function CatEditPage() {
   const [selectedMate, setSelectedMate] = useState("");
 
   const [mates, setMates] = useState<string[]>([]);
+
+  const [preventRetire, setPreventRetire] = useState(false);
+  const [preventKits, setPreventKits] = useState(false);
+  const [preventMates, setPreventMates] = useState(false);
 
   const isApprentice = cat?.status.includes("apprentice");
 
@@ -147,6 +152,12 @@ function CatEditPage() {
       suffix: suffix,
       mates: mates,
     };
+    const t: Toggles = {
+      preventKits: preventKits,
+      preventMates: preventMates,
+      preventRetire: preventRetire
+    };
+    e.toggles = t;
     if (isApprentice) {
       e.mentor = mentor;
     }
@@ -181,6 +192,9 @@ function CatEditPage() {
       setSuffix(c.name.suffix);
       setStatus(c.status);
       setMates(c.mates.map((mate) => mate.ID));
+      setPreventRetire(c.toggles.preventRetire);
+      setPreventKits(c.toggles.preventKits);
+      setPreventMates(c.toggles.preventMates);
 
       clangenRunner
         .getPotentialMentors(c.status)
@@ -258,6 +272,14 @@ function CatEditPage() {
               </button>
             </fieldset>
           )}
+
+          <fieldset>
+            <legend>Toggles</legend>
+
+            <Checkbox label="Prevent retiring automatically" checked={preventRetire} onChange={() => setPreventRetire(!preventRetire)}/>
+            <Checkbox label="Prevent adopting or having kits" checked={preventKits} onChange={() => setPreventKits(!preventKits)}/>
+            <Checkbox label="Prevent having romantic interactions with non-mates" checked={preventMates} onChange={() => setPreventMates(!preventMates)}/>
+          </fieldset>
 
           {isApprentice && (
             <div>

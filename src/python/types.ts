@@ -74,6 +74,7 @@ type Cat = {
   parent1: Cat | undefined;
   parent2: Cat | undefined;
   mates: Cat[];
+  toggles: Toggles;
 };
 
 type Relationship = {
@@ -97,12 +98,19 @@ type Event = {
   cats_involved: Array<string>;
 };
 
+type Toggles = {
+  preventKits: boolean;
+  preventRetire: boolean;
+  preventMates: boolean;
+}
+
 type CatEdit = {
   status: string;
   prefix: string;
   suffix: string;
   mentor?: string;
   mates?: string[];
+  toggles?: Toggles;
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med";
@@ -124,4 +132,5 @@ export type {
   Relationship,
   Condition,
   Event,
+  Toggles,
 };

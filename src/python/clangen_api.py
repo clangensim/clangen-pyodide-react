@@ -144,6 +144,11 @@ def cat_to_dict(cat, depth=1):
       'accessory': cat.pelt.accessory,
       'catSprites': cat.pelt.cat_sprites,
       'reverse': cat.pelt.reverse
+    },
+    'toggles': {
+      'preventKits': cat.no_kits,
+      'preventRetire': cat.no_retire,
+      'preventMates': cat.no_mates
     }
   }
 
@@ -243,6 +248,14 @@ def edit_cat(cat_id, editObj):
     for mateID in cat.mate:
       if mateID not in edit["mates"]:
         cat.unset_mate(Cat.fetch_cat(mateID))
+
+  if "toggles" in edit:
+    toggles = edit["toggles"]
+
+    cat.no_kits = toggles["preventKits"]
+    cat.no_retire = toggles["preventRetire"]
+    cat.no_mates = toggles["preventMates"]
+
   _end_patrol_containing(cat_id)
 
 def destroy_accessory(cat_id):
