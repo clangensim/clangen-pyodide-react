@@ -8,6 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "postbuild": "cp dist/index.html dist/404.html",
     "docker-build": "docker build --output type=local,dest=dist .",
+    "test": "npx playwright test",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -26,7 +27,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
-    "@types/node": "^22.10.7",
+    "@playwright/test": "^1.52.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",

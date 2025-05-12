@@ -27,3 +27,9 @@ dist-ssr
 public/sprites/*
 *.whl
 *.zip
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
