@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.7.3"
+      - name: Install Python build dependencies
+        run: uv sync
+      - name: Build Python wheel
+        run: uv run vendors/clangen-lite/build.py vendors/clangen-lite public
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install node dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
