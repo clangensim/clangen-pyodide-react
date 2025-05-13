@@ -27,5 +27,7 @@ jobs:
           node-version: 22
       - name: Install node dependencies
         run: npm install
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
       - name: Run tests
         run: npm test
