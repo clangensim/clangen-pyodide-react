@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Cat } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
+import "../styles/new-clan.css";
 
 import CatDisplay from "../components/CatDisplay";
 
@@ -76,12 +77,7 @@ function NewClanPage() {
     <>
       <form
         onSubmit={handleSubmit}
-        style={{
-          backgroundColor: "white",
-          padding: "20px",
-          maxWidth: 500,
-          margin: "auto",
-        }}
+        id="new-clan-form"
       >
         <fieldset>
           <legend>Clan Name*</legend>
@@ -91,6 +87,7 @@ function NewClanPage() {
             name="clan-name"
             id="clan-name-input"
             required
+            size={15}
           ></input>
           -Clan
         </fieldset>
@@ -124,18 +121,12 @@ function NewClanPage() {
         <fieldset>
           <legend>Cats</legend>
           <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}
+            className="select-clan-cats"
           >
             {cats.map((cat) => (
               <div
-                className="raised"
+                className="clan-cats"
                 key={cat.ID}
-                style={{
-                  display: "flex",
-                  minWidth: 0,
-                  width: "inherit",
-                  flexDirection: "column",
-                }}
               >
                 <CatDisplay cat={cat} />
                 <div>{cat.name.display}</div>

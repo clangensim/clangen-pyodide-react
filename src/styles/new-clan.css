@@ -1,0 +1,38 @@
+#new-clan-form {
+  background-color: white;
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+}
+
+#new-clan-form input[type="text"] {
+  font-size: 16px;
+  
+}
+
+#new-clan-form select {
+  min-width: 100%;
+}
+
+#new-clan-form fieldset {
+  min-width: auto;
+}
+
+.select-clan-cats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.clan-cats {
+  display: "flex";
+  min-width: 0;
+  width: "inherit";
+  flex-direction: "column";
+  overflow: clip;
+}
+
+@media (width <= 500px) {
+  .select-clan-cats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
