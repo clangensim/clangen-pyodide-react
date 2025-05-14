@@ -425,6 +425,35 @@ def get_conditions(cat_id):
     })
   return to_js(conditions, dict_converter=js.Object.fromEntries)
 
+def get_prev_and_next_cats(current_cat_id):
+  cat_index = -1
+  previous_cat = "-1"
+  next_cat = "-1"
+
+  for i, cat in enumerate(Cat.all_cats_list):
+    if cat.ID == current_cat_id:
+      cat_index = i
+      current_cat = cat
+
+  if cat_index == -1:
+    return [previous_cat, next_cat]
+
+  # previous
+  for i, cat in enumerate(Cat.all_cats_list[max(0, cat_index-1)::-1]):
+    if (cat.dead == current_cat.dead and cat.outside == current_cat.outside
+        and cat.df == current_cat.df and cat.ID != current_cat.ID):
+      previous_cat = cat.ID
+      break
+
+  # next cat
+  for i, cat in enumerate(Cat.all_cats_list[cat_index+1:]):
+    if (cat.dead == current_cat.dead and cat.outside == current_cat.outside
+        and cat.df == current_cat.df and cat.ID != current_cat.ID):
+      next_cat = cat.ID
+      break
+
+  return [previous_cat, next_cat]
+
 def moonskip():
   events_class.one_moon()
   current_patrols.clear()

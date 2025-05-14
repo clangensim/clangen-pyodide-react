@@ -236,6 +236,14 @@ class Clangen {
   }
 
   /**
+   * Gets "next" and "previous" cats
+   */
+  public async getPrevAndNextCats(currentCatId: string): Promise<[string, string]> {
+    const prevNext = this._clangenApi.get_prev_and_next_cats(currentCatId);
+    return [prevNext[0], prevNext[1]];
+  }
+
+  /**
    * Skips one moon. Also saves the game.
    */
   public async moonskip(): Promise<void> {

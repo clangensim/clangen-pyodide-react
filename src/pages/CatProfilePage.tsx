@@ -16,6 +16,7 @@ function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
   const [relationships, setRelationships] = useState<Relationship[]>();
   const [conditions, setConditions] = useState<Condition[]>();
+  const [neighbourCats, setNeighbourCats] = useState<[string, string]>(["-1", "-1"]);
 
   const params = useParams();
   const catID = params.id as string;
@@ -30,6 +31,7 @@ function CatProfilePage() {
 
     clangenRunner.getRelationships(catID).then((r) => setRelationships(r));
     clangenRunner.getConditions(catID).then((c) => setConditions(c));
+    clangenRunner.getPrevAndNextCats(catID).then((c) => setNeighbourCats(c));
   }, [catID]);
 
   let crumbs = undefined;
@@ -69,6 +71,17 @@ function CatProfilePage() {
             <CatDisplay cat={cat} w="100px" h="100px" />
             <CatProfile cat={cat} />
           </div>
+
+          {neighbourCats[0] !== "-1" && 
+          <div>
+            <Link to={`/cats/${neighbourCats[0]}`}>Previous Cat</Link>
+          </div>
+          }
+          {neighbourCats[1] !== "-1" && 
+          <div>
+            <Link to={`/cats/${neighbourCats[1]}`}>Next Cat</Link>
+          </div>
+          }
 
           <div>
             <details>
