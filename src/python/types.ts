@@ -53,6 +53,7 @@ type Cat = {
   name: Name;
   moons: number;
   gender: string;
+  sex: "male" | "female";
   trait: string;
   skillString: string;
   status: string;
@@ -111,6 +112,7 @@ type CatEdit = {
   mentor?: string;
   mates?: string[];
   toggles?: Toggles;
+  gender: string;
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med";

@@ -109,6 +109,7 @@ def cat_to_dict(cat, depth=1):
     'age': cat.age,
     'moons': cat.moons,
     'gender': cat.genderalign,
+    'sex': cat.gender,
     'status': cat.status,
     'outside': cat.outside,
     'backstory': backstory,
@@ -255,6 +256,9 @@ def edit_cat(cat_id, editObj):
     cat.no_kits = toggles["preventKits"]
     cat.no_retire = toggles["preventRetire"]
     cat.no_mates = toggles["preventMates"]
+
+  if "gender" in edit:
+    cat.genderalign = edit["gender"]
 
   _end_patrol_containing(cat_id)
 

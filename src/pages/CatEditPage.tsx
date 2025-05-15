@@ -8,6 +8,7 @@ import { SelectOption } from "../components/generic/Select";
 
 import BasePage from "../layout/BasePage";
 import Checkbox from "../components/generic/Checkbox";
+import Radiobox from "../components/generic/Radiobox";
 
 const selectApprenticeOptions = [
   {
@@ -51,6 +52,33 @@ const selectRegularCatOptions = [
   },
 ];
 
+function EditGender({cat, value, setValue} : {cat: Cat, value: string; setValue: (val: string) => void}) {
+
+  return (
+    <>
+      <fieldset>
+        <legend>Gender</legend>
+
+        <div onChange={(e: any) => setValue(e.target.value)}>
+          {cat.sex === "female" && 
+            <>
+              <Radiobox checked={value === "trans male"} label="trans male" name="gender" />
+              <Radiobox checked={value === "female"} label="female" name="gender" />
+            </>
+          }
+          {cat.sex === "male" &&
+            <>
+              <Radiobox checked={value === "male"} label="male" name="gender" />
+              <Radiobox checked={value === "trans female"} label="trans female" name="gender" />
+            </>
+          }
+          <Radiobox checked={value === "nonbinary"} label="nonbinary" name="gender" />
+        </div>
+      </fieldset>
+    </>
+  );
+}
+
 function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
@@ -75,6 +103,8 @@ function CatEditPage() {
   const [preventRetire, setPreventRetire] = useState(false);
   const [preventKits, setPreventKits] = useState(false);
   const [preventMates, setPreventMates] = useState(false);
+
+  const [gender, setGender] = useState("");
 
   const isApprentice = cat?.status.includes("apprentice");
 
@@ -151,6 +181,7 @@ function CatEditPage() {
       prefix: prefix,
       suffix: suffix,
       mates: mates,
+      gender: gender,
     };
     const t: Toggles = {
       preventKits: preventKits,
@@ -195,6 +226,7 @@ function CatEditPage() {
       setPreventRetire(c.toggles.preventRetire);
       setPreventKits(c.toggles.preventKits);
       setPreventMates(c.toggles.preventMates);
+      setGender(c.gender);
 
       clangenRunner
         .getPotentialMentors(c.status)
@@ -237,6 +269,8 @@ function CatEditPage() {
               noEmpty
             />
           </div>
+
+          <EditGender cat={cat} value={gender} setValue={setGender} />
 
           {["young adult", "adult", "senior adult", "senior"].includes(
             cat.age,
