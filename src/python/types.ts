@@ -113,6 +113,7 @@ type CatEdit = {
   mates?: string[];
   toggles?: Toggles;
   gender: string;
+  afterlife?: string;
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med";

@@ -260,6 +260,21 @@ def edit_cat(cat_id, editObj):
   if "gender" in edit:
     cat.genderalign = edit["gender"]
 
+  if "afterlife" in edit:
+    afterlife = edit["afterlife"]
+    if afterlife == "starclan":
+      cat.df = False
+      cat.outside = False
+      game.clan.add_to_starclan(cat)
+    elif afterlife == "dark forest":
+      cat.df = True
+      cat.outside = False
+      game.clan.add_to_darkforest(cat)
+    elif afterlife == "unknown residence":
+      cat.df = False
+      cat.outside = False
+      game.clan.add_to_unknown(cat)
+
   _end_patrol_containing(cat_id)
 
 def destroy_accessory(cat_id):

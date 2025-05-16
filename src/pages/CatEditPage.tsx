@@ -79,6 +79,22 @@ function EditGender({cat, value, setValue} : {cat: Cat, value: string; setValue:
   );
 }
 
+function EditAfterlife({value, setValue} : {value: string; setValue: (val: string) => void}) {
+  return (
+    <>
+      <fieldset>
+        <legend>Afterlife</legend>
+
+        <div onChange={(e: any) => setValue(e.target.value)}>
+            <Radiobox checked={value === "starclan"} label="starclan" name="afterlife" />
+            <Radiobox checked={value === "dark forest"} label="dark forest" name="afterlife" />
+            <Radiobox checked={value === "unknown residence"} label="unknown residence" name="afterlife" />
+        </div>
+      </fieldset>
+    </>
+  )
+}
+
 function CatEditPage() {
   const params = useParams();
   const catID = params.id as string;
@@ -105,6 +121,7 @@ function CatEditPage() {
   const [preventMates, setPreventMates] = useState(false);
 
   const [gender, setGender] = useState("");
+  const [afterlife, setAfterlife] = useState("");
 
   const isApprentice = cat?.status.includes("apprentice");
 
@@ -192,6 +209,9 @@ function CatEditPage() {
     if (isApprentice) {
       e.mentor = mentor;
     }
+    if (afterlife !== "") {
+      e.afterlife = afterlife;
+    }
     clangenRunner.editCat(catID, e);
     navigate(`/cats/${catID}`);
   }
@@ -228,6 +248,18 @@ function CatEditPage() {
       setPreventMates(c.toggles.preventMates);
       setGender(c.gender);
 
+      var afterlifeLocation = "";
+      if (c.dead) {
+        if (c.inDarkForest) {
+          afterlifeLocation = "dark forest";
+        } else if (c.outside) {
+          afterlifeLocation = "unknown residence";
+        } else {
+          afterlifeLocation = "starclan";
+        }
+      }
+      setAfterlife(afterlifeLocation);
+
       clangenRunner
         .getPotentialMentors(c.status)
         .then((mentors) => setPotentialMentors(mentors));
@@ -256,6 +288,10 @@ function CatEditPage() {
           onChange={(e) => setSuffix(e.currentTarget.value)}
         />
       </div>
+
+      {cat && cat.dead && 
+        <EditAfterlife value={afterlife} setValue={setAfterlife}/>
+      }
 
       {cat && !cat.dead && !cat.outside && (
         <>
