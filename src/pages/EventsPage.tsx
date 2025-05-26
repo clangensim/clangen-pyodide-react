@@ -4,6 +4,8 @@ import Checkbox from "../components/generic/Checkbox";
 import BasePage from "../layout/BasePage";
 import { useQuery } from "@tanstack/react-query";
 
+import { formatText } from "../utils";
+
 const crumbs = [
   {
     url: "/",
@@ -48,7 +50,7 @@ function EventsPage() {
             if (!showRegEvents && !event.types.includes("interaction")) {
               return;
             }
-            return <li key={i}>{event.text}</li>;
+            return <li key={i}>{formatText(event.text)}</li>;
           })}
         </>
       );

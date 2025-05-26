@@ -7,4 +7,15 @@ const download = (b: Blob) => {
   document.body.removeChild(temp);
 };
 
-export { download };
+const formatText = (s: string) => {
+  const TAGS = [/<i>/g, /<\/i>/g, /<b>/g, /<\/b>/g];
+
+  var output = s;
+  for (const t of TAGS) {
+    output = output.replace(t, "");
+  }
+  console.log(output);
+  return output;
+}
+
+export { download, formatText };

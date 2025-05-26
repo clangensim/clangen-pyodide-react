@@ -6,6 +6,7 @@ import { SelectOption } from "../components/generic/Select";
 import BasePage from "../layout/BasePage";
 
 import confusedCat from "../assets/images/gen_med_newmed.png";
+import { formatText } from "../utils";
 
 type ScreenState = "start" | "in-progress" | "wrap-up"
 const crumbs = [
@@ -267,9 +268,9 @@ function PatrolsPage() {
         </>
       )}
 
-      <p>{patrolText}</p>
+      <p>{formatText(patrolText)}</p>
 
-      <p>{resultText}</p>
+      <p>{formatText(resultText)}</p>
 
       {screenState === "start" && (
         <button
