@@ -14,7 +14,6 @@ const formatText = (s: string) => {
   for (const t of TAGS) {
     output = output.replace(t, "");
   }
-  console.log(output);
   return output;
 }
 
