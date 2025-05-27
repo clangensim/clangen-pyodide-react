@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { clangenRunner } from "../python/clangenRunner";
 import Pluralize from "../components/generic/Pluralize";
 import { Link, useNavigate } from "react-router";
+import { useEffect } from "react";
 
 function BasePage({
   children,
@@ -20,6 +21,15 @@ function BasePage({
   });
 
   const clanInfo = query.data;
+
+  useEffect(() => {
+    const customCssElement = document.getElementById("custom-css");
+    const customCss = localStorage.getItem("custom-css");
+    // need the last condition or there will be flash of unstyled content
+    if (customCssElement && customCss && customCssElement.textContent !== customCss) {
+      customCssElement.textContent = customCss;
+    }
+  }, []);
 
   if (query.status === "error") {
     console.error(query.error);

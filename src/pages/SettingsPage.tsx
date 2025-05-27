@@ -43,6 +43,7 @@ const settingLabels: Record<string, Record<string, string>> = {
 
 function SettingsPage() {
   const [settings, setSettings] = useState<Record<string, boolean>>({});
+  const [customCss, setCustomCss] = useState("");
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -50,6 +51,17 @@ function SettingsPage() {
   }, []);
 
   useEffect(() => {
+    // disable on this page so users don't softlock themselves
+    const customCssElement = document.getElementById("custom-css");
+    if (customCssElement) {
+      customCssElement.textContent = "";
+    }
+
+    const storedCss = localStorage.getItem("custom-css");
+    if (storedCss) {
+      setCustomCss(storedCss);
+    }
+
     clangenRunner.getSettings().then((s) => {
       const temp: Record<string, boolean> = {};
 
@@ -65,12 +77,18 @@ function SettingsPage() {
 
   function handleSave() {
     clangenRunner.setSettings(settings).then(() => {
+      const customCssElement = document.getElementById("custom-css");
+      if (customCssElement) {
+        customCssElement.textContent = customCss;
+      }
+      localStorage.setItem("custom-css", customCss);
       navigator("/");
     });
   }
 
   return (
     <BasePage>
+      <h2>Game Settings</h2>
       {Object.entries(settings).map(([settingName, value]) => (
         <Checkbox
           key={settingName}
@@ -79,6 +97,16 @@ function SettingsPage() {
           onChange={() => setSettings({ ...settings, [settingName]: !value })}
         />
       ))}
+
+      <h2>Site Settings</h2>
+      <div>
+        <fieldset>
+          <legend>Custom CSS</legend>
+          <textarea rows={10} cols={50} value={customCss} onChange={e => setCustomCss(e.target.value)} style={{resize: "none"}}></textarea>
+          
+          <p>Your custom CSS will be injected onto every page except for this one. For your safety, please only input CSS that you 100% trust.</p>
+        </fieldset>
+      </div>
       <button onClick={handleSave}>Save</button>
     </BasePage>
   );
