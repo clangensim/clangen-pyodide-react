@@ -102,7 +102,7 @@ function SettingsPage() {
       <div>
         <fieldset>
           <legend>Custom CSS</legend>
-          <textarea rows={10} cols={50} value={customCss} onChange={e => setCustomCss(e.target.value)} style={{resize: "none"}}></textarea>
+          <textarea rows={10} cols={50} value={customCss} onChange={e => setCustomCss(e.target.value)} style={{resize: "none", width: "98%"}}></textarea>
           
           <p>Your custom CSS will be injected onto every page except for this one. For your safety, please only input CSS that you 100% trust.</p>
         </fieldset>
