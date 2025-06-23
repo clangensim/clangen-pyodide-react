@@ -30,7 +30,6 @@ test('signup', async ({ page }) => {
 
   // submit
   await page.getByRole("button", { name: "Submit" }).click();
-  await expect(page).toHaveURL("http://localhost:5173/cats");
 
   const profileInfo = page.locator(".profile-info").first();
   await profileInfo.waitFor();
@@ -39,6 +38,9 @@ test('signup', async ({ page }) => {
   await expect(profileInfo).toHaveText(/TestClan/);
   await expect(profileInfo).toHaveText(/Newleaf/);
   await expect(profileInfo).toHaveText(/0 moons/);
+
+  // correct page? 
+  await expect(page).toHaveURL("http://localhost:5173/cats");
 
   // selected cats ok?
   const catsList = page.locator(".cats-list").first();
