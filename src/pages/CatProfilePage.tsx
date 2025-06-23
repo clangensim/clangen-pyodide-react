@@ -17,6 +17,7 @@ function CatProfilePage() {
   const [relationships, setRelationships] = useState<Relationship[]>();
   const [conditions, setConditions] = useState<Condition[]>();
   const [neighbourCats, setNeighbourCats] = useState<[string, string]>(["-1", "-1"]);
+  const [ceremony, setCeremony] = useState<string>();
 
   const params = useParams();
   const catID = params.id as string;
@@ -26,6 +27,9 @@ function CatProfilePage() {
       setCat(c);
       if (c) {
         document.title = `${c.name.display} | ClanGen Simulator`;
+        if (!c.dead && c.status === "leader") {
+          clangenRunner.getLeaderCeremony().then((cere) => setCeremony(cere));
+        }
       }
     });
 
@@ -100,6 +104,14 @@ function CatProfilePage() {
               <ConditionsDisplay conditions={conditions} />
             </details>
           </div>
+          {ceremony && 
+            <div>
+              <details>
+                <summary>Leadership Ceremony</summary>
+                {ceremony.split("<br><br>").map(line => <p>{line}</p>)}
+              </details>
+            </div>
+          }
         </>
       )}
     </BasePage>

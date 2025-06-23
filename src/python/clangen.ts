@@ -185,6 +185,13 @@ class Clangen {
   }
 
   /**
+   * Gets leader ceremony.
+   */
+  public async getLeaderCeremony(): Promise<string | undefined> {
+    return this._clangenApi.get_leader_ceremony();
+  }
+
+  /**
    * Gets potential mates for cat of specified ID.
    * 
    * WARNING: This includes CURRENT MATES of the selected cat.

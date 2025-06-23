@@ -197,6 +197,11 @@ def get_cat(cat_id):
   cat = Cat.all_cats[cat_id]
   return to_js(cat_to_dict(cat), dict_converter=js.Object.fromEntries)
 
+def get_leader_ceremony():
+  if game.clan.leader:
+    return History.get_lead_ceremony(game.clan.leader)
+  return None
+
 def edit_cat(cat_id, editObj):
   edit = editObj.to_py()
   cat = Cat.all_cats[cat_id]
