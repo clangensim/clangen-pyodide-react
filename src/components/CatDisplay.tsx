@@ -42,8 +42,9 @@ function CatSprite({
   const catSprite = pelt.catSprites[age];
 
   useEffect(() => {
+    const shadingEnabled = localStorage.getItem("shading-enabled") !== null;
     if (canvasRef.current !== null) {
-      drawCat(canvasRef.current, pelt, catSprite, dead, darkForest);
+      drawCat(canvasRef.current, pelt, catSprite, dead, darkForest, shadingEnabled);
     }
   }, [canvasRef, pelt, catSprite, darkForest, dead]);
 

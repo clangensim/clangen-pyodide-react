@@ -44,6 +44,7 @@ const settingLabels: Record<string, Record<string, string>> = {
 function SettingsPage() {
   const [settings, setSettings] = useState<Record<string, boolean>>({});
   const [customCss, setCustomCss] = useState("");
+  const [shading, setShading] = useState(false);
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -60,6 +61,11 @@ function SettingsPage() {
     const storedCss = localStorage.getItem("custom-css");
     if (storedCss) {
       setCustomCss(storedCss);
+    }
+
+    const shadingEnabled = localStorage.getItem("shading-enabled");
+    if (shadingEnabled) {
+      setShading(shadingEnabled !== null);
     }
 
     clangenRunner.getSettings().then((s) => {
@@ -82,6 +88,12 @@ function SettingsPage() {
         customCssElement.textContent = customCss;
       }
       localStorage.setItem("custom-css", customCss);
+      
+      if (shading) {
+        localStorage.setItem("shading-enabled", "true");
+      } else {
+        localStorage.removeItem("shading-enabled");
+      }
       navigator("/");
     });
   }
@@ -99,6 +111,7 @@ function SettingsPage() {
       ))}
 
       <h2>Site Settings</h2>
+      <Checkbox label="Enable shading for cat sprites" onChange={() => setShading(!shading)} checked={shading}/>
       <div>
         <fieldset>
           <legend>Custom CSS</legend>
