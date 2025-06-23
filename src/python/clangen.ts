@@ -46,7 +46,6 @@ class Clangen {
 
     const storedVersion = await localforage.getItem("resourcesLoaded");
     if (storedVersion !== VERSION) {
- 
       console.log("Delete existing resources...");
       this._pyodide.runPython(`
       import shutil
@@ -101,7 +100,7 @@ class Clangen {
 
   /**
    * Initializes starter cats used in Clan creation.
-   * 
+   *
    * These get added to the cat list, so you should run `refreshCats()`
    * at some point after calling this if you don't run `createClan()`.
    */
@@ -172,7 +171,11 @@ class Clangen {
    * Kills cat with specified ID.
    * Also saves the game.
    */
-  public async killCat(id: string, history: string, takeNineLives?: boolean): Promise<void> {
+  public async killCat(
+    id: string,
+    history: string,
+    takeNineLives?: boolean,
+  ): Promise<void> {
     this._clangenApi.kill_cat(id, history, takeNineLives);
     await this.saveGame();
   }
@@ -193,7 +196,7 @@ class Clangen {
 
   /**
    * Gets potential mates for cat of specified ID.
-   * 
+   *
    * WARNING: This includes CURRENT MATES of the selected cat.
    */
   public async getPotentialMates(id: string): Promise<Cat[]> {
@@ -245,7 +248,9 @@ class Clangen {
   /**
    * Gets "next" and "previous" cats
    */
-  public async getPrevAndNextCats(currentCatId: string): Promise<[string, string]> {
+  public async getPrevAndNextCats(
+    currentCatId: string,
+  ): Promise<[string, string]> {
     const prevNext = this._clangenApi.get_prev_and_next_cats(currentCatId);
     return [prevNext[0], prevNext[1]];
   }
@@ -279,7 +284,7 @@ class Clangen {
       if (exception.type === "CatCantWork") {
         throw Error("A selected cat can't patrol this moon!");
       } else if (exception.type === "KeyError") {
-        throw Error("A selected cat doesn't seem to exist!")
+        throw Error("A selected cat doesn't seem to exist!");
       }
       console.error(exception);
       throw Error("Unknown");
@@ -289,18 +294,20 @@ class Clangen {
   /**
    * Finishes a patrol. There can only be one patrol at a time.
    * Also saves the game.
-   * 
+   *
    * Returns [outcome text, results text].
    */
-  public async finishPatrol(uuid: string, action: PatrolAction): Promise<[string, string]> {
+  public async finishPatrol(
+    uuid: string,
+    action: PatrolAction,
+  ): Promise<[string, string]> {
     try {
       // outcome text, results text
       const p = this._clangenApi.finish_patrol(uuid, action);
       await this.saveGame();
       // for some reason it doesn't work with comlink unless you do this
       return [p[0], p[1]];
-    }
-    catch (exception: any) {
+    } catch (exception: any) {
       // have to throw again because the pyodide errors don't work with comlink
       if (exception.type === "KeyError") {
         throw Error("This patrol has already ended!");
@@ -337,7 +344,7 @@ class Clangen {
       } else if (exception.type === "CatCantWork") {
         throw Error("This mediator can't currently work!");
       }
-      console.error(exception)
+      console.error(exception);
       throw Error("Unknown");
     }
   }
@@ -366,7 +373,7 @@ class Clangen {
   public async getClanInfo(): Promise<ClanInfo | null> {
     const clanInfo = this._clangenApi.get_clan_info();
     if (clanInfo) {
-      return clanInfo
+      return clanInfo;
     } else {
       // have to return null or tanstack complains
       return null;

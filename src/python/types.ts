@@ -1,4 +1,3 @@
-
 type ClanInfo = {
   name: string;
   age: number;
@@ -6,7 +5,7 @@ type ClanInfo = {
   season: string;
   freshkill?: number;
   requiredFreshkill?: number;
-}
+};
 
 type Pelt = {
   name: string;
@@ -103,7 +102,7 @@ type Toggles = {
   preventKits: boolean;
   preventRetire: boolean;
   preventMates: boolean;
-}
+};
 
 type CatEdit = {
   status: string;
@@ -122,7 +121,7 @@ type PatrolIntro = {
   text: string;
   canAntagonize: boolean;
   uuid: string;
-}
+};
 
 export type {
   CatEdit,

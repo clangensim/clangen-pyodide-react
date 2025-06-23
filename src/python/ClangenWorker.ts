@@ -7,7 +7,7 @@ if ("SharedWorkerGlobalScope" in self) {
   addEventListener("connect", (event: any) => {
     const port = event.ports[0];
     Comlink.expose(clangen, port);
-  });  
+  });
 } else {
   Comlink.expose(clangen);
 }

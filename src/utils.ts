@@ -15,6 +15,6 @@ const formatText = (s: string) => {
     output = output.replace(t, "");
   }
   return output;
-}
+};
 
 export { download, formatText };
