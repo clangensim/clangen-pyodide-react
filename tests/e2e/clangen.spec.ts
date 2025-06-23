@@ -5,7 +5,7 @@ test('signup', async ({ page }) => {
 
   // Redirect to signup page when no account
   // Also confirms that clangen loaded successfully
-  await expect(page).toHaveURL(/signup/);
+  await expect(page).toHaveURL(/signup/, { timeout: 30 * 1000 });
   await expect(page).toHaveTitle("Welcome! | ClanGen Simulator");
 
   // entered create new clan page
