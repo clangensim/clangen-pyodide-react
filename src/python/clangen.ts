@@ -46,6 +46,9 @@ class Clangen {
 
     const storedVersion = await localforage.getItem("resourcesLoaded");
     if (storedVersion !== VERSION) {
+      // make sure to load saves first so they don't get wiped when syncing back
+      await this._syncFS(true);
+
       console.log("Delete existing resources...");
       this._pyodide.runPython(`
       import shutil
