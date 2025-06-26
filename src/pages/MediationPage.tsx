@@ -19,18 +19,30 @@ const crumbs = [
   },
 ];
 
+function haveMediated(cat1: string, cat2: string, mediatedPairs: [string, string][]) {
+  for (const pair of mediatedPairs) {
+    if (pair.includes(cat1) && pair.includes(cat2)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // TODO: switch to reducer
 function MediationPage() {
   const [mediationText, setMediationText] = useState("");
 
   const [possibleMediators, setPossibleMediators] = useState<Cat[]>([]);
   const [possibleCats, setPossibleCats] = useState<Cat[]>([]);
+  const [mediatedPairs, setMediatedPairs] = useState<[string, string][]>([]);
 
   const [allowRomantic, setAllowRomantic] = useState<boolean>(false);
 
   const [selectedCat1, setSelectedCat1] = useState("");
   const [selectedCat2, setSelectedCat2] = useState("");
   const [selectedCat3, setSelectedCat3] = useState("");
+
+  const alreadyMediated = haveMediated(selectedCat3, selectedCat2, mediatedPairs);
 
   // non-empty cats only
   const selectedCats = [selectedCat1, selectedCat2, selectedCat3].filter(
@@ -66,6 +78,7 @@ function MediationPage() {
 
     clangenRunner.getPossibleMediators().then((m) => setPossibleMediators(m));
     clangenRunner.getPossibleMediated().then((m) => setPossibleCats(m));
+    clangenRunner.getMediatedPairs().then((m) => setMediatedPairs(m));
   }
 
   useEffect(() => {
@@ -181,20 +194,22 @@ function MediationPage() {
         />
       </fieldset>
 
+      {alreadyMediated && <p>This pair of cats has already been mediated together this moon.</p>}
+
       <p>{mediationText}</p>
 
       {screenState === "start" && (
         <div className="button-row">
           <button
             tabIndex={0}
-            disabled={selectedCats.length < 3}
+            disabled={selectedCats.length < 3 || alreadyMediated}
             onClick={() => doMediate("mediate", allowRomantic)}
           >
             Mediate
           </button>
           <button
             tabIndex={0}
-            disabled={selectedCats.length < 3}
+            disabled={selectedCats.length < 3 || alreadyMediated}
             onClick={() => doMediate("sabotage", allowRomantic)}
           >
             Sabotage

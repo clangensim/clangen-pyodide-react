@@ -364,6 +364,9 @@ def _mediated_together(cat_id1, cat_id2):
       return True
   return False
 
+def get_mediated_pairs():
+  return to_js(game.mediated)
+
 def get_possible_mediators():
   cats = []
   for the_cat in Cat.all_cats_list:

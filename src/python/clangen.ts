@@ -213,6 +213,13 @@ class Clangen {
     return this._clangenApi.get_patrollable_cats();
   }
 
+  /* 
+   * Gets cats who were mediated together this moon.
+   */
+  public async getMediatedPairs(): Promise<[string, string][]> {
+    return this._clangenApi.get_mediated_pairs();
+  }
+
   /**
    * Gets cats who can mediate this moon.
    */
