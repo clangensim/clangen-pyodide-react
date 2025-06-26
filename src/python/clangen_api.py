@@ -277,7 +277,7 @@ def edit_cat(cat_id, editObj):
       game.clan.add_to_darkforest(cat)
     elif afterlife == "unknown residence":
       cat.df = False
-      cat.outside = False
+      cat.outside = True
       game.clan.add_to_unknown(cat)
 
   _end_patrol_containing(cat_id)
