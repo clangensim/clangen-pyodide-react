@@ -25,6 +25,9 @@ function CatProfilePage() {
   useEffect(() => {
     clangenRunner.getCat(catID).then((c) => {
       setCat(c);
+
+      // have to set this here bc otherwise ceremonies appear w/ next/prev cat button
+      setCeremony(undefined);
       if (c) {
         document.title = `${c.name.display} | ClanGen Simulator`;
         if (!c.dead && c.status === "leader") {
