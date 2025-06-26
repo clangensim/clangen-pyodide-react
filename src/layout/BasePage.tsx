@@ -31,6 +31,15 @@ function BasePage({
     }
   }, []);
 
+  if (query.status === "pending") {
+    return (
+      <div id="preloader-container">
+        <div id="preloader" />
+        Loading Clan...
+      </div>
+    );
+  }
+
   if (query.status === "error") {
     console.error(query.error);
     return <>Error</>;
