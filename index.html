@@ -14,6 +14,13 @@
         border-radius: 50%;
         animation: l4 3s infinite;
       }
+      #preloader-container {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
       @keyframes l4 {
         12.5% {
           background-image: radial-gradient(80% 65% at left, #0000 94%, #fff9);
@@ -41,15 +48,7 @@
   </head>
   <body>
     <div id="root">
-      <div
-        style="
-          color: white;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        "
-      >
+      <div id="preloader-container">
         <p>
           Welcome to <b>ClanGen Simulator</b>.
         </p>
