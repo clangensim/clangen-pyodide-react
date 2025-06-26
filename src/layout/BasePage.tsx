@@ -42,7 +42,7 @@ function BasePage({
 
   if (query.status === "error") {
     console.error(query.error);
-    return <>Error</>;
+    return <>Error: {query.error.message}</>;
   }
 
   if (clanInfo === null) {
