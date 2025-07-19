@@ -59,8 +59,8 @@ def unload_clan():
 def reload_clan():
   unload_clan()
   load_clan()
-  Cat.sort_cats()
   refresh_cats()
+  Cat.sort_cats()
   current_patrols.clear()
 
 def erase_clan():
