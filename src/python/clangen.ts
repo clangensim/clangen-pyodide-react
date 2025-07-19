@@ -82,7 +82,8 @@ class Clangen {
 
     // load clan
     try {
-      this._clangenApi.load_clan();
+      // reload because this can get called twice in rare circumstances
+      this._clangenApi.reload_clan();
       this._loaded = true;
     } catch (err) {
       console.error(err);
