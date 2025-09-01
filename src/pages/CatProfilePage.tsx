@@ -63,6 +63,24 @@ function CatProfilePage() {
     <BasePage crumbs={crumbs}>
       {cat && (
         <>
+        <div style={{
+          display: "flex",
+          height: "auto"
+        }}>
+          <div style={{
+            marginRight: "auto",
+            visibility: neighbourCats[0] === "-1" ? "hidden" : "visible",
+          }}>
+            <Link style={{display: "inline-block"}} className="btn" to={`/cats/${neighbourCats[0]}`}>← Previous Cat</Link>
+          </div>
+          <div style={{
+            marginLeft: "auto",
+            visibility: neighbourCats[1] === "-1" ? "hidden" : "visible"
+          }}>
+            <Link style={{display: "inline-block"}} className="btn" to={`/cats/${neighbourCats[1]}`}>Next Cat →</Link>
+          </div>
+        </div>
+
           <div>
             <h2 className="cat-profile__header">{cat.name.display}</h2> #
             {cat.ID}
@@ -78,17 +96,6 @@ function CatProfilePage() {
             <CatDisplay cat={cat} w="100px" h="100px" />
             <CatProfile cat={cat} />
           </div>
-
-          {neighbourCats[0] !== "-1" && 
-          <div>
-            <Link to={`/cats/${neighbourCats[0]}`}>Previous Cat</Link>
-          </div>
-          }
-          {neighbourCats[1] !== "-1" && 
-          <div>
-            <Link to={`/cats/${neighbourCats[1]}`}>Next Cat</Link>
-          </div>
-          }
 
           <div>
             <details>
