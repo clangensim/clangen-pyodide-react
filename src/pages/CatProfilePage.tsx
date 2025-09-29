@@ -64,7 +64,7 @@ function CatProfilePage() {
       {cat && (
         <>
         <div style={{
-          display: "flex",
+          display: neighbourCats[0] === "-1" && neighbourCats[1] === "-1" ? "none" : "flex",
           height: "auto"
         }}>
           <div style={{
