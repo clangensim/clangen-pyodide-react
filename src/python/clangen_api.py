@@ -6,6 +6,7 @@ os.chdir("/mnt")
 from pyodide.ffi import to_js
 import js
 import uuid
+import json
 
 from scripts.game_structure.load_cat import load_cats, version_convert
 from scripts.game_structure.game_essentials import game
@@ -16,6 +17,7 @@ from scripts.clan import Clan
 from scripts.events import events_class
 from scripts.clan import clan_class
 from scripts.utility import quit as clangen_quit
+from scripts.housekeeping.datadir import get_save_dir
 
 import shutil
 
@@ -26,6 +28,7 @@ class PairAlreadyMediatedError(Exception):
   """Error thrown when already mediated pair is made to mediate again."""
 
 current_patrols = {}
+clangensim_data = {}
 
 def load_clan():
   clan_list = game.read_clans()
@@ -153,11 +156,18 @@ def cat_to_dict(cat, depth=1):
     }
   }
 
+def save_clangensim_data():
+  path = f"{get_save_dir()}/{game.clan.name}/.clangensim.json"
+  with open(path, "w", encoding="utf8") as f:
+    json.dump(clangensim_data, f)
+
 def save_game():
   game.save_cats()
   game.clan.save_clan()
   game.clan.save_pregnancy(game.clan)
   game.save_events()
+  if clangensim_data:
+    save_clangensim_data()
 
 def initialize_starting_cats():
   cats = []
