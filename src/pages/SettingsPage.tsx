@@ -45,6 +45,7 @@ function SettingsPage() {
   const [settings, setSettings] = useState<Record<string, boolean>>({});
   const [customCss, setCustomCss] = useState("");
   const [shading, setShading] = useState(false);
+  const [saveAsZip, setSaveAsZip] = useState(false);
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -66,6 +67,11 @@ function SettingsPage() {
     const shadingEnabled = localStorage.getItem("shading-enabled");
     if (shadingEnabled) {
       setShading(shadingEnabled !== null);
+    }
+
+    const storedSaveAsZip = localStorage.getItem("export-as-zip");
+    if (storedSaveAsZip) {
+      setSaveAsZip(storedSaveAsZip !== null)
     }
 
     clangenRunner.getSettings().then((s) => {
@@ -94,6 +100,13 @@ function SettingsPage() {
       } else {
         localStorage.removeItem("shading-enabled");
       }
+
+      if (saveAsZip) {
+        localStorage.setItem("export-as-zip", "true");
+      } else {
+        localStorage.removeItem("export-as-zip")
+      }
+
       navigator("/");
     });
   }
@@ -112,6 +125,7 @@ function SettingsPage() {
 
       <h2>Site Settings</h2>
       <Checkbox label="Enable shading for cat sprites" onChange={() => setShading(!shading)} checked={shading}/>
+      <Checkbox label="Export save as .zip instead of .sav" onChange={() => setSaveAsZip(!saveAsZip)} checked={saveAsZip}/>
       <div>
         <fieldset>
           <legend>Custom CSS</legend>

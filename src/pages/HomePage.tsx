@@ -11,7 +11,14 @@ function HomePage() {
   const queryClient = useQueryClient();
   async function handleExportClan() {
     const f: ArrayBuffer = await clangenRunner.exportClan();
-    download(new Blob([f]));
+
+    var filename;
+    if (localStorage.getItem("export-as-zip") !== null) {
+      filename = "export-data.zip";
+    } else {
+      filename = "export-data.sav";
+    }
+    download(new Blob([f]), filename);
   }
 
   function handleImportClan(e: any) {

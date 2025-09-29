@@ -1,7 +1,7 @@
-const download = (b: Blob) => {
+const download = (b: Blob, name: string) => {
   const temp = document.createElement("a");
   temp.href = window.URL.createObjectURL(b);
-  temp.download = "export-data.sav";
+  temp.download = name;
   document.body.appendChild(temp);
   temp.click();
   document.body.removeChild(temp);
