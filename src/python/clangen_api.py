@@ -31,6 +31,7 @@ current_patrols = {}
 clangensim_data = {}
 
 def load_clan():
+  global clangensim_data
   clan_list = game.read_clans()
   if clan_list:
       game.switches['clan_list'] = clan_list
@@ -45,6 +46,14 @@ def load_clan():
               game.switches[
                   'error_message'] = 'There was an error loading the cats file!'
               game.switches['traceback'] = e
+
+      try:
+        path = f"{get_save_dir()}/{game.clan.name}/.clangensim.json"
+        with open(path, "r", encoding="utf8") as f:
+          print("Loading clangensim data...")
+          clangensim_data = json.load(f)
+      except FileNotFoundError:
+        print("No clangensim-exclusive data found.")
 
 def unload_clan():
   game.mediated.clear()
