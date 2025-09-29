@@ -67,7 +67,8 @@ function NewClanPage() {
         localStorage.removeItem("queueCatRefresh");
         navigate("/cats");
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(err)
         alert("Something went wrong when creating your Clan! Please close all other ClanGen Simulator tabs then refresh this page.");
         document.location.reload();
       });
