@@ -116,7 +116,8 @@ def cat_to_dict(cat, depth=1):
     'name': {
       'prefix': cat.name.prefix,
       'suffix': cat.name.suffix,
-      'display': str(cat.name)
+      'display': str(cat.name),
+      'specSuffixHidden': cat.name.specsuffix_hidden
     },
     'age': cat.age,
     'moons': cat.moons,
@@ -248,6 +249,9 @@ def edit_cat(cat_id, editObj):
 
   if "suffix" in edit and edit["suffix"] != cat.name.suffix:
     cat.name.suffix = edit["suffix"]
+
+  if "hideSpecialSuffix" in edit:
+    cat.name.specsuffix_hidden = edit["hideSpecialSuffix"]
 
   if "mentor" in edit:
     new_mentor = Cat.fetch_cat(edit["mentor"])

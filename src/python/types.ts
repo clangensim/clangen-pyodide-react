@@ -33,6 +33,7 @@ type Name = {
   prefix: string;
   suffix: string;
   display: string;
+  specSuffixHidden: boolean;
 };
 
 type Severity = "major" | "minor";
@@ -108,6 +109,7 @@ type CatEdit = {
   status: string;
   prefix: string;
   suffix: string;
+  hideSpecialSuffix?: boolean;
   mentor?: string;
   mates?: string[];
   toggles?: Toggles;

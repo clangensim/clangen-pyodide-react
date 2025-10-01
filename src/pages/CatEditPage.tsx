@@ -119,6 +119,7 @@ function CatEditPage() {
   const [preventRetire, setPreventRetire] = useState(false);
   const [preventKits, setPreventKits] = useState(false);
   const [preventMates, setPreventMates] = useState(false);
+  const [hideSpecSuffix, setHideSpecSuffix] = useState(false);
 
   const [gender, setGender] = useState("");
   const [afterlife, setAfterlife] = useState("");
@@ -206,6 +207,7 @@ function CatEditPage() {
       preventRetire: preventRetire
     };
     e.toggles = t;
+    e.hideSpecialSuffix = hideSpecSuffix;
     if (isApprentice) {
       e.mentor = mentor;
     }
@@ -246,6 +248,7 @@ function CatEditPage() {
       setPreventRetire(c.toggles.preventRetire);
       setPreventKits(c.toggles.preventKits);
       setPreventMates(c.toggles.preventMates);
+      setHideSpecSuffix(c.name.specSuffixHidden);
       setGender(c.gender);
 
       var afterlifeLocation = "";
@@ -349,6 +352,7 @@ function CatEditPage() {
             <Checkbox label="Prevent retiring automatically" checked={preventRetire} onChange={() => setPreventRetire(!preventRetire)}/>
             <Checkbox label="Prevent adopting or having kits" checked={preventKits} onChange={() => setPreventKits(!preventKits)}/>
             <Checkbox label="Prevent having romantic interactions with non-mates" checked={preventMates} onChange={() => setPreventMates(!preventMates)}/>
+            <Checkbox label="Hide special role suffixes" checked={hideSpecSuffix} onChange={() => setHideSpecSuffix(!hideSpecSuffix)}/>
           </fieldset>
 
           {isApprentice && (
