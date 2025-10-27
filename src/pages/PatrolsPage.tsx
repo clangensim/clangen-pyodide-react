@@ -20,6 +20,20 @@ const crumbs = [
   },
 ];
 
+function getPatrolArtPath(type: PatrolType, path: string | undefined) {
+  if (path) {
+    return `patrol_art/${path}.png`;
+  }
+  var name: string = "bord";
+
+  if (type == "hunting") { name = "hunt" }
+  else if (type == "border") { name = "bord" }
+  else if (type == "training") { name = "train" }
+  else if (type == "med") { name = "med" }
+
+  return `patrol_art/${name}_general_intro.png`;
+}
+
 // TODO: switch to reducer
 function PatrolsPage() {
   const [patrolText, setPatrolText] = useState("");
@@ -40,6 +54,8 @@ function PatrolsPage() {
   const [patrolUuid, setPatrolUuid] = useState("");
 
   const [clanInfo, setClanInfo] = useState<ClanInfo | null>();
+
+  const [patrolArtUrl, setPatrolArtUrl] = useState("");
 
   // non-empty cats only
   const selectedCats = [
@@ -94,6 +110,7 @@ function PatrolsPage() {
   async function startPatrol() {
     try {
       const p = await clangenRunner.startPatrol(selectedCats, patrolType);
+      setPatrolArtUrl(getPatrolArtPath(patrolType, p.patrolArt));
       setPatrolText(p.text);
       setCanAntagonize(p.canAntagonize);
       setPatrolUuid(p.uuid);
@@ -109,6 +126,7 @@ function PatrolsPage() {
     try {
       const [outcomeText, outcomeResult] =
       await clangenRunner.finishPatrol(patrolUuid, action);
+      setPatrolArtUrl("");
       setPatrolText(outcomeText);
       setResultText(outcomeResult);
       setScreenState("wrap-up");
@@ -267,6 +285,10 @@ function PatrolsPage() {
           <div>Required Food: {clanInfo.requiredFreshkill}</div>
         </>
       )}
+
+      {patrolArtUrl && 
+        <img src={patrolArtUrl}></img>
+      }
 
       <p>{formatText(patrolText)}</p>
 
