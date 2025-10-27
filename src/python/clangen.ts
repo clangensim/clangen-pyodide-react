@@ -311,13 +311,13 @@ class Clangen {
   public async finishPatrol(
     uuid: string,
     action: PatrolAction,
-  ): Promise<[string, string]> {
+  ): Promise<[string, string, string | undefined]> {
     try {
       // outcome text, results text
       const p = this._clangenApi.finish_patrol(uuid, action);
       await this.saveGame();
       // for some reason it doesn't work with comlink unless you do this
-      return [p[0], p[1]];
+      return [p[0], p[1], p[2]];
     } catch (exception: any) {
       // have to throw again because the pyodide errors don't work with comlink
       if (exception.type === "KeyError") {
