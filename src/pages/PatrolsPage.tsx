@@ -20,7 +20,7 @@ const crumbs = [
   },
 ];
 
-function getPatrolArtPath(type: PatrolType, path: string | undefined) {
+function getPatrolArtPath(type: PatrolType | null, path: string | undefined) {
   if (path) {
     return `patrol_art/${path}.png`;
   }
@@ -125,9 +125,10 @@ function PatrolsPage() {
 
   async function endPatrol(action: PatrolAction) {
     try {
-      const [outcomeText, outcomeResult] =
+      const [outcomeText, outcomeResult, art] =
       await clangenRunner.finishPatrol(patrolUuid, action);
-      setPatrolArtUrl("");
+      // outcome art is used rarely
+      if (art) { setPatrolArtUrl(getPatrolArtPath(null, art)) }
       setPatrolText(outcomeText);
       setResultText(outcomeResult);
       setScreenState("wrap-up");
