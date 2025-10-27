@@ -123,6 +123,7 @@ type PatrolIntro = {
   text: string;
   canAntagonize: boolean;
   uuid: string;
+  patrolArt: string;
 };
 
 export type {

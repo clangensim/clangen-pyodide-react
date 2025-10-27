@@ -525,7 +525,8 @@ def start_patrol(patrol_members, patrol_type):
   p = {
     "text": current_patrols[id].setup_patrol(patrol_members_obj, patrol_type),
     "canAntagonize": len(current_patrols[id].patrol_event.antag_success_outcomes) > 0,
-    "uuid": id
+    "uuid": id,
+    "patrolArt": current_patrols[id].patrol_event.patrol_art,
   }
   return to_js(p, dict_converter=js.Object.fromEntries)
 
