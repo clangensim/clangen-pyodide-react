@@ -90,6 +90,7 @@ function PatrolsPage() {
     setResultText("");
     setPatrolText("");
     setScreenState("start");
+    setPatrolArtUrl("");
 
     const cats = await clangenRunner.getPatrollableCats();
     const info = await clangenRunner.getClanInfo();
