@@ -1,4 +1,5 @@
 import { clangenRunner } from "../python/clangenRunner";
+import Pluralize from "./generic/Pluralize";
 import { useQuery } from "@tanstack/react-query";
 
 function ClanInfoDisplay() {
@@ -17,7 +18,7 @@ function ClanInfoDisplay() {
     <div id="clan-info">
       <>
         <div className="clan-name">{clanInfo?.name}</div>
-        <div className="clan-moons">{clanInfo?.age} moon(s)</div>
+        <div className="clan-moons">{clanInfo?.age} <Pluralize num={clanInfo?.age}>moon</Pluralize></div>
         <div className="clan-season">Season: {clanInfo?.season}</div>
         <div className="clan-gamemode">Game Mode: {clanInfo?.gameMode}</div>
       </>
