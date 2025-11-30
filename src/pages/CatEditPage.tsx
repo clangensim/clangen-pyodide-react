@@ -383,7 +383,7 @@ function CatEditPage() {
         <textarea
           onChange={(e) => setNotes(e.target.value)}
           value={notes}
-          style={{width: "99%", maxWidth: "99%", resize: "none", height: "20em", fontSize: "16px"}}></textarea>
+          style={{width: "95%", maxWidth: "95%", resize: "none", height: "20em", fontSize: "16px"}}></textarea>
       </fieldset>
 
       <button tabIndex={0} onClick={handleSubmit}>

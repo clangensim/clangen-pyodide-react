@@ -89,6 +89,10 @@ main {
   margin: 0 10px;
 }
 
+img {
+  max-width: 100%;
+}
+
 .progress-bar {
   height: 15px;
   border: 1px solid black;
