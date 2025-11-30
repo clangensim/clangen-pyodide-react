@@ -5,7 +5,7 @@ import { download } from "../utils";
 import { useEffect } from "react";
 import ClanInfoDisplay from "../components/ClanInfoDisplay";
 import BasePage from "../layout/BasePage";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 function HomePage() {
   const queryClient = useQueryClient();
@@ -31,6 +31,12 @@ function HomePage() {
       .then(() => queryClient.invalidateQueries());
   }
 
+  const query = useQuery({
+    queryKey: ["claninfo"],
+    queryFn: async () => await clangenRunner.getClanInfo(),
+  });
+  const clanInfo = query.data;
+
   useEffect(() => {
     document.title = " ClanGen Simulator";
   }, []);
@@ -38,6 +44,7 @@ function HomePage() {
   return (
     <BasePage>
       <ClanInfoDisplay />
+      <img src={`camp_bg/${clanInfo?.biome.toLowerCase()}/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_light.png`}></img>
 
       <p>
         Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate
