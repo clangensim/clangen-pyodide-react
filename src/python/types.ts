@@ -3,6 +3,8 @@ type ClanInfo = {
   age: number;
   gameMode: string;
   season: string;
+  biome: string;
+  campBg: string;
   freshkill?: number;
   requiredFreshkill?: number;
 };

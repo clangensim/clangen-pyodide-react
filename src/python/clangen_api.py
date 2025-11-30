@@ -569,7 +569,9 @@ def get_clan_info():
     "name": game.clan.name + "Clan",
     "age": game.clan.age,
     "gameMode": game.clan.game_mode,
-    "season": game.clan.current_season
+    "season": game.clan.current_season,
+    "campBg": game.clan.camp_bg,
+    "biome": game.clan.biome
   }
   if game.clan.game_mode != "classic":
     clan_info["freshkill"] = round(game.clan.freshkill_pile.total_amount, 2)
