@@ -281,7 +281,7 @@ function CatEditPage() {
     });
 
     clangenRunner.getCatNotes(catID).then((n) => {
-      setNotes(n)
+      if (n) { setNotes(n) }
     });
   }, [catID]);
 

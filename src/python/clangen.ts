@@ -156,7 +156,7 @@ class Clangen {
   /**
    * Gets notes for cat with ID.
    */
-  public async getCatNotes(id: string) {
+  public async getCatNotes(id: string): Promise<string | undefined> {
     return this._clangenApi.get_cat_notes(id);
   }
 
