@@ -322,6 +322,18 @@ def edit_cat(cat_id, editObj):
 
   _end_patrol_containing(cat_id)
 
+def get_cat_notes(cat_id):
+  clanname = game.clan.name
+  notes_directory = get_save_dir() + '/' + clanname + '/notes'
+  notes_file_path = notes_directory + '/' + cat_id + '_notes.json'
+
+  try:
+    with open(notes_file_path, "r", encoding="utf8") as f:
+      output = json.load(f)
+    return output[cat_id]
+  except (FileNotFoundError, KeyError):
+    return None
+
 def destroy_accessory(cat_id):
   cat = Cat.all_cats[cat_id]
   cat.pelt.accessory = None

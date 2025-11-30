@@ -279,6 +279,10 @@ function CatEditPage() {
     clangenRunner.getPotentialMates(catID).then((mates) => {
       setPotentialMates(mates);
     });
+
+    clangenRunner.getCatNotes(catID).then((n) => {
+      setNotes(n)
+    });
   }, [catID]);
 
   return (

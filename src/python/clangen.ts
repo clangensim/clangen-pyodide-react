@@ -154,6 +154,13 @@ class Clangen {
   }
 
   /**
+   * Gets notes for cat with ID.
+   */
+  public async getCatNotes(id: string) {
+    return this._clangenApi.get_cat_notes(id);
+  }
+
+  /**
    * Destroys accessory belonging to cat with specified ID.
    * Also saves the game.
    */
