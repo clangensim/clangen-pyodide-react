@@ -18,6 +18,7 @@ function CatProfilePage() {
   const [conditions, setConditions] = useState<Condition[]>();
   const [neighbourCats, setNeighbourCats] = useState<[string, string]>(["-1", "-1"]);
   const [ceremony, setCeremony] = useState<string>();
+  const [notes, setNotes] = useState<string>();
 
   const params = useParams();
   const catID = params.id as string;
@@ -39,6 +40,7 @@ function CatProfilePage() {
     clangenRunner.getRelationships(catID).then((r) => setRelationships(r));
     clangenRunner.getConditions(catID).then((c) => setConditions(c));
     clangenRunner.getPrevAndNextCats(catID).then((c) => setNeighbourCats(c));
+    clangenRunner.getCatNotes(catID).then((n) => setNotes(n));
   }, [catID]);
 
   let crumbs = undefined;
@@ -107,6 +109,14 @@ function CatProfilePage() {
               <ConditionsDisplay conditions={conditions} />
             </details>
           </div>
+          {notes && 
+            <div>
+              <details>
+                <summary>Notes</summary>
+                {notes.split("\n").map(line => <p>{line}</p>)}
+              </details>
+            </div>
+          }
           {ceremony && 
             <div>
               <details>
