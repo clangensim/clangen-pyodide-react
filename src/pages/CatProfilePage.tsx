@@ -113,7 +113,7 @@ function CatProfilePage() {
             <div>
               <details>
                 <summary>Notes</summary>
-                {notes.split("\n").map(line => <p>{line}</p>)}
+                {notes.split("\n").map(line => <>{line}<br /></>)}
               </details>
             </div>
           }
