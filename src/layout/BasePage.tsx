@@ -31,6 +31,14 @@ function BasePage({
     }
   }, []);
 
+  useEffect(() => {
+    const headerElement = document.getElementById("heading-inject-css");
+
+    if (headerElement) {
+      headerElement.textContent = `.head { background-image: url("camp_bg/forest/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_light.png"); }`;
+    }
+  }, [clanInfo]);
+
   if (query.status === "pending") {
     return (
       <div id="preloader-container">
