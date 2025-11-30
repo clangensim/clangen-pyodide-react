@@ -26,6 +26,7 @@ dist-ssr
 # ClanGen generated files
 public/sprites/*
 public/patrol_art/*
+public/camp_bg/*
 *.whl
 *.zip
 
