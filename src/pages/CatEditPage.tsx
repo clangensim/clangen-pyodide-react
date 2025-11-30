@@ -103,6 +103,8 @@ function CatEditPage() {
   const navigate = useNavigate();
 
   const [cat, setCat] = useState<Cat>();
+  const [notes, setNotes] = useState<string>("");
+
   const [potentialMentors, setPotentialMentors] = useState<Cat[]>();
   const [potentialMates, setPotentialMates] = useState<Cat[]>();
 
@@ -213,6 +215,9 @@ function CatEditPage() {
     }
     if (afterlife !== "") {
       e.afterlife = afterlife;
+    }
+    if (notes !== "") {
+      e.notes = notes;
     }
     clangenRunner.editCat(catID, e);
     navigate(`/cats/${catID}`);
@@ -368,6 +373,14 @@ function CatEditPage() {
           )}
         </>
       )}
+
+      <fieldset>
+        <legend>Notes</legend>
+        <textarea
+          onChange={(e) => setNotes(e.target.value)}
+          value={notes}
+          style={{width: "99%", maxWidth: "99%", resize: "none", height: "20em", fontSize: "16px"}}></textarea>
+      </fieldset>
 
       <button tabIndex={0} onClick={handleSubmit}>
         Submit

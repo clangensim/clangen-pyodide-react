@@ -117,6 +117,7 @@ type CatEdit = {
   toggles?: Toggles;
   gender: string;
   afterlife?: string;
+  notes?: string;
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med";

@@ -303,6 +303,23 @@ def edit_cat(cat_id, editObj):
       cat.outside = True
       game.clan.add_to_unknown(cat)
 
+  if "notes" in edit:
+    clanname = game.clan.name
+    notes = edit["notes"]
+    if not notes:
+      return
+
+    notes_directory = get_save_dir() + '/' + clanname + '/notes'
+    notes_file_path = notes_directory + '/' + cat_id + '_notes.json'
+
+    if not os.path.exists(notes_directory):
+      os.makedirs(notes_directory)
+
+    new_notes = {str(cat_id): notes}
+
+    with open(notes_file_path, "w", encoding="utf8") as f:
+      json.dump(new_notes, f)
+
   _end_patrol_containing(cat_id)
 
 def destroy_accessory(cat_id):
