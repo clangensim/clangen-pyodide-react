@@ -6,8 +6,8 @@ import ProgressBar from "./generic/ProgressBar";
 function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   return (
     <div className="raised">
-      <CatDisplay cat={relationship.cat_to}/>
       <Link to={`/cats/${relationship.cat_to_id}`}>
+        <CatDisplay cat={relationship.cat_to}/>
         {relationship.cat_to.name.display}
       </Link>
       <ul className="row-list">
