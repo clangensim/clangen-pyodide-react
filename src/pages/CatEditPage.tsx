@@ -386,9 +386,11 @@ function CatEditPage() {
           style={{width: "95%", maxWidth: "95%", resize: "none", height: "20em", fontSize: "16px"}}></textarea>
       </fieldset>
 
-      <button tabIndex={0} onClick={handleSubmit}>
-        Submit
-      </button>
+      <div className="submit">
+        <button tabIndex={0} onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
     </BasePage>
   );
 }

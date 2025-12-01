@@ -45,3 +45,8 @@ dialog div.dialog-footer {
 .title-bar-buttons {
   margin-left: auto;
 }
+
+.submit {
+  display: block;
+  margin-top: 0.5em;
+}

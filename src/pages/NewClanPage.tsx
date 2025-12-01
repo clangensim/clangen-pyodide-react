@@ -350,7 +350,7 @@ function NewClanPage() {
           </div>
         </fieldset>
 
-        <div>
+        <div className="submit">
           <button tabIndex={0} type="submit">
             Submit
           </button>
