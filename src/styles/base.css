@@ -162,3 +162,20 @@ button:hover,
 .btn-secondary:hover {
   background-color: #e5c680;
 }
+
+details {
+  width: 95%;
+  border-radius: 5px;
+}
+summary {
+  width: 100%;
+  border-radius: 5px;
+  padding: 0.5em 0.25em;
+}
+summary:hover {
+  background-color:#EFE5CE;
+  cursor: pointer;
+}
+summary:open {
+  background-color:#EFE5CE;
+}
