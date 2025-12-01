@@ -95,7 +95,9 @@ function CatProfilePage() {
           <div>
             <details>
               <summary>Relationships</summary>
-              <RelationshipsDisplay relationships={relationships} />
+              <div className="details-content">
+                <RelationshipsDisplay relationships={relationships} />
+              </div>
             </details>
           </div>
           <div>
@@ -106,14 +108,19 @@ function CatProfilePage() {
                   <TbExclamationCircleFilled />
                 )}
               </summary>
-              <ConditionsDisplay conditions={conditions} />
+              
+              <div className="details-content">
+                <ConditionsDisplay conditions={conditions} />
+              </div>
             </details>
           </div>
           {notes && 
             <div>
               <details>
                 <summary>Notes</summary>
-                {notes.split("\n").map(line => <>{line}<br /></>)}
+                <div className="details-content">
+                  {notes.split("\n").map(line => <>{line}<br /></>)}
+                </div>
               </details>
             </div>
           }
@@ -121,7 +128,9 @@ function CatProfilePage() {
             <div>
               <details>
                 <summary>Leadership Ceremony</summary>
-                {ceremony.split("<br><br>").map(line => <p>{line}</p>)}
+                <div className="details-content">
+                  {ceremony.split("<br><br>").map(line => <p>{line}</p>)}
+                </div>
               </details>
             </div>
           }
