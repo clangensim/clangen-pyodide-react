@@ -41,10 +41,16 @@ function HomePage() {
     document.title = " ClanGen Simulator";
   }, []);
 
+  var mode = "light";
+  var now = new Date();
+  if (now.getHours() <= 5 || now.getHours() >= 17) {
+    mode = "dark";
+  }
+
   return (
     <BasePage>
       <ClanInfoDisplay />
-      <img src={`camp_bg/${clanInfo?.biome.toLowerCase()}/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_light.png`}></img>
+      <img src={`camp_bg/${clanInfo?.biome.toLowerCase()}/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_${mode}.png`} width={400}></img>
 
       <p>
         Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate
