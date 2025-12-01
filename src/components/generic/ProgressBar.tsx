@@ -1,15 +1,14 @@
 function ProgressBar({ value }: { value: number }) {
   return (
     <>
-      <div
-        className="progress-bar"
-        aria-valuenow={value}
-        style={{ width: "140px" }}
-      >
-        <div
-          className="progress-bar-value"
-          style={{ width: `${value.toString()}%` }}
-        ></div>
+      <div>
+        <meter
+          min={0} max={100}
+          value={value}
+          aria-valuenow={value}
+          style={{ width: "140px" }}
+        >
+        </meter>
       </div>
     </>
   );
