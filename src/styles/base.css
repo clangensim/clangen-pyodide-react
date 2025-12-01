@@ -25,7 +25,7 @@ button {
 
 body {
   max-width: 1000px;
-  margin: 20px auto;
+  margin: 0 auto 20px auto;
 }
 .body {
   background-color: white;
@@ -36,6 +36,7 @@ body {
   background-image: url("/static/bg.png");
   background-size: cover;
   image-rendering: pixelated;
+  padding-top: 20px;
 }
 
 .profile-info {
@@ -45,6 +46,8 @@ body {
   padding: 10px 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  border: 1px solid black;
+  border-bottom: none;
 }
 .profile-info ul {
   margin: 0;
