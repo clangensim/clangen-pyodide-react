@@ -35,7 +35,10 @@ function BasePage({
     const headerElement = document.getElementById("heading-inject-css");
 
     if (headerElement) {
-      headerElement.textContent = `.head { background-image: url("/camp_bg/forest/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_light.png"); }`;
+      var textContent = `.head { background-image: url("/camp_bg/forest/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_light.png"); }`;
+      if (headerElement.textContent !== textContent) {
+        headerElement.textContent = `.head { background-image: url("/camp_bg/forest/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_light.png"); }`;
+      }
     }
   }, [clanInfo]);
 
