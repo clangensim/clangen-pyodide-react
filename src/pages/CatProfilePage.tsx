@@ -69,10 +69,10 @@ function CatProfilePage() {
           <div>
             <h2 className="cat-profile__header">{cat.name.display}</h2> #
             {cat.ID}
-            <Link to={`/cats/${catID}/edit`} className="icon-button">
+            <Link to={`/cats/${catID}/edit`} className="icon-button" tabIndex={0}>
               <TbPencil size={25} />
             </Link>
-            <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button">
+            <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button" tabIndex={0}>
               <TbFileAlert size={25} />
             </Link>
             <div>{cat.thought}</div>
@@ -91,13 +91,13 @@ function CatProfilePage() {
             marginRight: "auto",
             visibility: neighbourCats[0] === "-1" ? "hidden" : "visible",
           }}>
-            <Link style={{display: "inline-block"}} className="btn next-prev__button" to={`/cats/${neighbourCats[0]}`}><TbCaretLeftFilled /></Link>
+            <Link tabIndex={0} style={{display: "inline-block"}} className="btn next-prev__button" to={`/cats/${neighbourCats[0]}`}><TbCaretLeftFilled /></Link>
           </div>
           <div style={{
             marginLeft: "auto",
             visibility: neighbourCats[1] === "-1" ? "hidden" : "visible"
           }}>
-            <Link style={{display: "inline-block"}} className="btn next-prev__button" to={`/cats/${neighbourCats[1]}`}><TbCaretRightFilled /></Link>
+            <Link tabIndex={0} style={{display: "inline-block"}} className="btn next-prev__button" to={`/cats/${neighbourCats[1]}`}><TbCaretRightFilled /></Link>
           </div>
         </div>
           <div>

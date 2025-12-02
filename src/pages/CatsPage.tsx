@@ -59,7 +59,7 @@ function CatsPage() {
             return;
           }
           return (
-            <Link to={`/cats/${cat.ID}`}>
+            <Link to={`/cats/${cat.ID}`} tabIndex={0}>
               <div className="cat" key={index}>
                 <CatDisplay cat={cat} w="75px" h="75px" />
                 <div>{cat.name.display}</div>
