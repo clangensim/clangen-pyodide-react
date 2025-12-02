@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { TbExclamationCircleFilled, TbPencil } from "react-icons/tb";
 import { TbFileAlert } from "react-icons/tb";
+import { TbCaretRightFilled, TbCaretLeftFilled } from "react-icons/tb";
 import CatDisplay from "../components/CatDisplay";
 import CatProfile from "../components/CatProfile";
 import BasePage from "../layout/BasePage";
@@ -65,24 +66,6 @@ function CatProfilePage() {
     <BasePage crumbs={crumbs}>
       {cat && (
         <>
-        <div style={{
-          display: neighbourCats[0] === "-1" && neighbourCats[1] === "-1" ? "none" : "flex",
-          height: "auto"
-        }}>
-          <div style={{
-            marginRight: "auto",
-            visibility: neighbourCats[0] === "-1" ? "hidden" : "visible",
-          }}>
-            <Link style={{display: "inline-block"}} className="btn" to={`/cats/${neighbourCats[0]}`}>← Previous Cat</Link>
-          </div>
-          <div style={{
-            marginLeft: "auto",
-            visibility: neighbourCats[1] === "-1" ? "hidden" : "visible"
-          }}>
-            <Link style={{display: "inline-block"}} className="btn" to={`/cats/${neighbourCats[1]}`}>Next Cat →</Link>
-          </div>
-        </div>
-
           <div>
             <h2 className="cat-profile__header">{cat.name.display}</h2> #
             {cat.ID}
@@ -99,6 +82,24 @@ function CatProfilePage() {
             <CatProfile cat={cat} />
           </div>
 
+        <div className="next-prev"
+          style={{
+            display: neighbourCats[0] === "-1" && neighbourCats[1] === "-1" ? "none" : "flex",
+            height: "auto"
+          }}>
+          <div style={{
+            marginRight: "auto",
+            visibility: neighbourCats[0] === "-1" ? "hidden" : "visible",
+          }}>
+            <Link style={{display: "inline-block"}} className="btn next-prev__button" to={`/cats/${neighbourCats[0]}`}><TbCaretLeftFilled /></Link>
+          </div>
+          <div style={{
+            marginLeft: "auto",
+            visibility: neighbourCats[1] === "-1" ? "hidden" : "visible"
+          }}>
+            <Link style={{display: "inline-block"}} className="btn next-prev__button" to={`/cats/${neighbourCats[1]}`}><TbCaretRightFilled /></Link>
+          </div>
+        </div>
           <div>
             <details>
               <summary>Relationships</summary>

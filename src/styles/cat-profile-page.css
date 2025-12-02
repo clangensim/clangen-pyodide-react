@@ -4,3 +4,17 @@
   display: inline-block;
   margin: 0;
 }
+
+.next-prev {
+  padding-bottom: 0.5em;
+}
+
+.next-prev__button {
+  background-color: rgb(234, 234, 234);
+  font-weight: 400;
+  color: black;
+  border: 1px solid grey;
+}
+.next-prev__button:hover {
+  background-color: rgb(194, 194, 194);
+}
