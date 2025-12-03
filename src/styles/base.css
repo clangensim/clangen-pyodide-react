@@ -182,3 +182,7 @@ summary:hover {
 summary:open {
   background-color:#EFE5CE;
 }
+
+input[type="text"] {
+  font-size: 16px;
+}
