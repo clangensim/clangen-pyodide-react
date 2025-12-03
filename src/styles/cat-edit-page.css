@@ -1,0 +1,12 @@
+.cat-edit-form__row {
+  margin-bottom: 0.5em;
+}
+.cat-edit-form__prefix {
+  max-width: 40%;
+  margin-right: 0.15em;
+  line-height: 1.4em;
+}
+.cat-edit-form__suffix {
+  max-width: 40%;
+  line-height: 1.4em;
+}

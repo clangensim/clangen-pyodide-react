@@ -9,6 +9,7 @@ import { SelectOption } from "../components/generic/Select";
 import BasePage from "../layout/BasePage";
 import Checkbox from "../components/generic/Checkbox";
 import Radiobox from "../components/generic/Radiobox";
+import "../styles/cat-edit-page.css";
 
 const selectApprenticeOptions = [
   {
@@ -287,17 +288,21 @@ function CatEditPage() {
 
   return (
     <BasePage crumbs={crumbs}>
-      <div>
-        Name
+      <div className="cat-edit-form__row">
+        <div>Name:</div>
         <input
+          className="cat-edit-form__prefix"
           type="text"
           value={prefix}
           onChange={(e) => setPrefix(e.currentTarget.value)}
+          placeholder=" " // otherwise the spacing shifts on iOS
         />
         <input
+          className="cat-edit-form__suffix"
           type="text"
           value={suffix}
           onChange={(e) => setSuffix(e.currentTarget.value)}
+          placeholder=" " // otherwise the spacing shifts on iOS
         />
       </div>
 
@@ -307,9 +312,9 @@ function CatEditPage() {
 
       {cat && !cat.dead && !cat.outside && (
         <>
-          <div>
+          <div className="cat-edit-form__row">
             <Select
-              label="Role"
+              label="Role:"
               disabled={disableSelectStatus}
               options={statusOptions}
               value={status}
