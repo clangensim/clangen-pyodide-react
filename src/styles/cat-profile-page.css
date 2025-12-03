@@ -4,6 +4,14 @@
   display: inline-block;
   margin: 0;
 }
+.cat-profile__list {
+  max-width: 175px;
+}
+@media (width >= 500px) {
+  .cat-profile__list {
+    max-width: none;
+  }
+}
 
 .next-prev {
   padding-bottom: 0.5em;
