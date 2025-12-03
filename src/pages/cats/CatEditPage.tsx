@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 
-import { CatEdit, Cat, Toggles } from "../python/types";
-import { clangenRunner } from "../python/clangenRunner";
-import Select from "../components/generic/Select";
-import { SelectOption } from "../components/generic/Select";
+import { CatEdit, Cat, Toggles } from "../../python/types";
+import { clangenRunner } from "../../python/clangenRunner";
+import Select from "../../components/generic/Select";
+import { SelectOption } from "../../components/generic/Select";
 
-import BasePage from "../layout/BasePage";
-import Checkbox from "../components/generic/Checkbox";
-import Radiobox from "../components/generic/Radiobox";
-import "../styles/cat-edit-page.css";
+import BasePage from "../../layout/BasePage";
+import Checkbox from "../../components/generic/Checkbox";
+import Radiobox from "../../components/generic/Radiobox";
+import "../../styles/cat-edit-page.css";
 
 const selectApprenticeOptions = [
   {

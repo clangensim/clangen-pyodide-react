@@ -1,17 +1,17 @@
-import { Cat, Relationship, Condition } from "../python/types";
-import { clangenRunner } from "../python/clangenRunner";
+import { Cat, Relationship, Condition } from "../../python/types";
+import { clangenRunner } from "../../python/clangenRunner";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { TbExclamationCircleFilled, TbPencil } from "react-icons/tb";
 import { TbFileAlert } from "react-icons/tb";
 import { TbCaretRightFilled, TbCaretLeftFilled } from "react-icons/tb";
-import CatDisplay from "../components/CatDisplay";
-import CatProfile from "../components/CatProfile";
-import BasePage from "../layout/BasePage";
+import CatDisplay from "../../components/CatDisplay";
+import CatProfile from "../../components/CatProfile";
+import BasePage from "../../layout/BasePage";
 
-import "../styles/cat-profile-page.css";
-import RelationshipsDisplay from "../components/RelationshipDisplay";
-import ConditionsDisplay from "../components/ConditionsDisplay";
+import "../../styles/cat-profile-page.css";
+import RelationshipsDisplay from "../../components/RelationshipDisplay";
+import ConditionsDisplay from "../../components/ConditionsDisplay";
 
 function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();

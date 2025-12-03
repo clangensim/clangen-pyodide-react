@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { Cat } from "../python/types";
-import { clangenRunner } from "../python/clangenRunner";
-import Dialog from "../components/generic/Dialog";
-import Checkbox from "../components/generic/Checkbox";
-import BasePage from "../layout/BasePage";
+import { Cat } from "../../python/types";
+import { clangenRunner } from "../../python/clangenRunner";
+import Dialog from "../../components/generic/Dialog";
+import Checkbox from "../../components/generic/Checkbox";
+import BasePage from "../../layout/BasePage";
 
 const defaultDeathHistory = "killed by a higher power";
 

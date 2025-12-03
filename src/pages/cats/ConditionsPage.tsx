@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { Cat, Condition } from "../python/types";
-import { clangenRunner } from "../python/clangenRunner";
-import BasePage from "../layout/BasePage";
-import ConditionsDisplay from "../components/ConditionsDisplay";
+import { Cat, Condition } from "../../python/types";
+import { clangenRunner } from "../../python/clangenRunner";
+import BasePage from "../../layout/BasePage";
+import ConditionsDisplay from "../../components/ConditionsDisplay";
 
 function ConditionsPage() {
   const [conditions, setConditions] = useState<Condition[]>();
