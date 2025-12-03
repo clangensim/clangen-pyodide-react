@@ -89,6 +89,7 @@ function NewClanPage() {
             id="clan-name-input"
             required
             size={15}
+            placeholder=" "
           ></input>
           -Clan
         </fieldset>
