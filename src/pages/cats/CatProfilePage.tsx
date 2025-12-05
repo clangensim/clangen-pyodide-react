@@ -12,6 +12,7 @@ import BasePage from "../../layout/BasePage";
 import "../../styles/cat-profile-page.css";
 import RelationshipsDisplay from "../../components/RelationshipDisplay";
 import ConditionsDisplay from "../../components/ConditionsDisplay";
+import { useQuery } from "@tanstack/react-query";
 
 function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
@@ -20,6 +21,12 @@ function CatProfilePage() {
   const [neighbourCats, setNeighbourCats] = useState<[string, string]>(["-1", "-1"]);
   const [ceremony, setCeremony] = useState<string>();
   const [notes, setNotes] = useState<string>();
+
+  const query = useQuery({
+    queryKey: ["claninfo"],
+    queryFn: async () => await clangenRunner.getClanInfo(),
+  });
+  const clanInfo = query.data;
 
   const params = useParams();
   const catID = params.id as string;
@@ -46,6 +53,23 @@ function CatProfilePage() {
 
   let crumbs = undefined;
   if (cat) {
+    let location = "???";
+    if (cat.dead) {
+      location = "StarClan";
+      if (cat.inDarkForest) {
+        location = "Dark Forest";
+      }
+      if (cat.outside) {
+        location = "???";
+      }
+    } else if (cat.outside) {
+      location = "Cats Outside the Clan";
+    } else {
+      if (clanInfo) {
+        location = clanInfo.name;
+      }
+    }
+
     crumbs = [
       {
         url: "/",
@@ -54,6 +78,10 @@ function CatProfilePage() {
       {
         url: "/cats",
         label: "Cats",
+      },
+      {
+        url: "/cats",
+        label: location,
       },
       {
         url: `/cats/${catID}`,
