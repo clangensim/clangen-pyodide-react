@@ -1,0 +1,63 @@
+.theme-light {
+    --page-background-color: rgb(56, 50, 38);
+    --text-color: black;
+    --link-color: rgb(106, 57, 69);
+    --content-background-color: white;
+
+    --navbar-background-color: #655934;
+    --navbar-background-gradient: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
+    --navbar-border: 1px solid black;
+    --navbar-text-color: #EFE5CE;
+    --navbar-hovered-text-color: rgb(48,41,28);
+
+    --breadcrumbs-background-color: rgb(234, 234, 234);
+
+    --progress-bar-border: 1px solid black;
+    --progress-bar-fill: #80bc08;
+
+    --icon-button-text-color: darkgray;
+    --icon-button-hovered-text-color: gray;
+
+    --button-background-color: #655934;
+    --button-hovered-background-color: rgb(82, 73, 55);
+    --button-text-color: #EFE5CE;
+    --button-disabled-background-color: #938764;
+
+    --button-secondary-background-color: #EFE5CE;
+    --button-secondary-hovered-background-color: #e5c680;
+    --button-secondary-text-color: #655934;
+
+    --summary-background-color: #EFE5CE;
+}
+
+.theme-dark {
+    --page-background-color: rgb(56, 50, 38);
+    --text-color: black;
+    --link-color: rgb(106, 57, 69);
+    --content-background-color: white;
+
+    --navbar-background-color: #655934;
+    --navbar-background-gradient: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
+    --navbar-border: 1px solid black;
+    --navbar-text-color: #EFE5CE;
+    --navbar-hovered-text-color: rgb(48,41,28);
+
+    --breadcrumbs-background-color: rgb(234, 234, 234);
+
+    --progress-bar-border: 1px solid black;
+    --progress-bar-fill: #80bc08;
+
+    --icon-button-text-color: darkgray;
+    --icon-button-hovered-text-color: gray;
+
+    --button-background-color: #655934;
+    --button-hovered-background-color: rgb(82, 73, 55);
+    --button-text-color: #EFE5CE;
+    --button-disabled-background-color: #938764;
+
+    --button-secondary-background-color: #EFE5CE;
+    --button-secondary-hovered-background-color: #e5c680;
+    --button-secondary-text-color: #655934;
+
+    --summary-background-color: #EFE5CE;
+}

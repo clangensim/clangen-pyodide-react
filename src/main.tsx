@@ -6,6 +6,7 @@ import "@fontsource-variable/outfit";
 // @ts-ignore
 import "@fontsource/bubblegum-sans";
 import "./styles/misc.css";
+import "./styles/themes.css";
 import "./styles/base.css";
 
 import App from "./App.tsx";
