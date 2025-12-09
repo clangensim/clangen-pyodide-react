@@ -10,6 +10,7 @@ import { formatText } from "../utils";
 import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import Checkbox from "../components/generic/Checkbox";
+import { TbCaretLeftFilled, TbCaretRightFilled } from "react-icons/tb";
 
 type ScreenState = "start" | "in-progress" | "wrap-up"
 const crumbs = [
@@ -183,13 +184,13 @@ function PatrolsPage() {
       <p>If you edit a cat that is currently on patrol, the patrol will end.</p>
 
       <fieldset className="patrol-cat-display">
-        <legend>Cats (Select up to 6) | Page {currentDisplayPage + 1} of {catPages.length}</legend>
+        <legend>Cats ({selectedCats.length} of 6 selected) | Page {currentDisplayPage + 1} of {catPages.length}</legend>
         <div className="patrol-cat-button">
           <button tabIndex={0} 
             onClick={() => setDisplayPage(Math.max(currentDisplayPage - 1, 0))} 
             disabled={currentDisplayPage == 0}
           >
-            &lt;-
+            <TbCaretLeftFilled />
           </button>
         </div>
         <div className="patrol-cat-list">
@@ -209,7 +210,7 @@ function PatrolsPage() {
             onClick={() => setDisplayPage(Math.min(currentDisplayPage + 1, catPages.length - 1))} 
             disabled={currentDisplayPage == catPages.length - 1}
           >
-            -&gt;
+            <TbCaretRightFilled />
           </button>
         </div>
       </fieldset>
