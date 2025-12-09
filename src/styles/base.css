@@ -164,6 +164,27 @@ button:hover,
   background-color: var(--button-secondary-hovered-background-color);
 }
 
+.patrol-cat-display {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+.patrol-cat-button {
+  flex: 0.2;
+}
+.patrol-cat-button > #right-patrol-button {
+  float: right;
+}
+.patrol-cat-list {
+  display: inline-flex;
+  flex: 2;
+}
+.patrol-cat-list > div {
+  flex: auto;
+  align-content: center;
+}
+
 details {
   width: 95%;
   border-radius: 5px;
