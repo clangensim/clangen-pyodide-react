@@ -56,7 +56,11 @@ function SettingsPage() {
       value: "theme-light"
     },
     {
-      label: "Dark (Not Complete)",
+      label: "ClanGen Dark (Partially Complete)",
+      value: "theme-clangen-dark"
+    },
+    {
+      label: "Dark",
       value: "theme-dark"
     },
   ];

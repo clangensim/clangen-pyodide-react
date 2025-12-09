@@ -3,6 +3,7 @@
   font-family: "Outfit Variable", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  color: var(--text-color);
 }
 
 a {
@@ -46,7 +47,7 @@ body {
   padding: 10px 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  border: 1px solid black;
+  border: var(--navbar-border);
   border-bottom: none;
 }
 .profile-info ul {
@@ -80,7 +81,7 @@ body {
 }
 
 .breadcrumbs {
-  background-color: var(--breadcrumbs-background-color);
+  backdrop-filter: brightness(92%);
   width: 98%;
   margin: 0px auto 10px auto;
   padding: 5px;
@@ -133,7 +134,7 @@ button, .btn {
   text-align: center;
   background-color: var(--button-background-color);
   padding: 10px;
-  color:var(--button-text-color);
+  color: var(--button-text-color);
   font-family: "Outfit Variable", sans-serif;
   font-weight: 600;
   font-size: medium;

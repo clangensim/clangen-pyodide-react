@@ -26,6 +26,6 @@
   text-align: center;
 }
 .cats-list .cat:hover {
-  background-color: #EFE5CE;
+  backdrop-filter: brightness(90%) sepia(15%);
   border-radius: 10px;
 }

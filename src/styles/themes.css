@@ -10,8 +10,6 @@
     --navbar-text-color: #EFE5CE;
     --navbar-hovered-text-color: rgb(48,41,28);
 
-    --breadcrumbs-background-color: rgb(234, 234, 234);
-
     --progress-bar-border: 1px solid black;
     --progress-bar-fill: #80bc08;
 
@@ -30,19 +28,51 @@
     --summary-background-color: #EFE5CE;
 }
 
+.theme-clangen-dark {
+    --page-background-color: #1E1809;
+    --text-color: #EFE5CE;
+    --link-color: #2E8B57;
+    --content-background-color: #655934;
+
+    --navbar-background-color: #655934;
+    --navbar-background-gradient: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
+    --navbar-border: 1px solid #291B0F;
+    --navbar-text-color: #EFE5CE;
+    --navbar-hovered-text-color: rgb(48,41,28);
+
+    --progress-bar-border: 1px solid black;
+    --progress-bar-fill: #80bc08;
+
+    --icon-button-text-color: darkgray;
+    --icon-button-hovered-text-color: gray;
+
+    --button-background-color: #655934;
+    --button-hovered-background-color: #1E1809;
+    --button-text-color: #EFE5CE;
+    --button-disabled-background-color: #5C5850;
+
+    --button-secondary-background-color: #EFE5CE;
+    --button-secondary-hovered-background-color: #e5c680;
+    --button-secondary-text-color: #655934;
+
+    --summary-background-color: #807a6e;
+
+    button, .btn {
+        border: #2F2918 1px solid;
+    }
+}
+
 .theme-dark {
-    --page-background-color: rgb(56, 50, 38);
-    --text-color: black;
-    --link-color: rgb(106, 57, 69);
-    --content-background-color: white;
+    --page-background-color: #181A1B;
+    --text-color: #E8E6E3;
+    --link-color: #C594A0;
+    --content-background-color: #2D3133;
 
     --navbar-background-color: #655934;
     --navbar-background-gradient: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
     --navbar-border: 1px solid black;
     --navbar-text-color: #EFE5CE;
     --navbar-hovered-text-color: rgb(48,41,28);
-
-    --breadcrumbs-background-color: rgb(234, 234, 234);
 
     --progress-bar-border: 1px solid black;
     --progress-bar-fill: #80bc08;
@@ -55,9 +85,13 @@
     --button-text-color: #EFE5CE;
     --button-disabled-background-color: #938764;
 
-    --button-secondary-background-color: #EFE5CE;
-    --button-secondary-hovered-background-color: #e5c680;
-    --button-secondary-text-color: #655934;
+    --button-secondary-background-color: #332911;
+    --button-secondary-hovered-background-color: #5a471f;
+    --button-secondary-text-color: #C9BD94;
 
-    --summary-background-color: #EFE5CE;
+    --summary-background-color: #8b8576;
+
+    textarea, fieldset {
+        color-scheme: dark;
+    }
 }
