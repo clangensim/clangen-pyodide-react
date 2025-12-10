@@ -157,6 +157,7 @@ function SettingsPage() {
         onChange={(value: string) => setSiteTheme(value)} 
         options={siteThemes} 
         value={siteTheme}
+        noEmpty={true}
       />
       <div>
         <fieldset>
