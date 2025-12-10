@@ -29,12 +29,7 @@ function BasePage({
       localStorage.setItem("site-theme", "theme-light");
       siteTheme = "theme-light";
     }
-    // probably a better way of clearing the class list but oh well
-    let classList = document.documentElement.classList;
-    classList.forEach((element) => {
-      classList.remove(element);
-    });
-    classList.add(siteTheme);
+    document.documentElement.className = siteTheme;
 
     const customCssElement = document.getElementById("custom-css");
     const customCss = localStorage.getItem("custom-css");

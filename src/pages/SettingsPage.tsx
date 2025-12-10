@@ -56,12 +56,12 @@ function SettingsPage() {
       value: "theme-light"
     },
     {
-      label: "ClanGen Dark (Partially Complete)",
-      value: "theme-clangen-dark"
-    },
-    {
       label: "Dark",
       value: "theme-dark"
+    },
+    {
+      label: "ClanGen Dark (Partially Complete)",
+      value: "theme-clangen-dark"
     },
   ];
 
@@ -157,6 +157,7 @@ function SettingsPage() {
         onChange={(value: string) => setSiteTheme(value)} 
         options={siteThemes} 
         value={siteTheme}
+        noEmpty={true}
       />
       <div>
         <fieldset>
