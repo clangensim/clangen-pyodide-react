@@ -3,6 +3,7 @@ import Checkbox from "../components/generic/Checkbox";
 import { clangenRunner } from "../python/clangenRunner";
 import BasePage from "../layout/BasePage";
 import { useNavigate } from "react-router";
+import Select, { SelectOption } from "../components/generic/Select";
 
 const settingLabels: Record<string, Record<string, string>> = {
   disasters: {
@@ -46,7 +47,23 @@ function SettingsPage() {
   const [customCss, setCustomCss] = useState("");
   const [shading, setShading] = useState(false);
   const [saveAsZip, setSaveAsZip] = useState(false);
+  const [siteTheme, setSiteTheme] = useState("");
   const navigator = useNavigate();
+
+  let siteThemes: SelectOption[] = [
+    {
+      label: "Light",
+      value: "theme-light"
+    },
+    {
+      label: "Dark",
+      value: "theme-dark"
+    },
+    {
+      label: "ClanGen Dark (Partially Complete)",
+      value: "theme-clangen-dark"
+    },
+  ];
 
   useEffect(() => {
     document.title = "Settings | ClanGen Simulator";
@@ -57,6 +74,13 @@ function SettingsPage() {
     const customCssElement = document.getElementById("custom-css");
     if (customCssElement) {
       customCssElement.textContent = "";
+    }
+
+    const storedSiteTheme = localStorage.getItem("site-theme");
+    if (storedSiteTheme) {
+      setSiteTheme(storedSiteTheme);
+    } else {
+      setSiteTheme("theme-light");
     }
 
     const storedCss = localStorage.getItem("custom-css");
@@ -89,6 +113,8 @@ function SettingsPage() {
 
   function handleSave() {
     clangenRunner.setSettings(settings).then(() => {
+      localStorage.setItem("site-theme", siteTheme);
+
       const customCssElement = document.getElementById("custom-css");
       if (customCssElement) {
         customCssElement.textContent = customCss;
@@ -126,6 +152,13 @@ function SettingsPage() {
       <h2>Site Settings</h2>
       <Checkbox label="Enable shading for cat sprites" onChange={() => setShading(!shading)} checked={shading}/>
       <Checkbox label="Export save as .zip instead of .sav" onChange={() => setSaveAsZip(!saveAsZip)} checked={saveAsZip}/>
+      <Select 
+        label="Site theme" 
+        onChange={(value: string) => setSiteTheme(value)} 
+        options={siteThemes} 
+        value={siteTheme}
+        noEmpty={true}
+      />
       <div>
         <fieldset>
           <legend>Custom CSS</legend>

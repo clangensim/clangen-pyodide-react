@@ -23,6 +23,14 @@ function BasePage({
   const clanInfo = query.data;
 
   useEffect(() => {
+    // set site theme before custom css so it can be overwritten
+    let siteTheme = localStorage.getItem("site-theme");
+    if (!siteTheme) {
+      localStorage.setItem("site-theme", "theme-light");
+      siteTheme = "theme-light";
+    }
+    document.documentElement.className = siteTheme;
+
     const customCssElement = document.getElementById("custom-css");
     const customCss = localStorage.getItem("custom-css");
     // need the last condition or there will be flash of unstyled content

@@ -18,11 +18,10 @@
 }
 
 .next-prev__button {
-  background-color: rgb(234, 234, 234);
+  background-color: var(--button-background-color);
   font-weight: 400;
-  color: black;
-  border: 1px solid grey;
+  color: var(--button-text-color);
 }
 .next-prev__button:hover {
-  background-color: rgb(194, 194, 194);
+  background-color: var(--button-hovered-background-color);
 }
