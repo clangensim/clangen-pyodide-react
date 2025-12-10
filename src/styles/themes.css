@@ -10,6 +10,9 @@
     --navbar-text-color: #EFE5CE;
     --navbar-hovered-text-color: rgb(48,41,28);
 
+    --breadcrumbs-background-color: rgb(234, 234, 234);
+    --cat-display-hovered-background-color: #EFE5CE;
+
     --progress-bar-border: 1px solid black;
     --progress-bar-fill: #80bc08;
 
@@ -39,6 +42,9 @@
     --navbar-border: 1px solid #291B0F;
     --navbar-text-color: #EFE5CE;
     --navbar-hovered-text-color: rgb(48,41,28);
+
+    --breadcrumbs-background-color: rgb(92.92, 81.88, 47.84);
+    --cat-display-hovered-background-color: #918467;
 
     --progress-bar-border: 1px solid black;
     --progress-bar-fill: #80bc08;
@@ -73,6 +79,9 @@
     --navbar-border: 1px solid black;
     --navbar-text-color: #EFE5CE;
     --navbar-hovered-text-color: rgb(48,41,28);
+
+    --breadcrumbs-background-color: rgb(41.40, 45.08, 46.92);
+    --cat-display-hovered-background-color: #1a1d1f;
 
     --progress-bar-border: 1px solid black;
     --progress-bar-fill: #80bc08;

@@ -81,7 +81,7 @@ body {
 }
 
 .breadcrumbs {
-  backdrop-filter: brightness(92%);
+  background-color: var(--breadcrumbs-background-color);
   width: 98%;
   margin: 0px auto 10px auto;
   padding: 5px;

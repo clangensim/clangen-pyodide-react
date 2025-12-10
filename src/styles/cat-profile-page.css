@@ -23,5 +23,5 @@
   color: var(--button-text-color);
 }
 .next-prev__button:hover {
-  filter: brightness(90%);
+  background-color: var(--button-hovered-background-color);
 }
