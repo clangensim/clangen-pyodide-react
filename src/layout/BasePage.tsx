@@ -26,8 +26,8 @@ function BasePage({
     // set site theme before custom css so it can be overwritten
     let siteTheme = localStorage.getItem("site-theme");
     if (!siteTheme || siteTheme == "auto") {
-      let preferenceMatch = window.matchMedia('(prefers-color-scheme: light)');
-      siteTheme  = preferenceMatch.matches ? "theme-light" : "theme-dark";
+      let prefersLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
+      siteTheme  = prefersLightMode ? "theme-light" : "theme-dark";
     }
     document.documentElement.className = siteTheme;
 
