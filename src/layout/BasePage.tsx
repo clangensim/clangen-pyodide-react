@@ -25,9 +25,9 @@ function BasePage({
   useEffect(() => {
     // set site theme before custom css so it can be overwritten
     let siteTheme = localStorage.getItem("site-theme");
-    if (!siteTheme) {
-      localStorage.setItem("site-theme", "theme-light");
-      siteTheme = "theme-light";
+    if (!siteTheme || siteTheme == "auto") {
+      let prefersLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
+      siteTheme  = prefersLightMode ? "theme-light" : "theme-dark";
     }
     document.documentElement.className = siteTheme;
 

@@ -52,6 +52,10 @@ function SettingsPage() {
 
   let siteThemes: SelectOption[] = [
     {
+      label: "Sync with System",
+      value: "auto"
+    },
+    {
       label: "Light",
       value: "theme-light"
     },
@@ -80,7 +84,7 @@ function SettingsPage() {
     if (storedSiteTheme) {
       setSiteTheme(storedSiteTheme);
     } else {
-      setSiteTheme("theme-light");
+      setSiteTheme("auto");
     }
 
     const storedCss = localStorage.getItem("custom-css");
