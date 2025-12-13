@@ -23,20 +23,20 @@ function CatSearch({
   const [searchName, setSearchName] = useState("");
 
   const [filters, setFilters] = useState<{[filter: string]: boolean}>({
-    newborn: false, kitten: false,
-    apprentice: false, mediatorapprentice: false,
-    medicinecatapprentice: false,
-    warrior: false, mediator: false,
-    medicinecat: false,
-    elder: false,
-    deputy: false, leader: false,
+    newborn: true, kitten: true,
+    apprentice: true, mediatorapprentice: true,
+    medicinecatapprentice: true,
+    warrior: true, mediator: true,
+    medicinecat: true,
+    elder: true,
+    deputy: true, leader: true,
   });
 
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   function checkFilters(cat: Cat): boolean {
     let metNameFilter = true; // True by default since name filter can be empty.
-    let metStatusFilter = !filters[cat.status.replace(/\s/g,'')]; // Exclude rather than include
+    let metStatusFilter = filters[cat.status.replace(/\s/g,'')];
     if (searchName != "") {
       metNameFilter = cat.name.display.toLowerCase().includes(searchName);
     }
@@ -49,6 +49,15 @@ function CatSearch({
     setFilters({
       ...filters,
       [filterName]: not
+    });
+  }
+
+  function toggleAllFilters(state: boolean): void {
+    for (const [name, _] of Object.entries(filters)) {
+      filters[name] = state;
+    }
+    setFilters({
+      ...filters
     });
   }
 
@@ -85,7 +94,7 @@ function CatSearch({
       <div className="cat-search-filters">
         <input type="text" placeholder="Search by name..." value={searchName} onChange={setNameAndFilter}/>
         <details>
-          <summary>Status Filters (Exclude)</summary>
+          <summary>Status Filters</summary>
           <ul>
             <Checkbox label="Newborn" checked={filters["newborn"]} onChange={() => toggleFilter("newborn")}/>
             <Checkbox label="Kitten" checked={filters["kitten"]} onChange={() => toggleFilter("kitten")}/>
@@ -100,6 +109,18 @@ function CatSearch({
             <Checkbox label="Leader" checked={filters["leader"]} onChange={() => toggleFilter("leader")}/>
           </ul>
         </details>
+        <button 
+          tabIndex={0}
+          onClick={() => toggleAllFilters(true)}
+        >
+          Select All
+        </button>
+        <button 
+          tabIndex={0}
+          onClick={() => toggleAllFilters(false)}
+        >
+          Deselect All
+        </button>
       </div>
       <div className="cat-search-cats">
         <div className="cats-list">
@@ -112,7 +133,7 @@ function CatSearch({
                       <div>
                         <CatDisplay cat={cat} w="75px" h="75px" />
                         <div>{cat.name.display}</div>
-                        <div>{cat.status}</div>
+                        <div className="cat-search-select-status">{cat.status}</div>
                       </div>
                     }
                     checked={selectedCats.includes(cat.ID)}

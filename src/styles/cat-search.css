@@ -22,6 +22,9 @@
 .cat-search-select:has(label input[type="checkbox"]:checked) {
     border: 1px solid lightblue;
 }
+.cat-search-select-status {
+    font-size: 13px;
+}
 
 .cat-search-page-controls {
     flex: 0;
