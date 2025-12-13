@@ -11,6 +11,7 @@ import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import Checkbox from "../components/generic/Checkbox";
 import { TbCaretLeftFilled, TbCaretRightFilled } from "react-icons/tb";
+import CatSearch from "../components/CatSearch";
 
 type ScreenState = "start" | "in-progress" | "wrap-up"
 const crumbs = [
@@ -50,8 +51,6 @@ function PatrolsPage() {
 
   const [selectedCats, setSelectedCats] = useState<string[]>([]);
 
-  const [currentDisplayPage, setDisplayPage] = useState(0);
-
   const [patrolUuid, setPatrolUuid] = useState("");
 
   const [clanInfo, setClanInfo] = useState<ClanInfo | null>();
@@ -76,19 +75,6 @@ function PatrolsPage() {
 
     setPossibleCats(cats);
     setClanInfo(info);
-  }
-
-  function toggleCatOnPatrol(cat: Cat) {
-    if (selectedCats.includes(cat.ID)) {
-      setSelectedCats(selectedCats.filter(c => c != cat.ID));
-      return;
-    }
-
-    if (selectedCats.length >= 6) {
-      return;
-    }
-
-    setSelectedCats(selectedCats.concat(cat.ID));
   }
 
   useEffect(() => {
@@ -164,15 +150,6 @@ function PatrolsPage() {
     );
   }
 
-  let catPages = (() => {
-    let final = [];
-    for (let i = 0; i < possibleCats.length; i += 6)
-    {
-      final.push(possibleCats.slice(i, i + 6));
-    }
-    return final;
-  })();
-
   return (
     <BasePage crumbs={crumbs}>
       <p>
@@ -183,36 +160,15 @@ function PatrolsPage() {
 
       <p>If you edit a cat that is currently on patrol, the patrol will end.</p>
 
-      <fieldset className="patrol-cat-display">
-        <legend>Cats ({selectedCats.length} of 6 selected) | Page {currentDisplayPage + 1} of {catPages.length}</legend>
-        <div className="patrol-cat-button">
-          <button tabIndex={0} 
-            onClick={() => setDisplayPage(Math.max(currentDisplayPage - 1, 0))} 
-            disabled={currentDisplayPage == 0}
-          >
-            <TbCaretLeftFilled />
-          </button>
-        </div>
-        <div className="patrol-cat-list">
-          {
-            catPages[currentDisplayPage].map((cat, index) => {
-              return (
-                <div className="cat" key={index}>
-                  <CatDisplay cat={cat} w="75px" h="75px" />
-                  <Checkbox label={cat.name.display} onChange={() => toggleCatOnPatrol(cat)} checked={selectedCats.includes(cat.ID)} />
-                </div>
-              );
-            })
-          }
-        </div>
-        <div className="patrol-cat-button">
-          <button tabIndex={0} id="right-patrol-button" 
-            onClick={() => setDisplayPage(Math.min(currentDisplayPage + 1, catPages.length - 1))} 
-            disabled={currentDisplayPage == catPages.length - 1}
-          >
-            <TbCaretRightFilled />
-          </button>
-        </div>
+      <fieldset>
+        <legend>Cats</legend>
+        <CatSearch 
+          catsToSearch={possibleCats}
+          catsPerPage={16}
+          maxSelection={6}
+          selectedCats={selectedCats}
+          setSelectedCats={setSelectedCats}
+        />
       </fieldset>
 
       <fieldset>

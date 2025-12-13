@@ -1,0 +1,38 @@
+.cat-search-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.cat-search-filters {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.cat-search-cats {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+}
+.cat-search-select {
+    border-radius: 10px;
+}
+.cat-search-select label input[type="checkbox"] {
+    display: none;
+}
+.cat-search-select:has(label input[type="checkbox"]:checked) {
+    border: 1px solid lightblue;
+}
+
+.cat-search-page-controls {
+    flex: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.cat-search-page-controls > div {
+    flex: 2;
+}
