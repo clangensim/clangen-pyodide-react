@@ -100,7 +100,7 @@
 
     --summary-background-color: #8b8576;
 
-    textarea, fieldset {
+    textarea, fieldset, input[type="checkbox"], input[type="text"], select {
         color-scheme: dark;
     }
 }
