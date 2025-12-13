@@ -80,7 +80,7 @@
     --navbar-text-color: #EFE5CE;
     --navbar-hovered-text-color: rgb(48,41,28);
 
-    --breadcrumbs-background-color: rgb(41.40, 45.08, 46.92);
+    --breadcrumbs-background-color: rgb(38, 41, 43);
     --cat-display-hovered-background-color: #1a1d1f;
 
     --progress-bar-border: 1px solid black;
@@ -94,11 +94,11 @@
     --button-text-color: #EFE5CE;
     --button-disabled-background-color: #938764;
 
-    --button-secondary-background-color: #332911;
-    --button-secondary-hovered-background-color: #5a471f;
-    --button-secondary-text-color: #C9BD94;
+    --button-secondary-background-color: #1b1b1b;
+    --button-secondary-hovered-background-color: #141414;
+    --button-secondary-text-color: #948667;
 
-    --summary-background-color: #8b8576;
+    --summary-background-color: #1a1d1f;
 
     textarea, fieldset, input[type="checkbox"], input[type="text"], select {
         color-scheme: dark;
