@@ -20,6 +20,8 @@ const crumbs = [
 ];
 
 type ScreenState = "starclan" | "dark_forest" | "clan_cats" | "outside_cats" | "unknown_residence";
+const selectedButtonClass = "btn-primary"
+const deselectedButtonClass = "btn-secondary"
 
 function CatsPage() {
   const [cats, setCats] = useState<Cat[]>([]);
@@ -52,15 +54,15 @@ function CatsPage() {
         <div className="button-row" style={{marginLeft: "0.25em"}}>
           { showLiving && 
             <>
-              <button className="btn-secondary" onClick={() => setScreenState("clan_cats")}>{clanInfo ? clanInfo.name : "Clan"}</button>
-              <button className="btn-secondary" onClick={() => setScreenState("outside_cats")}>Cats Outside the Clan</button>
+              <button className={screenState === "clan_cats" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("clan_cats")}>{clanInfo ? clanInfo.name : "Clan"}</button>
+              <button className={screenState === "outside_cats" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("outside_cats")}>Cats Outside the Clan</button>
             </>
           }
           { showDead && 
             <>
-              <button onClick={() => setScreenState("starclan")}>StarClan</button>
-              <button onClick={() => setScreenState("dark_forest")}>Dark Forest</button>
-              <button onClick={() => setScreenState("unknown_residence")}>???</button>
+              <button className={screenState === "starclan" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("starclan")}>StarClan</button>
+              <button className={screenState === "dark_forest" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("dark_forest")}>Dark Forest</button>
+              <button className={screenState === "unknown_residence" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("unknown_residence")}>Unknown</button>
             </>
           }
         </div>
