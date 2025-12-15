@@ -155,6 +155,19 @@ button:hover,
   background-color: var(--button-hovered-background-color);
 }
 
+.link-button {
+  background-color: transparent;
+  padding: 0;
+  display: inline-block;
+  font-weight: 400;
+  border-radius: 0;
+  color: rgb(106 57 69);
+  text-decoration: underline;
+}
+.link-button:hover {
+  background-color: transparent;
+}
+
 .btn-secondary {
   background-color: var(--button-secondary-background-color);
   color: var(--button-secondary-text-color);
