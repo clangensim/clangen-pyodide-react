@@ -52,7 +52,7 @@ function CatsPage() {
         <div className="button-row" style={{marginLeft: "0.25em"}}>
           { showLiving && 
             <>
-              <button className="btn-secondary" onClick={() => setScreenState("clan_cats")}>{clanInfo ? clanInfo.name : "Clan"} Cats</button>
+              <button className="btn-secondary" onClick={() => setScreenState("clan_cats")}>{clanInfo ? clanInfo.name : "Clan"}</button>
               <button className="btn-secondary" onClick={() => setScreenState("outside_cats")}>Cats Outside the Clan</button>
             </>
           }
