@@ -38,3 +38,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.cats-list__nav__toggle-living button {
+  text-align: right;
+  padding-left: 0.25em;
+}

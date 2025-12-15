@@ -67,7 +67,7 @@ function CatsPage() {
           }
         </div>
 
-        <div>
+        <div className="cats-list__nav__toggle-living">
           {showDead && <button onClick={() => { setScreenState("clan_cats") }} className="link-button">Show living</button>}
           {showLiving && <button onClick={() => { setScreenState("starclan") }} className="link-button">Show deceased</button>}
         </div>
