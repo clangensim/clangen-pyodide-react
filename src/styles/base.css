@@ -161,7 +161,7 @@ button:hover,
   display: inline-block;
   font-weight: 400;
   border-radius: 0;
-  color: rgb(106 57 69);
+  color: var(--link-color);
   text-decoration: underline;
 }
 .link-button:hover {
