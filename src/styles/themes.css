@@ -95,7 +95,7 @@
     --button-disabled-background-color: #938764;
 
     --button-secondary-background-color: #1b1b1b;
-    --button-secondary-hovered-background-color: #141414;
+    --button-secondary-hovered-background-color: rgb(46, 45, 42);
     --button-secondary-text-color: #948667;
 
     --summary-background-color: #1a1d1f;
