@@ -51,3 +51,7 @@ dialog div.dialog-footer {
   display: block;
   margin-top: 0.5em;
 }
+
+#clan-info {
+  margin-bottom: 0.5em;
+}
