@@ -6,6 +6,7 @@ import { clangenRunner } from "../python/clangenRunner";
 import Pluralize from "../components/generic/Pluralize";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
+import { setCustomCss } from "../utils";
 
 function BasePage({
   children,
@@ -23,20 +24,7 @@ function BasePage({
   const clanInfo = query.data;
 
   useEffect(() => {
-    // set site theme before custom css so it can be overwritten
-    let siteTheme = localStorage.getItem("site-theme");
-    if (!siteTheme || siteTheme == "auto") {
-      let prefersLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
-      siteTheme  = prefersLightMode ? "theme-light" : "theme-dark";
-    }
-    document.documentElement.className = siteTheme;
-
-    const customCssElement = document.getElementById("custom-css");
-    const customCss = localStorage.getItem("custom-css");
-    // need the last condition or there will be flash of unstyled content
-    if (customCssElement && customCss && customCssElement.textContent !== customCss) {
-      customCssElement.textContent = customCss;
-    }
+    setCustomCss();
   }, []);
 
   useEffect(() => {
