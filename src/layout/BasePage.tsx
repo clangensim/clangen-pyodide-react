@@ -28,6 +28,14 @@ function BasePage({
   }, []);
 
   useEffect(() => {
+    if (!query.isLoading) {
+      if (query.data === null) {
+        navigator("/signup");
+      }
+    }
+  }, [query.data, query.isLoading]);
+
+  useEffect(() => {
     const headerElement = document.getElementById("heading-inject-css");
 
     if (headerElement) {
@@ -50,11 +58,6 @@ function BasePage({
   if (query.status === "error") {
     console.error(query.error);
     return <>Error: {query.error.message}</>;
-  }
-
-  if (clanInfo === null) {
-    navigator("/signup");
-    return <></>;
   }
 
   return (
