@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import { Cat, PatrolAction, PatrolType, ClanInfo } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
-import Select from "../components/generic/Select";
-import { SelectOption } from "../components/generic/Select";
 import BasePage from "../layout/BasePage";
 
 import confusedCat from "../assets/images/gen_med_newmed.png";
 import { formatText } from "../utils";
-import { Link } from "react-router";
 import CatDisplay from "../components/CatDisplay";
-import Checkbox from "../components/generic/Checkbox";
-import { TbCaretLeftFilled, TbCaretRightFilled } from "react-icons/tb";
 import CatSearch from "../components/CatSearch";
 
 type ScreenState = "start" | "in-progress" | "wrap-up"
@@ -101,19 +96,6 @@ function PatrolsPage() {
     }
   }
 
-  function selectRandomGroup() {
-    setSelectedCats([]);
-    let randomCats: string[] = [];
-    for (let i = 0; i < Math.min(6, possibleCats.length); i++) {
-      let index = Math.floor(Math.random() * possibleCats.length);
-      while (randomCats.includes(possibleCats[index].ID)) {
-        index = Math.floor(Math.random() * possibleCats.length);
-      }
-      randomCats.push(possibleCats[index].ID);
-    }
-    setSelectedCats(randomCats);
-  }
-
   async function endPatrol(action: PatrolAction) {
     try {
       const [outcomeText, outcomeResult, art] =
@@ -161,7 +143,7 @@ function PatrolsPage() {
       <p>If you edit a cat that is currently on patrol, the patrol will end.</p>
 
       <fieldset>
-        <legend>Cats</legend>
+        <legend>Possible Cats</legend>
         <CatSearch 
           catsToSearch={possibleCats}
           catsPerPage={16}
@@ -169,6 +151,23 @@ function PatrolsPage() {
           selectedCats={selectedCats}
           setSelectedCats={setSelectedCats}
         />
+      </fieldset>
+
+      <fieldset className="cats-list">
+        <legend>Cats to Patrol</legend>
+        {
+          possibleCats
+          .filter(cat => selectedCats.find(id => id == cat.ID))
+          .map((cat, index) => {
+            return (
+              <div className="cat" key={index}>
+                <CatDisplay cat={cat} w="75px" h="75px" />
+                <div>{cat.name.display}</div>
+                <div className="cat-search-select-status">{cat.status}</div>
+              </div>
+            );
+          })
+        }
       </fieldset>
 
       <fieldset>
@@ -236,23 +235,6 @@ function PatrolsPage() {
             onClick={startPatrol}
           >
             Start Patrol
-          </button>
-
-          <button
-            tabIndex={0}
-            disabled={false}
-            onClick={() => setSelectedCats([])}
-            style={{float: "right"}}
-          >
-            Deselect All
-          </button>
-          <button
-            tabIndex={0}
-            disabled={false}
-            onClick={selectRandomGroup}
-            style={{float: "right"}}
-          >
-            Select Random Group
           </button>
         </div>
       )}

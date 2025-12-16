@@ -7,6 +7,12 @@ import { TbCaretLeftFilled, TbCaretRightFilled } from "react-icons/tb";
 import "../styles/cat-search.css";
 import "../styles/cats-page.css";
 
+type CatFilter = {
+  apprentices: boolean,
+  mates: boolean,
+  mentors: boolean
+}
+
 function CatSearch({
   catsToSearch,
   catsPerPage=16,
@@ -41,7 +47,7 @@ function CatSearch({
       metNameFilter = cat.name.display.toLowerCase().includes(searchName);
     }
 
-    return metNameFilter && metStatusFilter;
+    return (metNameFilter && metStatusFilter); // Required filters.
   }
 
   function toggleFilter(filterName: string): void {
@@ -77,6 +83,19 @@ function CatSearch({
     }
 
     setSelectedCats(selectedCats.concat(cat.ID));
+  }
+
+  function selectRandom(numOfCats: number = 1) {
+    setSelectedCats([]);
+    let randomCats: string[] = [];
+    for (let i = 0; i < Math.min(numOfCats, catsToSearch.length); i++) {
+      let index = Math.floor(Math.random() * catsToSearch.length);
+      while (randomCats.includes(catsToSearch[index].ID)) {
+        index = Math.floor(Math.random() * catsToSearch.length);
+      }
+      randomCats.push(catsToSearch[index].ID);
+    }
+    setSelectedCats(randomCats);
   }
 
   function paginate() {
@@ -159,6 +178,25 @@ function CatSearch({
             disabled={currentPage == catPages.length - 1}
           >
             <TbCaretRightFilled />
+          </button>
+        </div>
+        <div className="cat-search-page-controls">
+          <button tabIndex={0} 
+            onClick={() => selectRandom()} 
+            disabled={selectedCats.length == maxSelection}
+          >
+            Select Random
+          </button>
+          <button tabIndex={0} 
+            onClick={() => selectRandom(maxSelection)}
+          >
+            Select Random All
+          </button>
+          <button tabIndex={0}
+            onClick={() => setSelectedCats([])} 
+            disabled={selectedCats.length == 0}
+          >
+            Deselect All
           </button>
         </div>
       </div>
