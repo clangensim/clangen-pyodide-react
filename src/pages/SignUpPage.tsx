@@ -23,7 +23,7 @@ function SignUpPage() {
 
   return (
     <>
-      <div id="signup">
+      <div className="theme-light" id="signup">
         <p>
           Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate
           Clan Generator in your browser.
