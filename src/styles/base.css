@@ -26,7 +26,7 @@ button {
 
 body {
   max-width: 1000px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 100px auto;
 }
 .body {
   background-color: var(--content-background-color);
