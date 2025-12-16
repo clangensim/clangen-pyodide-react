@@ -54,16 +54,21 @@ function CatProfilePage() {
   let crumbs = undefined;
   if (cat) {
     let location = "???";
+    let href = "/cats"
     if (cat.dead) {
       location = "StarClan";
+      href = "/cats?category=starclan";
       if (cat.inDarkForest) {
         location = "Dark Forest";
+        href = "/cats?category=dark_forest";
       }
       if (cat.outside) {
-        location = "???";
+        location = "Unknown";
+        href = "/cats?category=unknown_residence";
       }
     } else if (cat.outside) {
       location = "Cats Outside the Clan";
+      href = "/cats?category=outside_cats";
     } else {
       if (clanInfo) {
         location = clanInfo.name;
@@ -80,7 +85,7 @@ function CatProfilePage() {
         label: "Cats",
       },
       {
-        url: "/cats",
+        url: href,
         label: location,
       },
       {

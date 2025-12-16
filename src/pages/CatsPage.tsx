@@ -1,5 +1,5 @@
 import { clangenRunner } from "../python/clangenRunner";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import CatDisplay from "../components/CatDisplay";
 import { useEffect, useState } from "react";
 import BasePage from "../layout/BasePage";
@@ -24,6 +24,8 @@ const selectedButtonClass = "btn-primary"
 const deselectedButtonClass = "btn-secondary"
 
 function CatsPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [cats, setCats] = useState<Cat[]>([]);
   const query = useQuery({
     queryKey: ["claninfo"],
@@ -34,7 +36,7 @@ function CatsPage() {
 
   let showLiving;
   let showDead;
-  const [screenState, setScreenState] = useState<ScreenState>("clan_cats");
+  const [screenState, _setScreenState] = useState<ScreenState>("clan_cats");
   if (screenState === "clan_cats" || screenState === "outside_cats") {
     showLiving = true;
     showDead = false;
@@ -47,6 +49,18 @@ function CatsPage() {
     document.title = "Cats | ClanGen Simulator";
     clangenRunner.getCats().then((c) => setCats(c));
   }, []);
+
+  useEffect(() => {
+    var category = searchParams.get("category") as ScreenState | null;
+    if (category === null) { category = "clan_cats" }
+    setScreenState(category);
+  }, [searchParams]);
+
+  function setScreenState(state: ScreenState) {
+    _setScreenState(state);
+    setSearchParams({category: state});
+  }
+
 
   return (
     <BasePage crumbs={crumbs}>
