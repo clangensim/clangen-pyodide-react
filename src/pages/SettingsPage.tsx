@@ -171,7 +171,9 @@ function SettingsPage() {
           <p>Your custom CSS will be injected onto every page except for this one. For your safety, please only input CSS that you 100% trust.</p>
         </fieldset>
       </div>
-      <button onClick={handleSave}>Save</button>
+      <div className="submit">
+        <button onClick={handleSave}>Save</button>
+      </div>
     </BasePage>
   );
 }
