@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import FileUploadButton from "../components/generic/FileUploadButton";
 import { clangenRunner } from "../python/clangenRunner";
-import { download } from "../utils";
+import { download, getCampBGPath } from "../utils";
 import { useEffect } from "react";
 import ClanInfoDisplay from "../components/ClanInfoDisplay";
 import BasePage from "../layout/BasePage";
@@ -41,16 +41,10 @@ function HomePage() {
     document.title = " ClanGen Simulator";
   }, []);
 
-  var mode = "light";
-  var now = new Date();
-  if (now.getHours() <= 5 || now.getHours() >= 17) {
-    mode = "dark";
-  }
-
   return (
     <BasePage>
       <ClanInfoDisplay />
-      <img src={`camp_bg/${clanInfo?.biome.toLowerCase()}/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_${mode}.png`} width={400}></img>
+      <img src={getCampBGPath(clanInfo)} width={400}></img>
 
       <p>
         Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate
