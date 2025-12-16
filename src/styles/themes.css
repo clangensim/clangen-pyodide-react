@@ -14,6 +14,7 @@
     --cat-display-hovered-background-color: #EFE5CE;
 
     --progress-bar-border: 1px solid black;
+    --progress-bar-bg: rgb(231, 231, 231);
     --progress-bar-fill: #80bc08;
 
     --icon-button-text-color: darkgray;
@@ -47,6 +48,7 @@
     --cat-display-hovered-background-color: #918467;
 
     --progress-bar-border: 1px solid black;
+    --progress-bar-bg: #363223;
     --progress-bar-fill: #80bc08;
 
     --icon-button-text-color: darkgray;
@@ -84,7 +86,8 @@
     --cat-display-hovered-background-color: #1a1d1f;
 
     --progress-bar-border: 1px solid black;
-    --progress-bar-fill: #80bc08;
+    --progress-bar-bg: #212324;
+    --progress-bar-fill: #00945c;
 
     --icon-button-text-color: darkgray;
     --icon-button-hovered-text-color: gray;
