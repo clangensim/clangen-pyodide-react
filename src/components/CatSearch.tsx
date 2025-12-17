@@ -1,7 +1,7 @@
 import Checkbox from "./generic/Checkbox";
 import { Cat } from "../python/types";
 import CatDisplay from "./CatDisplay";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { TbCaretLeftFilled, TbCaretRightFilled } from "react-icons/tb";
 
 import "../styles/cat-search.css";
@@ -22,74 +22,84 @@ function CatSearch({
 }) {
   const [searchName, setSearchName] = useState("");
 
-  const [statusFilters, setStatusFilters] = useState<Record<string, boolean>>({
-    newborn: true, kitten: true,
-    apprentice: true, mediatorapprentice: true,
-    medicinecatapprentice: true,
-    warrior: true, mediator: true,
-    medicinecat: true,
-    elder: true,
-    deputy: true, leader: true,
-  });
-
   const [affiliationEnabled, setAffiliationEnabled] = useState<boolean>(false);
-  const [miscFilters, setMiscFilters] = useState<Record<string, any>>({
-    // Experience Filters
-    untrained: true, trainee: true,
-    prepared: true, competent: true,
-    proficient: true, expert: true,
-    master: true,
-
-    // Affilication Filters
-    mentor: true, apprentice: true
+  const [filters, setFilters] = useState<Record<string, Record<string, boolean>>>({
+    status: {
+      newborn: true, kitten: true,
+      apprentice: true, ["mediator apprentice"]: true,
+      ["medicine cat apprentice"]: true,
+      warrior: true, mediator: true,
+      ["medicine cat"]: true,
+      elder: true,
+      deputy: true, leader: true,
+    },
+    experience: {
+      untrained: true, trainee: true,
+      prepared: true, competent: true,
+      proficient: true, expert: true,
+      master: true
+    },
+    affiliation: {
+      mentor: true, apprentice: true,
+      mates: true,
+    }
   });
 
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   function checkFilters(cat: Cat) {
     let metNameFilter = searchName == "" ? true : cat.name.display.toLowerCase().includes(searchName); // True by default since name filter can be empty.
-    let metStatusFilter = statusFilters[cat.status.replace(/\s/g,'')];
-    let metExperienceFilter = miscFilters[cat.experienceLevel];
+    let metStatusFilter = filters["status"][cat.status.replace(/\s/g,'')];
+    let metExperienceFilter = filters["experience"][cat.experienceLevel];
 
     let metMentorFilter = false;
     let metApprenticeFilter = false;
-    if (miscFilters["mentor"]) { // Valid if cat is apprentice of a selected cat.
+    let metMatesFilter = false;
+    if (filters["affiliation"]["mentor"]) { // Valid if cat is apprentice of a selected cat.
       metMentorFilter = cat.mentor ? selectedCats.includes(cat.mentor.ID) : false;
     }
-    if (miscFilters["apprentice"]) { // Valid if cat has an apprentice in selected cats.
+    if (filters["affiliation"]["apprentice"]) { // Valid if cat has an apprentice in selected cats.
       let found = cat.apprentices.find(c => selectedCats.includes(c.ID));
       metApprenticeFilter = found != undefined;
     }
+    if (filters["affiliation"]["mates"]) { // Valid if cat has a mate in selected cats.
+      let found = cat.mates.find(c => selectedCats.includes(c.ID));
+      metMatesFilter = found != undefined;
+    }
 
     if (affiliationEnabled) {
-      return (metMentorFilter || metApprenticeFilter);
+      return (metMentorFilter || metApprenticeFilter || metMatesFilter);
     }
 
     return (metNameFilter && metStatusFilter && metExperienceFilter);
   }
 
-  function toggleStatusFilter(filterName: string) {
-    let not = !statusFilters[filterName];
-    setStatusFilters({
-      ...statusFilters,
-      [filterName]: not
-    });
-  }
-
-  function toggleAllStatusFilters(state: boolean) {
-    for (const [name, _] of Object.entries(statusFilters)) {
-      statusFilters[name] = state;
+  function toggleFilter(filterCategory: string, filter: string, value: boolean | undefined = undefined)
+  {
+    if (value == undefined) {
+      value = !filters[filterCategory][filter];
     }
-    setStatusFilters({
-      ...statusFilters
+    setFilters({
+      ...filters,
+      [filterCategory]: {
+        ...filters[filterCategory],
+        [filter]: value
+      }
     });
   }
 
-  function setMiscFilter(filter: string, value: any) {
-    setMiscFilters({
-      ...miscFilters,
-      [filter]: value
-    })
+  function toggleAllFilters(filterCategory: string, value: boolean | undefined = undefined)
+  {
+    for (const [name, _] of Object.entries(filters[filterCategory]))
+    {
+      if (value == undefined) {
+        value = !filters[filterCategory][name];
+      }
+      filters[filterCategory][name] = value;
+    }
+    setFilters({
+      ...filters
+    });
   }
 
   function toggleCatSelected(cat: Cat) {
@@ -135,40 +145,39 @@ function CatSearch({
         <details>
           <summary>Status Filters</summary>
           <ul>
-            <Checkbox label="Newborn" checked={statusFilters["newborn"]} onChange={() => toggleStatusFilter("newborn")}/>
-            <Checkbox label="Kitten" checked={statusFilters["kitten"]} onChange={() => toggleStatusFilter("kitten")}/>
-            <Checkbox label="Apprentice" checked={statusFilters["apprentice"]} onChange={() => toggleStatusFilter("apprentice")}/>
-            <Checkbox label="Mediator Apprentice" checked={statusFilters["mediatorapprentice"]} onChange={() => toggleStatusFilter("mediatorapprentice")}/>
-            <Checkbox label="Medicine Cat Apprentice" checked={statusFilters["medicinecatapprentice"]} onChange={() => toggleStatusFilter("medicinecatapprentice")}/>
-            <Checkbox label="Warrior" checked={statusFilters["warrior"]} onChange={() => toggleStatusFilter("warrior")}/>
-            <Checkbox label="Mediator" checked={statusFilters["mediator"]} onChange={() => toggleStatusFilter("mediator")}/>
-            <Checkbox label="Medicine Cat" checked={statusFilters["medicinecat"]} onChange={() => toggleStatusFilter("medicinecat")}/>
-            <Checkbox label="Elder" checked={statusFilters["elder"]} onChange={() => toggleStatusFilter("elder")}/>
-            <Checkbox label="Deputy" checked={statusFilters["deputy"]} onChange={() => toggleStatusFilter("deputy")}/>
-            <Checkbox label="Leader" checked={statusFilters["leader"]} onChange={() => toggleStatusFilter("leader")}/>
+            {
+              Object.keys(filters["status"]).map(name => {
+                return (
+                  <Checkbox label={name} checked={filters["status"][name]} onChange={() => toggleFilter("status", name)}/>
+                )
+              })
+            }
           </ul>
-          <button tabIndex={0} onClick={() => toggleAllStatusFilters(true)}>Select All</button>
-          <button tabIndex={0} onClick={() => toggleAllStatusFilters(false)}>Deselect All</button>
+          <button tabIndex={0} onClick={() => toggleAllFilters("status", true)}>Select All</button>
+          <button tabIndex={0} onClick={() => toggleAllFilters("status", false)}>Deselect All</button>
         </details>
         <details>
           <summary>Experience Filters</summary>
           <ul>
-            <Checkbox label="Untrained" checked={miscFilters["untrained"]} onChange={() => setMiscFilter("untrained", !miscFilters["untrained"])}/>
-            <Checkbox label="Trainee" checked={miscFilters["trainee"]} onChange={() => setMiscFilter("trainee", !miscFilters["trainee"])}/>
-            <Checkbox label="Prepared" checked={miscFilters["prepared"]} onChange={() => setMiscFilter("prepared", !miscFilters["prepared"])}/>
-            <Checkbox label="Competent" checked={miscFilters["competent"]} onChange={() => setMiscFilter("competent", !miscFilters["competent"])}/>
-            <Checkbox label="Proficient" checked={miscFilters["proficient"]} onChange={() => setMiscFilter("proficient", !miscFilters["proficient"])}/>
-            <Checkbox label="Expert" checked={miscFilters["expert"]} onChange={() => setMiscFilter("expert", !miscFilters["expert"])}/>
-            <Checkbox label="Master" checked={miscFilters["master"]} onChange={() => setMiscFilter("master", !miscFilters["master"])}/>
+            {
+              Object.keys(filters["experience"]).map(name => {
+                return (
+                  <Checkbox label={name} checked={filters["experience"][name]} onChange={() => toggleFilter("experience", name)}/>
+                )
+              })
+            }
           </ul>
+          <button tabIndex={0} onClick={() => toggleAllFilters("experience", true)}>Select All</button>
+          <button tabIndex={0} onClick={() => toggleAllFilters("experience", false)}>Deselect All</button>
         </details>
         <details>
-          <summary>Mentor/Apprentice Filters</summary>
-          <p>(Filters by mentors/apprentices of selected cats)</p>
+          <summary>Afilliation Filters</summary>
+          <p>(Filters by affiliation to selected cats)</p>
           <Checkbox label="Enable Filter" checked={affiliationEnabled} onChange={() => setAffiliationEnabled(!affiliationEnabled)}/>
           <ul>
-            <Checkbox label="Mentor of" checked={miscFilters["apprentice"]} onChange={() => setMiscFilter("apprentice", !miscFilters["apprentice"])}/>
-            <Checkbox label="Apprentice of" checked={miscFilters["mentor"]} onChange={() => setMiscFilter("mentor", !miscFilters["mentor"])}/>
+            <Checkbox label="Mentors of selected" checked={filters["affiliation"]["apprentice"]} onChange={() => toggleFilter("affiliation", "apprentice")}/>
+            <Checkbox label="Apprentices of selected" checked={filters["affiliation"]["mentor"]} onChange={() => toggleFilter("affiliation", "mentor")}/>
+            <Checkbox label="Mates of selected" checked={filters["affiliation"]["mates"]} onChange={() => toggleFilter("affiliation", "mates")}/>
           </ul>
         </details>
       </div>
