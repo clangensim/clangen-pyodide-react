@@ -49,7 +49,7 @@ function CatSearch({
 
   function checkFilters(cat: Cat) {
     let metNameFilter = searchName == "" ? true : cat.name.display.toLowerCase().includes(searchName); // True by default since name filter can be empty.
-    let metStatusFilter = filters["status"][cat.status.replace(/\s/g,'')];
+    let metStatusFilter = filters["status"][cat.status];
     let metExperienceFilter = filters["experience"][cat.experienceLevel];
 
     let metMentorFilter = false;
