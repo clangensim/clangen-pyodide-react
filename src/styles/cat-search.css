@@ -4,12 +4,12 @@
 }
 
 .cat-search-filters {
-    flex: 1;
+    flex: 1.5;
     margin-right: 5px;
 }
 
 .cat-search-cats {
-    flex: auto;
+    flex: 2;
     display: flex;
     flex-direction: column;
 }
