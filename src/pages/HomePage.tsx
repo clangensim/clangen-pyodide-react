@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import FileUploadButton from "../components/generic/FileUploadButton";
 import { clangenRunner } from "../python/clangenRunner";
-import { download, getCampBGPath } from "../utils";
+import { download, getCampBGPathByClan } from "../utils";
 import { useEffect } from "react";
 import ClanInfoDisplay from "../components/ClanInfoDisplay";
 import BasePage from "../layout/BasePage";
@@ -44,7 +44,7 @@ function HomePage() {
   return (
     <BasePage>
       <ClanInfoDisplay />
-      <img src={getCampBGPath(clanInfo)} width={400}></img>
+      <img src={getCampBGPathByClan(clanInfo)} width={400}></img>
 
       <p>
         Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate

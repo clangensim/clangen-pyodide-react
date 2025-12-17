@@ -5,7 +5,7 @@ import { clangenRunner } from "../python/clangenRunner";
 import "../styles/new-clan.css";
 
 import CatDisplay from "../components/CatDisplay";
-import { getCampBGPathNoClan, setCustomCss } from "../utils";
+import { getCampBGPath, setCustomCss } from "../utils";
 
 function NewClanPage() {
   const [cats, setCats] = useState<Cat[]>([]);
@@ -20,7 +20,7 @@ function NewClanPage() {
 
   const biomeVariants: {[biome: string]: string[]} = {
     "forest": [
-      "classic",
+      "forest",
       "gully",
       "grotto",
       "lakeside"
@@ -411,26 +411,29 @@ function NewClanPage() {
           <fieldset>
             <legend>Variant</legend>
             <div className="dropdown">
-              <select
-                name="campNum"
-                value={campNum}
-                onChange={(e) => setCampNum(e.target.value)}
-                required
-              >
-                {
-                  biomeVariants[biome.toLowerCase()].map((campName, campNum) => {
-                    return (
-                      <option
-                        value={`camp${campNum+1}`}
-                      >{campName}</option>
-                    )
-                  })
-                }
-              </select>
+              {
+                biomeVariants[biome.toLowerCase()].map((campName, index) => {
+                  return (
+                    <div className="radio-row">
+                      <input
+                        tabIndex={0}
+                        type="radio"
+                        id={`${campName}-variant-radio`}
+                        value={`camp${index+1}`}
+                        name="variant"
+                        defaultChecked={index == 0}
+                        checked={campNum == `camp${index+1}`}
+                        onChange={(e) => setCampNum(e.target.value)}
+                      ></input>
+                      <label htmlFor={`${campName}-variant-radio`}>{campName}</label>
+                    </div>
+                  )
+                })
+              }
             </div>
             </fieldset>
           <p>Preview:</p>
-          <img src={getCampBGPathNoClan(biome, season, campNum)} width={400}></img>
+          <img src={getCampBGPath(biome, season, campNum)} width={400}></img>
         </fieldset>
 
         <div className="submit">

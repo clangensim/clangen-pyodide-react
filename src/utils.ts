@@ -41,18 +41,22 @@ function setCustomCss() {
   }
 }
 
-function getCampBGPath(clanInfo: ClanInfo | null | undefined) {
+function getCampBGPath(biome: string, season: string, campNum: string) {
+  var lightDark = "light";
+  var now = new Date();
+  if (now.getHours() <= 5 || now.getHours() >= 17) {
+    lightDark = "dark";
+  }
+
+  return `camp_bg/${biome.toLowerCase()}/${season.toLowerCase().replace("-", "")}_${campNum}_${lightDark}.png`
+}
+
+function getCampBGPathByClan(clanInfo: ClanInfo | null | undefined) {
   if (!clanInfo) {
     return "";
   }
   
-  let lightDark = getSiteTheme().match("dark") ? "dark" : "light";
-  return `camp_bg/${clanInfo?.biome.toLowerCase()}/${clanInfo?.season.toLowerCase().replace("-", "")}_${clanInfo?.campBg}_${lightDark}.png`
+  return getCampBGPath(clanInfo?.biome.toLowerCase(), clanInfo?.season.toLowerCase().replace("-", ""), clanInfo?.campBg);
 }
 
-function getCampBGPathNoClan(biome: string, season: string, campNum: string) {
-  let lightDark = getSiteTheme().match("dark") ? "dark" : "light";
-  return `camp_bg/${biome.toLowerCase()}/${season.toLowerCase().replace("-", "")}_${campNum}_${lightDark}.png`
-}
-
-export { download, formatText, setCustomCss, getCampBGPath, getCampBGPathNoClan };
+export { download, formatText, setCustomCss, getCampBGPath, getCampBGPathByClan };
