@@ -25,6 +25,8 @@ dialog {
   padding: 10px;
   border: 1px solid grey;
   border-radius: 10px;
+  background-color: var(--content-background-color);
+  color: var(--text-color);
 }
 
 dialog div.dialog-body {
