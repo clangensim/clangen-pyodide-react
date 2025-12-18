@@ -425,7 +425,7 @@ function NewClanPage() {
                         checked={campNum == `camp${index+1}`}
                         onChange={(e) => setCampNum(e.target.value)}
                       ></input>
-                      <label htmlFor={`${campName}-variant-radio`}>{campName}</label>
+                      <label htmlFor={`${campName}-variant-radio`}>{campName.substring(0, 1).toUpperCase() + campName.substring(1)}</label>
                     </div>
                   )
                 })
