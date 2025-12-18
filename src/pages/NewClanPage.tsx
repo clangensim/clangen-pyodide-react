@@ -7,27 +7,27 @@ import "../styles/new-clan.css";
 import CatDisplay from "../components/CatDisplay";
 import { getCampBGPath, setCustomCss } from "../utils";
 
-const biomeVariants: {[biome: string]: string[]} = {
+const biomeVariants: {[biome: string]: string[][]} = {
   "Forest": [
-    "forest",
-    "gully",
-    "grotto",
-    "lakeside"
+    ["forest", "camp1"],
+    ["gully", "camp2"],
+    ["grotto", "camp3"],
+    ["lakeside", "camp4"]
   ],
   "Mountainous": [
-    "cliff",
-    "cave",
-    "crystal"
+    ["cliff", "camp1"],
+    ["cave", "camp2"],
+    ["crystal", "camp3"]
   ],
   "Plains": [
-    "grasslands",
-    "tunnel",
-    "wasteland"
+    ["grasslands", "camp1"],
+    ["tunnel", "camp2"],
+    ["wasteland", "camp3"]
   ],
   "Beach": [
-    "tidepool",
-    "tidal cave",
-    "shipwreck"
+    ["tidepool", "camp1"],
+    ["tidal cave", "camp2"],
+    ["shipwreck", "camp3"]
   ]
 }
 
@@ -412,20 +412,20 @@ function NewClanPage() {
             <legend>Biome Variant</legend>
             <div className="dropdown">
               {
-                biomeVariants[biome].map((campName, index) => {
+                biomeVariants[biome].map((campInfo, index) => {
                   return (
                     <div className="radio-row">
                       <input
                         tabIndex={0}
                         type="radio"
-                        id={`${campName}-variant-radio`}
-                        value={`camp${index+1}`}
+                        id={`${campInfo[0]}-variant-radio`}
+                        value={`${campInfo[1]}`}
                         name="variant"
                         defaultChecked={index == 0}
                         checked={campNum == `camp${index+1}`}
                         onChange={(e) => setCampNum(e.target.value)}
                       ></input>
-                      <label htmlFor={`${campName}-variant-radio`}>{campName.substring(0, 1).toUpperCase() + campName.substring(1)}</label>
+                      <label htmlFor={`${campInfo[0]}-variant-radio`}>{campInfo[0].substring(0, 1).toUpperCase() + campInfo[0].substring(1)}</label>
                     </div>
                   )
                 })
