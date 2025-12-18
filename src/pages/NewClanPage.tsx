@@ -7,40 +7,40 @@ import "../styles/new-clan.css";
 import CatDisplay from "../components/CatDisplay";
 import { getCampBGPath, setCustomCss } from "../utils";
 
+const biomeVariants: {[biome: string]: string[]} = {
+  "Forest": [
+    "forest",
+    "gully",
+    "grotto",
+    "lakeside"
+  ],
+  "Mountainous": [
+    "cliff",
+    "cave",
+    "crystal"
+  ],
+  "Plains": [
+    "grasslands",
+    "tunnel",
+    "wasteland"
+  ],
+  "Beach": [
+    "tidepool",
+    "tidal cave",
+    "shipwreck"
+  ]
+}
+
 function NewClanPage() {
   const [cats, setCats] = useState<Cat[]>([]);
   const [leader, setLeader] = useState<string>("");
   const [deputy, setDeputy] = useState<string>("");
   const [med, setMed] = useState<string>("");
 
-  const [biome, setBiome] = useState<string>("forest");
+  const [biome, setBiome] = useState<string>("Forest");
   const [campNum, setCampNum] = useState<string>("camp1");
   const [gamemode, setGamemode] = useState<string>("classic");
-  const [season, setSeason] = useState<string>("newleaf");
-
-  const biomeVariants: {[biome: string]: string[]} = {
-    "forest": [
-      "forest",
-      "gully",
-      "grotto",
-      "lakeside"
-    ],
-    "mountainous": [
-      "cliff",
-      "cave",
-      "crystal"
-    ],
-    "plains": [
-      "grasslands",
-      "tunnel",
-      "wasteland"
-    ],
-    "beach": [
-      "tidepool",
-      "tidal cave",
-      "shipwreck"
-    ]
-  }
+  const [season, setSeason] = useState<string>("Newleaf");
 
   const navigate = useNavigate();
 
@@ -288,9 +288,61 @@ function NewClanPage() {
             })}
           </fieldset>
         </fieldset>
-          
+        
         <fieldset>
           <legend>Camp</legend>
+
+          <fieldset>
+            <legend>Starting Season</legend>
+            <div className="radio-row">
+              <input
+                tabIndex={0}
+                type="radio"
+                id="fall-radio"
+                value="Leaf-fall"
+                name="season"
+                onChange={(e) => setSeason(e.target.value)}
+              ></input>
+              <label htmlFor="fall-radio">Leaf-fall (Fall)</label>
+            </div>
+
+            <div className="radio-row">
+              <input
+                tabIndex={0}
+                type="radio"
+                id="winter-radio"
+                value="Leaf-bare"
+                name="season"
+                onChange={(e) => setSeason(e.target.value)}
+              ></input>
+              <label htmlFor="winter-radio">Leaf-bare (Winter)</label>
+            </div>
+
+            <div className="radio-row">
+              <input
+                tabIndex={0}
+                type="radio"
+                id="spring-radio"
+                value="Newleaf"
+                name="season"
+                defaultChecked
+                onChange={(e) => setSeason(e.target.value)}
+              ></input>
+              <label htmlFor="spring-radio">Newleaf (Spring)</label>
+            </div>
+
+            <div className="radio-row">
+              <input
+                tabIndex={0}
+                type="radio"
+                id="summer-radio"
+                value="Greenleaf"
+                name="season"
+                onChange={(e) => setSeason(e.target.value)}
+              ></input>
+              <label htmlFor="summer-radio">Greenleaf (Summer)</label>
+            </div>
+          </fieldset>
           <fieldset>
             <legend>Biome</legend>
 
@@ -357,62 +409,10 @@ function NewClanPage() {
           </fieldset>
 
           <fieldset>
-            <legend>Starting Season</legend>
-
-            <div className="radio-row">
-              <input
-                tabIndex={0}
-                type="radio"
-                id="fall-radio"
-                value="Leaf-fall"
-                name="season"
-                onChange={(e) => setSeason(e.target.value)}
-              ></input>
-              <label htmlFor="fall-radio">Leaf-fall (Fall)</label>
-            </div>
-
-            <div className="radio-row">
-              <input
-                tabIndex={0}
-                type="radio"
-                id="winter-radio"
-                value="Leaf-bare"
-                name="season"
-                onChange={(e) => setSeason(e.target.value)}
-              ></input>
-              <label htmlFor="winter-radio">Leaf-bare (Winter)</label>
-            </div>
-
-            <div className="radio-row">
-              <input
-                tabIndex={0}
-                type="radio"
-                id="spring-radio"
-                value="Newleaf"
-                name="season"
-                defaultChecked
-                onChange={(e) => setSeason(e.target.value)}
-              ></input>
-              <label htmlFor="spring-radio">Newleaf (Spring)</label>
-            </div>
-
-            <div className="radio-row">
-              <input
-                tabIndex={0}
-                type="radio"
-                id="summer-radio"
-                value="Greenleaf"
-                name="season"
-                onChange={(e) => setSeason(e.target.value)}
-              ></input>
-              <label htmlFor="summer-radio">Greenleaf (Summer)</label>
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Variant</legend>
+            <legend>Biome Variant</legend>
             <div className="dropdown">
               {
-                biomeVariants[biome.toLowerCase()].map((campName, index) => {
+                biomeVariants[biome].map((campName, index) => {
                   return (
                     <div className="radio-row">
                       <input
@@ -431,7 +431,8 @@ function NewClanPage() {
                 })
               }
             </div>
-            </fieldset>
+          </fieldset>
+
           <fieldset>
             <legend>Preview</legend>
             <img src={getCampBGPath(biome, season, campNum)} width={400}></img>
