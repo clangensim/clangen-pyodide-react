@@ -432,8 +432,10 @@ function NewClanPage() {
               }
             </div>
             </fieldset>
-          <p>Preview:</p>
-          <img src={getCampBGPath(biome, season, campNum)} width={400}></img>
+          <fieldset>
+            <legend>Preview</legend>
+            <img src={getCampBGPath(biome, season, campNum)} width={400}></img>
+          </fieldset>
         </fieldset>
 
         <div className="submit">
