@@ -153,7 +153,7 @@ function PatrolsPage() {
         />
       </fieldset>
 
-      <fieldset className="cats-list">
+      <fieldset className="selected-cats-list">
         <legend>Cats to Patrol</legend>
         {
           possibleCats

@@ -29,6 +29,7 @@
     --button-secondary-text-color: #655934;
 
     --summary-background-color: #EFE5CE;
+    --select-highlight-color: lightblue;
 }
 
 .theme-clangen-dark {
@@ -62,6 +63,7 @@
     --button-secondary-text-color: #655934;
 
     --summary-background-color: #807a6e;
+    --select-highlight-color: lightblue;
 
     button, .btn {
         border: #2F2918 1px solid;
@@ -99,6 +101,7 @@
     --button-secondary-text-color: #C9BD94;
 
     --summary-background-color: #8b8576;
+    --select-highlight-color: lightblue;
 
     textarea, fieldset {
         color-scheme: dark;

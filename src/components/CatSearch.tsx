@@ -5,7 +5,6 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { TbCaretLeftFilled, TbCaretRightFilled } from "react-icons/tb";
 
 import "../styles/cat-search.css";
-import "../styles/cats-page.css";
 
 function CatSearch({
   catsToSearch,
@@ -108,24 +107,29 @@ function CatSearch({
       return;
     }
 
-    if (selectedCats.length >= 6) {
+    if (selectedCats.length >= maxSelection) {
       return;
     }
 
     setSelectedCats(selectedCats.concat(cat.ID));
   }
 
-  function selectRandom(numOfCats: number = 1) {
-    setSelectedCats([]);
-    let randomCats: string[] = [];
-    for (let i = 0; i < Math.min(numOfCats, catsToSearch.length); i++) {
-      let index = Math.floor(Math.random() * catsToSearch.length);
-      while (randomCats.includes(catsToSearch[index].ID)) {
-        index = Math.floor(Math.random() * catsToSearch.length);
-      }
-      randomCats.push(catsToSearch[index].ID);
+  function appendRandom(numOfCats: number = 1, resetSelected: boolean = false) {
+    if (resetSelected) {
+      selectedCats = [];
     }
-    setSelectedCats(randomCats);
+
+    let selectableCats = catsToSearch.filter(cat => !selectedCats.includes(cat.ID));
+    let randomCats: string[] = [];
+    for (let i = 0; i < Math.min(numOfCats, maxSelection - selectedCats.length); i++) {
+      let index = Math.floor(Math.random() * selectableCats.length);
+      while (randomCats.includes(selectableCats[index].ID)) {
+        index = Math.floor(Math.random() * selectableCats.length);
+      }
+      randomCats.push(selectableCats[index].ID);
+    }
+    
+    setSelectedCats(selectedCats.concat(randomCats));
   }
 
   function paginate() {
@@ -153,8 +157,10 @@ function CatSearch({
               })
             }
           </ul>
-          <button tabIndex={0} onClick={() => toggleAllFilters("status", true)}>Select All</button>
-          <button tabIndex={0} onClick={() => toggleAllFilters("status", false)}>Deselect All</button>
+          <div className="button-row">
+            <button tabIndex={0} onClick={() => toggleAllFilters("status", true)}>Select All</button>
+            <button tabIndex={0} onClick={() => toggleAllFilters("status", false)}>Deselect All</button>
+          </div>
         </details>
         <details>
           <summary>Experience Filters</summary>
@@ -167,26 +173,31 @@ function CatSearch({
               })
             }
           </ul>
-          <button tabIndex={0} onClick={() => toggleAllFilters("experience", true)}>Select All</button>
-          <button tabIndex={0} onClick={() => toggleAllFilters("experience", false)}>Deselect All</button>
+          <div className="button-row">
+            <button tabIndex={0} onClick={() => toggleAllFilters("experience", true)}>Select All</button>
+            <button tabIndex={0} onClick={() => toggleAllFilters("experience", false)}>Deselect All</button>
+          </div>
         </details>
         <details>
           <summary>Afilliation Filters</summary>
-          <p>(Filters by affiliation to selected cats)</p>
           <Checkbox label="Enable Filter" checked={affiliationEnabled} onChange={() => setAffiliationEnabled(!affiliationEnabled)}/>
           <ul>
-            <Checkbox label="Mentors of selected" checked={filters["affiliation"]["apprentice"]} onChange={() => toggleFilter("affiliation", "apprentice")}/>
-            <Checkbox label="Apprentices of selected" checked={filters["affiliation"]["mentor"]} onChange={() => toggleFilter("affiliation", "mentor")}/>
-            <Checkbox label="Mates of selected" checked={filters["affiliation"]["mates"]} onChange={() => toggleFilter("affiliation", "mates")}/>
+            <Checkbox label="Mentors of selected cats" checked={filters["affiliation"]["apprentice"]} onChange={() => toggleFilter("affiliation", "apprentice")}/>
+            <Checkbox label="Apprentices of selected cats" checked={filters["affiliation"]["mentor"]} onChange={() => toggleFilter("affiliation", "mentor")}/>
+            <Checkbox label="Mates of selected cats" checked={filters["affiliation"]["mates"]} onChange={() => toggleFilter("affiliation", "mates")}/>
           </ul>
+          <div className="button-row">
+            <button tabIndex={0} onClick={() => toggleAllFilters("affiliation", true)}>Select All</button>
+            <button tabIndex={0} onClick={() => toggleAllFilters("affiliation", false)}>Deselect All</button>
+          </div>
         </details>
       </div>
       <div className="cat-search-cats">
-        <div className="cats-list">
+        <div className="cat-search-list">
           {
             catPages[currentPage].filter(checkFilters).map((cat) => {
               return (
-                <div className="cat cat-search-select">
+                <div className="cat-search-select">
                   <Checkbox
                     label={
                       <div>
@@ -203,7 +214,7 @@ function CatSearch({
             })
           }
         </div>
-        <div className="cat-search-page-controls">
+        <div className="cat-search-page-controls button-row">
           <button tabIndex={0} 
             onClick={() => setCurrentPage(Math.max(currentPage - 1, 0))} 
             disabled={currentPage == 0}
@@ -220,17 +231,17 @@ function CatSearch({
             <TbCaretRightFilled />
           </button>
         </div>
-        <div className="cat-search-page-controls">
+        <div className="cat-search-page-controls button-row">
           <button tabIndex={0} 
-            onClick={() => selectRandom()} 
+            onClick={() => appendRandom()} 
             disabled={selectedCats.length == maxSelection}
           >
-            Select Random
+            Add Random
           </button>
           <button tabIndex={0} 
-            onClick={() => selectRandom(maxSelection)}
+            onClick={() => appendRandom(maxSelection, true)}
           >
-            Select Random All
+            Select Random Group
           </button>
           <button tabIndex={0}
             onClick={() => setSelectedCats([])} 
