@@ -5,6 +5,7 @@ import { clangenRunner } from "../python/clangenRunner";
 import "../styles/new-clan.css";
 
 import CatDisplay from "../components/CatDisplay";
+import { setCustomCss } from "../utils";
 
 function NewClanPage() {
   const [cats, setCats] = useState<Cat[]>([]);
@@ -24,6 +25,10 @@ function NewClanPage() {
 
   useEffect(() => {
     document.title = "New Clan | ClanGen Simulator";
+  }, []);
+
+  useEffect(() => {
+    setCustomCss();
   }, []);
 
   function handleSubmit(e: FormEvent) {

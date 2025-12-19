@@ -1,5 +1,6 @@
 #signup {
-  background-color: white;
+  background-color: var(--content-background-color);
+  color: var(--text-color);
   border-radius: 10px;
   margin: auto;
   padding: 15px 10px;
