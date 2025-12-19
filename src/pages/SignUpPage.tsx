@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import "../styles/sign-up-page.css";
 import FileUploadButton from "../components/generic/FileUploadButton";
 import { useEffect } from "react";
+import { setCustomCss } from "../utils";
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -20,6 +21,10 @@ function SignUpPage() {
   useEffect(() => {
     document.title = "Welcome! | ClanGen Simulator";
   })
+
+  useEffect(() => {
+    setCustomCss();
+  }, []);
 
   return (
     <>

@@ -14,6 +14,7 @@
     --cat-display-hovered-background-color: #EFE5CE;
 
     --progress-bar-border: 1px solid black;
+    --progress-bar-bg: rgb(231, 231, 231);
     --progress-bar-fill: #80bc08;
 
     --icon-button-text-color: darkgray;
@@ -48,6 +49,7 @@
     --cat-display-hovered-background-color: #918467;
 
     --progress-bar-border: 1px solid black;
+    --progress-bar-bg: #363223;
     --progress-bar-fill: #80bc08;
 
     --icon-button-text-color: darkgray;
@@ -82,11 +84,12 @@
     --navbar-text-color: #EFE5CE;
     --navbar-hovered-text-color: rgb(48,41,28);
 
-    --breadcrumbs-background-color: rgb(41.40, 45.08, 46.92);
+    --breadcrumbs-background-color: rgb(38, 41, 43);
     --cat-display-hovered-background-color: #1a1d1f;
 
     --progress-bar-border: 1px solid black;
-    --progress-bar-fill: #80bc08;
+    --progress-bar-bg: #212324;
+    --progress-bar-fill: #00945c;
 
     --icon-button-text-color: darkgray;
     --icon-button-hovered-text-color: gray;
@@ -96,14 +99,14 @@
     --button-text-color: #EFE5CE;
     --button-disabled-background-color: #938764;
 
-    --button-secondary-background-color: #332911;
-    --button-secondary-hovered-background-color: #5a471f;
-    --button-secondary-text-color: #C9BD94;
-
-    --summary-background-color: #8b8576;
+    --button-secondary-background-color: #1b1b1b;
+    --button-secondary-hovered-background-color: rgb(46, 45, 42);
+    --button-secondary-text-color: #948667;
+  
+    --summary-background-color: #1a1d1f;
     --select-highlight-color: lightblue;
 
-    textarea, fieldset {
+    textarea, fieldset, input[type="checkbox"], input[type="text"], select {
         color-scheme: dark;
     }
 }

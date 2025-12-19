@@ -26,7 +26,7 @@ button {
 
 body {
   max-width: 1000px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 100px auto;
 }
 .body {
   background-color: var(--content-background-color);
@@ -99,9 +99,13 @@ img {
 
 .progress-bar {
   height: 15px;
-  border: var(--progress-bar-border);
+  border: none;
+  margin-top: 0.2em;
+  border-radius: 2px;
+  background-color: var(--progress-bar-bg);
 }
 .progress-bar-value {
+  border-radius: 2px;
   background-color: var(--progress-bar-fill);
   height: inherit;
 }
@@ -153,6 +157,19 @@ button:disabled:hover,
 button:hover,
 .btn:hover {
   background-color: var(--button-hovered-background-color);
+}
+
+.link-button {
+  background-color: transparent;
+  padding: 0;
+  display: inline-block;
+  font-weight: 400;
+  border-radius: 0;
+  color: var(--link-color);
+  text-decoration: underline;
+}
+.link-button:hover {
+  background-color: transparent;
 }
 
 .btn-secondary {

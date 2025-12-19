@@ -64,6 +64,12 @@ function HomePage() {
         </p>
       }
 
+      <p><b>Important notice for iOS users: </b>
+        Browsers on iOS phones (and Safari on computers) will automatically delete all
+        stored data on a website after seven days without use.
+        Please back up your save data if it is important to you.
+      </p>
+
       <p>
         Current Clangen version: <b>v0.11.2</b>
       </p>

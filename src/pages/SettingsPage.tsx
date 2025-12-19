@@ -52,6 +52,10 @@ function SettingsPage() {
 
   let siteThemes: SelectOption[] = [
     {
+      label: "Sync with System",
+      value: "auto"
+    },
+    {
       label: "Light",
       value: "theme-light"
     },
@@ -80,7 +84,7 @@ function SettingsPage() {
     if (storedSiteTheme) {
       setSiteTheme(storedSiteTheme);
     } else {
-      setSiteTheme("theme-light");
+      setSiteTheme("auto");
     }
 
     const storedCss = localStorage.getItem("custom-css");
@@ -167,7 +171,9 @@ function SettingsPage() {
           <p>Your custom CSS will be injected onto every page except for this one. For your safety, please only input CSS that you 100% trust.</p>
         </fieldset>
       </div>
-      <button onClick={handleSave}>Save</button>
+      <div className="submit">
+        <button onClick={handleSave}>Save</button>
+      </div>
     </BasePage>
   );
 }

@@ -1,5 +1,6 @@
 #new-clan-form {
-  background-color: white;
+  background-color: var(--content-background-color);
+  color: var(--text-color);
   padding: 20px;
   max-width: 500px;
   margin: auto;

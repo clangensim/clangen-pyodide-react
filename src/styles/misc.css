@@ -8,6 +8,7 @@ select {
 }
 
 .checkbox-row input[type="checkbox"]{
+  margin-right: 0.3em;
   flex: none;
 }
 
@@ -24,6 +25,8 @@ dialog {
   padding: 10px;
   border: 1px solid grey;
   border-radius: 10px;
+  background-color: var(--content-background-color);
+  color: var(--text-color);
 }
 
 dialog div.dialog-body {
@@ -49,4 +52,8 @@ dialog div.dialog-footer {
 .submit {
   display: block;
   margin-top: 0.5em;
+}
+
+#clan-info {
+  margin-bottom: 0.5em;
 }
