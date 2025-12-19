@@ -54,8 +54,13 @@ function CatSearch({
     let metApprenticeFilter = cat.apprentices.find(c => selectedCats.includes(c.ID)) != undefined; // Valid if cat has an apprentice in selected cats.
     let metMatesFilter = cat.mates.find(c => selectedCats.includes(c.ID)) != undefined; // Valid if cat has a mate in selected cats.
 
-    if (filters["affiliation"]["mentor"] || filters["affiliation"]["apprentice"] || filters["affiliation"]["mates"]) {
-      return (metMentorFilter || metApprenticeFilter || metMatesFilter);
+    let affiliationFilters = filters["affiliation"];
+    if (Object.values(affiliationFilters).some(filter => filter)) {
+      return (
+        (affiliationFilters["mentor"] && metMentorFilter)
+        || (affiliationFilters["apprentice"] && metApprenticeFilter) 
+        || (affiliationFilters["mates"] && metMatesFilter)
+      );
     }
 
     return (metNameFilter && metStatusFilter && metExperienceFilter);
