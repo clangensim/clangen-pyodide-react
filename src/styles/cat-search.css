@@ -1,7 +1,8 @@
 .cat-search-container {
-    display: inline-flex;
-    max-height: 400px;
-    gap: 5px;
+	display: inline-flex;
+	max-height: 400px;
+	gap: 5px;
+	width: 100%;
 }
 
 @media (min-width: 800px) {
@@ -35,7 +36,8 @@
 .cat-search-list {
 	display: flex;
 	flex-wrap: wrap;
-    overflow-y: scroll;
+	overflow-y: scroll;
+	flex: 1;
 }
 .cat-search-select {
 	border-radius: 10px;

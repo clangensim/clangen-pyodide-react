@@ -21,7 +21,6 @@ function CatSearch({
 }) {
   const [searchName, setSearchName] = useState("");
 
-  const [affiliationEnabled, setAffiliationEnabled] = useState<boolean>(false);
   const [filters, setFilters] = useState<Record<string, Record<string, boolean>>>({
     status: {
       newborn: true, kitten: true,
@@ -39,8 +38,8 @@ function CatSearch({
       master: true
     },
     affiliation: {
-      mentor: true, apprentice: true,
-      mates: true,
+      mentor: false, apprentice: false,
+      mates: false,
     }
   });
 
@@ -51,22 +50,11 @@ function CatSearch({
     let metStatusFilter = filters["status"][cat.status];
     let metExperienceFilter = filters["experience"][cat.experienceLevel];
 
-    let metMentorFilter = false;
-    let metApprenticeFilter = false;
-    let metMatesFilter = false;
-    if (filters["affiliation"]["mentor"]) { // Valid if cat is apprentice of a selected cat.
-      metMentorFilter = cat.mentor ? selectedCats.includes(cat.mentor.ID) : false;
-    }
-    if (filters["affiliation"]["apprentice"]) { // Valid if cat has an apprentice in selected cats.
-      let found = cat.apprentices.find(c => selectedCats.includes(c.ID));
-      metApprenticeFilter = found != undefined;
-    }
-    if (filters["affiliation"]["mates"]) { // Valid if cat has a mate in selected cats.
-      let found = cat.mates.find(c => selectedCats.includes(c.ID));
-      metMatesFilter = found != undefined;
-    }
+    let metMentorFilter = cat.mentor ? selectedCats.includes(cat.mentor.ID) : false; // Valid if cat is apprentice of a selected cat.
+    let metApprenticeFilter = cat.apprentices.find(c => selectedCats.includes(c.ID)) != undefined; // Valid if cat has an apprentice in selected cats.
+    let metMatesFilter = cat.mates.find(c => selectedCats.includes(c.ID)) != undefined; // Valid if cat has a mate in selected cats.
 
-    if (affiliationEnabled) {
+    if (filters["affiliation"]["mentor"] || filters["affiliation"]["apprentice"] || filters["affiliation"]["mates"]) {
       return (metMentorFilter || metApprenticeFilter || metMatesFilter);
     }
 
@@ -180,7 +168,6 @@ function CatSearch({
         </details>
         <details>
           <summary>Afilliation Filters</summary>
-          <Checkbox label="Enable Filter" checked={affiliationEnabled} onChange={() => setAffiliationEnabled(!affiliationEnabled)}/>
           <ul>
             <Checkbox label="Mentors of selected cats" checked={filters["affiliation"]["apprentice"]} onChange={() => toggleFilter("affiliation", "apprentice")}/>
             <Checkbox label="Apprentices of selected cats" checked={filters["affiliation"]["mentor"]} onChange={() => toggleFilter("affiliation", "mentor")}/>
