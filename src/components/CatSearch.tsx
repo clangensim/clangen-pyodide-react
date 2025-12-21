@@ -112,9 +112,9 @@ function CatSearch({
       selectedCats = [];
     }
 
-    let selectableCats = catsToSearch.filter(cat => !selectedCats.includes(cat.ID));
+    let selectableCats = catsToSearch.filter(cat => !selectedCats.includes(cat.ID) && checkFilters(cat));
     let randomCats: string[] = [];
-    for (let i = 0; i < Math.min(numOfCats, maxSelection - selectedCats.length); i++) {
+    for (let i = 0; i < Math.min(selectableCats.length, numOfCats, maxSelection - selectedCats.length); i++) {
       let index = Math.floor(Math.random() * selectableCats.length);
       while (randomCats.includes(selectableCats[index].ID)) {
         index = Math.floor(Math.random() * selectableCats.length);
