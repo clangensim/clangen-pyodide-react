@@ -16,6 +16,7 @@
     --progress-bar-border: 1px solid black;
     --progress-bar-bg: rgb(231, 231, 231);
     --progress-bar-fill: #80bc08;
+    --loader-color: #d5d5d5;
 
     --icon-button-text-color: darkgray;
     --icon-button-hovered-text-color: gray;
@@ -50,6 +51,7 @@
     --progress-bar-border: 1px solid black;
     --progress-bar-bg: #363223;
     --progress-bar-fill: #80bc08;
+    --loader-color: #d5d5d5;
 
     --icon-button-text-color: darkgray;
     --icon-button-hovered-text-color: gray;
@@ -88,6 +90,7 @@
     --progress-bar-border: 1px solid black;
     --progress-bar-bg: #212324;
     --progress-bar-fill: #00945c;
+    --loader-color: #494e52;
 
     --icon-button-text-color: darkgray;
     --icon-button-hovered-text-color: gray;
