@@ -12,7 +12,7 @@ const download = (b: Blob, name: string) => {
 const formatText = (s: string) => {
   const TAGS = [/<i>/g, /<\/i>/g, /<b>/g, /<\/b>/g];
 
-  var output = s;
+  let output = s;
   for (const t of TAGS) {
     output = output.replace(t, "");
   }
@@ -22,7 +22,7 @@ const formatText = (s: string) => {
 function getSiteTheme() {
   let siteTheme = localStorage.getItem("site-theme");
   if (!siteTheme || siteTheme == "auto") {
-    let prefersLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const prefersLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
     siteTheme  = prefersLightMode ? "theme-light" : "theme-dark";
   }
 
@@ -42,8 +42,8 @@ function setCustomCss() {
 }
 
 function getCampBGPath(biome: string, season: string, campNum: string) {
-  var lightDark = "light";
-  var now = new Date();
+  let lightDark = "light";
+  const now = new Date();
   if (now.getHours() <= 5 || now.getHours() >= 17) {
     lightDark = "dark";
   }

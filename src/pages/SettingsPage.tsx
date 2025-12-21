@@ -50,7 +50,7 @@ function SettingsPage() {
   const [siteTheme, setSiteTheme] = useState("");
   const navigator = useNavigate();
 
-  let siteThemes: SelectOption[] = [
+  const siteThemes: SelectOption[] = [
     {
       label: "Sync with System",
       value: "auto"

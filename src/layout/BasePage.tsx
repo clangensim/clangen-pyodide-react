@@ -39,7 +39,7 @@ function BasePage({
     const headerElement = document.getElementById("heading-inject-css");
 
     if (headerElement) {
-      var textContent = `.head { background-image: url("/camp_bg/forest/${clanInfo?.season.toLowerCase().replace("-", "")}_camp1_light.png"); }`;
+      const textContent = `.head { background-image: url("/camp_bg/forest/${clanInfo?.season.toLowerCase().replace("-", "")}_camp1_light.png"); }`;
       if (headerElement.textContent !== textContent) {
         headerElement.textContent = `.head { background-image: url("/camp_bg/forest/${clanInfo?.season.toLowerCase().replace("-", "")}_camp1_light.png"); }`;
       }

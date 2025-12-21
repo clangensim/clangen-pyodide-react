@@ -24,7 +24,7 @@ function getPatrolArtPath(type: PatrolType | null, path: string | undefined) {
   if (path) {
     return `patrol_art/${path}.png`;
   }
-  var name: string = "bord";
+  let name: string = "bord";
 
   if (type == "hunting") { name = "hunt" }
   else if (type == "border") { name = "bord" }

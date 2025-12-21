@@ -12,7 +12,7 @@ function HomePage() {
   async function handleExportClan() {
     const f: ArrayBuffer = await clangenRunner.exportClan();
 
-    var filename;
+    let filename;
     if (localStorage.getItem("export-as-zip") !== null) {
       filename = "export-data.zip";
     } else {

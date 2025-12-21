@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-// @ts-ignore
+// @ts-expect-error
 import "@fontsource-variable/outfit";
-// @ts-ignore
+// @ts-expect-error
 import "@fontsource/bubblegum-sans";
 import "./styles/misc.css";
 import "./styles/themes.css";

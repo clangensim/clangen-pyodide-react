@@ -257,7 +257,7 @@ function CatEditPage() {
       setHideSpecSuffix(c.name.specSuffixHidden);
       setGender(c.gender);
 
-      var afterlifeLocation = "";
+      let afterlifeLocation = "";
       if (c.dead) {
         if (c.inDarkForest) {
           afterlifeLocation = "dark forest";

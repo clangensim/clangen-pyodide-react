@@ -51,7 +51,7 @@ function CatsPage() {
   }, []);
 
   useEffect(() => {
-    var category = searchParams.get("category") as ScreenState | null;
+    let category = searchParams.get("category") as ScreenState | null;
     if (category === null) { category = "clan_cats" }
     setScreenState(category);
   }, [searchParams]);
