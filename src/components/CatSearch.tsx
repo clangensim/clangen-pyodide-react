@@ -108,13 +108,11 @@ function CatSearch({
   }
 
   function appendRandom(numOfCats: number = 1, resetSelected: boolean = false) {
-    if (resetSelected) {
-      selectedCats = [];
-    }
+    let currentlySelected = resetSelected ? [] : [...selectedCats];
 
-    let selectableCats = catsToSearch.filter(cat => !selectedCats.includes(cat.ID) && checkFilters(cat));
+    let selectableCats = catsToSearch.filter(cat => !currentlySelected.includes(cat.ID) && checkFilters(cat));
     let randomCats: string[] = [];
-    for (let i = 0; i < Math.min(selectableCats.length, numOfCats, maxSelection - selectedCats.length); i++) {
+    for (let i = 0; i < Math.min(selectableCats.length, numOfCats, maxSelection - currentlySelected.length); i++) {
       let index = Math.floor(Math.random() * selectableCats.length);
       while (randomCats.includes(selectableCats[index].ID)) {
         index = Math.floor(Math.random() * selectableCats.length);
@@ -122,7 +120,7 @@ function CatSearch({
       randomCats.push(selectableCats[index].ID);
     }
     
-    setSelectedCats(selectedCats.concat(randomCats));
+    setSelectedCats(currentlySelected.concat(randomCats));
   }
 
   function paginate() {
