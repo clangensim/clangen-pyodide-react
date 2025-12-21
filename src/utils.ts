@@ -1,3 +1,5 @@
+import { ClanInfo } from "./python/types";
+
 const download = (b: Blob, name: string) => {
   const temp = document.createElement("a");
   temp.href = window.URL.createObjectURL(b);
@@ -17,14 +19,19 @@ const formatText = (s: string) => {
   return output;
 };
 
-function setCustomCss() {
-  // set site theme before custom css so it can be overwritten
+function getSiteTheme() {
   let siteTheme = localStorage.getItem("site-theme");
   if (!siteTheme || siteTheme == "auto") {
     let prefersLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
     siteTheme  = prefersLightMode ? "theme-light" : "theme-dark";
   }
-  document.documentElement.className = siteTheme;
+
+  return siteTheme;
+}
+
+function setCustomCss() {
+  // set site theme before custom css so it can be overwritten
+  document.documentElement.className = getSiteTheme();
 
   const customCssElement = document.getElementById("custom-css");
   const customCss = localStorage.getItem("custom-css");
@@ -34,4 +41,22 @@ function setCustomCss() {
   }
 }
 
-export { download, formatText, setCustomCss };
+function getCampBGPath(biome: string, season: string, campNum: string) {
+  var lightDark = "light";
+  var now = new Date();
+  if (now.getHours() <= 5 || now.getHours() >= 17) {
+    lightDark = "dark";
+  }
+
+  return `camp_bg/${biome.toLowerCase()}/${season.toLowerCase().replace("-", "")}_${campNum}_${lightDark}.png`
+}
+
+function getCampBGPathByClan(clanInfo: ClanInfo | null | undefined) {
+  if (!clanInfo) {
+    return "";
+  }
+  
+  return getCampBGPath(clanInfo?.biome.toLowerCase(), clanInfo?.season.toLowerCase().replace("-", ""), clanInfo?.campBg);
+}
+
+export { download, formatText, setCustomCss, getCampBGPath, getCampBGPathByClan };
