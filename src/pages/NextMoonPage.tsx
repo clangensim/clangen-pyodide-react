@@ -6,6 +6,7 @@ import nextMoonImage from "../assets/images/pln_no_UFO.png";
 import { Cat } from "../python/types";
 import Pluralize from "../components/generic/Pluralize";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import LoadIndicator from "../components/LoadIndicator";
 
 function NextMoonPage() {
   const queryClient = useQueryClient();
@@ -17,6 +18,7 @@ function NextMoonPage() {
 
   const [canPatrol, setCanPatrol] = useState<Cat[]>([]);
   const [canMediate, setCanMediate] = useState<Cat[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     document.title = "ClanGen Simulator";
@@ -25,15 +27,22 @@ function NextMoonPage() {
   }, []);
 
   function handleMoonskip() {
+    setLoading(true);
     clangenRunner.moonskip().then(() => {
       clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
       clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));  
-      queryClient.invalidateQueries()
-  });
+      queryClient.invalidateQueries();
+      setLoading(false);
+    });
   }
 
   return (
+    <>
+    {loading &&
+      <LoadIndicator loadText="" />
+    }
     <BasePage>
+      
       <img style={{imageRendering: "pixelated"}} src={nextMoonImage}></img>
 
       <p>It has been <b>{clanInfo?.age} moons</b> since {clanInfo?.name} was founded. The current season is <b>{clanInfo?.season}</b>.</p>
@@ -54,6 +63,7 @@ function NextMoonPage() {
 
       <button tabIndex={0} onClick={handleMoonskip}>Timeskip One Moon</button>
     </BasePage>
+    </>
   );
 }
 

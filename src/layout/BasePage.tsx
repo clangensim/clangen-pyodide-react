@@ -7,6 +7,7 @@ import Pluralize from "../components/generic/Pluralize";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
 import { setCustomCss } from "../utils";
+import LoadIndicator from "../components/LoadIndicator";
 
 function BasePage({
   children,
@@ -48,11 +49,8 @@ function BasePage({
 
   if (query.status === "pending") {
     return (
-      <div id="preloader-container">
-        <div id="preloader" />
-        Loading Clan...
-      </div>
-    );
+      <LoadIndicator loadText="Loading Clan..."/>
+    )
   }
 
   if (query.status === "error") {

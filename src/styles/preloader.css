@@ -1,0 +1,44 @@
+#preloader {
+  width: 50px;
+  aspect-ratio: 1;
+  background-color: #8d847f;
+  border-radius: 50%;
+  animation: l4 3s infinite;
+}
+
+#preloader-container {
+	backdrop-filter: brightness(80%) blur(5px);
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	right: 1px;
+}
+
+@keyframes l4 {
+  12.5% {
+    background-image: radial-gradient(80% 65% at left, #0000 94%, #fff9);
+  }
+  25% {
+    background-image: linear-gradient(90deg, #0000 50%, #fff9 0);
+  }
+  37.5% {
+    background-image: radial-gradient(80% 65% at right, #fff9 94%, #0000);
+  }
+  50% {
+    background-image: linear-gradient(#fff9 0 0);
+  }
+  62.5% {
+    background-image: radial-gradient(80% 65% at left, #fff9 94%, #0000);
+  }
+  75% {
+    background-image: linear-gradient(-90deg, #0000 50%, #fff9 0);
+  }
+  87.5% {
+    background-image: radial-gradient(80% 65% at right, #0000 94%, #fff9);
+  }
+}
