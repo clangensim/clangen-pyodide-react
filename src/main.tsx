@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-// @ts-expect-error
+// @ts-expect-error - fonts are missing type declarations
 import "@fontsource-variable/outfit";
-// @ts-expect-error
+// @ts-expect-error - fonts are missing type declarations
 import "@fontsource/bubblegum-sans";
 import "./styles/misc.css";
 import "./styles/themes.css";

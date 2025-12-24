@@ -24,7 +24,7 @@ function HomePage() {
   function handleImportClan(e: any) {
     const f = e.target.files[0];
     f.arrayBuffer()
-      .then((buff: Int8Array) => {
+      .then((buff: ArrayBuffer) => {
         clangenRunner.importClan(buff);
       })
       .then(() => clangenRunner.reloadClan())
