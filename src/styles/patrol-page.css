@@ -1,6 +1,6 @@
 .selected-cats-list {
   display: grid;
-  gap: 5px;
+  gap: 20px;
   grid-template-columns: repeat(3, 1fr);
 }
 
