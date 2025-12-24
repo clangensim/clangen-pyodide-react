@@ -5,6 +5,12 @@
 	width: 100%;
 }
 
+.cat-search-filters {
+	flex: 1 1 0;
+	overflow-y: scroll;
+}
+
+
 @media (min-width: 800px) {
     .cat-search-filters {
         max-width: 250px;
@@ -18,14 +24,9 @@
         max-height: none;
     }
     .cat-search-filters {
-        min-height: 150px;
+        overflow-y: visible;
         max-width: none;
     }
-}
-
-.cat-search-filters {
-	flex: 1 1 0;
-	overflow-y: scroll;
 }
 
 .cat-search-cats {
