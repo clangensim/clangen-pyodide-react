@@ -155,10 +155,12 @@ function PatrolsPage() {
         />
       </fieldset>
 
-      <fieldset className="selected-cats-list">
+      <fieldset>
         <legend>Cats to Patrol</legend>
-        {
-          possibleCats
+        {selectedCats.length === 0 && <>This patrol group is empty.</>}
+        {selectedCats.length !== 0 &&
+        <div className="selected-cats-list">
+          {possibleCats
           .filter(cat => selectedCats.find(id => id == cat.ID))
           .map((cat, index) => {
             return (
@@ -168,7 +170,8 @@ function PatrolsPage() {
                 <div className="cat-search-select-status">{cat.status}</div>
               </div>
             );
-          })
+          })}
+          </div>
         }
       </fieldset>
 
