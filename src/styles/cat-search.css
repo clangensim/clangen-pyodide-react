@@ -34,8 +34,9 @@
 	flex: 1 1 0;
 }
 .cat-search-list {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 7px;
 	overflow-y: scroll;
 	flex: 1;
 }
