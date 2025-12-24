@@ -144,7 +144,7 @@ function PatrolsPage() {
 
       <p>If you edit a cat that is currently on patrol, the patrol will end.</p>
 
-      <fieldset>
+      <fieldset disabled={screenState !== "start"}>
         <legend>Possible Cats</legend>
         <CatSearch 
           catsToSearch={possibleCats}
