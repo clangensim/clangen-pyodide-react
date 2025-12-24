@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Cat, PatrolAction, PatrolType, ClanInfo } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
-import Select from "../components/generic/Select";
-import { SelectOption } from "../components/generic/Select";
 import BasePage from "../layout/BasePage";
 
 import confusedCat from "../assets/images/gen_med_newmed.png";
 import { formatText } from "../utils";
+import CatDisplay from "../components/CatDisplay";
+import CatSearch from "../components/CatSearch";
 
 type ScreenState = "start" | "in-progress" | "wrap-up"
 const crumbs = [
@@ -44,35 +44,13 @@ function PatrolsPage() {
 
   const [possibleCats, setPossibleCats] = useState<Cat[]>([]);
 
-  const [selectedCat1, setSelectedCat1] = useState("");
-  const [selectedCat2, setSelectedCat2] = useState("");
-  const [selectedCat3, setSelectedCat3] = useState("");
-  const [selectedCat4, setSelectedCat4] = useState("");
-  const [selectedCat5, setSelectedCat5] = useState("");
-  const [selectedCat6, setSelectedCat6] = useState("");
+  const [selectedCats, setSelectedCats] = useState<string[]>([]);
 
   const [patrolUuid, setPatrolUuid] = useState("");
 
   const [clanInfo, setClanInfo] = useState<ClanInfo | null>();
 
   const [patrolArtUrl, setPatrolArtUrl] = useState("");
-
-  // non-empty cats only
-  const selectedCats = [
-    selectedCat1,
-    selectedCat2,
-    selectedCat3,
-    selectedCat4,
-    selectedCat5,
-    selectedCat6,
-  ].filter((elem) => elem !== "");
-
-  const catOptions: SelectOption[] = possibleCats.map((cat) => {
-    return {
-      label: `${cat.name.display} - ${cat.status}`,
-      value: cat.ID,
-    };
-  });
 
   const [screenState, setScreenState] = useState<ScreenState>("start");
 
@@ -81,12 +59,7 @@ function PatrolsPage() {
   const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
 
   async function reset() {
-    setSelectedCat1("");
-    setSelectedCat2("");
-    setSelectedCat3("");
-    setSelectedCat4("");
-    setSelectedCat5("");
-    setSelectedCat6("");
+    setSelectedCats([]);
     setResultText("");
     setPatrolText("");
     setScreenState("start");
@@ -170,73 +143,31 @@ function PatrolsPage() {
       <p>If you edit a cat that is currently on patrol, the patrol will end.</p>
 
       <fieldset>
-        <legend>Cats</legend>
-        <div>
-          <Select
-            value={selectedCat1}
-            onChange={setSelectedCat1}
-            disabled={disabled}
-            options={catOptions.filter(
-              (cat) =>
-                cat.value === selectedCat1 || !selectedCats.includes(cat.value),
-            )}
-          />
-        </div>
-        <div>
-          <Select
-            value={selectedCat2}
-            onChange={setSelectedCat2}
-            disabled={disabled}
-            options={catOptions.filter(
-              (cat) =>
-                cat.value === selectedCat2 || !selectedCats.includes(cat.value),
-            )}
-          />
-        </div>
-        <div>
-          <Select
-            value={selectedCat3}
-            onChange={setSelectedCat3}
-            disabled={disabled}
-            options={catOptions.filter(
-              (cat) =>
-                cat.value === selectedCat3 || !selectedCats.includes(cat.value),
-            )}
-          />
-        </div>
-        <div>
-          <Select
-            value={selectedCat4}
-            onChange={setSelectedCat4}
-            disabled={disabled}
-            options={catOptions.filter(
-              (cat) =>
-                cat.value === selectedCat4 || !selectedCats.includes(cat.value),
-            )}
-          />
-        </div>
-        <div>
-          <Select
-            value={selectedCat5}
-            onChange={setSelectedCat5}
-            disabled={disabled}
-            options={catOptions.filter(
-              (cat) =>
-                cat.value === selectedCat5 || !selectedCats.includes(cat.value),
-            )}
-          />
-        </div>
-        <div>
-          <Select
-            value={selectedCat6}
-            onChange={setSelectedCat6}
-            disabled={disabled}
-            options={catOptions.filter(
-              (cat) =>
-                cat.value === selectedCat6 || !selectedCats.includes(cat.value),
-            )}
-          />
-        </div>
+        <legend>Possible Cats</legend>
+        <CatSearch 
+          catsToSearch={possibleCats}
+          catsPerPage={16}
+          maxSelection={6}
+          selectedCats={selectedCats}
+          setSelectedCats={setSelectedCats}
+        />
+      </fieldset>
+
+      <fieldset className="selected-cats-list">
+        <legend>Cats to Patrol</legend>
+        {
+          possibleCats
+          .filter(cat => selectedCats.find(id => id == cat.ID))
+          .map((cat, index) => {
+            return (
+              <div className="cat" key={index}>
+                <CatDisplay cat={cat} w="75px" h="75px" />
+                <div>{cat.name.display}</div>
+                <div className="cat-search-select-status">{cat.status}</div>
+              </div>
+            );
+          })
+        }
       </fieldset>
 
       <fieldset>
@@ -297,13 +228,15 @@ function PatrolsPage() {
       <p>{formatText(resultText)}</p>
 
       {screenState === "start" && (
-        <button
-          tabIndex={0}
-          disabled={selectedCats.length == 0}
-          onClick={startPatrol}
-        >
-          Start Patrol
-        </button>
+        <div>
+          <button
+            tabIndex={0}
+            disabled={selectedCats.length == 0}
+            onClick={startPatrol}
+          >
+            Start Patrol
+          </button>
+        </div>
       )}
 
       {screenState === "in-progress" && (

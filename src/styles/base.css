@@ -181,6 +181,16 @@ button:hover,
   background-color: var(--button-secondary-hovered-background-color);
 }
 
+.selected-cats-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.selected-cats-list > * {
+  text-align: center;
+  flex: auto;
+}
+
 details {
   width: 95%;
   border-radius: 5px;

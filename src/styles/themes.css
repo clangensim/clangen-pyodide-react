@@ -31,6 +31,7 @@
     --button-secondary-text-color: #655934;
 
     --summary-background-color: #EFE5CE;
+    --select-highlight-color: lightblue;
 }
 
 .theme-clangen-dark {
@@ -66,6 +67,7 @@
     --button-secondary-text-color: #655934;
 
     --summary-background-color: #807a6e;
+    --select-highlight-color: lightblue;
 
     button, .btn {
         border: #2F2918 1px solid;
@@ -103,8 +105,9 @@
     --button-secondary-background-color: #1b1b1b;
     --button-secondary-hovered-background-color: rgb(46, 45, 42);
     --button-secondary-text-color: #948667;
-
+  
     --summary-background-color: #1a1d1f;
+    --select-highlight-color: lightblue;
 
     textarea, fieldset, input[type="checkbox"], input[type="text"], select {
         color-scheme: dark;
