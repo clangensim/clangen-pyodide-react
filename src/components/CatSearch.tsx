@@ -123,15 +123,8 @@ function CatSearch({
     setSelectedCats(currentlySelected.concat(randomCats));
   }
 
-  function paginate() {
-    const pages = [];
-    for (let i = 0; i < catsToSearch.length; i += catsPerPage) {
-      pages.push(catsToSearch.slice(i, i + catsPerPage));
-    }
-    return pages;
-  }
-
-  const catPages = paginate();
+  const filteredCats = catsToSearch.filter(checkFilters);
+  const numPages = Math.max(Math.ceil(filteredCats.length / catsPerPage), 1);
 
   return (
     <div className="cat-search-container">
@@ -185,7 +178,7 @@ function CatSearch({
       <div className="cat-search-cats">
         <div className="cat-search-list">
           {
-            catPages[currentPage].filter(checkFilters).map((cat) => {
+            filteredCats.slice(currentPage * catsPerPage, currentPage * catsPerPage + catsPerPage).map((cat) => {
               return (
                   <Checkbox
                     className="cat-search-select"
@@ -211,11 +204,11 @@ function CatSearch({
             <TbCaretLeftFilled />
           </button>
           <div>
-            {currentPage + 1} of {catPages.length}
+            {currentPage + 1} of {numPages}
           </div>
           <button tabIndex={0}
-            onClick={() => setCurrentPage(Math.min(currentPage + 1, catPages.length - 1))} 
-            disabled={currentPage == catPages.length - 1}
+            onClick={() => setCurrentPage(Math.min(currentPage + 1, numPages - 1))} 
+            disabled={currentPage == numPages - 1}
           >
             <TbCaretRightFilled />
           </button>
