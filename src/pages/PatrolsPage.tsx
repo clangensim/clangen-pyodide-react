@@ -161,7 +161,7 @@ function PatrolsPage() {
           .map((cat, index) => {
             return (
               <div className="cat" key={index}>
-                <CatDisplay cat={cat} w="75px" h="75px" />
+                <CatDisplay cat={cat} w="50px" h="50px" />
                 <div>{cat.name.display}</div>
                 <div className="cat-search-select-status">{cat.status}</div>
               </div>
