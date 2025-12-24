@@ -1,6 +1,6 @@
 .cat-search-container {
 	display: inline-flex;
-	max-height: 400px;
+    max-height: 400px;
 	gap: 5px;
 	width: 100%;
 }
@@ -15,7 +15,7 @@
     .cat-search-container {
         display: flex;
         flex-direction: column;
-        max-height: 800px;
+        max-height: none;
     }
     .cat-search-filters {
         min-height: 150px;
