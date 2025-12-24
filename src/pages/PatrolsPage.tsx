@@ -145,7 +145,7 @@ function PatrolsPage() {
       <p>If you edit a cat that is currently on patrol, the patrol will end.</p>
 
       <fieldset disabled={screenState !== "start"}>
-        <legend>Possible Cats</legend>
+        <legend>Cats</legend>
         <CatSearch 
           catsToSearch={possibleCats}
           catsPerPage={16}
@@ -156,7 +156,7 @@ function PatrolsPage() {
       </fieldset>
 
       <fieldset>
-        <legend>Cats to Patrol</legend>
+        <legend>Patrol Group</legend>
         {selectedCats.length === 0 && <>This patrol group is empty.</>}
         {selectedCats.length !== 0 &&
         <div className="selected-cats-list">
