@@ -46,11 +46,12 @@
 	display: flex;
 	text-align: center;
 	justify-content: center;
+    padding: 20px;
 }
-.cat-search-select label input[type="checkbox"] {
+.cat-search-select input[type="checkbox"] {
     display: none;
 }
-.cat-search-select:has(label input[type="checkbox"]:checked) {
+.cat-search-select:has(input[type="checkbox"]:checked) {
     border: 1px solid var(--select-highlight-color);
 }
 .cat-search-select-status {

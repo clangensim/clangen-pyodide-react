@@ -187,8 +187,8 @@ function CatSearch({
           {
             catPages[currentPage].filter(checkFilters).map((cat) => {
               return (
-                <div className="cat-search-select">
                   <Checkbox
+                    className="cat-search-select"
                     label={
                       <div>
                         <CatDisplay cat={cat} w="75px" h="75px" />
@@ -199,7 +199,6 @@ function CatSearch({
                     checked={selectedCats.includes(cat.ID)}
                     onChange={() => toggleCatSelected(cat)}
                   />
-                </div>
               );
             })
           }
