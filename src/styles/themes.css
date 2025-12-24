@@ -1,115 +1,132 @@
 .theme-light {
-    --page-background-color: rgb(56, 50, 38);
-    --text-color: black;
-    --link-color: rgb(106, 57, 69);
-    --content-background-color: white;
+  --page-background-color: rgb(56, 50, 38);
+  --text-color: black;
+  --link-color: rgb(106, 57, 69);
+  --content-background-color: white;
 
-    --navbar-background-color: #655934;
-    --navbar-background-gradient: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
-    --navbar-border: 1px solid black;
-    --navbar-text-color: #EFE5CE;
-    --navbar-hovered-text-color: rgb(48,41,28);
+  --navbar-background-color: #655934;
+  --navbar-background-gradient: linear-gradient(
+    180deg,
+    rgba(101, 89, 52, 1) 0%,
+    rgba(48, 41, 28, 1) 100%
+  );
+  --navbar-border: 1px solid black;
+  --navbar-text-color: #efe5ce;
+  --navbar-hovered-text-color: rgb(48, 41, 28);
 
-    --breadcrumbs-background-color: rgb(234, 234, 234);
-    --cat-display-hovered-background-color: #EFE5CE;
+  --breadcrumbs-background-color: rgb(234, 234, 234);
+  --cat-display-hovered-background-color: #efe5ce;
 
-    --progress-bar-border: 1px solid black;
-    --progress-bar-bg: rgb(231, 231, 231);
-    --progress-bar-fill: #80bc08;
-    --loader-color: #d5d5d5;
+  --progress-bar-border: 1px solid black;
+  --progress-bar-bg: rgb(231, 231, 231);
+  --progress-bar-fill: #80bc08;
+  --loader-color: #d5d5d5;
 
-    --icon-button-text-color: darkgray;
-    --icon-button-hovered-text-color: gray;
+  --icon-button-text-color: darkgray;
+  --icon-button-hovered-text-color: gray;
 
-    --button-background-color: #655934;
-    --button-hovered-background-color: rgb(82, 73, 55);
-    --button-text-color: #EFE5CE;
-    --button-disabled-background-color: #938764;
+  --button-background-color: #655934;
+  --button-hovered-background-color: rgb(82, 73, 55);
+  --button-text-color: #efe5ce;
+  --button-disabled-background-color: #938764;
 
-    --button-secondary-background-color: #EFE5CE;
-    --button-secondary-hovered-background-color: #e5c680;
-    --button-secondary-text-color: #655934;
+  --button-secondary-background-color: #efe5ce;
+  --button-secondary-hovered-background-color: #e5c680;
+  --button-secondary-text-color: #655934;
 
-    --summary-background-color: #EFE5CE;
-    --select-highlight-color: lightblue;
+  --summary-background-color: #efe5ce;
+  --select-highlight-color: lightblue;
 }
 
 .theme-clangen-dark {
-    --page-background-color: #1E1809;
-    --text-color: #EFE5CE;
-    --link-color: #2E8B57;
-    --content-background-color: #655934;
+  --page-background-color: #1e1809;
+  --text-color: #efe5ce;
+  --link-color: #2e8b57;
+  --content-background-color: #655934;
 
-    --navbar-background-color: #655934;
-    --navbar-background-gradient: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
-    --navbar-border: 1px solid #291B0F;
-    --navbar-text-color: #EFE5CE;
-    --navbar-hovered-text-color: rgb(48,41,28);
+  --navbar-background-color: #655934;
+  --navbar-background-gradient: linear-gradient(
+    180deg,
+    rgba(101, 89, 52, 1) 0%,
+    rgba(48, 41, 28, 1) 100%
+  );
+  --navbar-border: 1px solid #291b0f;
+  --navbar-text-color: #efe5ce;
+  --navbar-hovered-text-color: rgb(48, 41, 28);
 
-    --breadcrumbs-background-color: rgb(92.92, 81.88, 47.84);
-    --cat-display-hovered-background-color: #918467;
+  --breadcrumbs-background-color: rgb(92.92, 81.88, 47.84);
+  --cat-display-hovered-background-color: #918467;
 
-    --progress-bar-border: 1px solid black;
-    --progress-bar-bg: #363223;
-    --progress-bar-fill: #80bc08;
-    --loader-color: #d5d5d5;
+  --progress-bar-border: 1px solid black;
+  --progress-bar-bg: #363223;
+  --progress-bar-fill: #80bc08;
+  --loader-color: #d5d5d5;
 
-    --icon-button-text-color: darkgray;
-    --icon-button-hovered-text-color: gray;
+  --icon-button-text-color: darkgray;
+  --icon-button-hovered-text-color: gray;
 
-    --button-background-color: #655934;
-    --button-hovered-background-color: #1E1809;
-    --button-text-color: #EFE5CE;
-    --button-disabled-background-color: #5C5850;
+  --button-background-color: #655934;
+  --button-hovered-background-color: #1e1809;
+  --button-text-color: #efe5ce;
+  --button-disabled-background-color: #5c5850;
 
-    --button-secondary-background-color: #EFE5CE;
-    --button-secondary-hovered-background-color: #e5c680;
-    --button-secondary-text-color: #655934;
+  --button-secondary-background-color: #efe5ce;
+  --button-secondary-hovered-background-color: #e5c680;
+  --button-secondary-text-color: #655934;
 
-    --summary-background-color: #807a6e;
-    --select-highlight-color: lightblue;
+  --summary-background-color: #807a6e;
+  --select-highlight-color: lightblue;
 
-    button, .btn {
-        border: #2F2918 1px solid;
-    }
+  button,
+  .btn {
+    border: #2f2918 1px solid;
+  }
 }
 
 .theme-dark {
-    --page-background-color: #181A1B;
-    --text-color: #E8E6E3;
-    --link-color: #C594A0;
-    --content-background-color: #2D3133;
+  --page-background-color: #181a1b;
+  --text-color: #e8e6e3;
+  --link-color: #c594a0;
+  --content-background-color: #2d3133;
 
-    --navbar-background-color: #655934;
-    --navbar-background-gradient: linear-gradient(180deg, rgba(101,89,52,1) 0%, rgba(48,41,28,1) 100%);
-    --navbar-border: 1px solid black;
-    --navbar-text-color: #EFE5CE;
-    --navbar-hovered-text-color: rgb(48,41,28);
+  --navbar-background-color: #655934;
+  --navbar-background-gradient: linear-gradient(
+    180deg,
+    rgba(101, 89, 52, 1) 0%,
+    rgba(48, 41, 28, 1) 100%
+  );
+  --navbar-border: 1px solid black;
+  --navbar-text-color: #efe5ce;
+  --navbar-hovered-text-color: rgb(48, 41, 28);
 
-    --breadcrumbs-background-color: rgb(38, 41, 43);
-    --cat-display-hovered-background-color: #1a1d1f;
+  --breadcrumbs-background-color: rgb(38, 41, 43);
+  --cat-display-hovered-background-color: #1a1d1f;
 
-    --progress-bar-border: 1px solid black;
-    --progress-bar-bg: #212324;
-    --progress-bar-fill: #00945c;
-    --loader-color: #494e52;
+  --progress-bar-border: 1px solid black;
+  --progress-bar-bg: #212324;
+  --progress-bar-fill: #00945c;
+  --loader-color: #494e52;
 
-    --icon-button-text-color: darkgray;
-    --icon-button-hovered-text-color: gray;
+  --icon-button-text-color: darkgray;
+  --icon-button-hovered-text-color: gray;
 
-    --button-background-color: #655934;
-    --button-hovered-background-color: rgb(82, 73, 55);
-    --button-text-color: #EFE5CE;
-    --button-disabled-background-color: #938764;
+  --button-background-color: #655934;
+  --button-hovered-background-color: rgb(82, 73, 55);
+  --button-text-color: #efe5ce;
+  --button-disabled-background-color: #938764;
 
-    --button-secondary-background-color: #1b1b1b;
-    --button-secondary-hovered-background-color: rgb(46, 45, 42);
-    --button-secondary-text-color: #948667;
-  
-    --summary-background-color: #1a1d1f;
-    --select-highlight-color: lightblue;
+  --button-secondary-background-color: #1b1b1b;
+  --button-secondary-hovered-background-color: rgb(46, 45, 42);
+  --button-secondary-text-color: #948667;
 
-    textarea, fieldset, input[type="checkbox"], input[type="text"], select {
-        color-scheme: dark;
-    }
+  --summary-background-color: #1a1d1f;
+  --select-highlight-color: lightblue;
+
+  textarea,
+  fieldset,
+  input[type="checkbox"],
+  input[type="text"],
+  select {
+    color-scheme: dark;
+  }
 }

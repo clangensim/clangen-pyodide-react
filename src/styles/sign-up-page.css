@@ -27,8 +27,7 @@
 }
 
 #signup .or::before,
-#signup .or::after
-{
+#signup .or::after {
   content: " - ";
 }
 

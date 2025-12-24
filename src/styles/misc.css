@@ -7,7 +7,7 @@ select {
   padding-bottom: 0.25em;
 }
 
-.checkbox-row input[type="checkbox"]{
+.checkbox-row input[type="checkbox"] {
   margin-right: 0.3em;
   flex: none;
 }
@@ -17,7 +17,7 @@ select {
   padding-bottom: 0.25em;
 }
 
-.radio-row input[type="radio"]{
+.radio-row input[type="radio"] {
   flex: none;
 }
 

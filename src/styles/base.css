@@ -134,7 +134,8 @@ details {
   background-color: transparent;
 }
 
-button, .btn {
+button,
+.btn {
   text-align: center;
   background-color: var(--button-background-color);
   padding: 10px;
@@ -185,7 +186,7 @@ details {
   width: 95%;
   border-radius: 5px;
 }
-details>div.details-content {
+details > div.details-content {
   padding: 0 1em 0.1em 1em;
 }
 summary {
@@ -194,11 +195,11 @@ summary {
   padding: 0.5em 0.25em;
 }
 summary:hover {
-  background-color:var(--summary-background-color);
+  background-color: var(--summary-background-color);
   cursor: pointer;
 }
 summary:open {
-  background-color:var(--summary-background-color);
+  background-color: var(--summary-background-color);
 }
 
 input[type="text"] {
