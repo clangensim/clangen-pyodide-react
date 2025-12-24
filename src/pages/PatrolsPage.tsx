@@ -3,6 +3,8 @@ import { Cat, PatrolAction, PatrolType, ClanInfo } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
 import BasePage from "../layout/BasePage";
 
+import "../styles/patrol-page.css";
+
 import confusedCat from "../assets/images/gen_med_newmed.png";
 import { formatText } from "../utils";
 import CatDisplay from "../components/CatDisplay";
