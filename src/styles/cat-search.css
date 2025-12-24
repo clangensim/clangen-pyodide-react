@@ -37,7 +37,7 @@
 .cat-search-list {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-template-rows: repeat(auto-fit, 150px);
+    grid-template-rows: repeat(auto-fit);
     gap: 7px;
 	overflow-y: scroll;
 	flex: 1;
