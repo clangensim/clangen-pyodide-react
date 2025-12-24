@@ -46,15 +46,15 @@ function CatSearch({
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   function checkFilters(cat: Cat) {
-    let metNameFilter = searchName == "" ? true : cat.name.display.toLowerCase().includes(searchName); // True by default since name filter can be empty.
-    let metStatusFilter = filters["status"][cat.status];
-    let metExperienceFilter = filters["experience"][cat.experienceLevel];
+    const metNameFilter = searchName == "" ? true : cat.name.display.toLowerCase().includes(searchName); // True by default since name filter can be empty.
+    const metStatusFilter = filters["status"][cat.status];
+    const metExperienceFilter = filters["experience"][cat.experienceLevel];
 
-    let metMentorFilter = cat.mentor ? selectedCats.includes(cat.mentor.ID) : false; // Valid if cat is apprentice of a selected cat.
-    let metApprenticeFilter = cat.apprentices.find(c => selectedCats.includes(c.ID)) != undefined; // Valid if cat has an apprentice in selected cats.
-    let metMatesFilter = cat.mates.find(c => selectedCats.includes(c.ID)) != undefined; // Valid if cat has a mate in selected cats.
+    const metMentorFilter = cat.mentor ? selectedCats.includes(cat.mentor.ID) : false; // Valid if cat is apprentice of a selected cat.
+    const metApprenticeFilter = cat.apprentices.find(c => selectedCats.includes(c.ID)) != undefined; // Valid if cat has an apprentice in selected cats.
+    const metMatesFilter = cat.mates.find(c => selectedCats.includes(c.ID)) != undefined; // Valid if cat has a mate in selected cats.
 
-    let affiliationFilters = filters["affiliation"];
+    const affiliationFilters = filters["affiliation"];
     if (Object.values(affiliationFilters).some(filter => filter)) {
       return (
         (affiliationFilters["mentor"] && metMentorFilter)
@@ -108,10 +108,10 @@ function CatSearch({
   }
 
   function appendRandom(numOfCats: number = 1, resetSelected: boolean = false) {
-    let currentlySelected = resetSelected ? [] : [...selectedCats];
+    const currentlySelected = resetSelected ? [] : [...selectedCats];
 
-    let selectableCats = catsToSearch.filter(cat => !currentlySelected.includes(cat.ID) && checkFilters(cat));
-    let randomCats: string[] = [];
+    const selectableCats = catsToSearch.filter(cat => !currentlySelected.includes(cat.ID) && checkFilters(cat));
+    const randomCats: string[] = [];
     for (let i = 0; i < Math.min(selectableCats.length, numOfCats, maxSelection - currentlySelected.length); i++) {
       let index = Math.floor(Math.random() * selectableCats.length);
       while (randomCats.includes(selectableCats[index].ID)) {
@@ -124,7 +124,7 @@ function CatSearch({
   }
 
   function paginate() {
-    let pages = [];
+    const pages = [];
     for (let i = 0; i < catsToSearch.length; i += catsPerPage) {
       pages.push(catsToSearch.slice(i, i + catsPerPage));
     }
