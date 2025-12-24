@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "postbuild": "cp dist/index.html dist/404.html",
     "docker-build": "docker build --output type=local,dest=dist .",
     "test": "npx playwright test",
     "test-ui": "npx playwright test --ui",
