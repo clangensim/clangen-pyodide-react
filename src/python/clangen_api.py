@@ -274,7 +274,8 @@ def edit_cat(cat_id, editObj):
       if mateID not in cat.mate:
         cat.set_mate(Cat.fetch_cat(mateID))
 
-    for mateID in cat.mate:
+    cat_mates = cat.mate.copy()
+    for mateID in cat_mates:
       if mateID not in edit["mates"]:
         cat.unset_mate(Cat.fetch_cat(mateID))
 
