@@ -46,7 +46,7 @@ function CatSearch({
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   function checkFilters(cat: Cat) {
-    const metNameFilter = searchName == "" ? true : cat.name.display.toLowerCase().includes(searchName); // True by default since name filter can be empty.
+    const metNameFilter = searchName == "" ? true : cat.name.display.toLowerCase().includes(searchName.toLowerCase()); // True by default since name filter can be empty.
     const metStatusFilter = filters["status"][cat.status];
     const metExperienceFilter = filters["experience"][cat.experienceLevel];
 
@@ -129,7 +129,7 @@ function CatSearch({
   return (
     <div className="cat-search-container">
       <div className="cat-search-filters">
-        <input type="text" placeholder="Search by name..." value={searchName} onChange={(e) => setSearchName(e.target.value.toLowerCase())}/>
+        <input type="text" placeholder="Search by name..." value={searchName} onChange={(e) => setSearchName(e.target.value)}/>
         <details>
           <summary>Status Filters</summary>
           <ul>
