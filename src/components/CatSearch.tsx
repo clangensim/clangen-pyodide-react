@@ -23,7 +23,6 @@ function CatSearch({
 
   const [filters, setFilters] = useState<Record<string, Record<string, boolean>>>({
     status: {
-      newborn: true, kitten: true,
       apprentice: true, ["mediator apprentice"]: true,
       ["medicine cat apprentice"]: true,
       warrior: true, mediator: true,
