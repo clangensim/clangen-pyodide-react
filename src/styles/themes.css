@@ -10,6 +10,11 @@
     rgba(101, 89, 52, 1) 0%,
     rgba(48, 41, 28, 1) 100%
   );
+  --navbar-inverse-background-gradient: linear-gradient(
+    to top,
+    rgba(101, 89, 52, 1) 0%,
+    rgba(48, 41, 28, 1) 100%
+  );
   --navbar-border: 1px solid black;
   --navbar-text-color: #efe5ce;
   --navbar-hovered-text-color: rgb(48, 41, 28);
@@ -47,6 +52,11 @@
   --navbar-background-color: #655934;
   --navbar-background-gradient: linear-gradient(
     180deg,
+    rgba(101, 89, 52, 1) 0%,
+    rgba(48, 41, 28, 1) 100%
+  );
+  --navbar-inverse-background-gradient: linear-gradient(
+    to top,
     rgba(101, 89, 52, 1) 0%,
     rgba(48, 41, 28, 1) 100%
   );
@@ -92,6 +102,11 @@
   --navbar-background-color: #655934;
   --navbar-background-gradient: linear-gradient(
     180deg,
+    rgba(101, 89, 52, 1) 0%,
+    rgba(48, 41, 28, 1) 100%
+  );
+  --navbar-inverse-background-gradient: linear-gradient(
+    to top,
     rgba(101, 89, 52, 1) 0%,
     rgba(48, 41, 28, 1) 100%
   );
