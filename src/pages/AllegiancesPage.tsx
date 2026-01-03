@@ -3,7 +3,7 @@ import BasePage from "../layout/BasePage";
 import { Cat } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
 
-import "../styles/allegiances-pages.css";
+import "../styles/allegiances-page.css";
 import { useQuery } from "@tanstack/react-query";
 import Pluralize from "../components/generic/Pluralize";
 import { TbPrinter } from "react-icons/tb";
