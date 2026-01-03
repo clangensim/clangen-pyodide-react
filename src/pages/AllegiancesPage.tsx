@@ -6,6 +6,7 @@ import { clangenRunner } from "../python/clangenRunner";
 import "../styles/allegiances-pages.css";
 import { useQuery } from "@tanstack/react-query";
 import Pluralize from "../components/generic/Pluralize";
+import { TbPrinter } from "react-icons/tb";
 
 const crumbs = [
   {
@@ -46,6 +47,10 @@ function AllegiancesPage() {
   return (
     <>
       <BasePage crumbs={crumbs}>
+        <button className="icon-button" tabIndex={0} onClick={() => window.print()}>
+          <TbPrinter size={25} />
+        </button>
+
         <div id="allegiances">
           <div className="allegiances__descriptions">
             <div></div>

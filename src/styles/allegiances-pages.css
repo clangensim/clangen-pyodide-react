@@ -40,3 +40,20 @@
 .allegiances__entry_app {
   padding-bottom: 0.1em;
 }
+
+@media print {
+  :root:has(#allegiances) {
+    background-color: white;
+  }
+  body:has(#allegiances) {
+    visibility: hidden;
+  }
+  #allegiances {
+    background-color: white;
+    color: black;
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
