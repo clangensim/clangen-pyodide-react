@@ -134,7 +134,7 @@ function AllegiancesPage() {
             {mediators.length > 0 && (
               <>
                 <div className="allegiances__rank">
-                  <Pluralize num={medCats.length}>Mediator</Pluralize>
+                  <Pluralize num={mediators.length}>Mediator</Pluralize>
                 </div>
                 <div className="allegiances__cats">
                   {mediators.map((c) => (
