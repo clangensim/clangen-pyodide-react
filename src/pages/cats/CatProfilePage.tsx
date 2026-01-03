@@ -19,7 +19,6 @@ function CatProfilePage() {
   const [relationships, setRelationships] = useState<Relationship[]>();
   const [conditions, setConditions] = useState<Condition[]>();
   const [neighbourCats, setNeighbourCats] = useState<[string, string]>(["-1", "-1"]);
-  const [ceremony, setCeremony] = useState<string>();
   const [notes, setNotes] = useState<string>();
 
   const query = useQuery({
@@ -36,12 +35,8 @@ function CatProfilePage() {
       setCat(c);
 
       // have to set this here bc otherwise ceremonies appear w/ next/prev cat button
-      setCeremony(undefined);
       if (c) {
         document.title = `${c.name.display} | ClanGen Simulator`;
-        if (!c.dead && c.status === "leader") {
-          clangenRunner.getLeaderCeremony().then((cere) => setCeremony(cere));
-        }
       }
     });
 
@@ -161,16 +156,6 @@ function CatProfilePage() {
                 <summary>Notes</summary>
                 <div className="details-content">
                   {notes.split("\n").map(line => <>{line}<br /></>)}
-                </div>
-              </details>
-            </div>
-          }
-          {ceremony && 
-            <div>
-              <details>
-                <summary>Leadership Ceremony</summary>
-                <div className="details-content">
-                  {ceremony.split("<br><br>").map(line => <p>{line}</p>)}
                 </div>
               </details>
             </div>

@@ -45,6 +45,11 @@ function Navbar() {
           Mediate
         </Link>
       </NavbarDropdown>
+      <NavbarDropdown name="Lore">
+        <Link tabIndex={0} className=" nav-item" to="/ceremony">
+          Ceremony
+        </Link>
+      </NavbarDropdown>
       <Link tabIndex={0} className=" nav-item" to="/settings">
         Settings
       </Link>
