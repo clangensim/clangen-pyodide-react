@@ -56,12 +56,22 @@ function AllegiancesPage() {
                 <div className="allegiances__rank">Leader</div>
                 <div className="allegiances__cats">
                   {leader.map((c) => (
-                    <div className="allegiances__entry">
-                      <span className="allegiances__name">
-                        {c.name.display} —{" "}
-                      </span>
-                      {c.description}
-                    </div>
+                    <>
+                      <div className="allegiances__entry">
+                        <span className="allegiances__name">
+                          {c.name.display} —{" "}
+                        </span>
+                        {c.description}
+                      </div>
+                      {c.apprentices.map((app) => (
+                        <div className="allegiances__entry">
+                          <span className="allegiances__name">
+                            Apprentice, {app.name.display}{" "}
+                          </span>
+                          ({app.description})
+                        </div>
+                      ))}
+                    </>
                   ))}
                 </div>
               </>
@@ -72,12 +82,22 @@ function AllegiancesPage() {
                 <div className="allegiances__rank">Deputy</div>
                 <div className="allegiances__cats">
                   {deputy.map((c) => (
-                    <div className="allegiances__entry">
-                      <span className="allegiances__name">
-                        {c.name.display} —{" "}
-                      </span>
-                      {c.description}
-                    </div>
+                    <>
+                      <div className="allegiances__entry">
+                        <span className="allegiances__name">
+                          {c.name.display} —{" "}
+                        </span>
+                        {c.description}
+                      </div>
+                      {c.apprentices.map((app) => (
+                        <div className="allegiances__entry">
+                          <span className="allegiances__name">
+                            Apprentice, {app.name.display}{" "}
+                          </span>
+                          ({app.description})
+                        </div>
+                      ))}
+                    </>
                   ))}
                 </div>
               </>
