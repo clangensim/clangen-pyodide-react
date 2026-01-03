@@ -7,6 +7,7 @@ import "../styles/moonskip-page.css";
 import { Cat } from "../python/types";
 import Pluralize from "../components/generic/Pluralize";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link } from "react-router";
 
 function NextMoonPage() {
   const queryClient = useQueryClient();
@@ -22,6 +23,8 @@ function NextMoonPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const processing = useRef(false); // otherwise the timer won't see it.
   const [showLoading, setShowLoading] = useState(false);
+
+  const [newLeader, setNewLeader] = useState<string>("");
 
   useEffect(() => {
     document.title = "ClanGen Simulator";
@@ -43,9 +46,17 @@ function NextMoonPage() {
       setIsProcessing(false);
       setShowLoading(false);
       clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
-      clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));  
+      clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));
       queryClient.invalidateQueries();
-  });
+      clangenRunner.getEvents().then(
+        events => {
+          events.filter(event => event.types.includes("ceremony")).map(event => {
+            clangenRunner.getCat(event.cats_involved[0]).then(cat => setNewLeader(cat.name.display));
+            localStorage.setItem("newCeremony", "");
+          });
+        }
+      );
+    });
   }
 
   return (
@@ -54,10 +65,10 @@ function NextMoonPage() {
 
       <p>It has been <b>{clanInfo?.age} moons</b> since {clanInfo?.name} was founded. The current season is <b>{clanInfo?.season}</b>.</p>
 
-      {canPatrol.length > 0 && 
+      {canPatrol.length > 0 &&
         <p>{canPatrol.length} <Pluralize num={canPatrol.length}>cat</Pluralize> can still patrol this moon.</p>
       }
-      {canMediate.length > 0 && 
+      {canMediate.length > 0 &&
         <p>{canMediate.length} <Pluralize num={canMediate.length}>mediator</Pluralize> can still mediate this moon.</p>
       }
 
@@ -68,9 +79,13 @@ function NextMoonPage() {
         </p>
       }
 
+      {
+        localStorage.getItem("newCeremony") && <p>A new leader has been appointed! <b>{newLeader}'s</b> <Link tabIndex={0} to="/ceremony">leadership ceremony</Link> can be viewed.</p>
+      }
+
       <div className="flex">
         <button disabled={isProcessing} tabIndex={0} onClick={handleMoonskip}>Timeskip One Moon</button>
-        { showLoading && 
+        { showLoading &&
         <div className="moonskip-spinner__container">
           <div className="moonskip-spinner" />
         </div>}

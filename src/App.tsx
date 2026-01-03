@@ -16,6 +16,7 @@ import NextMoonPage from "./pages/NextMoonPage";
 import SignUpPage from "./pages/SignUpPage";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import LeaderCeremonyPage from "./pages/LeaderCeremonyPage";
 const queryClient = new QueryClient();
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
               path="/cats/:id/relationships"
               element={<RelationshipsPage />}
             />
+            <Route path="ceremony" element={<LeaderCeremonyPage />}></Route>
             <Route path="/cats/:id/conditions" element={<ConditionsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/signup" element={<SignUpPage />} />

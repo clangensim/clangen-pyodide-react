@@ -5,7 +5,7 @@ function NavbarDropdown({
   children
 }: {
   name: string,
-  children: ReactElement[]
+  children: ReactElement[] | ReactElement
 }) {
   return (
     <div className="nav-item nav-dropdown">
