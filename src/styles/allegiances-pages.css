@@ -1,0 +1,42 @@
+.allegiances__descriptions {
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+}
+.allegiances__descriptions {
+  font-family: 'EB Garamond Variable', 'Times New Roman', Times, serif;
+}
+
+.allegiances__clanname {
+  font-family: 'EB Garamond Variable', 'Times New Roman', Times, serif;
+  font-size: xx-large;
+  letter-spacing: 0.25rem;
+  margin-bottom: 0.5em;
+}
+
+.allegiances__cats {
+  padding-bottom: 0.75em;
+}
+
+.allegiances__rank {
+  text-decoration: underline;
+  font-family: 'Almendra SC', serif;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  padding-right: 0.5rem;
+  text-transform: lower;
+  font-size: larger;
+}
+
+.allegiances__name {
+  font-weight: 1000;
+  text-transform: uppercase;
+  font-family: 'Copperplate', 'Balthazar', serif;
+}
+
+.allegiances__entry {
+  padding-bottom: 0.5em;
+}
+.allegiances__entry_app {
+  padding-bottom: 0.1em;
+}

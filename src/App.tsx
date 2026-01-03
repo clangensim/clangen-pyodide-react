@@ -14,6 +14,7 @@ import SettingsPage from "./pages/SettingsPage";
 import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
 import NextMoonPage from "./pages/NextMoonPage";
 import SignUpPage from "./pages/SignUpPage";
+import AllegiancesPage from "./pages/AllegiancesPage";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ function App() {
             <Route path="/cats/:id/conditions" element={<ConditionsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/allegiances" element={<AllegiancesPage />} />
             <Route path="*" element={<ErrorNotFoundPage />} />
           </Routes>
         </BrowserRouter>
