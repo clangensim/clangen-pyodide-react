@@ -50,6 +50,10 @@ body {
   border: var(--navbar-border);
   border-bottom: none;
 }
+.profile-info__clanname {
+  text-decoration: none;
+  font-weight: bold;
+}
 .profile-info ul {
   margin: 0;
 }
