@@ -14,8 +14,6 @@ import "@fontsource/balthazar";
 import "@fontsource-variable/eb-garamond";
 // @ts-expect-error - fonts are missing type declarations
 import "@fontsource/amatic-sc";
-// @ts-expect-error - fonts are missing type declarations
-import '@fontsource/almendra-sc';
 
 import "./styles/misc.css";
 import "./styles/themes.css";

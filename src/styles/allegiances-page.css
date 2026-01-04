@@ -20,11 +20,11 @@
 
 .allegiances__rank {
   text-decoration: underline;
-  font-family: 'Almendra SC', serif;
-  font-weight: 900;
+  font-family: 'Bubblegum Sans', serif;
   letter-spacing: 0.1rem;
   padding-right: 0.5rem;
-  text-transform: lower;
+  text-transform: uppercase;
+  text-underline-offset: 3px;
   font-size: larger;
 }
 
