@@ -13,7 +13,10 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
         {relationship.cat_to.name.display}
       </Link>
       {" "}
-      <button onClick={() => alert(relationship.log.join("\n\n"))} className="icon-button">
+      <button onClick={() => {
+        if (relationship.log.length === 0) { alert("No relationship log found.") }
+        else { alert(relationship.log.join("\n\n")) }
+      }} className="icon-button">
         <TbFileDots />
       </button>
       <ul className="row-list">
