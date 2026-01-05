@@ -2,7 +2,9 @@ import { Link } from "react-router";
 import { Relationship } from "../python/types";
 import CatDisplay from "./CatDisplay";
 import ProgressBar from "./generic/ProgressBar";
+import { TbFileDots } from "react-icons/tb";
 
+// TODO: switch alert to Dialog
 function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   return (
     <div className="raised">
@@ -10,6 +12,10 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
         <CatDisplay cat={relationship.cat_to}/>
         {relationship.cat_to.name.display}
       </Link>
+      {" "}
+      <button onClick={() => alert(relationship.log.join("\n\n"))} className="icon-button">
+        <TbFileDots />
+      </button>
       <ul className="row-list">
         <li>
           romantic love

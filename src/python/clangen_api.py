@@ -471,7 +471,8 @@ def get_relationships(cat_id):
       'admiration': rel.admiration,
       'comfortable': rel.comfortable,
       'jealousy': rel.jealousy,
-      'trust': rel.trust
+      'trust': rel.trust,
+      'log': rel.log
     })
   return to_js(rels, dict_converter=js.Object.fromEntries)
 

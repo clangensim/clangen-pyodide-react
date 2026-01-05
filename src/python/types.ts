@@ -94,6 +94,7 @@ type Relationship = {
   comfortable: number;
   jealousy: number;
   trust: number;
+  log: string[];
 };
 
 type Event = {
