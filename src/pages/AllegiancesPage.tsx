@@ -20,7 +20,8 @@ const crumbs = [
 ];
 
 function AllegiancesPage() {
-  const [cats, setCats] = useState<Cat[]>([]);
+  const [_cats, setCats] = useState<Cat[]>([]);
+  const cats = _cats.filter((c) => !c.outside && !c.dead);
   const leader = cats.filter((c) => c.status === "leader");
   const deputy = cats.filter((c) => c.status === "deputy");
   const warriors = cats.filter((c) => c.status === "warrior");
