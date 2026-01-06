@@ -23,8 +23,8 @@ function NextMoonPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const processing = useRef(false); // otherwise the timer won't see it.
   const [showLoading, setShowLoading] = useState(false);
-
-  const [newLeader, setNewLeader] = useState<string>("");
+  
+  const [newLeader, setNewLeader] = useState<string>();
 
   useEffect(() => {
     document.title = "ClanGen Simulator";
@@ -43,19 +43,22 @@ function NextMoonPage() {
       else { setShowLoading(false); }
     }, 250);
     clangenRunner.moonskip().then(() => {
+      localStorage.removeItem("newCeremony");
       setIsProcessing(false);
       setShowLoading(false);
+      clangenRunner.getEvents().then(
+        events => events.filter(event => event.types.includes("ceremony")).map(
+          event => clangenRunner.getCat(event.cats_involved[0]).then(
+            cat => {
+              localStorage.setItem("newCeremony", cat.name.display);
+              setNewLeader(cat.name.display);
+            }
+          )
+        )
+      );
       clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
       clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));
       queryClient.invalidateQueries();
-      clangenRunner.getEvents().then(
-        events => {
-          events.filter(event => event.types.includes("ceremony")).map(event => {
-            clangenRunner.getCat(event.cats_involved[0]).then(cat => setNewLeader(cat.name.display));
-            localStorage.setItem("newCeremony", "");
-          });
-        }
-      );
     });
   }
 
@@ -79,8 +82,12 @@ function NextMoonPage() {
         </p>
       }
 
-      {
-        localStorage.getItem("newCeremony") && <p>A new leader has been appointed! <b>{newLeader}'s</b> <Link tabIndex={0} to="/ceremony">leadership ceremony</Link> can be viewed.</p>
+      { (newLeader || localStorage.getItem("newCeremony")) && 
+        <p>
+          A new leader has been appointed! 
+          <b> {newLeader || localStorage.getItem("newCeremony")}'s </b>
+          <Link tabIndex={0} to="/ceremony">leadership ceremony</Link> can be viewed.
+        </p>
       }
 
       <div className="flex">
