@@ -8,7 +8,7 @@ function NavbarDropdown({
   children: ReactElement[] | ReactElement
 }) {
   return (
-    <div className="nav-item nav-dropdown">
+    <div className="nav-item nav-dropdown" role="button" tabIndex={0}>
       {name}
       <div className="nav-children">
         {children}

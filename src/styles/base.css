@@ -95,7 +95,9 @@ body {
 .nav-dropdown .nav-children {
   display: none;
 }
-.nav-dropdown:hover .nav-children {
+.nav-dropdown:hover .nav-children,
+.nav-dropdown:focus .nav-children,
+.nav-dropdown:active .nav-children {
   display: flex;
   flex-direction: column;
   position: absolute;
