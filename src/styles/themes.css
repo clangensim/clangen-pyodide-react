@@ -41,6 +41,8 @@
 
   --summary-background-color: #efe5ce;
   --select-highlight-color: lightblue;
+
+  --event-border-color: rgb(160, 160, 160);
 }
 
 .theme-clangen-dark {
@@ -86,6 +88,8 @@
 
   --summary-background-color: #807a6e;
   --select-highlight-color: lightblue;
+
+  --event-border-color: rgb(160, 160, 160);
 
   button,
   .btn {
@@ -136,6 +140,8 @@
 
   --summary-background-color: #1a1d1f;
   --select-highlight-color: lightblue;
+
+  --event-border-color: rgb(160, 160, 160);
 
   textarea,
   fieldset,

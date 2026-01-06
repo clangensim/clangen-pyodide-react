@@ -64,6 +64,7 @@ type Cat = {
   outside: boolean;
   experienceLevel: string;
   thought: string;
+  description: string;
   /* this is the display text of the backstory */
   backstory: string;
   dead: boolean;
@@ -93,6 +94,7 @@ type Relationship = {
   comfortable: number;
   jealousy: number;
   trust: number;
+  log: string[];
 };
 
 type Event = {

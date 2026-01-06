@@ -4,10 +4,12 @@ import { useEffect, useRef } from "react";
 
 function CatDisplay({
   cat,
+  fuzzy = false,
   w = "50px",
   h = "50px",
 }: {
   cat: Cat;
+  fuzzy?: boolean;
   w?: string;
   h?: string;
 }) {
@@ -17,6 +19,7 @@ function CatDisplay({
       age={cat.age}
       dead={cat.dead}
       darkForest={cat.inDarkForest}
+      fuzzy={fuzzy}
       w={w}
       h={h}
     />
@@ -30,6 +33,7 @@ function CatSprite({
   darkForest,
   w = "50px",
   h = "50px",
+  fuzzy = false,
 }: {
   pelt: Pelt;
   age: string;
@@ -37,6 +41,7 @@ function CatSprite({
   darkForest?: boolean;
   w?: string;
   h?: string;
+  fuzzy: boolean;
 }) {
   const canvasRef = useRef<any>(null);
   const catSprite = pelt.catSprites[age];
@@ -51,7 +56,7 @@ function CatSprite({
   return (
     <>
       <canvas
-        style={{ imageRendering: "pixelated", width: w, height: h }}
+        style={{ imageRendering: fuzzy ? "auto" : "pixelated", width: w, height: h }}
         width={50}
         height={50}
         ref={canvasRef}

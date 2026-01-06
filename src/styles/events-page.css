@@ -1,0 +1,19 @@
+.event-display {
+  padding: 1em;
+  border: 1px solid var(--event-border-color);
+  margin-bottom: 0.5em;
+  border-radius: 10px;
+  max-width: 750px;
+  -webkit-box-shadow: 1px 5px 15px -10px rgba(0,0,0,0.75); 
+  box-shadow: 1px 5px 15px -12px rgba(0,0,0,0.75);
+}
+
+.event-display__text {
+  padding-bottom: 1em;
+}
+
+.event-display__cats {
+  width: fit-content;
+  display: block;
+  margin-left: auto;
+}

@@ -103,6 +103,7 @@ def cat_to_dict(cat, depth=1):
     parent1 = cat.parent1
     parent2 = cat.parent2
     mentor = cat.mentor
+    description = cat.describe_cat(True)
   else:
     former_apprentices = id_list_to_dict_list(cat.former_apprentices)
     mates = id_list_to_dict_list(cat.mate)
@@ -110,6 +111,7 @@ def cat_to_dict(cat, depth=1):
     parent1 = cat_to_dict(Cat.fetch_cat(cat.parent1), 0)
     parent2 = cat_to_dict(Cat.fetch_cat(cat.parent2), 0)
     mentor = cat_to_dict(Cat.fetch_cat(cat.mentor), 0)
+    description = cat.describe_cat()
 
   return {
     'ID': cat.ID,
@@ -119,6 +121,7 @@ def cat_to_dict(cat, depth=1):
       'display': str(cat.name),
       'specSuffixHidden': cat.name.specsuffix_hidden
     },
+    'description': description,
     'age': cat.age,
     'moons': cat.moons,
     'gender': cat.genderalign,
@@ -468,7 +471,8 @@ def get_relationships(cat_id):
       'admiration': rel.admiration,
       'comfortable': rel.comfortable,
       'jealousy': rel.jealousy,
-      'trust': rel.trust
+      'trust': rel.trust,
+      'log': rel.log
     })
   return to_js(rels, dict_converter=js.Object.fromEntries)
 
