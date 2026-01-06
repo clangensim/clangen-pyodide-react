@@ -47,9 +47,12 @@ function NextMoonPage() {
       setIsProcessing(false);
       setShowLoading(false);
       clangenRunner.getEvents().then(
-        events => events.filter(event => event.types.includes("ceremony")).map(
+        events => events.filter(event => event.types.includes("ceremony") && event.cats_involved.length == 1).map(
           event => clangenRunner.getCat(event.cats_involved[0]).then(
             cat => {
+              if (cat.status != "leader") {
+                return;
+              }
               localStorage.setItem("newCeremony", cat.name.display);
               setNewLeader(cat.name.display);
             }
