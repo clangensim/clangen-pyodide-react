@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Cat } from "../python/types";
 import BasePage from "../layout/BasePage";
 import { clangenRunner } from "../python/clangenRunner";
+import CatDisplay from "../components/CatDisplay";
+
+import "../styles/ceremony-page.css";
 
 const crumbs = [
   {
@@ -31,7 +34,18 @@ function LeaderCeremonyPage() {
 
   return (
     <BasePage crumbs={crumbs}>
-      {ceremony && ceremony.split("<br><br>").map(line => <p>{line}</p>)}
+      {leader && 
+        <div className="ceremony-container">
+            <div>
+                <CatDisplay cat={leader} w="100px" h="100px" />
+                <div>{leader.name.display}'s Ceremony</div>
+            </div>
+            <div>
+                {ceremony && ceremony.split("<br><br>").map(line => <p>{line}</p>)}
+            </div>
+        </div> || 
+        <p>Your clan doesn't have a leader!</p>
+      }
     </BasePage>
   );
 }
