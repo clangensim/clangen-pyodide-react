@@ -46,6 +46,9 @@ function Navbar() {
         </Link>
       </NavbarDropdown>
       <NavbarDropdown name="Lore">
+        <Link tabIndex={0} className=" nav-item" to="/allegiances">
+          Allegiances
+        </Link>
         <Link tabIndex={0} className=" nav-item" to="/ceremony">
           Ceremony
         </Link>
