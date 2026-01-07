@@ -29,14 +29,12 @@ function Navbar() {
       <Link tabIndex={0} className=" nav-item" to="/">
         Home
       </Link>
-      <NavbarDropdown name="Clan">
-        <Link tabIndex={0} className=" nav-item" to="/cats">
-          Cats
-        </Link>
-        <Link tabIndex={0} className=" nav-item" to="/events">
-          Events
-        </Link>
-      </NavbarDropdown>
+      <Link tabIndex={0} className=" nav-item" to="/cats">
+        Cats
+      </Link>
+      <Link tabIndex={0} className=" nav-item" to="/events">
+        Events
+      </Link>
       <NavbarDropdown name="Manage">
         <Link tabIndex={0} className=" nav-item" to="/patrols">
           Patrol
