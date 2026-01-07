@@ -150,9 +150,6 @@ function CatProfilePage() {
               </div>
             </details>
           </div>
-          {cat.status == "leader" && 
-            <Link tabIndex={0} to={"/ceremony"}>Leadership Ceremony</Link>
-          }
           {notes && 
             <div>
               <details>
