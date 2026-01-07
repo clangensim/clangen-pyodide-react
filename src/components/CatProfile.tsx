@@ -39,7 +39,7 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>
           {cat.moons.toString()} <Pluralize num={cat.moons}>moon</Pluralize>
         </li>
-        <li>{cat.status} </li>
+        <li>{cat.status} {cat.status == "leader" && <Link tabIndex={0} to={"/ceremony"}>(visit ceremony)</Link>} </li>
         <li>backstory: {cat.backstory}</li>
         <li>experience: {cat.experienceLevel}</li>
         {cat.mentor && (
