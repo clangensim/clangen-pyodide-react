@@ -72,10 +72,10 @@ function NextMoonPage() {
       <p>It has been <b>{clanInfo?.age} moons</b> since {clanInfo?.name} was founded. The current season is <b>{clanInfo?.season}</b>.</p>
 
       {canPatrol.length > 0 &&
-        <p>{canPatrol.length} <Pluralize num={canPatrol.length}>cat</Pluralize> can still patrol this moon.</p>
+        <p>{canPatrol.length} <Pluralize num={canPatrol.length}>cat</Pluralize> can still <Link tabIndex={0} to="/patrols">patrol</Link> this moon.</p>
       }
       {canMediate.length > 0 &&
-        <p>{canMediate.length} <Pluralize num={canMediate.length}>mediator</Pluralize> can still mediate this moon.</p>
+        <p>{canMediate.length} <Pluralize num={canMediate.length}>mediator</Pluralize> can still <Link tabIndex={0} to="/mediate">mediate</Link> this moon.</p>
       }
 
       {clanInfo?.gameMode !== "classic" &&
