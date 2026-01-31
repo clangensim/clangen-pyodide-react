@@ -162,7 +162,7 @@ function CatSearch({
           </div>
         </details>
         <details>
-          <summary>Afilliation Filters</summary>
+          <summary>Affiliation Filters</summary>
           <ul>
             <Checkbox label="Mentors of selected cats" checked={filters["affiliation"]["apprentice"]} onChange={() => toggleFilter("affiliation", "apprentice")}/>
             <Checkbox label="Apprentices of selected cats" checked={filters["affiliation"]["mentor"]} onChange={() => toggleFilter("affiliation", "mentor")}/>
