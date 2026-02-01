@@ -77,6 +77,7 @@ function CatSearch({
         [filter]: value
       }
     });
+    setCurrentPage(0);
   }
 
   function toggleAllFilters(filterCategory: string, value: boolean | undefined = undefined)
@@ -91,6 +92,7 @@ function CatSearch({
     setFilters({
       ...filters
     });
+    setCurrentPage(0);
   }
 
   function toggleCatSelected(cat: Cat) {
