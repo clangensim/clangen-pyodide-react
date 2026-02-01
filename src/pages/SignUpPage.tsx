@@ -43,7 +43,7 @@ function SignUpPage() {
           <Link className="btn" to="/new-clan">Create New Clan</Link>
           <div className="or">or</div>
           <FileUploadButton
-            accept=".sav"
+            accept=".sav,.zip"
             tabIndex={0}
             onChange={handleImportClan}
           >
