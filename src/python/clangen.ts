@@ -39,6 +39,7 @@ class Clangen {
 
     this._pyodide = await loadPyodide();
 
+    // update this whenever RESOURCES change bc it caches them for better init speed
     const VERSION = "0.11.2";
     const mountDir = "/mnt";
     this._pyodide.FS.mkdirTree(mountDir);
