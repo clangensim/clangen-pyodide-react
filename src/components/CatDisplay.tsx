@@ -7,11 +7,13 @@ function CatDisplay({
   fuzzy = false,
   w = "50px",
   h = "50px",
+  className,
 }: {
   cat: Cat;
   fuzzy?: boolean;
   w?: string;
   h?: string;
+  className?: string;
 }) {
   return (
     <CatSprite
@@ -22,6 +24,7 @@ function CatDisplay({
       fuzzy={fuzzy}
       w={w}
       h={h}
+      className={className}
     />
   );
 }
@@ -34,6 +37,7 @@ function CatSprite({
   w = "50px",
   h = "50px",
   fuzzy = false,
+  className,
 }: {
   pelt: Pelt;
   age: string;
@@ -42,6 +46,7 @@ function CatSprite({
   w?: string;
   h?: string;
   fuzzy: boolean;
+  className?: string;
 }) {
   const canvasRef = useRef<any>(null);
   const catSprite = pelt.catSprites[age];
@@ -60,6 +65,7 @@ function CatSprite({
         width={50}
         height={50}
         ref={canvasRef}
+        className={className}
       />
     </>
   );
