@@ -4,9 +4,11 @@ import "../styles/sign-up-page.css";
 import FileUploadButton from "../components/generic/FileUploadButton";
 import { useEffect } from "react";
 import { setCustomCss } from "../utils";
+import { useQueryClient } from "@tanstack/react-query";
 
 function SignUpPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   function handleImportClan(e: any) {
     const f = e.target.files[0];
@@ -15,6 +17,7 @@ function SignUpPage() {
         clangenRunner.importClan(buff);
       })
       .then(() => clangenRunner.reloadClan())
+      .then(() => queryClient.removeQueries())
       .then(() => navigate("/"));
   }
 
