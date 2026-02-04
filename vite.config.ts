@@ -39,7 +39,8 @@ export default defineConfig({
       input: {
         main: resolve(DIR, "index.html"),
         credits: resolve(DIR, "credits.html"),
-        reset: resolve(DIR, "reset.html")
+        reset: resolve(DIR, "reset.html"),
+        changelog: resolve(DIR, "changelog.html"),
       }
     }
   },

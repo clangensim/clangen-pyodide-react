@@ -54,7 +54,7 @@ function SignUpPage() {
         </FileUploadButton>
         </div>
         <div className="footer">
-          <a target="_blank" rel="noopener noreferrer" href="/credits">Credits</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source</a>
+          <a target="_blank" rel="noopener noreferrer" href="/credits">Credits</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source</a> | <a target="_blank" rel="noopener noreferrer" href="/changelog">Changelog</a>
         </div>
       </div>
     </>
