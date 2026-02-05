@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { Cat } from "../python/types";
 import Pluralize from "./generic/Pluralize";
+import { TbSparkles } from "react-icons/tb";
 
 function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
   return (
@@ -39,7 +40,7 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>
           {cat.moons.toString()} <Pluralize num={cat.moons}>moon</Pluralize>
         </li>
-        <li>{cat.status} </li>
+        <li>{cat.status} {cat.status == "leader" && !cat.dead && <Link tabIndex={0} to={"/ceremony"}><TbSparkles /></Link>} </li>
         <li>backstory: {cat.backstory}</li>
         <li>experience: {cat.experienceLevel}</li>
         {cat.mentor && (
