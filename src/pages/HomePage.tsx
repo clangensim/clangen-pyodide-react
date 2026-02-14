@@ -81,7 +81,7 @@ function HomePage() {
 
       <div className="button-row">
         <FileUploadButton
-          accept=".sav,.zip"
+          accept=".sav,.zip,application/zip,application/octet-stream"
           tabIndex={0}
           onChange={handleImportClan}
         >

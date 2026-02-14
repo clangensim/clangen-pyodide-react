@@ -18,14 +18,7 @@ function FileUploadButton({
       inputRef.current.click();
     }
   }
-
-  // https://github.com/mdn/browser-compat-data/issues/26043 - iOS doesn't implement "accept" with filename ext
-  const acceptString = (
-      navigator.userAgent.match(/iPad/i) ||
-      navigator.userAgent.match(/iPhone/i) ||
-      navigator.userAgent.match(/iPod/i)
-    ) ? undefined : accept
-
+  
   return (
     <>
       <button tabIndex={tabIndex} onClick={handleButtonClick}>
@@ -38,7 +31,7 @@ function FileUploadButton({
         }}
         ref={inputRef}
         onChange={onChange}
-        accept={acceptString}
+        accept={accept}
       />
     </>
   );
