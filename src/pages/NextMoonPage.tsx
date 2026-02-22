@@ -45,7 +45,12 @@ function NextMoonPage() {
       clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
       clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));  
       queryClient.invalidateQueries();
-  });
+    }).catch((err) => {
+      alert(err);
+      setIsProcessing(false);
+      setShowLoading(false);
+      queryClient.invalidateQueries();
+    });
   }
 
   return (
