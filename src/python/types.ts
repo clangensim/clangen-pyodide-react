@@ -76,6 +76,7 @@ type Cat = {
   apprentices: Cat[];
   formerApprentices: Cat[];
   parents: Cat[];
+  adoptiveParents: Cat[];
   mates: Cat[];
   toggles: Toggles;
 };
@@ -125,6 +126,7 @@ type CatEdit = {
   gender: string;
   afterlife?: string;
   notes?: string;
+  adoptiveParents?: string[];
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med";

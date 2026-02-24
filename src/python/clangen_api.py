@@ -103,6 +103,7 @@ def cat_to_dict(cat, depth=1):
     mentor = cat.mentor
     description = cat.describe_cat(True)
     parents = list(cat.get_parents())
+    adoptive_parents = cat.inheritance.get_no_blood_parents()
   else:
     former_apprentices = id_list_to_dict_list(cat.former_apprentices)
     mates = id_list_to_dict_list(cat.mate)
@@ -110,6 +111,7 @@ def cat_to_dict(cat, depth=1):
     mentor = cat_to_dict(Cat.fetch_cat(cat.mentor), 0)
     parents = id_list_to_dict_list(cat.get_parents())
     description = cat.describe_cat()
+    adoptive_parents = id_list_to_dict_list(cat.inheritance.get_no_blood_parents())
 
   return {
     'ID': cat.ID,
@@ -135,6 +137,7 @@ def cat_to_dict(cat, depth=1):
     'apprentices': apprentices,
     'formerApprentices': former_apprentices,
     'parents': parents,
+    'adoptiveParents': adoptive_parents,
     'mates': mates,
     'experienceLevel': cat.experience_level,
     'thought': cat.thought,
@@ -279,6 +282,19 @@ def edit_cat(cat_id, editObj):
       if mateID not in edit["mates"]:
         cat.unset_mate(Cat.fetch_cat(mateID))
 
+  if "adoptiveParents" in edit:
+    for parentID in edit["adoptiveParents"]:
+      if parentID not in cat.mate:
+        cat.adoptive_parents.append(parentID)
+        cat.create_inheritance_new_cat()
+
+    adoptive_parents = cat.adoptive_parents.copy()
+    for parentID in adoptive_parents:
+      if parentID not in edit["adoptiveParents"] and parentID in cat.adoptive_parents:
+        cat.adoptive_parents.remove(parentID)
+        cat.create_inheritance_new_cat()
+        Cat.fetch_cat(parentID).create_inheritance_new_cat()
+
   if "toggles" in edit:
     toggles = edit["toggles"]
 
@@ -385,6 +401,29 @@ def get_potential_mates(cat_id):
                       or i.gender != cat.gender)]
 
   return to_js(valid_mates, dict_converter=js.Object.fromEntries)
+
+def get_potentional_adoptive_parents(cat_id):
+    cat = Cat.all_cats[cat_id]
+    def not_related_to_mate(possible_parent) -> bool:
+      if len(cat.mate) > 0:
+        for mate_id in cat.mate:
+          mate = Cat.fetch_cat(mate_id)
+          mate_relatives = mate.get_relatives()
+          if possible_parent.ID in mate_relatives:
+            return False
+      return True
+
+    valid_parents = [cat_to_dict(inter_cat, 0) for inter_cat in Cat.all_cats_list if
+                      not (inter_cat.dead or inter_cat.outside or inter_cat.exiled) and  # Adoptive parents cant be dead or outside
+                      inter_cat.ID != cat.ID and # Can't be your own adoptive parent
+                      inter_cat.moons - cat.moons >= 14 and # Adoptive parent must be at least 14 moons older. -> own child can't adopt you
+                      inter_cat.ID not in cat.mate and # Can't set your mate your adoptive parent. 
+                      inter_cat.ID not in cat.get_parents() and # Adoptive parents can't already be their parent
+                      not_related_to_mate(inter_cat) #and # quick fix TODO: change / remove later
+                      #(not self.mates_current_parents or self.is_parent_mate(cat, inter_cat)) and #Toggle for only mates of current parents
+                      #(not self.unrelated_only or inter_cat.ID not in cat.get_relatives()) #Toggle for only not-closely-related. 
+                    ]
+    return to_js(valid_parents, dict_converter=js.Object.fromEntries)
 
 def _is_patrollable(the_cat):
   return not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status not in [

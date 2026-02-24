@@ -108,6 +108,7 @@ function CatEditPage() {
 
   const [potentialMentors, setPotentialMentors] = useState<Cat[]>();
   const [potentialMates, setPotentialMates] = useState<Cat[]>();
+  const [potentialAdoptiveParents, setPotentialAdoptiveParents] = useState<Cat[]>();
 
   const [prefix, setPrefix] = useState<string>("");
   const [suffix, setSuffix] = useState<string>("");
@@ -115,9 +116,10 @@ function CatEditPage() {
   const [status, setStatus] = useState("");
 
   const [mentor, setMentor] = useState("");
-  const [selectedMate, setSelectedMate] = useState("");
-
   const [mates, setMates] = useState<string[]>([]);
+  const [selectedMate, setSelectedMate] = useState("");
+  const [adoptiveParents, setAdoptiveParents] = useState<string[]>([]);
+  const [selectedAdoptiveParent, setSelectedAdoptiveParent] = useState("");
 
   const [preventRetire, setPreventRetire] = useState(false);
   const [preventKits, setPreventKits] = useState(false);
@@ -139,6 +141,7 @@ function CatEditPage() {
     }
   }
 
+  // need the maps so we can display the data of selected cats
   const potentialMateOptions = [];
   const potentialMateMap = useRef<Record<string, Cat>>({});
   if (potentialMates) {
@@ -151,6 +154,19 @@ function CatEditPage() {
         label: `${c.name.display}`,
         value: c.ID,
       });
+    }
+  }
+
+  const potentialAdoptiveParentsMap = useRef<Record<string, Cat>>({});
+  const potentialAdoptiveParentsOptions = [];
+  if (potentialAdoptiveParents) {
+    for (const c of potentialAdoptiveParents) {
+      if (adoptiveParents.includes(c.ID)) { continue; }
+      potentialAdoptiveParentsOptions.push({
+        label: `${c.name.display}`,
+        value: c.ID,
+      });
+    potentialAdoptiveParentsMap.current[c.ID] = c;
     }
   }
 
@@ -211,6 +227,7 @@ function CatEditPage() {
     };
     e.toggles = t;
     e.hideSpecialSuffix = hideSpecSuffix;
+    e.adoptiveParents = adoptiveParents;
     if (isApprentice) {
       e.mentor = mentor;
     }
@@ -236,6 +253,10 @@ function CatEditPage() {
 
   function handleRemoveMate(index: number) {
     setMates(mates.filter((_, i) => i !== index));
+  }
+
+  function handleRemoveAdoptiveParent(index: number) {
+    setAdoptiveParents(adoptiveParents.filter((_, i) => i !== index));
   }
 
   useEffect(() => {
@@ -269,16 +290,25 @@ function CatEditPage() {
       }
       setAfterlife(afterlifeLocation);
 
-      clangenRunner
-        .getPotentialMentors(c.status)
+      setAdoptiveParents(c.adoptiveParents.map((parent) => parent.ID));
+
+      clangenRunner.getPotentialMentors(c.status)
         .then((mentors) => setPotentialMentors(mentors));
+
       for (const mate of c.mates) {
         potentialMateMap.current[mate.ID] = mate;
+      }
+      for (const parent of c.adoptiveParents) {
+        potentialAdoptiveParentsMap.current[parent.ID] = parent;
       }
     });
 
     clangenRunner.getPotentialMates(catID).then((mates) => {
       setPotentialMates(mates);
+    });
+
+    clangenRunner.getPotentialAdoptiveParents(catID).then((parents) => {
+      setPotentialAdoptiveParents(parents);
     });
 
     clangenRunner.getCatNotes(catID).then((n) => {
@@ -359,6 +389,37 @@ function CatEditPage() {
               </button>
             </fieldset>
           )}
+
+          <fieldset>
+            <legend>Adoptive Parents</legend>
+            {adoptiveParents.map((parentID, index) => (
+              <div key={parentID + "_" + index}>
+                <Link to={`/cats/${parentID}`} target="_blank">
+                  {potentialAdoptiveParentsMap.current[parentID]?.name.display}
+                </Link>{" "}
+                <button onClick={() => handleRemoveAdoptiveParent(index)}>
+                  Remove
+                </button>
+              </div>
+            ))}
+
+            <Select
+              value={selectedAdoptiveParent}
+              options={potentialAdoptiveParentsOptions}
+              onChange={(value) => {
+                setSelectedAdoptiveParent(value);
+              }}
+            />
+            <button
+              onClick={() => {
+                setAdoptiveParents([...adoptiveParents, selectedAdoptiveParent]);
+                setSelectedAdoptiveParent("");
+              }}
+              disabled={selectedAdoptiveParent === ""}
+            >
+              Add Adoptive Parent
+            </button>
+          </fieldset>
 
           <fieldset>
             <legend>Toggles</legend>

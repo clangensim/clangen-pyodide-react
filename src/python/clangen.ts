@@ -217,6 +217,13 @@ class Clangen {
   }
 
   /**
+   * Gets potential adoptive parents for cat of specified ID.
+   */
+  public async getPotentialAdoptiveParents(id: string): Promise<Cat[]> {
+    return this._clangenApi.get_potentional_adoptive_parents(id);
+  }
+
+  /**
    * Gets cats who can patrol this moon.
    */
   public async getPatrollableCats(): Promise<Cat[]> {
