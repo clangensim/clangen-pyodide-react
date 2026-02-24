@@ -141,6 +141,7 @@ def cat_to_dict(cat, depth=1):
     'mates': mates,
     'experienceLevel': cat.experience_level,
     'thought': cat.thought,
+    'canWork': not cat.not_working(),
     'pelt': {
       'name': cat.pelt.name,
       'colour': cat.pelt.colour,

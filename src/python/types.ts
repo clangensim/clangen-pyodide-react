@@ -65,6 +65,7 @@ type Cat = {
   experienceLevel: string;
   thought: string;
   description: string;
+  canWork: boolean;
   /* this is the display text of the backstory */
   backstory: string;
   dead: boolean;
