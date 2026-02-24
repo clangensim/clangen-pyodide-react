@@ -78,10 +78,10 @@ def reload_clan():
 def erase_clan():
   shutil.rmtree("/mnt/saves")
 
-def cat_to_dict(cat, depth=1):
-  def id_list_to_dict_list(lst):
+def id_list_to_dict_list(lst):
     return list(map(lambda cat_id : cat_to_dict(Cat.all_cats[cat_id], 0), lst))
 
+def cat_to_dict(cat, depth=1):
   if cat is None:
     return None
 
