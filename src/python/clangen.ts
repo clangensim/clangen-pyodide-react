@@ -11,6 +11,7 @@ import type {
   Relationship,
   Condition,
   Event,
+  Family,
 } from "./types";
 
 import clangenApiUrl from "./clangen_api.py?url";
@@ -262,6 +263,13 @@ class Clangen {
    */
   public async getConditions(id: string): Promise<Condition[]> {
     return this._clangenApi.get_conditions(id);
+  }
+
+  /**
+   * Gets family for cat with specified ID.
+   */
+  public async getFamily(id: string): Promise<Family> {
+    return this._clangenApi.get_family(id);
   }
 
   /**

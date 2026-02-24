@@ -97,6 +97,12 @@ type Relationship = {
   log: string[];
 };
 
+type Family = {
+  parents: Cat[];
+  siblings: Cat[];
+  children: Cat[];
+}
+
 type Event = {
   text: string;
   types: Array<string>;
@@ -143,4 +149,5 @@ export type {
   Condition,
   Event,
   Toggles,
+  Family,
 };

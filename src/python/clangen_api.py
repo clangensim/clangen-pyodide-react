@@ -476,6 +476,18 @@ def get_relationships(cat_id):
     })
   return to_js(rels, dict_converter=js.Object.fromEntries)
 
+def get_family(cat_id):
+  the_cat = Cat.fetch_cat(cat_id)
+  if not the_cat.inheritance:
+    the_cat.create_inheritance_new_cat()
+
+  family = {
+    "parents": id_list_to_dict_list(the_cat.get_parents()),
+    "siblings": id_list_to_dict_list(the_cat.get_siblings()),
+    "children": id_list_to_dict_list(the_cat.get_children())
+  }
+  return to_js(family, dict_converter=js.Object.fromEntries)
+
 def get_conditions(cat_id):
   conditions = []
   cat = Cat.all_cats[cat_id]
