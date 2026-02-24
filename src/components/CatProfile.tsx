@@ -21,14 +21,6 @@ function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
 }
 
 function CatProfile({ cat }: { cat: Cat }) {
-  const parents = [];
-  if (cat.parent1) {
-    parents.push(cat.parent1);
-  }
-  if (cat.parent2) {
-    parents.push(cat.parent2);
-  }
-
   return (
     <>
       <ul className="row-list cat-profile__list">
@@ -64,10 +56,10 @@ function CatProfile({ cat }: { cat: Cat }) {
             : <CommaSeparatedProfileLinks cats={cat.formerApprentices} />
           </li>
         )}
-        {parents.length > 0 && (
+        {cat.parents.length > 0 && (
           <li>
-            <Pluralize num={parents.length}>parent</Pluralize>:{" "}
-            <CommaSeparatedProfileLinks cats={parents} />
+            <Pluralize num={cat.parents.length}>parent</Pluralize>:{" "}
+            <CommaSeparatedProfileLinks cats={cat.parents} />
           </li>
         )}
         {cat.mates.length > 0 && (
