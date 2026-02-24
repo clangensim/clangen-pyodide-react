@@ -104,6 +104,7 @@ def cat_to_dict(cat, depth=1):
     parent2 = cat.parent2
     mentor = cat.mentor
     description = cat.describe_cat(True)
+    parents = list(cat.get_parents())
   else:
     former_apprentices = id_list_to_dict_list(cat.former_apprentices)
     mates = id_list_to_dict_list(cat.mate)
@@ -111,6 +112,7 @@ def cat_to_dict(cat, depth=1):
     parent1 = cat_to_dict(Cat.fetch_cat(cat.parent1), 0)
     parent2 = cat_to_dict(Cat.fetch_cat(cat.parent2), 0)
     mentor = cat_to_dict(Cat.fetch_cat(cat.mentor), 0)
+    parents = id_list_to_dict_list(cat.get_parents())
     description = cat.describe_cat()
 
   return {
@@ -138,6 +140,7 @@ def cat_to_dict(cat, depth=1):
     'formerApprentices': former_apprentices,
     'parent1': parent1,
     'parent2': parent2,
+    'parents': parents,
     'mates': mates,
     'experienceLevel': cat.experience_level,
     'thought': cat.thought,
