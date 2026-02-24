@@ -1,4 +1,4 @@
-import { Cat, Relationship, Condition } from "../../python/types";
+import { Cat, Relationship, Condition, Family } from "../../python/types";
 import { clangenRunner } from "../../python/clangenRunner";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
@@ -13,6 +13,7 @@ import "../../styles/cat-profile-page.css";
 import RelationshipsDisplay from "../../components/RelationshipDisplay";
 import ConditionsDisplay from "../../components/ConditionsDisplay";
 import { useQuery } from "@tanstack/react-query";
+import FamilyDisplay from "../../components/FamilyDisplay";
 
 function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
@@ -21,6 +22,7 @@ function CatProfilePage() {
   const [neighbourCats, setNeighbourCats] = useState<[string, string]>(["-1", "-1"]);
   const [ceremony, setCeremony] = useState<string>();
   const [notes, setNotes] = useState<string>();
+  const [family, setFamily] = useState<Family>();
 
   const query = useQuery({
     queryKey: ["claninfo"],
@@ -49,6 +51,7 @@ function CatProfilePage() {
     clangenRunner.getConditions(catID).then((c) => setConditions(c));
     clangenRunner.getPrevAndNextCats(catID).then((c) => setNeighbourCats(c));
     clangenRunner.getCatNotes(catID).then((n) => setNotes(n));
+    clangenRunner.getFamily(catID).then((f) => setFamily(f));
   }, [catID]);
 
   let crumbs = undefined;
@@ -138,6 +141,14 @@ function CatProfilePage() {
               <summary>Relationships</summary>
               <div className="details-content">
                 <RelationshipsDisplay relationships={relationships} />
+              </div>
+            </details>
+          </div>
+          <div>
+            <details>
+              <summary>Family</summary>
+              <div className="details-content">
+                { family && <FamilyDisplay family={family} />}
               </div>
             </details>
           </div>
