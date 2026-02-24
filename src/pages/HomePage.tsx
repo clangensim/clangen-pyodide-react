@@ -38,7 +38,7 @@ function HomePage() {
   const clanInfo = query.data;
 
   useEffect(() => {
-    document.title = " ClanGen Simulator";
+    document.title = "ClanGen Simulator";
   }, []);
 
   return (
