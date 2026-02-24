@@ -76,8 +76,6 @@ type Cat = {
   apprentices: Cat[];
   formerApprentices: Cat[];
   parents: Cat[];
-  parent1: Cat | undefined;
-  parent2: Cat | undefined;
   mates: Cat[];
   toggles: Toggles;
 };

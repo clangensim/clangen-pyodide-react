@@ -100,8 +100,6 @@ def cat_to_dict(cat, depth=1):
     former_apprentices = cat.former_apprentices
     mates = cat.mate
     apprentices = cat.apprentice
-    parent1 = cat.parent1
-    parent2 = cat.parent2
     mentor = cat.mentor
     description = cat.describe_cat(True)
     parents = list(cat.get_parents())
@@ -109,8 +107,6 @@ def cat_to_dict(cat, depth=1):
     former_apprentices = id_list_to_dict_list(cat.former_apprentices)
     mates = id_list_to_dict_list(cat.mate)
     apprentices = id_list_to_dict_list(cat.apprentice)
-    parent1 = cat_to_dict(Cat.fetch_cat(cat.parent1), 0)
-    parent2 = cat_to_dict(Cat.fetch_cat(cat.parent2), 0)
     mentor = cat_to_dict(Cat.fetch_cat(cat.mentor), 0)
     parents = id_list_to_dict_list(cat.get_parents())
     description = cat.describe_cat()
@@ -138,8 +134,6 @@ def cat_to_dict(cat, depth=1):
     'mentor': mentor,
     'apprentices': apprentices,
     'formerApprentices': former_apprentices,
-    'parent1': parent1,
-    'parent2': parent2,
     'parents': parents,
     'mates': mates,
     'experienceLevel': cat.experience_level,
