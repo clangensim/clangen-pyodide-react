@@ -285,14 +285,15 @@ def edit_cat(cat_id, editObj):
 
   if "adoptiveParents" in edit:
     for parentID in edit["adoptiveParents"]:
-      if parentID not in cat.mate:
+      if parentID not in cat.adoptive_parents:
         cat.adoptive_parents.append(parentID)
         cat.create_inheritance_new_cat()
 
     adoptive_parents = cat.adoptive_parents.copy()
     for parentID in adoptive_parents:
       if parentID not in edit["adoptiveParents"] and parentID in cat.adoptive_parents:
-        cat.adoptive_parents.remove(parentID)
+        while parentID in cat.adoptive_parents: # if there are any dupes
+          cat.adoptive_parents.remove(parentID)
         cat.create_inheritance_new_cat()
         Cat.fetch_cat(parentID).create_inheritance_new_cat()
 
