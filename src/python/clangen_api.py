@@ -234,14 +234,14 @@ def edit_cat(cat_id, editObj):
       # if they're deputy, remove them from deputy
       if game.clan.deputy and cat.ID == game.clan.deputy.ID:
         game.clan.deputy = None
-      # demote current leader
-      if game.clan.leader:
+      # demote current leader if alie
+      if game.clan.leader and not game.clan.leader.dead:
         game.clan.leader.status_change("warrior", resort=True)
       game.clan.new_leader(cat)
       Cat.sort_cats()
     elif edit["status"] == "deputy":
-      # demote current deputy 
-      if game.clan.deputy:
+      # demote current deputy if alive
+      if game.clan.deputy and not game.clan.deputy.dead:
         game.clan.deputy.status_change("warrior")
       game.clan.deputy = cat
       cat.status_change("deputy", resort=True)
