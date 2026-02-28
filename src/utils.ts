@@ -1,4 +1,4 @@
-import { ClanInfo } from "./python/types";
+import { Cat, ClanInfo } from "./python/types";
 
 const download = (b: Blob, name: string) => {
   const temp = document.createElement("a");
@@ -18,6 +18,37 @@ const formatText = (s: string) => {
   }
   return output;
 };
+
+function getCatLocationBreadcrumb(cat: Cat | undefined, clanInfo: ClanInfo | null | undefined) {
+  let location = "???";
+  let href = "/cats"
+  if (cat) {
+    if (cat.dead) {
+      location = "StarClan";
+      href = "/cats?category=starclan";
+      if (cat.inDarkForest) {
+        location = "Dark Forest";
+        href = "/cats?category=dark_forest";
+      }
+      if (cat.outside) {
+        location = "Unknown";
+        href = "/cats?category=unknown_residence";
+      }
+    } else if (cat.outside) {
+      location = "Cats Outside the Clan";
+      href = "/cats?category=outside_cats";
+    } else {
+      if (clanInfo) {
+        location = clanInfo.name;
+      }
+    }
+  }
+
+  return {
+    url: href,
+    label: location,    
+  }
+}
 
 function getSiteTheme() {
   let siteTheme = localStorage.getItem("site-theme");
@@ -59,4 +90,4 @@ function getCampBGPathByClan(clanInfo: ClanInfo | null | undefined) {
   return getCampBGPath(clanInfo?.biome.toLowerCase(), clanInfo?.season.toLowerCase().replace("-", ""), clanInfo?.campBg);
 }
 
-export { download, formatText, setCustomCss, getCampBGPath, getCampBGPathByClan };
+export { download, formatText, getCatLocationBreadcrumb, setCustomCss, getCampBGPath, getCampBGPathByClan };

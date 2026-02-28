@@ -14,6 +14,7 @@ import RelationshipsDisplay from "../../components/RelationshipDisplay";
 import ConditionsDisplay from "../../components/ConditionsDisplay";
 import { useQuery } from "@tanstack/react-query";
 import FamilyDisplay from "../../components/FamilyDisplay";
+import { getCatLocationBreadcrumb } from "../../utils";
 
 function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
@@ -87,10 +88,7 @@ function CatProfilePage() {
         url: "/cats",
         label: "Cats",
       },
-      {
-        url: href,
-        label: location,
-      },
+      getCatLocationBreadcrumb(cat, clanInfo),
       {
         url: `/cats/${catID}`,
         label: cat.name.display,
