@@ -10,6 +10,8 @@ import BasePage from "../../layout/BasePage";
 import Checkbox from "../../components/generic/Checkbox";
 import Radiobox from "../../components/generic/Radiobox";
 import "../../styles/cat-edit-page.css";
+import { getCatLocationBreadcrumb } from "../../utils";
+import { useQuery } from "@tanstack/react-query";
 
 const selectApprenticeOptions = [
   {
@@ -102,6 +104,12 @@ function CatEditPage() {
   let crumbs = undefined;
 
   const navigate = useNavigate();
+
+  const query = useQuery({
+    queryKey: ["claninfo"],
+    queryFn: async () => await clangenRunner.getClanInfo(),
+  });
+  const clanInfo = query.data;
 
   const [cat, setCat] = useState<Cat>();
   const [notes, setNotes] = useState<string>("");
@@ -201,6 +209,7 @@ function CatEditPage() {
         url: "/cats",
         label: "Cats",
       },
+      getCatLocationBreadcrumb(cat, clanInfo),
       {
         url: `/cats/${catID}`,
         label: cat.name.display,
