@@ -96,7 +96,8 @@ function HomePage() {
         <a target="_blank" rel="noopener noreferrer" href="/credits">Credits</a> |{" "}
         <a target="_blank" rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source Code</a> |{" "}
         <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/zX1zwgiEDGTrZ7X16">Bugs & Feedback</a> |{" "}
-        <a target="_blank" rel="noopener noreferrer" href="/changelog">Changelog</a>
+        <a target="_blank" rel="noopener noreferrer" href="/changelog">Changelog</a> | {" "}
+        <a target="_blank" rel="noopener noreferrer" href="/faq">FAQ</a>
       </p>
     </BasePage>
   );
