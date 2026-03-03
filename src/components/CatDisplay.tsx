@@ -9,13 +9,17 @@ function CatDisplay({
   h = "50px",
   className,
 }: {
-  cat: Cat;
+  cat: Cat | undefined; // sometimes cat doesn't exist?
   fuzzy?: boolean;
   w?: string;
   h?: string;
   className?: string;
 }) {
   var forceSprite;
+
+  if (!cat) { // just to prevent crash
+    return <></>
+  }
 
   if (!cat.canWork && cat.age !== "newborn") {
     if (cat.age === "kitten" || cat.age === "adolescent") {
