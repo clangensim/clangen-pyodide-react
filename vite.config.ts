@@ -41,6 +41,7 @@ export default defineConfig({
         credits: resolve(DIR, "credits.html"),
         reset: resolve(DIR, "reset.html"),
         changelog: resolve(DIR, "changelog.html"),
+        faq: resolve(DIR, "faq.html"),
       }
     }
   },
