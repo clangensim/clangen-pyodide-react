@@ -33,7 +33,7 @@ function SignUpPage() {
     <>
       <div id="signup">
         <p>
-          Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate
+          Welcome to <b>ClanGen Simulator</b>, an unofficial project that aims to simulate
           Clan Generator in your browser.
         </p>
 
