@@ -65,7 +65,6 @@ body {
 }
 
 .navbar {
-  /* background-color: rgb(237 229 208); */
   font-family: "Bubblegum Sans", sans-serif;
   background-color: var(--navbar-background-color);
   background: var(--navbar-background-gradient);
@@ -73,15 +72,35 @@ body {
   border-top: var(--navbar-border);
   margin-bottom: 5px;
 }
-.navbar a {
+.nav-item {
   display: inline-block;
   text-decoration-line: none;
   padding: 10px;
   font-size: large;
   color: var(--navbar-text-color);
+  cursor: pointer;
 }
-.navbar a:hover {
+.nav-item:hover {
   background-color: var(--navbar-hovered-text-color);
+}
+.nav-children {
+  margin-top: 10px;
+  margin-left: -10px;
+  background: var(--navbar-inverse-background-gradient);
+  border-bottom: var(--navbar-border);
+  border-left: var(--navbar-border);
+  border-right: var(--navbar-border);
+  margin-bottom: 5px;
+}
+.nav-dropdown .nav-children {
+  display: none;
+}
+.nav-dropdown:hover .nav-children,
+.nav-dropdown:focus .nav-children,
+.nav-dropdown:active .nav-children {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
 }
 
 .breadcrumbs {
