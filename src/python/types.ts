@@ -66,6 +66,7 @@ type Cat = {
   thought: string;
   description: string;
   canWork: boolean;
+  lives?: number;
   /* this is the display text of the backstory */
   backstory: string;
   dead: boolean;

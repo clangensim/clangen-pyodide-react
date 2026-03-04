@@ -32,6 +32,7 @@ function CatProfile({ cat }: { cat: Cat }) {
           {cat.moons.toString()} <Pluralize num={cat.moons}>moon</Pluralize>
         </li>
         <li>{cat.status} </li>
+        {cat.lives !== undefined && <li>remaining lives: {cat.lives}</li>}
         <li>backstory: {cat.backstory}</li>
         <li>experience: {cat.experienceLevel}</li>
         {cat.mentor && (

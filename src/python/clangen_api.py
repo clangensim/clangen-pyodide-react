@@ -99,6 +99,11 @@ def cat_to_dict(cat, depth=1):
   else:
     backstory = 'Clanborn'
 
+  if game.clan and game.clan.leader.ID == cat.ID and not cat.dead:
+    leader_lives = game.clan.leader_lives
+  else:
+    leader_lives = None
+
   if depth <= 0:
     former_apprentices = cat.former_apprentices
     mates = cat.mate
@@ -145,6 +150,7 @@ def cat_to_dict(cat, depth=1):
     'experienceLevel': cat.experience_level,
     'thought': cat.thought,
     'canWork': not cat.not_working(),
+    'lives': leader_lives,
     'pelt': {
       'name': cat.pelt.name,
       'colour': cat.pelt.colour,
