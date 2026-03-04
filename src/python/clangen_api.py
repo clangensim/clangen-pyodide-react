@@ -7,10 +7,12 @@ from pyodide.ffi import to_js
 import js
 import uuid
 import json
+import random
 
 from scripts.game_structure.load_cat import load_cats, version_convert
 from scripts.game_structure.game_essentials import game
 from scripts.cat.cats import Cat, create_example_cats, BACKSTORIES
+from scripts.cat.names import names
 from scripts.cat.history import History
 from scripts.patrol.patrol import Patrol
 from scripts.clan import Clan
@@ -645,6 +647,9 @@ def export_clan():
   with open("/exported.zip", "rb") as f:
     binary = f.read()
   return to_js(binary)
+
+def get_random_clan_name():
+  return random.choice(names.names_dict["normal_prefixes"])
 
 def get_clan_info():
   if not game.clan:

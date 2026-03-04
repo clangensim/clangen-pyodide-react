@@ -6,6 +6,7 @@ import "../styles/new-clan.css";
 
 import CatDisplay from "../components/CatDisplay";
 import { getCampBGPath, setCustomCss } from "../utils";
+import { TbDice3 } from "react-icons/tb";
 
 const biomeVariants: {[biome: string]: string[][]} = {
   "Forest": [
@@ -37,12 +38,18 @@ function NewClanPage() {
   const [deputy, setDeputy] = useState<string>("");
   const [med, setMed] = useState<string>("");
 
+  const [clanName, setClanName] = useState<string>();
   const [biome, setBiome] = useState<string>("Forest");
   const [campNum, setCampNum] = useState<string>("camp1");
   const [gamemode, setGamemode] = useState<string>("classic");
   const [season, setSeason] = useState<string>("Newleaf");
 
   const navigate = useNavigate();
+
+  function randomizeName(e: any) {
+    e.preventDefault();
+    clangenRunner.getRandomClanName().then((name) => setClanName(name));
+  }
 
   useEffect(() => {
     clangenRunner.initializeStarterCats().then((cats) => setCats(cats));
@@ -124,8 +131,17 @@ function NewClanPage() {
             required
             size={15}
             placeholder=" "
+            value={clanName}
+            onChange={(e) => setClanName(e.target.value)}
           ></input>
           -Clan
+          <button
+            style={{marginLeft: "0.5em"}}
+            className="icon-button"
+            onClick={randomizeName}
+          >
+            <TbDice3 size={20} />
+          </button>
         </fieldset>
 
         <fieldset>

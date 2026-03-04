@@ -402,6 +402,13 @@ class Clangen {
   }
 
   /**
+   * Gets random Clan name.
+   */
+  public async getRandomClanName(): Promise<string> {
+    return this._clangenApi.get_random_clan_name();
+  }
+
+  /**
    * Gets info about Clan.
    */
   public async getClanInfo(): Promise<ClanInfo | null> {
