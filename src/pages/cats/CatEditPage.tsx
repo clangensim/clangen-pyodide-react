@@ -12,6 +12,7 @@ import Radiobox from "../../components/generic/Radiobox";
 import "../../styles/cat-edit-page.css";
 import { getCatLocationBreadcrumb } from "../../utils";
 import { useQuery } from "@tanstack/react-query";
+import { TbDice3 } from "react-icons/tb";
 
 const selectApprenticeOptions = [
   {
@@ -221,6 +222,13 @@ function CatEditPage() {
     ];
   }
 
+  function randomizeName() {
+    clangenRunner.getRandomCatName(catID).then((name) => {
+      setPrefix(name.prefix);
+      setSuffix(name.suffix);
+    });
+  }
+
   function handleSubmit() {
     const e: CatEdit = {
       status: status,
@@ -343,6 +351,13 @@ function CatEditPage() {
           onChange={(e) => setSuffix(e.currentTarget.value)}
           placeholder=" " // otherwise the spacing shifts on iOS
         />
+        <button
+          style={{marginLeft: "0.5em"}}
+          className="icon-button"
+          onClick={randomizeName}
+        >
+          <TbDice3 size={20} />
+        </button>
       </div>
 
       {cat && cat.dead && 

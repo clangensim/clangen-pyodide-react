@@ -152,4 +152,5 @@ export type {
   Event,
   Toggles,
   Family,
+  Name,
 };

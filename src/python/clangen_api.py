@@ -14,6 +14,7 @@ from scripts.game_structure.game_essentials import game
 from scripts.cat.cats import Cat, create_example_cats, BACKSTORIES
 from scripts.cat.names import names
 from scripts.cat.history import History
+from scripts.cat.names import Name
 from scripts.patrol.patrol import Patrol
 from scripts.clan import Clan
 from scripts.events import events_class
@@ -227,6 +228,23 @@ def get_leader_ceremony():
   if game.clan.leader:
     return History.get_lead_ceremony(game.clan.leader)
   return None
+
+def get_random_cat_name(cat_id):
+  cat = Cat.all_cats[cat_id]
+  n = Name(cat.status,
+        None,
+        None,
+        cat.pelt.colour,
+        cat.pelt.eye_colour,
+        cat.pelt.name,
+        cat.pelt.tortiepattern)
+  name_obj = {
+    "prefix": n.prefix,
+    "suffix": n.suffix,
+    "display": str(n),
+    "specSuffixHidden": False
+  }
+  return to_js(name_obj, dict_converter=js.Object.fromEntries)
 
 def edit_cat(cat_id, editObj):
   edit = editObj.to_py()

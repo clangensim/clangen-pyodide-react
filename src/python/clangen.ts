@@ -12,6 +12,7 @@ import type {
   Condition,
   Event,
   Family,
+  Name,
 } from "./types";
 
 import clangenApiUrl from "./clangen_api.py?url";
@@ -144,6 +145,13 @@ class Clangen {
    */
   public async getCat(id: string): Promise<Cat> {
     return this._clangenApi.get_cat(id);
+  }
+
+  /**
+   * Geta random name for cat with ID.
+   */
+  public async getRandomCatName(id: string): Promise<Name> {
+    return this._clangenApi.get_random_cat_name(id);
   }
 
   /**
