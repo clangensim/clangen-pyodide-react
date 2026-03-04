@@ -38,7 +38,7 @@ function HomePage() {
   const clanInfo = query.data;
 
   useEffect(() => {
-    document.title = " ClanGen Simulator";
+    document.title = "ClanGen Simulator";
   }, []);
 
   return (
@@ -47,7 +47,7 @@ function HomePage() {
       <img src={getCampBGPathByClan(clanInfo)} width={400}></img>
 
       <p>
-        Welcome to <b>ClanGen Simulator</b>, a project that aims to simulate
+        Welcome to <b>ClanGen Simulator</b>, an unofficial project that aims to simulate
         Clan Generator in your browser. This site is a work in progress, so some
         features may be missing and there may be bugs.
       </p>
@@ -81,7 +81,7 @@ function HomePage() {
 
       <div className="button-row">
         <FileUploadButton
-          accept=".sav,.zip"
+          accept=".sav,.zip,application/zip,application/octet-stream"
           tabIndex={0}
           onChange={handleImportClan}
         >
@@ -95,7 +95,9 @@ function HomePage() {
       <p>
         <a target="_blank" rel="noopener noreferrer" href="/credits">Credits</a> |{" "}
         <a target="_blank" rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source Code</a> |{" "}
-        <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/zX1zwgiEDGTrZ7X16">Bugs & Feedback</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/zX1zwgiEDGTrZ7X16">Bugs & Feedback</a> |{" "}
+        <a target="_blank" rel="noopener noreferrer" href="/changelog">Changelog</a> | {" "}
+        <a target="_blank" rel="noopener noreferrer" href="/faq">FAQ</a>
       </p>
     </BasePage>
   );

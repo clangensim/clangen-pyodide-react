@@ -9,12 +9,26 @@ function CatDisplay({
   h = "50px",
   className,
 }: {
-  cat: Cat;
+  cat: Cat | undefined; // sometimes cat doesn't exist?
   fuzzy?: boolean;
   w?: string;
   h?: string;
   className?: string;
 }) {
+  var forceSprite;
+
+  if (!cat) { // just to prevent crash
+    return <></>
+  }
+
+  if (!cat.canWork && cat.age !== "newborn") {
+    if (cat.age === "kitten" || cat.age === "adolescent") {
+      forceSprite = 19;
+    } else {
+      forceSprite = 18;
+    }
+  }
+
   return (
     <CatSprite
       pelt={cat.pelt}
@@ -25,6 +39,7 @@ function CatDisplay({
       w={w}
       h={h}
       className={className}
+      forceSprite={forceSprite}
     />
   );
 }
@@ -37,6 +52,7 @@ function CatSprite({
   w = "50px",
   h = "50px",
   fuzzy = false,
+  forceSprite,
   className,
 }: {
   pelt: Pelt;
@@ -46,10 +62,17 @@ function CatSprite({
   w?: string;
   h?: string;
   fuzzy: boolean;
+  forceSprite?: number;
   className?: string;
 }) {
   const canvasRef = useRef<any>(null);
-  const catSprite = pelt.catSprites[age];
+
+  var catSprite: number;
+  if (forceSprite === undefined) {
+    catSprite = pelt.catSprites[age];
+  } else {
+    catSprite = forceSprite;
+  }
 
   useEffect(() => {
     const shadingEnabled = localStorage.getItem("shading-enabled") !== null;

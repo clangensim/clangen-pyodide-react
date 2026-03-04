@@ -67,6 +67,10 @@ function SettingsPage() {
       label: "ClanGen Dark (Partially Complete)",
       value: "theme-clangen-dark"
     },
+    {
+      label: "Unrelated RPG",
+      value: "theme-unrelated-rpg"
+    },
   ];
 
   useEffect(() => {

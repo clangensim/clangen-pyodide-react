@@ -45,6 +45,7 @@ function CatSearch({
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   function checkFilters(cat: Cat) {
+    if (!cat) { return false; } // sometimes cat doesn't exist?
     const metNameFilter = searchName == "" ? true : cat.name.display.toLowerCase().includes(searchName.toLowerCase()); // True by default since name filter can be empty.
     const metStatusFilter = filters["status"][cat.status];
     const metExperienceFilter = filters["experience"][cat.experienceLevel];

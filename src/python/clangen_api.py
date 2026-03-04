@@ -78,10 +78,10 @@ def reload_clan():
 def erase_clan():
   shutil.rmtree("/mnt/saves")
 
-def cat_to_dict(cat, depth=1):
-  def id_list_to_dict_list(lst):
+def id_list_to_dict_list(lst):
     return list(map(lambda cat_id : cat_to_dict(Cat.all_cats[cat_id], 0), lst))
 
+def cat_to_dict(cat, depth=1):
   if cat is None:
     return None
 
@@ -100,18 +100,18 @@ def cat_to_dict(cat, depth=1):
     former_apprentices = cat.former_apprentices
     mates = cat.mate
     apprentices = cat.apprentice
-    parent1 = cat.parent1
-    parent2 = cat.parent2
     mentor = cat.mentor
     description = cat.describe_cat(True)
+    parents = list(cat.get_parents())
+    adoptive_parents = cat.inheritance.get_no_blood_parents()
   else:
     former_apprentices = id_list_to_dict_list(cat.former_apprentices)
     mates = id_list_to_dict_list(cat.mate)
     apprentices = id_list_to_dict_list(cat.apprentice)
-    parent1 = cat_to_dict(Cat.fetch_cat(cat.parent1), 0)
-    parent2 = cat_to_dict(Cat.fetch_cat(cat.parent2), 0)
     mentor = cat_to_dict(Cat.fetch_cat(cat.mentor), 0)
+    parents = id_list_to_dict_list(cat.get_parents())
     description = cat.describe_cat()
+    adoptive_parents = id_list_to_dict_list(cat.inheritance.get_no_blood_parents())
 
   return {
     'ID': cat.ID,
@@ -136,11 +136,12 @@ def cat_to_dict(cat, depth=1):
     'mentor': mentor,
     'apprentices': apprentices,
     'formerApprentices': former_apprentices,
-    'parent1': parent1,
-    'parent2': parent2,
+    'parents': parents,
+    'adoptiveParents': adoptive_parents,
     'mates': mates,
     'experienceLevel': cat.experience_level,
     'thought': cat.thought,
+    'canWork': not cat.not_working(),
     'pelt': {
       'name': cat.pelt.name,
       'colour': cat.pelt.colour,
@@ -233,14 +234,14 @@ def edit_cat(cat_id, editObj):
       # if they're deputy, remove them from deputy
       if game.clan.deputy and cat.ID == game.clan.deputy.ID:
         game.clan.deputy = None
-      # demote current leader
-      if game.clan.leader:
+      # demote current leader if alie
+      if game.clan.leader and not game.clan.leader.dead:
         game.clan.leader.status_change("warrior", resort=True)
       game.clan.new_leader(cat)
       Cat.sort_cats()
     elif edit["status"] == "deputy":
-      # demote current deputy 
-      if game.clan.deputy:
+      # demote current deputy if alive
+      if game.clan.deputy and not game.clan.deputy.dead:
         game.clan.deputy.status_change("warrior")
       game.clan.deputy = cat
       cat.status_change("deputy", resort=True)
@@ -281,6 +282,20 @@ def edit_cat(cat_id, editObj):
     for mateID in cat_mates:
       if mateID not in edit["mates"]:
         cat.unset_mate(Cat.fetch_cat(mateID))
+
+  if "adoptiveParents" in edit:
+    for parentID in edit["adoptiveParents"]:
+      if parentID not in cat.adoptive_parents:
+        cat.adoptive_parents.append(parentID)
+        cat.create_inheritance_new_cat()
+
+    adoptive_parents = cat.adoptive_parents.copy()
+    for parentID in adoptive_parents:
+      if parentID not in edit["adoptiveParents"] and parentID in cat.adoptive_parents:
+        while parentID in cat.adoptive_parents: # if there are any dupes
+          cat.adoptive_parents.remove(parentID)
+        cat.create_inheritance_new_cat()
+        Cat.fetch_cat(parentID).create_inheritance_new_cat()
 
   if "toggles" in edit:
     toggles = edit["toggles"]
@@ -389,6 +404,29 @@ def get_potential_mates(cat_id):
 
   return to_js(valid_mates, dict_converter=js.Object.fromEntries)
 
+def get_potentional_adoptive_parents(cat_id):
+    cat = Cat.all_cats[cat_id]
+    def not_related_to_mate(possible_parent) -> bool:
+      if len(cat.mate) > 0:
+        for mate_id in cat.mate:
+          mate = Cat.fetch_cat(mate_id)
+          mate_relatives = mate.get_relatives()
+          if possible_parent.ID in mate_relatives:
+            return False
+      return True
+
+    valid_parents = [cat_to_dict(inter_cat, 0) for inter_cat in Cat.all_cats_list if
+                      not (inter_cat.dead or inter_cat.outside or inter_cat.exiled) and  # Adoptive parents cant be dead or outside
+                      inter_cat.ID != cat.ID and # Can't be your own adoptive parent
+                      inter_cat.moons - cat.moons >= 14 and # Adoptive parent must be at least 14 moons older. -> own child can't adopt you
+                      inter_cat.ID not in cat.mate and # Can't set your mate your adoptive parent. 
+                      inter_cat.ID not in cat.get_parents() and # Adoptive parents can't already be their parent
+                      not_related_to_mate(inter_cat) #and # quick fix TODO: change / remove later
+                      #(not self.mates_current_parents or self.is_parent_mate(cat, inter_cat)) and #Toggle for only mates of current parents
+                      #(not self.unrelated_only or inter_cat.ID not in cat.get_relatives()) #Toggle for only not-closely-related. 
+                    ]
+    return to_js(valid_parents, dict_converter=js.Object.fromEntries)
+
 def _is_patrollable(the_cat):
   return not the_cat.dead and the_cat.ID not in game.patrolled and the_cat.status not in [
           'newborn', 'elder', 'kitten', 'mediator', 'mediator apprentice'
@@ -475,6 +513,18 @@ def get_relationships(cat_id):
       'log': rel.log
     })
   return to_js(rels, dict_converter=js.Object.fromEntries)
+
+def get_family(cat_id):
+  the_cat = Cat.fetch_cat(cat_id)
+  if not the_cat.inheritance:
+    the_cat.create_inheritance_new_cat()
+
+  family = {
+    "parents": id_list_to_dict_list(the_cat.get_parents()),
+    "siblings": id_list_to_dict_list(the_cat.get_siblings()),
+    "children": id_list_to_dict_list(the_cat.get_children())
+  }
+  return to_js(family, dict_converter=js.Object.fromEntries)
 
 def get_conditions(cat_id):
   conditions = []

@@ -1,0 +1,25 @@
+.family__section {
+  width: fit-content;
+  margin: 1em auto;
+}
+
+.family__section__title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.family__section__cats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.family__section__cat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.5em;
+  text-decoration: none;
+}

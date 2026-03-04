@@ -11,6 +11,7 @@ import type {
   Relationship,
   Condition,
   Event,
+  Family,
 } from "./types";
 
 import clangenApiUrl from "./clangen_api.py?url";
@@ -216,6 +217,13 @@ class Clangen {
   }
 
   /**
+   * Gets potential adoptive parents for cat of specified ID.
+   */
+  public async getPotentialAdoptiveParents(id: string): Promise<Cat[]> {
+    return this._clangenApi.get_potentional_adoptive_parents(id);
+  }
+
+  /**
    * Gets cats who can patrol this moon.
    */
   public async getPatrollableCats(): Promise<Cat[]> {
@@ -262,6 +270,13 @@ class Clangen {
    */
   public async getConditions(id: string): Promise<Condition[]> {
     return this._clangenApi.get_conditions(id);
+  }
+
+  /**
+   * Gets family for cat with specified ID.
+   */
+  public async getFamily(id: string): Promise<Family> {
+    return this._clangenApi.get_family(id);
   }
 
   /**

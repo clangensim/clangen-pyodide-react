@@ -161,7 +161,7 @@ function PatrolsPage() {
         {selectedCats.length !== 0 &&
         <div className="selected-cats-list">
           {possibleCats
-          .filter(cat => selectedCats.find(id => id == cat.ID))
+          .filter(cat => cat && selectedCats.find(id => id == cat.ID)) // sometimes cat doesn't exist?
           .map((cat, index) => {
             return (
               <div className="cat" key={index}>

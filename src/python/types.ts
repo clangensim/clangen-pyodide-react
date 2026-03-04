@@ -65,6 +65,7 @@ type Cat = {
   experienceLevel: string;
   thought: string;
   description: string;
+  canWork: boolean;
   /* this is the display text of the backstory */
   backstory: string;
   dead: boolean;
@@ -75,8 +76,8 @@ type Cat = {
   mentor: Cat | undefined;
   apprentices: Cat[];
   formerApprentices: Cat[];
-  parent1: Cat | undefined;
-  parent2: Cat | undefined;
+  parents: Cat[];
+  adoptiveParents: Cat[];
   mates: Cat[];
   toggles: Toggles;
 };
@@ -96,6 +97,12 @@ type Relationship = {
   trust: number;
   log: string[];
 };
+
+type Family = {
+  parents: Cat[];
+  siblings: Cat[];
+  children: Cat[];
+}
 
 type Event = {
   text: string;
@@ -120,6 +127,7 @@ type CatEdit = {
   gender: string;
   afterlife?: string;
   notes?: string;
+  adoptiveParents?: string[];
 };
 
 type PatrolType = "hunting" | "border" | "training" | "med";
@@ -143,4 +151,5 @@ export type {
   Condition,
   Event,
   Toggles,
+  Family,
 };
