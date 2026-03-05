@@ -99,7 +99,7 @@ def cat_to_dict(cat, depth=1):
   else:
     backstory = 'Clanborn'
 
-  if game.clan and game.clan.leader.ID == cat.ID and not cat.dead:
+  if game.clan and game.clan.leader and game.clan.leader.ID == cat.ID and not cat.dead:
     leader_lives = game.clan.leader_lives
   else:
     leader_lives = None
