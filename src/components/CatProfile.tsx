@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { Cat } from "../python/types";
 import Pluralize from "./generic/Pluralize";
+import { Fragment } from "react/jsx-runtime";
 
 function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
   return (
@@ -8,12 +9,12 @@ function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
       {cats.map((cat, index) => {
         const divider = cats.length - 1 === index ? "" : ", ";
         return (
-          <>
+          <Fragment key={`comma_${cat.ID}`}>
             <Link tabIndex={0} to={`/cats/${cat.ID}`}>
               {cat.name.display}
             </Link>
             {divider}
-          </>
+          </Fragment>
         );
       })}
     </>

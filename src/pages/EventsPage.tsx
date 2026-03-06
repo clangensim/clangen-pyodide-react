@@ -66,12 +66,12 @@ function EventsPage() {
             if (!showRegEvents && !event.types.includes("interaction")) {
               return;
             }
-            return <li className="event-display" key={i}>
+            return <li className="event-display" key={event.text}>
               <div className="event-display__text">{formatText(event.text)}</div>
               {event.cats_involved.length > 0 && cats &&
                 <div className="event-display__cats">
                   {event.cats_involved.filter(Boolean).map((ID) => // sometimes cat doesn't exist?
-                    <Link to={`/cats/${ID}`}>
+                    <Link key={`${event.text}_${ID}`} to={`/cats/${ID}`}>
                       <CatDisplay fuzzy={true} w="35px" h="35px" cat={cats[ID]} />
                     </Link>
                   )}

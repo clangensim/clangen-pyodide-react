@@ -88,7 +88,7 @@ function CatsPage() {
       </div>
 
       <div className="cats-list">
-        {cats.map((cat, index) => {
+        {cats.map((cat, _) => {
           if (screenState === "dark_forest" && (!cat.dead || !cat.inDarkForest )) {
             return;
           } else if (screenState === "starclan" && (!cat.dead || cat.inDarkForest || cat.outside)) {
@@ -101,8 +101,8 @@ function CatsPage() {
             return;
           }
           return (
-            <Link to={`/cats/${cat.ID}`} tabIndex={0}>
-              <div className="cat" key={index}>
+            <Link key={cat.ID} to={`/cats/${cat.ID}`} tabIndex={0}>
+              <div className="cat">
                 <CatDisplay cat={cat} w="75px" h="75px" />
                 <div>{cat.name.display}</div>
               </div>

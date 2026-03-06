@@ -138,7 +138,7 @@ function CatSearch({
             {
               Object.keys(filters["status"]).map(name => {
                 return (
-                  <Checkbox label={name} checked={filters["status"][name]} onChange={() => toggleFilter("status", name)}/>
+                  <Checkbox key={name} label={name} checked={filters["status"][name]} onChange={() => toggleFilter("status", name)}/>
                 )
               })
             }
@@ -154,7 +154,7 @@ function CatSearch({
             {
               Object.keys(filters["experience"]).map(name => {
                 return (
-                  <Checkbox label={name} checked={filters["experience"][name]} onChange={() => toggleFilter("experience", name)}/>
+                  <Checkbox key={name} label={name} checked={filters["experience"][name]} onChange={() => toggleFilter("experience", name)}/>
                 )
               })
             }
@@ -183,6 +183,7 @@ function CatSearch({
             filteredCats.slice(currentPage * catsPerPage, currentPage * catsPerPage + catsPerPage).map((cat) => {
               return (
                   <Checkbox
+                    key={`filter_${cat.ID}`}
                     className="cat-search-select"
                     label={
                       <div>

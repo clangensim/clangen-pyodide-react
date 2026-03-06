@@ -213,7 +213,7 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option value={cat.ID}>{cat.name.display}</option>;
+                      return <option key={cat.ID} value={cat.ID}>{cat.name.display}</option>;
                     }
                   })}
                 </select>
@@ -240,7 +240,7 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option value={cat.ID}>{cat.name.display}</option>;
+                      return <option key={cat.ID} value={cat.ID}>{cat.name.display}</option>;
                     }
                   })}
                 </select>
@@ -267,7 +267,7 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option value={cat.ID}>{cat.name.display}</option>;
+                      return <option key={cat.ID} value={cat.ID}>{cat.name.display}</option>;
                     }
                   })}
                 </select>
@@ -290,7 +290,7 @@ function NewClanPage() {
                 return;
               }
               return (
-                <div className="checkbox-row">
+                <div key={cat.ID} className="checkbox-row">
                   <input
                     tabIndex={0}
                     id={id}
@@ -430,7 +430,7 @@ function NewClanPage() {
               {
                 biomeVariants[biome].map((campInfo, index) => {
                   return (
-                    <div className="radio-row">
+                    <div key={`${campInfo[0]}_${index}`} className="radio-row">
                       <input
                         tabIndex={0}
                         type="radio"

@@ -63,12 +63,10 @@ function RelationshipsDisplay({ relationships }: { relationships: Relationship[]
       <div className="relationships-list">
         {relationships?.map((rel) => {
           return (
-            <>
-              <RelationshipDisplay
-                key={`${rel.cat_from_id}_${rel.cat_to_id}`}
-                relationship={rel}
-              />
-            </>
+            <RelationshipDisplay
+              key={`${rel.cat_from_id}_${rel.cat_to_id}`}
+              relationship={rel}
+            />
           );
         })}
       </div>
