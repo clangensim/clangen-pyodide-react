@@ -65,7 +65,7 @@ function HomePage() {
       </p>
 
       <p>
-        Current Clangen version: <b>v0.11.2</b>
+        Current Clangen version: <b>v0.12.2</b>
       </p>
 
       <p>
