@@ -39,7 +39,7 @@ function NewClanPage() {
   const [med, setMed] = useState<string>("");
 
   const [clanName, setClanName] = useState<string>();
-  const [biome, setBiome] = useState<string>("Forest");
+  const [biome, setBiome] = useState<string>("Plains");
   const [campNum, setCampNum] = useState<string>("camp1");
   const [gamemode, setGamemode] = useState<string>("classic");
   const [season, setSeason] = useState<string>("Newleaf");
