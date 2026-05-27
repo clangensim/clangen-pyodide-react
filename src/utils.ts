@@ -90,7 +90,7 @@ function getCampBGPathByClan(clanInfo: ClanInfo | null | undefined) {
   return getCampBGPath(clanInfo?.biome.toLowerCase(), clanInfo?.season.toLowerCase().replace("-", ""), clanInfo?.campBg);
 }
 
-async function loadImage(url: string) {
+async function loadImage(url: string): Promise<HTMLImageElement> {
   return new Promise((resolve) => {
     const img = new Image();
     img.src = url;
