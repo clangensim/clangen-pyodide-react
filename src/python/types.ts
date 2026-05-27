@@ -7,6 +7,7 @@ type ClanInfo = {
   campBg: string;
   freshkill?: number;
   requiredFreshkill?: number;
+  symbol: string;
 };
 
 type Pelt = {
