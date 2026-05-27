@@ -18,7 +18,8 @@ const biomeVariants: {[biome: string]: string[][]} = {
   "Mountainous": [
     ["cliff", "camp1"],
     ["cave", "camp2"],
-    ["crystal", "camp3"]
+    ["crystal", "camp3"],
+    ["ruins", "camp4"],
   ],
   "Plains": [
     ["grasslands", "camp1"],
@@ -28,7 +29,8 @@ const biomeVariants: {[biome: string]: string[][]} = {
   "Beach": [
     ["tidepool", "camp1"],
     ["tidal cave", "camp2"],
-    ["shipwreck", "camp3"]
+    ["shipwreck", "camp3"],
+    ["fjord", "camp4"],
   ]
 }
 
