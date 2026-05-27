@@ -1,0 +1,2467 @@
+{
+  "symbolADDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 50.0
+  },
+  "symbolAIR0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 50.0
+  },
+  "symbolALDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 50.0
+  },
+  "symbolANT0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 50.0
+  },
+  "symbolANTLER0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 50.0
+  },
+  "symbolAPHID0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 50.0
+  },
+  "symbolAPPLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 50.0
+  },
+  "symbolAPRICOT0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 50.0
+  },
+  "symbolARCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 50.0
+  },
+  "symbolASHEN0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 50.0
+  },
+  "symbolASPEN0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 50.0
+  },
+  "symbolASTER0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 50.0
+  },
+  "symbolBADGER0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 100.0
+  },
+  "symbolBARLEY0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 100.0
+  },
+  "symbolBASIL0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 100.0
+  },
+  "symbolBASS0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 100.0
+  },
+  "symbolBAT0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 100.0
+  },
+  "symbolBAY0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 100.0
+  },
+  "symbolBEAM0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 100.0
+  },
+  "symbolBEAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 100.0
+  },
+  "symbolBEAVER0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 100.0
+  },
+  "symbolBEE0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 100.0
+  },
+  "symbolBEECH0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 100.0
+  },
+  "symbolBEETLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 100.0
+  },
+  "symbolBERRY0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 100.0
+  },
+  "symbolBIG0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 100.0
+  },
+  "symbolBILLOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 100.0
+  },
+  "symbolBIRCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 100.0
+  },
+  "symbolBIRD0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 100.0
+  },
+  "symbolBITTER0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 100.0
+  },
+  "symbolBITTERN0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 100.0
+  },
+  "symbolBLAZE0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 100.0
+  },
+  "symbolBLISS0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 100.0
+  },
+  "symbolBLIZZARD0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 100.0
+  },
+  "symbolBLOOD0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 100.0
+  },
+  "symbolBLOOM0": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 100.0
+  },
+  "symbolBLOSSOM0": {
+    "spritesheet": "symbols",
+    "xOffset": 1200.0,
+    "yOffset": 100.0
+  },
+  "symbolBLOTCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 1250.0,
+    "yOffset": 100.0
+  },
+  "symbolBLUEBELL0": {
+    "spritesheet": "symbols",
+    "xOffset": 1300.0,
+    "yOffset": 100.0
+  },
+  "symbolBLUFF0": {
+    "spritesheet": "symbols",
+    "xOffset": 1350.0,
+    "yOffset": 100.0
+  },
+  "symbolBOG0": {
+    "spritesheet": "symbols",
+    "xOffset": 1400.0,
+    "yOffset": 100.0
+  },
+  "symbolBONE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1450.0,
+    "yOffset": 100.0
+  },
+  "symbolBORAGE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1500.0,
+    "yOffset": 100.0
+  },
+  "symbolBOUGH0": {
+    "spritesheet": "symbols",
+    "xOffset": 1550.0,
+    "yOffset": 100.0
+  },
+  "symbolBOULDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1600.0,
+    "yOffset": 100.0
+  },
+  "symbolBOUNCE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1650.0,
+    "yOffset": 100.0
+  },
+  "symbolBRACKEN0": {
+    "spritesheet": "symbols",
+    "xOffset": 1700.0,
+    "yOffset": 100.0
+  },
+  "symbolBRAMBLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1750.0,
+    "yOffset": 100.0
+  },
+  "symbolBRANCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 1800.0,
+    "yOffset": 100.0
+  },
+  "symbolBRAVE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1850.0,
+    "yOffset": 100.0
+  },
+  "symbolBREEZE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1900.0,
+    "yOffset": 100.0
+  },
+  "symbolBRIAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 1950.0,
+    "yOffset": 100.0
+  },
+  "symbolBRIGHT0": {
+    "spritesheet": "symbols",
+    "xOffset": 2000.0,
+    "yOffset": 100.0
+  },
+  "symbolBRISTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2050.0,
+    "yOffset": 100.0
+  },
+  "symbolBROKEN0": {
+    "spritesheet": "symbols",
+    "xOffset": 2100.0,
+    "yOffset": 100.0
+  },
+  "symbolBROOK0": {
+    "spritesheet": "symbols",
+    "xOffset": 2150.0,
+    "yOffset": 100.0
+  },
+  "symbolBRUSH0": {
+    "spritesheet": "symbols",
+    "xOffset": 2200.0,
+    "yOffset": 100.0
+  },
+  "symbolBUBBLING0": {
+    "spritesheet": "symbols",
+    "xOffset": 2250.0,
+    "yOffset": 100.0
+  },
+  "symbolBUD0": {
+    "spritesheet": "symbols",
+    "xOffset": 2300.0,
+    "yOffset": 100.0
+  },
+  "symbolBUG0": {
+    "spritesheet": "symbols",
+    "xOffset": 2350.0,
+    "yOffset": 100.0
+  },
+  "symbolBUMBLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2400.0,
+    "yOffset": 100.0
+  },
+  "symbolBURDOCK0": {
+    "spritesheet": "symbols",
+    "xOffset": 2450.0,
+    "yOffset": 100.0
+  },
+  "symbolBURN0": {
+    "spritesheet": "symbols",
+    "xOffset": 2500.0,
+    "yOffset": 100.0
+  },
+  "symbolBURNET0": {
+    "spritesheet": "symbols",
+    "xOffset": 2550.0,
+    "yOffset": 100.0
+  },
+  "symbolBURR0": {
+    "spritesheet": "symbols",
+    "xOffset": 2600.0,
+    "yOffset": 100.0
+  },
+  "symbolBURROW0": {
+    "spritesheet": "symbols",
+    "xOffset": 2650.0,
+    "yOffset": 100.0
+  },
+  "symbolBUSH0": {
+    "spritesheet": "symbols",
+    "xOffset": 2700.0,
+    "yOffset": 100.0
+  },
+  "symbolBUTTERCUP0": {
+    "spritesheet": "symbols",
+    "xOffset": 2750.0,
+    "yOffset": 100.0
+  },
+  "symbolBUTTERFLY0": {
+    "spritesheet": "symbols",
+    "xOffset": 2800.0,
+    "yOffset": 100.0
+  },
+  "symbolBUZZARD0": {
+    "spritesheet": "symbols",
+    "xOffset": 2850.0,
+    "yOffset": 100.0
+  },
+  "symbolCANARY0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 150.0
+  },
+  "symbolCARNATION0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 150.0
+  },
+  "symbolCARP0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 150.0
+  },
+  "symbolCATERPILLAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 150.0
+  },
+  "symbolCAVE0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 150.0
+  },
+  "symbolCEDAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 150.0
+  },
+  "symbolCHAFFINCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 150.0
+  },
+  "symbolCHASING0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 150.0
+  },
+  "symbolCHERRY0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 150.0
+  },
+  "symbolCHERVIL0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 150.0
+  },
+  "symbolCHESTNUT0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 150.0
+  },
+  "symbolCHIRP0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 150.0
+  },
+  "symbolCHIVE0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 150.0
+  },
+  "symbolCICADA0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 150.0
+  },
+  "symbolCINDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 150.0
+  },
+  "symbolCLAW0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 150.0
+  },
+  "symbolCLAY0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 150.0
+  },
+  "symbolCLEAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 150.0
+  },
+  "symbolCLIFF0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 150.0
+  },
+  "symbolCLOUD0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 150.0
+  },
+  "symbolCLOUDY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 150.0
+  },
+  "symbolCLOVER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 150.0
+  },
+  "symbolCOMFREY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 150.0
+  },
+  "symbolCONDOR0": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 150.0
+  },
+  "symbolCONE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1200.0,
+    "yOffset": 150.0
+  },
+  "symbolCONIFER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1250.0,
+    "yOffset": 150.0
+  },
+  "symbolCONKER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1300.0,
+    "yOffset": 150.0
+  },
+  "symbolCOPSE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1350.0,
+    "yOffset": 150.0
+  },
+  "symbolCOTTON0": {
+    "spritesheet": "symbols",
+    "xOffset": 1400.0,
+    "yOffset": 150.0
+  },
+  "symbolCOUGAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 1450.0,
+    "yOffset": 150.0
+  },
+  "symbolCOYOTE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1500.0,
+    "yOffset": 150.0
+  },
+  "symbolCRAG0": {
+    "spritesheet": "symbols",
+    "xOffset": 1550.0,
+    "yOffset": 150.0
+  },
+  "symbolCRANE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1600.0,
+    "yOffset": 150.0
+  },
+  "symbolCRANE1": {
+    "spritesheet": "symbols",
+    "xOffset": 1650.0,
+    "yOffset": 150.0
+  },
+  "symbolCREEK0": {
+    "spritesheet": "symbols",
+    "xOffset": 1700.0,
+    "yOffset": 150.0
+  },
+  "symbolCRESS0": {
+    "spritesheet": "symbols",
+    "xOffset": 1750.0,
+    "yOffset": 150.0
+  },
+  "symbolCREST0": {
+    "spritesheet": "symbols",
+    "xOffset": 1800.0,
+    "yOffset": 150.0
+  },
+  "symbolCRESTED0": {
+    "spritesheet": "symbols",
+    "xOffset": 1850.0,
+    "yOffset": 150.0
+  },
+  "symbolCRICKET0": {
+    "spritesheet": "symbols",
+    "xOffset": 1900.0,
+    "yOffset": 150.0
+  },
+  "symbolCROCUS0": {
+    "spritesheet": "symbols",
+    "xOffset": 1950.0,
+    "yOffset": 150.0
+  },
+  "symbolCROUCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 2000.0,
+    "yOffset": 150.0
+  },
+  "symbolCURL0": {
+    "spritesheet": "symbols",
+    "xOffset": 2050.0,
+    "yOffset": 150.0
+  },
+  "symbolCURLEW0": {
+    "spritesheet": "symbols",
+    "xOffset": 2100.0,
+    "yOffset": 150.0
+  },
+  "symbolCURLY0": {
+    "spritesheet": "symbols",
+    "xOffset": 2150.0,
+    "yOffset": 150.0
+  },
+  "symbolCURRENT0": {
+    "spritesheet": "symbols",
+    "xOffset": 2200.0,
+    "yOffset": 150.0
+  },
+  "symbolCYPRESS0": {
+    "spritesheet": "symbols",
+    "xOffset": 2250.0,
+    "yOffset": 150.0
+  },
+  "symbolDAHLIA0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 200.0
+  },
+  "symbolDAISY0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 200.0
+  },
+  "symbolDANCING0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 200.0
+  },
+  "symbolDANDELION0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 200.0
+  },
+  "symbolDAPPLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 200.0
+  },
+  "symbolDAPPLED0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 200.0
+  },
+  "symbolDART0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 200.0
+  },
+  "symbolDASH0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 200.0
+  },
+  "symbolDAWN0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 200.0
+  },
+  "symbolDAY0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 200.0
+  },
+  "symbolDAZZLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 200.0
+  },
+  "symbolDEW0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 200.0
+  },
+  "symbolDOG0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 200.0
+  },
+  "symbolDOVE0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 200.0
+  },
+  "symbolDOE0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 200.0
+  },
+  "symbolDOWN0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 200.0
+  },
+  "symbolDOWNY0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 200.0
+  },
+  "symbolDREAM0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 200.0
+  },
+  "symbolDRIFT0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 200.0
+  },
+  "symbolDRIZZLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 200.0
+  },
+  "symbolDROPLET0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 200.0
+  },
+  "symbolDRY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 200.0
+  },
+  "symbolDUCK0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 200.0
+  },
+  "symbolDUSK0": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 200.0
+  },
+  "symbolEAGLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 250.0
+  },
+  "symbolECHO0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 250.0
+  },
+  "symbolEDELWEISS0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 250.0
+  },
+  "symbolEGG0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 250.0
+  },
+  "symbolEGRET0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 250.0
+  },
+  "symbolELDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 250.0
+  },
+  "symbolELM0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 250.0
+  },
+  "symbolEMBER0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 250.0
+  },
+  "symbolERMINE0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 250.0
+  },
+  "symbolERMINE1": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 250.0
+  },
+  "symbolERMINE2": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 250.0
+  },
+  "symbolFAITH0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 300.0
+  },
+  "symbolFALCON0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 300.0
+  },
+  "symbolFALLEN0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 300.0
+  },
+  "symbolFALLEN1": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 300.0
+  },
+  "symbolFALLING0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 300.0
+  },
+  "symbolFALLING1": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 300.0
+  },
+  "symbolFALLOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 300.0
+  },
+  "symbolFALLOW1": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 300.0
+  },
+  "symbolFEATHER0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 300.0
+  },
+  "symbolFENNEL0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 300.0
+  },
+  "symbolFERN0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 300.0
+  },
+  "symbolFERRET0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 300.0
+  },
+  "symbolFICKLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 300.0
+  },
+  "symbolFIDGET0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 300.0
+  },
+  "symbolFIERCE0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 300.0
+  },
+  "symbolFIG0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 300.0
+  },
+  "symbolFIN0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 300.0
+  },
+  "symbolFINCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 300.0
+  },
+  "symbolFIR0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 300.0
+  },
+  "symbolFIRE0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 300.0
+  },
+  "symbolFISH0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 300.0
+  },
+  "symbolFLAME0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 300.0
+  },
+  "symbolFLARE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 300.0
+  },
+  "symbolFLARE1": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 300.0
+  },
+  "symbolFLASH0": {
+    "spritesheet": "symbols",
+    "xOffset": 1200.0,
+    "yOffset": 300.0
+  },
+  "symbolFLAX0": {
+    "spritesheet": "symbols",
+    "xOffset": 1250.0,
+    "yOffset": 300.0
+  },
+  "symbolFLECK0": {
+    "spritesheet": "symbols",
+    "xOffset": 1300.0,
+    "yOffset": 300.0
+  },
+  "symbolFLEET0": {
+    "spritesheet": "symbols",
+    "xOffset": 1350.0,
+    "yOffset": 300.0
+  },
+  "symbolFLICKER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1400.0,
+    "yOffset": 300.0
+  },
+  "symbolFLIGHT0": {
+    "spritesheet": "symbols",
+    "xOffset": 1450.0,
+    "yOffset": 300.0
+  },
+  "symbolFLINT0": {
+    "spritesheet": "symbols",
+    "xOffset": 1500.0,
+    "yOffset": 300.0
+  },
+  "symbolFLIT0": {
+    "spritesheet": "symbols",
+    "xOffset": 1550.0,
+    "yOffset": 300.0
+  },
+  "symbolFLOOD0": {
+    "spritesheet": "symbols",
+    "xOffset": 1600.0,
+    "yOffset": 300.0
+  },
+  "symbolFLOWER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1650.0,
+    "yOffset": 300.0
+  },
+  "symbolFLUFF0": {
+    "spritesheet": "symbols",
+    "xOffset": 1700.0,
+    "yOffset": 300.0
+  },
+  "symbolFLUFFY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1750.0,
+    "yOffset": 300.0
+  },
+  "symbolFLURRY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1800.0,
+    "yOffset": 300.0
+  },
+  "symbolFLUTTER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1850.0,
+    "yOffset": 300.0
+  },
+  "symbolFLY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1900.0,
+    "yOffset": 300.0
+  },
+  "symbolFOGGY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1950.0,
+    "yOffset": 300.0
+  },
+  "symbolFRECKLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2000.0,
+    "yOffset": 300.0
+  },
+  "symbolFREEZE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2050.0,
+    "yOffset": 300.0
+  },
+  "symbolFRINGE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2100.0,
+    "yOffset": 300.0
+  },
+  "symbolFRINGE1": {
+    "spritesheet": "symbols",
+    "xOffset": 2150.0,
+    "yOffset": 300.0
+  },
+  "symbolFROG0": {
+    "spritesheet": "symbols",
+    "xOffset": 2200.0,
+    "yOffset": 300.0
+  },
+  "symbolFROND0": {
+    "spritesheet": "symbols",
+    "xOffset": 2250.0,
+    "yOffset": 300.0
+  },
+  "symbolFROST0": {
+    "spritesheet": "symbols",
+    "xOffset": 2300.0,
+    "yOffset": 300.0
+  },
+  "symbolFROZEN0": {
+    "spritesheet": "symbols",
+    "xOffset": 2350.0,
+    "yOffset": 300.0
+  },
+  "symbolFRUIT0": {
+    "spritesheet": "symbols",
+    "xOffset": 2400.0,
+    "yOffset": 300.0
+  },
+  "symbolFUMBLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2450.0,
+    "yOffset": 300.0
+  },
+  "symbolFURLED0": {
+    "spritesheet": "symbols",
+    "xOffset": 2500.0,
+    "yOffset": 300.0
+  },
+  "symbolFURZE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2550.0,
+    "yOffset": 300.0
+  },
+  "symbolFUZZ0": {
+    "spritesheet": "symbols",
+    "xOffset": 2600.0,
+    "yOffset": 300.0
+  },
+  "symbolGANDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 350.0
+  },
+  "symbolGARLIC0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 350.0
+  },
+  "symbolGENTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 350.0
+  },
+  "symbolGHOST0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 350.0
+  },
+  "symbolGLADE0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 350.0
+  },
+  "symbolGLINT0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 350.0
+  },
+  "symbolGOOSE0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 350.0
+  },
+  "symbolGORGE0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 350.0
+  },
+  "symbolGORGE1": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 350.0
+  },
+  "symbolGORSE0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 350.0
+  },
+  "symbolGOSSAMER0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 350.0
+  },
+  "symbolGRASS0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 350.0
+  },
+  "symbolGRACKLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 350.0
+  },
+  "symbolGROUSE0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 350.0
+  },
+  "symbolGULL0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 350.0
+  },
+  "symbolGUPPY0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 350.0
+  },
+  "symbolGUST0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 350.0
+  },
+  "symbolHAIL0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 400.0
+  },
+  "symbolHALF0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 400.0
+  },
+  "symbolHARE0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 400.0
+  },
+  "symbolHATCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 400.0
+  },
+  "symbolHAVEN0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 400.0
+  },
+  "symbolHAWTHORN0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 400.0
+  },
+  "symbolHAZEL0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 400.0
+  },
+  "symbolHAZY0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 400.0
+  },
+  "symbolHEART0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 400.0
+  },
+  "symbolHEATH0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 400.0
+  },
+  "symbolHEATHER0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 400.0
+  },
+  "symbolHEAVY0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 400.0
+  },
+  "symbolHERON0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 400.0
+  },
+  "symbolHICKORY0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 400.0
+  },
+  "symbolHILL0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 400.0
+  },
+  "symbolHOLLOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 400.0
+  },
+  "symbolHOLLY0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 400.0
+  },
+  "symbolHOPE0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 400.0
+  },
+  "symbolHOUND0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 400.0
+  },
+  "symbolHOWL0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 400.0
+  },
+  "symbolHYACINTH0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 400.0
+  },
+  "symbolIBIS0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 450.0
+  },
+  "symbolICE0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 450.0
+  },
+  "symbolICICLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 450.0
+  },
+  "symbolICY0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 450.0
+  },
+  "symbolIRIS0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 450.0
+  },
+  "symbolIVY0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 450.0
+  },
+  "symbolJACKDAW0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 500.0
+  },
+  "symbolJACKDAW1": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 500.0
+  },
+  "symbolJASMINE0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 500.0
+  },
+  "symbolJAY0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 500.0
+  },
+  "symbolJUNCO0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 500.0
+  },
+  "symbolJUNIPER0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 500.0
+  },
+  "symbolKESTREL0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 550.0
+  },
+  "symbolKINK0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 550.0
+  },
+  "symbolKITE0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 550.0
+  },
+  "symbolKITTY0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 550.0
+  },
+  "symbolLAKE0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 600.0
+  },
+  "symbolLARCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 600.0
+  },
+  "symbolLARKSPUR0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 600.0
+  },
+  "symbolLARK0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 600.0
+  },
+  "symbolLAUREL0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 600.0
+  },
+  "symbolLAVENDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 600.0
+  },
+  "symbolLEAF0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 600.0
+  },
+  "symbolLEAP0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 600.0
+  },
+  "symbolLEOPARD0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 600.0
+  },
+  "symbolLIGHT0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 600.0
+  },
+  "symbolLIGHTNING0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 600.0
+  },
+  "symbolLILAC0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 600.0
+  },
+  "symbolLILY0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 600.0
+  },
+  "symbolLITTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 600.0
+  },
+  "symbolLIZARD0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 600.0
+  },
+  "symbolLOCUST0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 600.0
+  },
+  "symbolLOG0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 600.0
+  },
+  "symbolLONG0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 600.0
+  },
+  "symbolLUPINE0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 600.0
+  },
+  "symbolLYNX0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 600.0
+  },
+  "symbolMAGPIE0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 650.0
+  },
+  "symbolMALLOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 650.0
+  },
+  "symbolMANTIS0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 650.0
+  },
+  "symbolMAPLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 650.0
+  },
+  "symbolMARIGOLD0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 650.0
+  },
+  "symbolMARSH0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 650.0
+  },
+  "symbolMEADOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 650.0
+  },
+  "symbolMIDGE0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 650.0
+  },
+  "symbolMIDNIGHT0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 650.0
+  },
+  "symbolMILK0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 650.0
+  },
+  "symbolMILKWEED0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 650.0
+  },
+  "symbolMINNOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 650.0
+  },
+  "symbolMIST0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 650.0
+  },
+  "symbolMOLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 650.0
+  },
+  "symbolMOLE1": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 650.0
+  },
+  "symbolMOON0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 650.0
+  },
+  "symbolMOSS0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 650.0
+  },
+  "symbolMOSS1": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 650.0
+  },
+  "symbolMOSSY0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 650.0
+  },
+  "symbolMOTH0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 650.0
+  },
+  "symbolMOTTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 650.0
+  },
+  "symbolMOTTLED0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 650.0
+  },
+  "symbolMOUSE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 650.0
+  },
+  "symbolMULBERRY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 650.0
+  },
+  "symbolMYRTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1200.0,
+    "yOffset": 650.0
+  },
+  "symbolNECTAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 700.0
+  },
+  "symbolNECTAR1": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 700.0
+  },
+  "symbolNECTAR2": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 700.0
+  },
+  "symbolNETTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 700.0
+  },
+  "symbolNIGHT0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 700.0
+  },
+  "symbolNIGHTINGALE0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 700.0
+  },
+  "symbolOAK0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 750.0
+  },
+  "symbolOAT0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 750.0
+  },
+  "symbolOLEANDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 750.0
+  },
+  "symbolONE0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 750.0
+  },
+  "symbolONE1": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 750.0
+  },
+  "symbolORCHID0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 750.0
+  },
+  "symbolORIOLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 750.0
+  },
+  "symbolOSPREY0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 750.0
+  },
+  "symbolOWL0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 750.0
+  },
+  "symbolPANSY0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 800.0
+  },
+  "symbolPANTHER0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 800.0
+  },
+  "symbolPARSLEY0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 800.0
+  },
+  "symbolPARTRIDGE0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 800.0
+  },
+  "symbolPATCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 800.0
+  },
+  "symbolPATCHOULI0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 800.0
+  },
+  "symbolPEACH0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 800.0
+  },
+  "symbolPEAK0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 800.0
+  },
+  "symbolPEAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 800.0
+  },
+  "symbolPEBBLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 800.0
+  },
+  "symbolPERCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 800.0
+  },
+  "symbolPETAL0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 800.0
+  },
+  "symbolPHEASANT0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 800.0
+  },
+  "symbolPIGEON0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 800.0
+  },
+  "symbolPIKE0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 800.0
+  },
+  "symbolPINE0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 800.0
+  },
+  "symbolPIPIT0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 800.0
+  },
+  "symbolPLOVER0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 800.0
+  },
+  "symbolPOND0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 800.0
+  },
+  "symbolPOOL0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 800.0
+  },
+  "symbolPRANCE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 800.0
+  },
+  "symbolPRIMROSE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 800.0
+  },
+  "symbolPUDDLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 800.0
+  },
+  "symbolPUMPKIN0": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 800.0
+  },
+  "symbolQUAIL0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 850.0
+  },
+  "symbolQUICK0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 850.0
+  },
+  "symbolQUILL0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 850.0
+  },
+  "symbolRABBIT0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 900.0
+  },
+  "symbolRACCOON0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 900.0
+  },
+  "symbolRAGGED0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 900.0
+  },
+  "symbolRAIN0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 900.0
+  },
+  "symbolRAT0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 900.0
+  },
+  "symbolRAVEN0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 900.0
+  },
+  "symbolREED0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 900.0
+  },
+  "symbolRIFT0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 900.0
+  },
+  "symbolRINDLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 900.0
+  },
+  "symbolRIPPLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 900.0
+  },
+  "symbolRIVER0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 900.0
+  },
+  "symbolROACH0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 900.0
+  },
+  "symbolROAR0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 900.0
+  },
+  "symbolROCK0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 900.0
+  },
+  "symbolROOK0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 900.0
+  },
+  "symbolROOT0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 900.0
+  },
+  "symbolROSE0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 900.0
+  },
+  "symbolROSY0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 900.0
+  },
+  "symbolROWAN0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 900.0
+  },
+  "symbolRUBBLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 900.0
+  },
+  "symbolRUE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 900.0
+  },
+  "symbolRUNNING0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 900.0
+  },
+  "symbolRUSH0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 900.0
+  },
+  "symbolRYE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 900.0
+  },
+  "symbolSABLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 950.0
+  },
+  "symbolSAFFRON0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 950.0
+  },
+  "symbolSAPLING0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 950.0
+  },
+  "symbolSCALE0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 950.0
+  },
+  "symbolSCORCH0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 950.0
+  },
+  "symbolSEED0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 950.0
+  },
+  "symbolSERPENT0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 950.0
+  },
+  "symbolSHADE0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 950.0
+  },
+  "symbolSHADOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 950.0
+  },
+  "symbolSHARD0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 950.0
+  },
+  "symbolSHARP0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 950.0
+  },
+  "symbolSHATTER0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 950.0
+  },
+  "symbolSHELL0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 950.0
+  },
+  "symbolSHREW0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 950.0
+  },
+  "symbolSHRIKE0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 950.0
+  },
+  "symbolSHRIKE1": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 950.0
+  },
+  "symbolSHRUB0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 950.0
+  },
+  "symbolSHY0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 950.0
+  },
+  "symbolSILENT0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 950.0
+  },
+  "symbolSKY0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 950.0
+  },
+  "symbolSKY1": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 950.0
+  },
+  "symbolSLEEPY0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 950.0
+  },
+  "symbolSLOE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 950.0
+  },
+  "symbolSLOPE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 950.0
+  },
+  "symbolSLUMBER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1200.0,
+    "yOffset": 950.0
+  },
+  "symbolSMALL0": {
+    "spritesheet": "symbols",
+    "xOffset": 1250.0,
+    "yOffset": 950.0
+  },
+  "symbolSMOKE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1300.0,
+    "yOffset": 950.0
+  },
+  "symbolSNAIL0": {
+    "spritesheet": "symbols",
+    "xOffset": 1350.0,
+    "yOffset": 950.0
+  },
+  "symbolSNAKE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1400.0,
+    "yOffset": 950.0
+  },
+  "symbolSNAP0": {
+    "spritesheet": "symbols",
+    "xOffset": 1450.0,
+    "yOffset": 950.0
+  },
+  "symbolSNOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 1500.0,
+    "yOffset": 950.0
+  },
+  "symbolSOFT0": {
+    "spritesheet": "symbols",
+    "xOffset": 1550.0,
+    "yOffset": 950.0
+  },
+  "symbolSORREL0": {
+    "spritesheet": "symbols",
+    "xOffset": 1600.0,
+    "yOffset": 950.0
+  },
+  "symbolSPARROW0": {
+    "spritesheet": "symbols",
+    "xOffset": 1650.0,
+    "yOffset": 950.0
+  },
+  "symbolSPIDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1700.0,
+    "yOffset": 950.0
+  },
+  "symbolSPIKE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1750.0,
+    "yOffset": 950.0
+  },
+  "symbolSPLASH0": {
+    "spritesheet": "symbols",
+    "xOffset": 1800.0,
+    "yOffset": 950.0
+  },
+  "symbolSPLINTER0": {
+    "spritesheet": "symbols",
+    "xOffset": 1850.0,
+    "yOffset": 950.0
+  },
+  "symbolSPORE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1900.0,
+    "yOffset": 950.0
+  },
+  "symbolSPOT0": {
+    "spritesheet": "symbols",
+    "xOffset": 1950.0,
+    "yOffset": 950.0
+  },
+  "symbolSPOTTED0": {
+    "spritesheet": "symbols",
+    "xOffset": 2000.0,
+    "yOffset": 950.0
+  },
+  "symbolSPRING0": {
+    "spritesheet": "symbols",
+    "xOffset": 2050.0,
+    "yOffset": 950.0
+  },
+  "symbolSPROUT0": {
+    "spritesheet": "symbols",
+    "xOffset": 2100.0,
+    "yOffset": 950.0
+  },
+  "symbolSPRUCE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2150.0,
+    "yOffset": 950.0
+  },
+  "symbolSQUIRREL0": {
+    "spritesheet": "symbols",
+    "xOffset": 2200.0,
+    "yOffset": 950.0
+  },
+  "symbolSTAG0": {
+    "spritesheet": "symbols",
+    "xOffset": 2250.0,
+    "yOffset": 950.0
+  },
+  "symbolSTARLING0": {
+    "spritesheet": "symbols",
+    "xOffset": 2300.0,
+    "yOffset": 950.0
+  },
+  "symbolSTEM0": {
+    "spritesheet": "symbols",
+    "xOffset": 2350.0,
+    "yOffset": 950.0
+  },
+  "symbolSTOAT0": {
+    "spritesheet": "symbols",
+    "xOffset": 2400.0,
+    "yOffset": 950.0
+  },
+  "symbolSTONE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2450.0,
+    "yOffset": 950.0
+  },
+  "symbolSTORK0": {
+    "spritesheet": "symbols",
+    "xOffset": 2500.0,
+    "yOffset": 950.0
+  },
+  "symbolSTORM0": {
+    "spritesheet": "symbols",
+    "xOffset": 2550.0,
+    "yOffset": 950.0
+  },
+  "symbolSTREAK0": {
+    "spritesheet": "symbols",
+    "xOffset": 2600.0,
+    "yOffset": 950.0
+  },
+  "symbolSTREAM0": {
+    "spritesheet": "symbols",
+    "xOffset": 2650.0,
+    "yOffset": 950.0
+  },
+  "symbolSTRIKE0": {
+    "spritesheet": "symbols",
+    "xOffset": 2700.0,
+    "yOffset": 950.0
+  },
+  "symbolSTUMPY0": {
+    "spritesheet": "symbols",
+    "xOffset": 2750.0,
+    "yOffset": 950.0
+  },
+  "symbolSUN0": {
+    "spritesheet": "symbols",
+    "xOffset": 2800.0,
+    "yOffset": 950.0
+  },
+  "symbolSWALLOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 2850.0,
+    "yOffset": 950.0
+  },
+  "symbolSWAMP0": {
+    "spritesheet": "symbols",
+    "xOffset": 2900.0,
+    "yOffset": 950.0
+  },
+  "symbolSWAN0": {
+    "spritesheet": "symbols",
+    "xOffset": 2950.0,
+    "yOffset": 950.0
+  },
+  "symbolSWARM0": {
+    "spritesheet": "symbols",
+    "xOffset": 3000.0,
+    "yOffset": 950.0
+  },
+  "symbolSWEET0": {
+    "spritesheet": "symbols",
+    "xOffset": 3050.0,
+    "yOffset": 950.0
+  },
+  "symbolSWIFT0": {
+    "spritesheet": "symbols",
+    "xOffset": 3100.0,
+    "yOffset": 950.0
+  },
+  "symbolSYCAMORE0": {
+    "spritesheet": "symbols",
+    "xOffset": 3150.0,
+    "yOffset": 950.0
+  },
+  "symbolTADPOLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 1000.0
+  },
+  "symbolTADPOLE1": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 1000.0
+  },
+  "symbolTADPOLE2": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 1000.0
+  },
+  "symbolTALL0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 1000.0
+  },
+  "symbolTALON0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 1000.0
+  },
+  "symbolTANGLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 1000.0
+  },
+  "symbolTANSY0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 1000.0
+  },
+  "symbolTEASEL0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 1000.0
+  },
+  "symbolTEMPEST0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 1000.0
+  },
+  "symbolTEMPEST1": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 1000.0
+  },
+  "symbolTEMPEST2": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 1000.0
+  },
+  "symbolTHISTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 1000.0
+  },
+  "symbolTHORN0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 1000.0
+  },
+  "symbolTHRUSH0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 1000.0
+  },
+  "symbolTHUNDER0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 1000.0
+  },
+  "symbolTHYME0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 1000.0
+  },
+  "symbolTINY0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 1000.0
+  },
+  "symbolTOAD0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 1000.0
+  },
+  "symbolTORN0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 1000.0
+  },
+  "symbolTREE0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 1000.0
+  },
+  "symbolTREMBLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 1000.0
+  },
+  "symbolTRICKLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 1000.0
+  },
+  "symbolTROUT0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 1000.0
+  },
+  "symbolTUFT0": {
+    "spritesheet": "symbols",
+    "xOffset": 1150.0,
+    "yOffset": 1000.0
+  },
+  "symbolTULIP0": {
+    "spritesheet": "symbols",
+    "xOffset": 1200.0,
+    "yOffset": 1000.0
+  },
+  "symbolTULIP1": {
+    "spritesheet": "symbols",
+    "xOffset": 1250.0,
+    "yOffset": 1000.0
+  },
+  "symbolTUMBLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1300.0,
+    "yOffset": 1000.0
+  },
+  "symbolTUMBLE1": {
+    "spritesheet": "symbols",
+    "xOffset": 1350.0,
+    "yOffset": 1000.0
+  },
+  "symbolTURTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 1400.0,
+    "yOffset": 1000.0
+  },
+  "symbolTWIG0": {
+    "spritesheet": "symbols",
+    "xOffset": 1450.0,
+    "yOffset": 1000.0
+  },
+  "symbolTWILIGHT0": {
+    "spritesheet": "symbols",
+    "xOffset": 1500.0,
+    "yOffset": 1000.0
+  },
+  "symbolVERBENA0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 1050.0
+  },
+  "symbolVERVAIN0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 1050.0
+  },
+  "symbolVIOLET0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 1050.0
+  },
+  "symbolVOLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 1050.0
+  },
+  "symbolWARBLER0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 1100.0
+  },
+  "symbolWASP0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 1100.0
+  },
+  "symbolWEASEL0": {
+    "spritesheet": "symbols",
+    "xOffset": 100.0,
+    "yOffset": 1100.0
+  },
+  "symbolWEEVIL0": {
+    "spritesheet": "symbols",
+    "xOffset": 150.0,
+    "yOffset": 1100.0
+  },
+  "symbolWET0": {
+    "spritesheet": "symbols",
+    "xOffset": 200.0,
+    "yOffset": 1100.0
+  },
+  "symbolWHEAT0": {
+    "spritesheet": "symbols",
+    "xOffset": 250.0,
+    "yOffset": 1100.0
+  },
+  "symbolWHIMSY0": {
+    "spritesheet": "symbols",
+    "xOffset": 300.0,
+    "yOffset": 1100.0
+  },
+  "symbolWHIRL0": {
+    "spritesheet": "symbols",
+    "xOffset": 350.0,
+    "yOffset": 1100.0
+  },
+  "symbolWHISKER0": {
+    "spritesheet": "symbols",
+    "xOffset": 400.0,
+    "yOffset": 1100.0
+  },
+  "symbolWHISPER0": {
+    "spritesheet": "symbols",
+    "xOffset": 450.0,
+    "yOffset": 1100.0
+  },
+  "symbolWHISTLE0": {
+    "spritesheet": "symbols",
+    "xOffset": 500.0,
+    "yOffset": 1100.0
+  },
+  "symbolWHORL0": {
+    "spritesheet": "symbols",
+    "xOffset": 550.0,
+    "yOffset": 1100.0
+  },
+  "symbolWILLOW0": {
+    "spritesheet": "symbols",
+    "xOffset": 600.0,
+    "yOffset": 1100.0
+  },
+  "symbolWIND0": {
+    "spritesheet": "symbols",
+    "xOffset": 650.0,
+    "yOffset": 1100.0
+  },
+  "symbolWING0": {
+    "spritesheet": "symbols",
+    "xOffset": 700.0,
+    "yOffset": 1100.0
+  },
+  "symbolWISH0": {
+    "spritesheet": "symbols",
+    "xOffset": 750.0,
+    "yOffset": 1100.0
+  },
+  "symbolWISP0": {
+    "spritesheet": "symbols",
+    "xOffset": 800.0,
+    "yOffset": 1100.0
+  },
+  "symbolWISTERIA0": {
+    "spritesheet": "symbols",
+    "xOffset": 850.0,
+    "yOffset": 1100.0
+  },
+  "symbolWOLF0": {
+    "spritesheet": "symbols",
+    "xOffset": 900.0,
+    "yOffset": 1100.0
+  },
+  "symbolWOLVERINE0": {
+    "spritesheet": "symbols",
+    "xOffset": 950.0,
+    "yOffset": 1100.0
+  },
+  "symbolWOOD0": {
+    "spritesheet": "symbols",
+    "xOffset": 1000.0,
+    "yOffset": 1100.0
+  },
+  "symbolWORM0": {
+    "spritesheet": "symbols",
+    "xOffset": 1050.0,
+    "yOffset": 1100.0
+  },
+  "symbolWREN0": {
+    "spritesheet": "symbols",
+    "xOffset": 1100.0,
+    "yOffset": 1100.0
+  },
+  "symbolYARROW0": {
+    "spritesheet": "symbols",
+    "xOffset": 0.0,
+    "yOffset": 1150.0
+  },
+  "symbolYEW0": {
+    "spritesheet": "symbols",
+    "xOffset": 50.0,
+    "yOffset": 1150.0
+  }
+}
