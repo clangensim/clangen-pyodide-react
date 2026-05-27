@@ -11,6 +11,7 @@ async function drawSymbol(symbol: Symbol, canvas: HTMLCanvasElement) {
   const symbolData = symbolsIndex[symbol];
   const symbolImage = await loadImage("/sprites/symbols.png");
 
+  ctx.clearRect(0, 0, 50, 50);
   ctx.drawImage(
     symbolImage,
     symbolData.xOffset,
@@ -37,7 +38,7 @@ function ClanSymbol({ symbol }: { symbol?: string }) {
       return;
     }
     drawSymbol(symbol as Symbol, canvasElement.current);
-  }, [canvasElement]);
+  }, [canvasElement, symbol]);
 
   return <canvas width={50} height={50} ref={canvasElement}></canvas>;
 }
