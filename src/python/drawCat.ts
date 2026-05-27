@@ -12,6 +12,8 @@ import peltInfo from "../assets/peltInfo.json";
 import spritesIndex from "../assets/spritesIndex.json";
 import spriteNumbers from "../assets/spritesOffsetMap.json";
 
+import { loadImage } from "../utils";
+
 function getSpritePosition(spriteName: string, spriteNumber: number) {
   const spriteKey = spriteName as keyof typeof spritesIndex;
   const spriteXPosition = spriteNumbers[spriteNumber].x;
@@ -22,17 +24,6 @@ function getSpritePosition(spriteName: string, spriteNumber: number) {
     x: spritesIndex[spriteKey].xOffset + 50 * spriteXPosition,
     y: spritesIndex[spriteKey].yOffset + 50 * spriteYPosition,
   };
-}
-
-async function loadImage(url: string) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.src = url;
-
-    img.addEventListener("load", () => {
-      resolve(img);
-    });
-  });
 }
 
 async function drawSprite(spriteName: string, spriteNumber: number, ctx: any) {

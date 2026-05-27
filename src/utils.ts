@@ -90,4 +90,15 @@ function getCampBGPathByClan(clanInfo: ClanInfo | null | undefined) {
   return getCampBGPath(clanInfo?.biome.toLowerCase(), clanInfo?.season.toLowerCase().replace("-", ""), clanInfo?.campBg);
 }
 
-export { download, formatText, getCatLocationBreadcrumb, setCustomCss, getCampBGPath, getCampBGPathByClan };
+async function loadImage(url: string) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = url;
+
+    img.addEventListener("load", () => {
+      resolve(img);
+    });
+  });
+}
+
+export { download, formatText, getCatLocationBreadcrumb, setCustomCss, getCampBGPath, getCampBGPathByClan, loadImage};
