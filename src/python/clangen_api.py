@@ -55,7 +55,7 @@ def load_clan():
         with open(path, "r", encoding="utf8") as f:
           print("Loading clangensim data...")
           clangensim_data = json.load(f)
-      except FileNotFoundError:
+      except (FileNotFoundError, AttributeError):
         print("No clangensim-exclusive data found.")
 
 def unload_clan():
