@@ -7,6 +7,7 @@ import Pluralize from "../components/generic/Pluralize";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
 import { setCustomCss } from "../utils";
+import ClanSymbol from "../components/Symbol";
 
 function BasePage({
   children,
@@ -64,13 +65,18 @@ function BasePage({
     <>
       <div className="head">
         <div className="profile-info">
-          <ul className="row-list">
-            <li>
-              <Link className="profile-info__clanname" to="/allegiances">{clanInfo?.name}</Link> - {clanInfo?.age}{" "}
-              <Pluralize num={clanInfo?.age}>moon</Pluralize>
-            </li>
-            <li>{clanInfo?.season}</li>
-          </ul>
+          <div className="profile-info__clan">
+            <Link to="/allegiances">
+              <ClanSymbol symbol={clanInfo?.symbol} />
+            </Link>
+            <ul>
+              <li>
+                <Link className="profile-info__clanname" to="/allegiances">{clanInfo?.name}</Link> - {clanInfo?.age}{" "}
+                <Pluralize num={clanInfo?.age}>moon</Pluralize>
+              </li>
+              <li>{clanInfo?.season}</li>
+            </ul>
+          </div>
           <Link to="/moonskip" tabIndex={0} className="btn btn-secondary profile-info_next-moon">
             Next Moon →
           </Link>
