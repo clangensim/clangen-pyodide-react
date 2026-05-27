@@ -111,7 +111,7 @@ def cat_to_dict(cat, depth=1):
     mentor = cat.mentor
     description = cat.describe_cat(True)
     parents = list(cat.get_parents())
-    adoptive_parents = cat.inheritance.get_no_blood_parents()
+    adoptive_parents = cat.inheritance.get_adoptive_parents()
   else:
     former_apprentices = id_list_to_dict_list(cat.former_apprentices)
     mates = id_list_to_dict_list(cat.mate)
@@ -119,7 +119,7 @@ def cat_to_dict(cat, depth=1):
     mentor = cat_to_dict(Cat.fetch_cat(cat.mentor), 0)
     parents = id_list_to_dict_list(cat.get_parents())
     description = cat.describe_cat()
-    adoptive_parents = id_list_to_dict_list(cat.inheritance.get_no_blood_parents())
+    adoptive_parents = id_list_to_dict_list(cat.inheritance.get_adoptive_parents())
 
   return {
     'ID': cat.ID,
@@ -208,15 +208,15 @@ def create_clan(clan_name, leader, deputy, med_cat, biome, camp, game_mode, memb
   Cat.outside_cats.clear()
   Patrol.used_patrols.clear()
   game.clan = Clan(
-    clan_name,
-    Cat.all_cats[leader],
-    Cat.all_cats[deputy],
-    Cat.all_cats[med_cat],
-    biome,
-    camp,
-    game_mode,
-    list(map(lambda cat_id : Cat.all_cats[cat_id], members)),
-    season
+    name=clan_name,
+    leader=Cat.all_cats[leader],
+    deputy=Cat.all_cats[deputy],
+    medicine_cat=Cat.all_cats[med_cat],
+    biome=biome,
+    camp_bg=camp,
+    game_mode=game_mode,
+    starting_members=list(map(lambda cat_id : Cat.all_cats[cat_id], members)),
+    starting_season=season
   )
   game.clan.create_clan()
   #game.clan.starclan_cats.clear()
@@ -237,13 +237,12 @@ def get_leader_ceremony():
 
 def get_random_cat_name(cat_id):
   cat = Cat.all_cats[cat_id]
-  n = Name(cat.status,
-        None,
-        None,
-        cat.pelt.colour,
-        cat.pelt.eye_colour,
-        cat.pelt.name,
-        cat.pelt.tortiepattern)
+  n = Name(
+    prefix=None,
+    suffix=None,
+    biome=game.clan.biome,
+    cat=cat,
+  )
   name_obj = {
     "prefix": n.prefix,
     "suffix": n.suffix,
