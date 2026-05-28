@@ -116,7 +116,7 @@ function MediationPage() {
   if (isFirstLoad) {
     return (
       <BasePage crumbs={crumbs}>
-        <p>Loading...</p>
+        <p style={{height: "500px"}}>Loading...</p>
       </BasePage>
     );
   }

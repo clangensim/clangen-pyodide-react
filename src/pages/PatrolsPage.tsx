@@ -75,8 +75,9 @@ function PatrolsPage() {
   }
 
   useEffect(() => {
-    reset();
-    setIsFirstLoad(false);
+    reset().then(() => {
+      setIsFirstLoad(false);
+    })
   }, []);
 
   useEffect(() => {
@@ -116,7 +117,7 @@ function PatrolsPage() {
   if (isFirstLoad) {
     return (
       <BasePage crumbs={crumbs}>
-        <p>Loading...</p>
+        <p style={{height: "500px"}}>Loading...</p>
       </BasePage>
     );
   }
