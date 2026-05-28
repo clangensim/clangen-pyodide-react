@@ -148,14 +148,23 @@ function SettingsPage() {
   return (
     <BasePage>
       <h2>Game Settings</h2>
-      {Object.entries(settings).map(([settingName, value]) => (
+      {Object.keys(settings).length !== 0 ?
+       Object.entries(settings).map(([settingName, value]) => (
         <Checkbox
           key={settingName}
           label={settingLabels[settingName]?.label}
           checked={value}
           onChange={() => setSettings({ ...settings, [settingName]: !value })}
         />
-      ))}
+      )) : 
+       Object.entries(settingLabels).map(([settingName, _]) => (
+        <Checkbox
+          key={settingName}
+          label={settingLabels[settingName].label}
+          checked={false}
+        />
+      ))
+      }
 
       <h2>Site Settings</h2>
       <Checkbox label="Enable shading for cat sprites" onChange={() => setShading(!shading)} checked={shading}/>
