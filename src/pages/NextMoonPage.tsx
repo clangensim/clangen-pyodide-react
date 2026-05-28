@@ -55,7 +55,7 @@ function NextMoonPage() {
 
   return (
     <BasePage>
-      <img style={{imageRendering: "pixelated"}} src={nextMoonImage}></img>
+      <img height="300px" style={{imageRendering: "pixelated"}} src={nextMoonImage}></img>
 
       <p>It has been <b>{clanInfo?.age} moons</b> since {clanInfo?.name} was founded. The current season is <b>{clanInfo?.season}</b>.</p>
 
