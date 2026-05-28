@@ -9,7 +9,6 @@ const PYODIDE_EXCLUDE = [
   "!**/*.{md,html}",
   "!**/*.d.ts",
   "!**/*.whl",
-  "!**/node_modules",
   "!**/package.json",
   "!**/package-lock.json",
 ];
@@ -23,6 +22,9 @@ export function viteStaticCopyPyodide() {
       {
         src: [join(pyodideDir, "*")].concat(PYODIDE_EXCLUDE),
         dest: "assets",
+        rename: {
+          stripBase: true,
+        }
       },
     ],
   });
@@ -49,11 +51,6 @@ export default defineConfig({
     exclude: [
       "pyodide",
     ],
-  },
-  esbuild: {
-    supported: {
-      'top-level-await': true
-    }
   },
   worker: {
     format: "es",
