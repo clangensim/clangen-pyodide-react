@@ -226,7 +226,7 @@ function PatrolsPage() {
       )}
 
       {patrolArtUrl && 
-        <img src={patrolArtUrl}></img>
+        <img height={300} style={{imageRendering: "pixelated"}} src={patrolArtUrl}></img>
       }
 
       <p>{formatText(patrolText)}</p>

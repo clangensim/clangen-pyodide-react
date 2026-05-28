@@ -44,7 +44,7 @@ function HomePage() {
   return (
     <BasePage>
       <ClanInfoDisplay />
-      <img src={getCampBGPathByClan(clanInfo)} width={400}></img>
+      <img src={getCampBGPathByClan(clanInfo)} height={400} ></img>
 
       <p>
         Welcome to <b>ClanGen Simulator</b>, an unofficial project that aims to simulate
