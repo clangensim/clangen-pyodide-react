@@ -29,7 +29,7 @@ function EventsPage() {
   });
 
   const events = eventsQuery.data === undefined ? [] : eventsQuery.data;
-  const [cats, setCats] = useState<Record<string,Cat>>();
+  const [cats, setCats] = useState<Record<string,Cat>>({});
 
   const [showRelEvents, setShowRelEvents] = useState(false);
   const [showRegEvents, setShowRegEvents] = useState(true);
@@ -68,7 +68,7 @@ function EventsPage() {
             }
             return <li className="event-display" key={event.text}>
               <div className="event-display__text">{formatText(event.text)}</div>
-              {event.cats_involved.length > 0 && cats &&
+              {event.cats_involved.length > 0 &&
                 <div className="event-display__cats">
                   {event.cats_involved.filter(Boolean).map((ID) => // sometimes cat doesn't exist?
                     <Link key={`${event.text}_${ID}`} to={`/cats/${ID}`}>

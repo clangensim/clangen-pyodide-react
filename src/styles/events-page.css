@@ -16,4 +16,5 @@
   width: fit-content;
   display: block;
   margin-left: auto;
+  min-height: 40px;
 }
