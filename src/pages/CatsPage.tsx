@@ -84,28 +84,30 @@ function CatsPage() {
         </div>
       </div>
 
-      <div className="cats-list">
-        {cats.map((cat, _) => {
-          if (screenState === "dark_forest" && (!cat.dead || !cat.inDarkForest )) {
-            return;
-          } else if (screenState === "starclan" && (!cat.dead || cat.inDarkForest || cat.outside)) {
-            return;
-          } else if (screenState === "clan_cats" && (cat.dead || cat.outside)) {
-            return;
-          } else if (screenState === "outside_cats" && (cat.dead || !cat.outside)) {
-            return;
-          } else if (screenState === "unknown_residence" && (!cat.dead || cat.inDarkForest || !cat.outside)) {
-            return;
-          }
-          return (
-            <Link key={cat.ID} to={`/cats/${cat.ID}`} tabIndex={0}>
-              <div className="cat">
-                <CatDisplay cat={cat} w="75px" h="75px" />
-                <div>{cat.name.display}</div>
-              </div>
-            </Link>
-          );
-        })}
+      <div className="cats-list__container">
+        <div className="cats-list">
+          {cats.map((cat, _) => {
+            if (screenState === "dark_forest" && (!cat.dead || !cat.inDarkForest )) {
+              return;
+            } else if (screenState === "starclan" && (!cat.dead || cat.inDarkForest || cat.outside)) {
+              return;
+            } else if (screenState === "clan_cats" && (cat.dead || cat.outside)) {
+              return;
+            } else if (screenState === "outside_cats" && (cat.dead || !cat.outside)) {
+              return;
+            } else if (screenState === "unknown_residence" && (!cat.dead || cat.inDarkForest || !cat.outside)) {
+              return;
+            }
+            return (
+              <Link key={cat.ID} to={`/cats/${cat.ID}`} tabIndex={0}>
+                <div className="cat">
+                  <CatDisplay cat={cat} w="75px" h="75px" />
+                  <div>{cat.name.display}</div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </BasePage>
   );

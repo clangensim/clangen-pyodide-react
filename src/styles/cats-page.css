@@ -1,3 +1,7 @@
+.cats-list__container {
+  min-height: 250px;
+}
+
 .cats-list {
   margin-top: 0.75em;
   display: grid;
