@@ -4,9 +4,9 @@ import { Cat } from "../python/types";
 import { clangenRunner } from "../python/clangenRunner";
 
 import "../styles/allegiances-page.css";
-import { useQuery } from "@tanstack/react-query";
 import Pluralize from "../components/generic/Pluralize";
 import { TbPrinter } from "react-icons/tb";
+import useClanInfo from "../hooks/useClanInfo";
 
 const crumbs = [
   {
@@ -34,10 +34,7 @@ function AllegiancesPage() {
 
   // TODO: queens
 
-  const query = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => await clangenRunner.getClanInfo(),
-  });
+  const query = useClanInfo();
   const clanInfo = query.data;
 
   useEffect(() => {

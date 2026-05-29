@@ -6,7 +6,7 @@ import BasePage from "../layout/BasePage";
 
 import "../styles/cats-page.css";
 import { Cat } from "../python/types";
-import { useQuery } from "@tanstack/react-query";
+import useClanInfo from "../hooks/useClanInfo";
 
 const crumbs = [
   {
@@ -27,10 +27,7 @@ function CatsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [cats, setCats] = useState<Cat[]>([]);
-  const query = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => await clangenRunner.getClanInfo(),
-  });
+  const query = useClanInfo();
   const clanInfo = query.data;
 
 

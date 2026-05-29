@@ -13,6 +13,7 @@ import "../../styles/cat-edit-page.css";
 import { getCatLocationBreadcrumb } from "../../utils";
 import { useQuery } from "@tanstack/react-query";
 import { TbDice3 } from "react-icons/tb";
+import useClanInfo from "../../hooks/useClanInfo";
 
 const selectApprenticeOptions = [
   {
@@ -106,10 +107,7 @@ function CatEditPage() {
 
   const navigate = useNavigate();
 
-  const query = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => await clangenRunner.getClanInfo(),
-  });
+  const query = useClanInfo();
   const clanInfo = query.data;
 
   const [cat, setCat] = useState<Cat>();

@@ -1,13 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import Breadcrumbs from "./Breadcrumbs";
 import { Breadcrumb } from "./Breadcrumbs";
 import Navbar from "./Navbar";
-import { clangenRunner } from "../python/clangenRunner";
 import Pluralize from "../components/generic/Pluralize";
 import { Link, useNavigate } from "react-router";
 import { useEffect } from "react";
 import { setCustomCss } from "../utils";
 import ClanSymbol from "../components/Symbol";
+import useClanInfo from "../hooks/useClanInfo";
 
 function BasePage({
   children,
@@ -17,10 +16,7 @@ function BasePage({
   crumbs?: Breadcrumb[];
 }) {
   const navigator = useNavigate();
-  const query = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => await clangenRunner.getClanInfo(),
-  });
+  const query = useClanInfo();
 
   const clanInfo = query.data;
 

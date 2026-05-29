@@ -5,7 +5,8 @@ import { download, getCampBGPathByClan } from "../utils";
 import { useEffect } from "react";
 import ClanInfoDisplay from "../components/ClanInfoDisplay";
 import BasePage from "../layout/BasePage";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
+import useClanInfo from "../hooks/useClanInfo";
 
 function HomePage() {
   const queryClient = useQueryClient();
@@ -31,10 +32,7 @@ function HomePage() {
       .then(() => queryClient.invalidateQueries());
   }
 
-  const query = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => await clangenRunner.getClanInfo(),
-  });
+  const query = useClanInfo();
   const clanInfo = query.data;
 
   useEffect(() => {

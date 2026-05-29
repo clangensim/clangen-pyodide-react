@@ -1,12 +1,8 @@
-import { clangenRunner } from "../python/clangenRunner";
+import useClanInfo from "../hooks/useClanInfo";
 import Pluralize from "./generic/Pluralize";
-import { useQuery } from "@tanstack/react-query";
 
 function ClanInfoDisplay() {
-  const query = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => await clangenRunner.getClanInfo(),
-  });
+  const query = useClanInfo();
 
   const clanInfo = query.data;
 

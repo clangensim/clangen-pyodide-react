@@ -7,13 +7,11 @@ import "../styles/moonskip-page.css";
 import { Cat } from "../python/types";
 import Pluralize from "../components/generic/Pluralize";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import useClanInfo from "../hooks/useClanInfo";
 
 function NextMoonPage() {
   const queryClient = useQueryClient();
-  const clanInfoQuery = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => clangenRunner.getClanInfo(),
-  });
+  const clanInfoQuery = useClanInfo();
   const clanInfo = clanInfoQuery.data;
 
   const [canPatrol, setCanPatrol] = useState<Cat[]>([]);

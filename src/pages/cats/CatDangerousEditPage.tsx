@@ -5,8 +5,8 @@ import { clangenRunner } from "../../python/clangenRunner";
 import Dialog from "../../components/generic/Dialog";
 import Checkbox from "../../components/generic/Checkbox";
 import BasePage from "../../layout/BasePage";
-import { useQuery } from "@tanstack/react-query";
 import { getCatLocationBreadcrumb } from "../../utils";
+import useClanInfo from "../../hooks/useClanInfo";
 
 const defaultDeathHistory = "killed by a higher power";
 
@@ -17,10 +17,7 @@ function CatDangerousEditPage() {
 
   const navigate = useNavigate();
 
-  const query = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => await clangenRunner.getClanInfo(),
-  });
+  const query = useClanInfo();
   const clanInfo = query.data;
 
   const [killModalOpen, setKillModalOpen] = useState(false);

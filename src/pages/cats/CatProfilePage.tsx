@@ -12,9 +12,9 @@ import BasePage from "../../layout/BasePage";
 import "../../styles/cat-profile-page.css";
 import RelationshipsDisplay from "../../components/RelationshipDisplay";
 import ConditionsDisplay from "../../components/ConditionsDisplay";
-import { useQuery } from "@tanstack/react-query";
 import FamilyDisplay from "../../components/FamilyDisplay";
 import { getCatLocationBreadcrumb } from "../../utils";
+import useClanInfo from "../../hooks/useClanInfo";
 
 function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
@@ -25,10 +25,7 @@ function CatProfilePage() {
   const [notes, setNotes] = useState<string>();
   const [family, setFamily] = useState<Family>();
 
-  const query = useQuery({
-    queryKey: ["claninfo"],
-    queryFn: async () => await clangenRunner.getClanInfo(),
-  });
+  const query = useClanInfo();
   const clanInfo = query.data;
 
   const params = useParams();
