@@ -26,7 +26,6 @@ async function drawSymbol(symbol: Symbol, canvas: HTMLCanvasElement) {
 }
 
 function ClanSymbol({ symbol }: { symbol?: string }) {
-  console.log(symbol);
   if (!symbol || !(symbol in symbolsIndex)) {
     return <></>;
   } // symbolName in symbolsIndex
