@@ -13,6 +13,7 @@ import type {
   Event,
   Family,
   Name,
+  OtherClan,
 } from "./types";
 
 import clangenApiUrl from "./clangen_api.py?url";
@@ -427,6 +428,13 @@ class Clangen {
       // have to return null or tanstack complains
       return null;
     }
+  }
+
+  /**
+   * Gets data about other Clans.
+   */
+  public async getOtherClans(): Promise<OtherClan[]> {
+    return this._clangenApi.get_other_clans();
   }
 
   /**

@@ -706,6 +706,17 @@ def get_clan_info():
     clan_info["requiredFreshkill"] = round(game.clan.freshkill_pile.amount_food_needed(), 2)
   return to_js(clan_info, dict_converter=js.Object.fromEntries)
 
+def get_other_clans():
+  other_clan_info = []
+  for other_clan in game.clan.all_clans:
+    other_clan_info.append({
+      "name": other_clan.name,
+      "isEnemy": other_clan.name == game.clan.war["enemy"],
+      "temperament": other_clan.temperament,
+      "symbol": other_clan.chosen_symbol,
+    })
+  return to_js(other_clan_info, dict_converter=js.Object.fromEntries)
+
 def refresh_cats():
   if game.clan is not None:
     key_copy = tuple(Cat.all_cats.keys())

@@ -143,6 +143,14 @@ type PatrolIntro = {
   patrolArt: string;
 };
 
+type OtherClan = {
+  name: string;
+  relations: string;
+  temperament: string;
+  symbol: string;
+  isEnemy: boolean;
+}
+
 export type {
   CatEdit,
   Cat,
@@ -157,4 +165,5 @@ export type {
   Toggles,
   Family,
   Name,
+  OtherClan,
 };
