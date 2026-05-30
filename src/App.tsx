@@ -18,6 +18,7 @@ import AllegiancesPage from "./pages/AllegiancesPage";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import WarriorsDenPage from "./pages/dens/WarriorsDenPage";
+import LeadersDenPage from "./pages/dens/LeadersDenPage";
 const queryClient = new QueryClient();
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             />
             <Route path="/cats/:id/conditions" element={<ConditionsPage />} />
             <Route path="/dens/warriors-den" element={<WarriorsDenPage />} />
+            <Route path="/dens/leaders-den" element={<LeadersDenPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/allegiances" element={<AllegiancesPage />} />
