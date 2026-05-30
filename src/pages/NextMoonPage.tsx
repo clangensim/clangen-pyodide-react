@@ -6,7 +6,7 @@ import nextMoonImage from "../assets/images/pln_no_UFO.png";
 import "../styles/moonskip-page.css";
 import { Cat } from "../python/types";
 import Pluralize from "../components/generic/Pluralize";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import useClanInfo from "../hooks/useClanInfo";
 
 function NextMoonPage() {
@@ -16,6 +16,7 @@ function NextMoonPage() {
 
   const [canPatrol, setCanPatrol] = useState<Cat[]>([]);
   const [canMediate, setCanMediate] = useState<Cat[]>([]);
+  const [nextFocusChange, setNextFocusChange] = useState<number>(0);
 
   const [isProcessing, setIsProcessing] = useState(false);
   const processing = useRef(false); // otherwise the timer won't see it.
@@ -25,6 +26,7 @@ function NextMoonPage() {
     document.title = "ClanGen Simulator";
     clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
     clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));
+    clangenRunner.nextFocusChange().then((n) => setNextFocusChange(n));
   }, []);
 
   useEffect(() => {
@@ -41,7 +43,8 @@ function NextMoonPage() {
       setIsProcessing(false);
       setShowLoading(false);
       clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
-      clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));  
+      clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));
+      clangenRunner.nextFocusChange().then((n) => setNextFocusChange(n));
       queryClient.invalidateQueries();
     }).catch((err) => {
       alert(err);
@@ -57,11 +60,19 @@ function NextMoonPage() {
 
       <p>It has been <b>{clanInfo?.age} moons</b> since {clanInfo?.name} was founded. The current season is <b>{clanInfo?.season}</b>.</p>
 
-      {canPatrol.length > 0 && 
-        <p>{canPatrol.length} <Pluralize num={canPatrol.length}>cat</Pluralize> can still patrol this moon.</p>
+      {(canPatrol.length > 0 || canMediate.length > 0) &&
+        <p>
+          {canPatrol.length > 0 && 
+            <>{canPatrol.length} <Pluralize num={canPatrol.length}>cat</Pluralize> can still patrol this moon.</>
+          }{" "}
+          {canMediate.length > 0 && 
+            <>{canMediate.length} <Pluralize num={canMediate.length}>mediator</Pluralize> can still mediate this moon.</>
+          }
+        </p>
       }
-      {canMediate.length > 0 && 
-        <p>{canMediate.length} <Pluralize num={canMediate.length}>mediator</Pluralize> can still mediate this moon.</p>
+
+      {nextFocusChange === 0 &&
+        <p>{clanInfo?.name}'s focus can be changed.</p>
       }
 
       {clanInfo?.gameMode !== "classic" &&
