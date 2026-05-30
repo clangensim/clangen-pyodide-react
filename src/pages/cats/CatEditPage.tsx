@@ -11,7 +11,6 @@ import Checkbox from "../../components/generic/Checkbox";
 import Radiobox from "../../components/generic/Radiobox";
 import "../../styles/cat-edit-page.css";
 import { getCatLocationBreadcrumb } from "../../utils";
-import { useQuery } from "@tanstack/react-query";
 import { TbDice3 } from "react-icons/tb";
 import useClanInfo from "../../hooks/useClanInfo";
 
