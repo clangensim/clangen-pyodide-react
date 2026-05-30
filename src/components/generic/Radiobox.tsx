@@ -6,15 +6,17 @@ function Radiobox({
   name,
   value,
   onChange,
+  disabled,
 }: {
-  label: string;
+  label: React.ReactNode;
   checked?: boolean;
   name: string;
   value?: string;
   onChange?: () => void;
+  disabled?: boolean;
 }) {
   const ID = useId();
-  const val = value === undefined ? label : value;
+  const val = value === undefined ? label?.toString() : value;
 
   return (
     <>
@@ -26,6 +28,7 @@ function Radiobox({
           onChange={onChange}
           name={name}
           value={val}
+          disabled={disabled}
           type="radio"
         />
         <label htmlFor={ID}>{label}</label>

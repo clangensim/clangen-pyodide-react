@@ -5,11 +5,13 @@ function Checkbox({
   checked,
   onChange,
   className,
+  disabled,
 }: {
   label: React.ReactNode;
   checked?: boolean;
   onChange?: () => void;
   className?: string;
+  disabled?: boolean
 }) {
   const ID = useId();
 
@@ -22,6 +24,7 @@ function Checkbox({
             id={ID}
             checked={checked}
             onChange={onChange}
+            disabled={disabled}
             type="checkbox"
           />
           {label}
