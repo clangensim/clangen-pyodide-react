@@ -39,6 +39,17 @@ dialog div.dialog-footer {
   justify-content: flex-end;
 }
 
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 1em;
+}
+.table-container {
+  width: fit-content;
+}
+
 .title-bar {
   display: flex;
 }
