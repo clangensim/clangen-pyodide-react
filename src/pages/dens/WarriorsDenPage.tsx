@@ -125,6 +125,16 @@ function WarriorsDenPage() {
     clangenRunner.nextFocusChange().then((n) => setNextFocusChange(n));
   }
 
+  function submitEnabled() {
+    if (!canChangeFocus) { return false }
+    if (selectedFocus !== undefined && focuses[selectedFocus].otherClans) {
+      if (targettedOtherClans.size === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   return (
     <BasePage crumbs={crumbs}>
       <>
@@ -206,7 +216,7 @@ function WarriorsDenPage() {
 
         <button
           className="submit"
-          disabled={!canChangeFocus}
+          disabled={!submitEnabled()}
           onClick={handleSubmit}
         >
           Submit
