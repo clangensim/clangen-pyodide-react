@@ -437,6 +437,23 @@ class Clangen {
     return this._clangenApi.get_other_clans();
   }
 
+  public async getFocus(): Promise<string> {
+    return this._clangenApi.get_focus();
+  }
+
+  public getTargettedClans(): Promise<string[]> {
+    return this._clangenApi.get_targetted_clans();
+  }
+
+  public async setFocus(focus: string, otherClans?: string[]) {
+    this._clangenApi.set_focus(focus, otherClans);
+    await this.saveGame();
+  }
+
+  public async nextFocusChange(): Promise<number> {
+    return this._clangenApi.next_focus_change();
+  }
+
   /**
    * Removes cats that "don't exist".
    */

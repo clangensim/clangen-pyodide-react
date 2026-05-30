@@ -33,6 +33,9 @@ class PairAlreadyMediatedError(Exception):
 current_patrols = {}
 clangensim_data = {}
 
+with open("resources/clansettings.json", "r", encoding="utf-8") as f:
+    settings_dict = json.load(f)
+
 def load_clan():
   global clangensim_data
   clan_list = game.read_clans()
@@ -716,6 +719,38 @@ def get_other_clans():
       "symbol": other_clan.chosen_symbol,
     })
   return to_js(other_clan_info, dict_converter=js.Object.fromEntries)
+
+def set_focus(focus, other_clans=None):
+  if next_focus_change() > 0:
+    return
+
+  if focus in ["sabotage other clans", "aid other clans", "raid other clans"]:
+    if not other_clans:
+      return
+    game.clan.clans_in_focus = other_clans.to_py() # apparently it's a proxy...
+
+  for code in settings_dict["clan_focus"].keys():
+    if code == focus:
+        game.clan.clan_settings[code] = True
+    else:
+        game.clan.clan_settings[code] = False
+
+  game.clan.last_focus_change = game.clan.age
+
+def get_targetted_clans():
+  return to_js(game.clan.clans_in_focus)
+
+def get_focus():
+  for code in settings_dict["clan_focus"].keys():
+    if game.clan.clan_settings[code]:
+        return code
+  return "business as usual"
+
+def next_focus_change():
+  if game.clan.last_focus_change is None:
+    return 0
+  next_possible_change = game.clan.last_focus_change + game.config["focus"]["duration"]
+  return max(0, next_possible_change - game.clan.age)
 
 def refresh_cats():
   if game.clan is not None:
