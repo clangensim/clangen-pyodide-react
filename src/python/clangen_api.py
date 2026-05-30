@@ -728,6 +728,8 @@ def set_focus(focus, other_clans=None):
     if not other_clans:
       return
     game.clan.clans_in_focus = other_clans.to_py() # apparently it's a proxy...
+  else:
+    game.clan.clans_in_focus = []
 
   for code in settings_dict["clan_focus"].keys():
     if code == focus:
