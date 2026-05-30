@@ -15,10 +15,10 @@ import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
 import NextMoonPage from "./pages/NextMoonPage";
 import SignUpPage from "./pages/SignUpPage";
 import AllegiancesPage from "./pages/AllegiancesPage";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import WarriorsDenPage from "./pages/dens/WarriorsDenPage";
 import LeadersDenPage from "./pages/dens/LeadersDenPage";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 function App() {
