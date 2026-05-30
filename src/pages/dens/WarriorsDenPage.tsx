@@ -46,7 +46,7 @@ const focuses = {
     classic: false,
   },
   "threaten outsiders": {
-    name: "Entreating with Outsiders",
+    name: "Threatening Outsiders",
     description:
       "The relationship with cats outside of the Clan decreases due to intentionally threatening behavior from your warriors.",
     otherClans: false,
