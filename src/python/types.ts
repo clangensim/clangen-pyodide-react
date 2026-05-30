@@ -64,6 +64,8 @@ type Cat = {
   pelt: Pelt;
   age: string;
   outside: boolean;
+  exiled: boolean;
+  isDrivenOff: boolean;
   experienceLevel: string;
   thought: string;
   description: string;

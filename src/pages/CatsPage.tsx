@@ -93,7 +93,7 @@ function CatsPage() {
               return;
             } else if (screenState === "clan_cats" && (cat.dead || cat.outside)) {
               return;
-            } else if (screenState === "outside_cats" && (cat.dead || !cat.outside)) {
+            } else if (screenState === "outside_cats" && (cat.dead || !cat.outside || cat.isDrivenOff)) {
               return;
             } else if (screenState === "unknown_residence" && (!cat.dead || cat.inDarkForest || !cat.outside)) {
               return;

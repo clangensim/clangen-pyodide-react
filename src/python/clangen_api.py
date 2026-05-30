@@ -145,6 +145,8 @@ def cat_to_dict(cat, depth=1):
     'pronouns': pronouns,
     'status': cat.status,
     'outside': cat.outside,
+    'exiled': cat.exiled,
+    'isDrivenOff': cat.driven_out,
     'backstory': backstory,
     'dead': cat.dead,
     'inDarkForest': cat.df,
