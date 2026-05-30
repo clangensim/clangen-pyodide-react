@@ -84,6 +84,23 @@ function EditGender({cat, value, setValue} : {cat: Cat, value: string; setValue:
   );
 }
 
+function EditPronouns({value, setValue} : {value: string; setValue: (val: string) => void}) {
+
+  return (
+    <>
+      <fieldset>
+        <legend>Pronouns</legend>
+
+        <div onChange={(e: any) => setValue(e.target.value)}>
+          <Radiobox checked={value === "he/him"} label="he/him" name="pronouns" />
+          <Radiobox checked={value === "she/her"} label="she/her" name="pronouns" />
+          <Radiobox checked={value === "they/them"} label="they/them" name="pronouns" />
+        </div>
+      </fieldset>
+    </>
+  );
+}
+
 function EditAfterlife({value, setValue} : {value: string; setValue: (val: string) => void}) {
   return (
     <>
@@ -134,6 +151,7 @@ function CatEditPage() {
   const [hideSpecSuffix, setHideSpecSuffix] = useState(false);
 
   const [gender, setGender] = useState("");
+  const [pronouns, setPronouns] = useState("");
   const [afterlife, setAfterlife] = useState("");
 
   const isApprentice = cat?.status.includes("apprentice");
@@ -234,6 +252,7 @@ function CatEditPage() {
       suffix: suffix,
       mates: mates,
       gender: gender,
+      pronouns: pronouns,
     };
     const t: Toggles = {
       preventKits: preventKits,
@@ -292,6 +311,7 @@ function CatEditPage() {
       setPreventMates(c.toggles.preventMates);
       setHideSpecSuffix(c.name.specSuffixHidden);
       setGender(c.gender);
+      setPronouns(c.pronouns);
 
       let afterlifeLocation = "";
       if (c.dead) {
@@ -376,6 +396,7 @@ function CatEditPage() {
           </div>
 
           <EditGender cat={cat} value={gender} setValue={setGender} />
+          <EditPronouns value={pronouns} setValue={setPronouns} />
 
           {["young adult", "adult", "senior adult", "senior"].includes(
             cat.age,

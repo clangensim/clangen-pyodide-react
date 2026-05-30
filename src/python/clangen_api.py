@@ -104,6 +104,11 @@ def cat_to_dict(cat, depth=1):
   else:
     leader_lives = None
 
+  if cat.pronouns:
+    pronouns = f"{cat.pronouns[0]["subject"]}/{cat.pronouns[0]["object"]}"
+  else:
+    pronouns = "they/then"
+
   if depth <= 0:
     former_apprentices = cat.former_apprentices
     mates = cat.mate
@@ -134,6 +139,7 @@ def cat_to_dict(cat, depth=1):
     'moons': cat.moons,
     'gender': cat.genderalign,
     'sex': cat.gender,
+    'pronouns': pronouns,
     'status': cat.status,
     'outside': cat.outside,
     'backstory': backstory,
@@ -331,6 +337,15 @@ def edit_cat(cat_id, editObj):
 
   if "gender" in edit:
     cat.genderalign = edit["gender"]
+
+  if "pronouns" in edit:
+    pronounStr = edit["pronouns"]
+    if pronounStr == "they/them":
+      cat.pronouns = [Cat.default_pronouns[0]]
+    elif pronounStr == "she/her":
+      cat.pronouns = [Cat.default_pronouns[1]]
+    elif pronounStr == "he/him":
+      cat.pronouns = [Cat.default_pronouns[2]]
 
   if "afterlife" in edit:
     afterlife = edit["afterlife"]

@@ -57,6 +57,7 @@ type Cat = {
   moons: number;
   gender: string;
   sex: "male" | "female";
+  pronouns: string;
   trait: string;
   skillString: string;
   status: string;
@@ -127,6 +128,7 @@ type CatEdit = {
   mates?: string[];
   toggles?: Toggles;
   gender: string;
+  pronouns?: string;
   afterlife?: string;
   notes?: string;
   adoptiveParents?: string[];
