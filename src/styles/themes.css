@@ -22,8 +22,8 @@
   --progress-bar-fill: #80bc08;
   --loader-color: #d5d5d5;
 
-  --icon-button-text-color: darkgray;
-  --icon-button-hovered-text-color: gray;
+  --icon-button-text-color: #8A8A8A;
+  --icon-button-hovered-text-color: #626262;
 
   --button-background-color: #655934;
   --button-hovered-background-color: rgb(82, 73, 55);
