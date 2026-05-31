@@ -88,6 +88,7 @@ body {
   color: var(--navbar-text-color);
   background-color: transparent;
   border-radius: 0;
+  border: none;
 }
 .navbar .nav-item:hover {
   background-color: var(--navbar-hovered-text-color);
@@ -103,7 +104,7 @@ body {
   background-color: var(--navbar-hovered-text-color);
     box-shadow: 1px 5px 15px -12px rgba(0,0,0,0.75);
 }
-.nav-sublist a {
+.nav-sublist a, .nav-sublist div {
   font-family: "Bubblegum Sans", sans-serif;
   font-size: large;
   text-decoration-line: none;
