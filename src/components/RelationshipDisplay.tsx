@@ -7,7 +7,7 @@ import { TbFileDots } from "react-icons/tb";
 // TODO: switch alert to Dialog
 function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   return (
-    <div className="raised">
+    <div className="relationship">
       <Link to={`/cats/${relationship.cat_to_id}`}>
         <CatDisplay cat={relationship.cat_to}/>
         {relationship.cat_to.name.display}
