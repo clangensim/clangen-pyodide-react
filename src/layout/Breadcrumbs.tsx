@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 type Breadcrumb = {
-  url: string;
+  url?: string;
   label: string;
 };
 
@@ -12,6 +12,13 @@ function Breadcrumbs({ crumbs }: { crumbs: Breadcrumb[] }) {
         const separator = crumbs.length - 1 === index ? "" : " / ";
         if (index === crumbs.length - 1) {
           return <span key={index}>{crumb.label}</span>;
+        }
+        if (crumb.url === undefined) {
+          return (
+          <span key={index}>
+            {crumb.label} {separator}
+          </span>
+          )
         }
         return (
           <span key={index}>
