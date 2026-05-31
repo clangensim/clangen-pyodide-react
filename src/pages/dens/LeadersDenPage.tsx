@@ -25,6 +25,7 @@ const crumbs = [
 
 type OutsiderAction = {
   cat_id: string;
+  catName: string;
   action: "search" | "invite" | "drive" | "hunt";
 };
 
@@ -48,6 +49,7 @@ function LeadersDenPage() {
       .then((c) =>
         setCats(c.filter((c) => c.outside && !c.dead && !c.isDrivenOff)),
       );
+    document.title = "Leader's Den | ClanGen Simulator"
   }, []);
 
   function isLost(cat: Cat) {
@@ -66,6 +68,21 @@ function LeadersDenPage() {
       outsiderAction.cat_id,
       outsiderAction.action,
     );
+
+    var verb
+    if (outsiderAction.action === "drive") {
+      verb = "drive out"
+    }
+    else if (outsiderAction.action === "hunt") {
+      verb = "hunt down"
+    }
+    else if (outsiderAction.action === "invite") {
+      verb = "invite in"
+    }
+    else { // outsiderAction === "search"
+      verb = "search for"
+    }
+    alert(`The Clan will try to ${verb} ${outsiderAction.catName} next moon.`);
   }
 
   function submitOtherClanInteraction() {
@@ -76,6 +93,7 @@ function LeadersDenPage() {
       otherClanInteraction.other_clan_name,
       otherClanInteraction.action,
     );
+    alert(`You will try to ${otherClanInteraction.action} ${otherClanInteraction.other_clan_name} next moon.`);
   }
 
   return (
@@ -216,6 +234,7 @@ function LeadersDenPage() {
                                 setOutsiderAction({
                                   cat_id: c.ID,
                                   action: "search",
+                                  catName: c.name.display,
                                 })
                               }
                               label="Search for"
@@ -231,6 +250,7 @@ function LeadersDenPage() {
                               setOutsiderAction({
                                 cat_id: c.ID,
                                 action: "hunt",
+                                catName: c.name.display,
                               })
                             }
                             label="Hunt down"
@@ -245,7 +265,9 @@ function LeadersDenPage() {
                               setOutsiderAction({
                                 cat_id: c.ID,
                                 action: "invite",
+                                catName: c.name.display,
                               })
+                              
                             }
                             label="Invite in"
                             name="outsider-action"
@@ -259,6 +281,7 @@ function LeadersDenPage() {
                               setOutsiderAction({
                                 cat_id: c.ID,
                                 action: "drive",
+                                catName: c.name.display,
                               })
                             }
                             label="Drive off"
