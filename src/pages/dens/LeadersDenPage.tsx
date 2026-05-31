@@ -14,7 +14,6 @@ const crumbs = [
     label: "Home",
   },
   {
-    url: "/dens",
     label: "Dens",
   },
   {
