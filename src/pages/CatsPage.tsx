@@ -50,7 +50,7 @@ function CatsPage() {
   useEffect(() => {
     let category = searchParams.get("category") as ScreenState | null;
     if (category === null) { category = "clan_cats" }
-    setScreenState(category);
+    _setScreenState(category);
   }, [searchParams]);
 
   function setScreenState(state: ScreenState) {
