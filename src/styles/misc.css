@@ -44,7 +44,7 @@ table, th, td {
   border-collapse: collapse;
 }
 th, td {
-  padding: 1em;
+  padding: 0.5em;
 }
 .table-container {
   width: fit-content;
