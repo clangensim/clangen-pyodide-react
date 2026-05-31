@@ -91,7 +91,7 @@ function LeadersDenPage() {
       otherClanInteraction.action,
     );
     alert(
-      `You will try to ${otherClanInteraction.action} ${otherClanInteraction.other_clan_name}Clan next moon.`,
+      `You will try to ${otherClanInteraction.action} ${otherClanInteraction.other_clan_name}Clan at the next Gathering.`,
     );
   }
 
