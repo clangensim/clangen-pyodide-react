@@ -28,11 +28,18 @@ type OutsiderAction = {
   action: "search" | "invite" | "drive" | "hunt";
 };
 
+type OtherClanInteraction = {
+  other_clan_name: string;
+  action: "offend" | "praise";
+};
+
 function LeadersDenPage() {
   const [otherClans, setOtherClans] = useState<OtherClan[]>([]);
   const [cats, setCats] = useState<Cat[]>([]);
 
   const [outsiderAction, setOutsiderAction] = useState<OutsiderAction>();
+  const [otherClanInteraction, setOtherClanInteraction] =
+    useState<OtherClanInteraction>();
 
   useEffect(() => {
     clangenRunner.getOtherClans().then((oc) => setOtherClans(oc));
@@ -54,6 +61,16 @@ function LeadersDenPage() {
     clangenRunner.scheduleOutsiderInteraction(
       outsiderAction.cat_id,
       outsiderAction.action,
+    );
+  }
+
+  function submitOtherClanInteraction() {
+    if (otherClanInteraction === undefined) {
+      return;
+    }
+    clangenRunner.scheduleOtherClanInteraction(
+      otherClanInteraction.other_clan_name,
+      otherClanInteraction.action,
     );
   }
 
@@ -97,17 +114,52 @@ function LeadersDenPage() {
                       {oc.temperament} <br /> neutral
                     </td>
                     <td>
-                      <Radiobox label="Offend" name="action" />{" "}
-                      <Radiobox label="Praise" name="action" />
+                      <Radiobox
+                        checked={
+                          otherClanInteraction?.other_clan_name === oc.name &&
+                          otherClanInteraction.action === "offend"
+                        }
+                        onChange={() =>
+                          setOtherClanInteraction({
+                            other_clan_name: oc.name,
+                            action: "offend",
+                          })
+                        }
+                        label="Offend"
+                        name="action"
+                      />{" "}
+                      <Radiobox
+                        checked={
+                          otherClanInteraction?.other_clan_name === oc.name &&
+                          otherClanInteraction.action === "praise"
+                        }
+                        onChange={() =>
+                          setOtherClanInteraction({
+                            other_clan_name: oc.name,
+                            action: "praise",
+                          })
+                        }
+                        label="Praise"
+                        name="action"
+                      />
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <button tabIndex={0} className="link-button">
+            <button
+              onClick={() => setOtherClanInteraction(undefined)}
+              tabIndex={0}
+              className="link-button"
+            >
               Clear selection
             </button>
-            <button tabIndex={0} className="submit">
+            <button
+              disabled={otherClanInteraction === undefined}
+              onClick={submitOtherClanInteraction}
+              tabIndex={0}
+              className="submit"
+            >
               Submit
             </button>
           </TabPanel>
@@ -151,10 +203,12 @@ function LeadersDenPage() {
                               c.ID == outsiderAction?.cat_id &&
                               outsiderAction.action === "search"
                             }
-                            onChange={() => setOutsiderAction({
-                              cat_id: c.ID,
-                              action: "search",
-                            })}
+                            onChange={() =>
+                              setOutsiderAction({
+                                cat_id: c.ID,
+                                action: "search",
+                              })
+                            }
                             label="Search for"
                             name="outsider-action"
                           />
@@ -164,10 +218,12 @@ function LeadersDenPage() {
                             c.ID == outsiderAction?.cat_id &&
                             outsiderAction.action === "hunt"
                           }
-                          onChange={() => setOutsiderAction({
-                            cat_id: c.ID,
-                            action: "hunt",
-                          })}
+                          onChange={() =>
+                            setOutsiderAction({
+                              cat_id: c.ID,
+                              action: "hunt",
+                            })
+                          }
                           label="Hunt down"
                           name="outsider-action"
                         />{" "}
@@ -176,10 +232,12 @@ function LeadersDenPage() {
                             c.ID == outsiderAction?.cat_id &&
                             outsiderAction.action === "invite"
                           }
-                          onChange={() => setOutsiderAction({
-                            cat_id: c.ID,
-                            action: "invite",
-                          })}
+                          onChange={() =>
+                            setOutsiderAction({
+                              cat_id: c.ID,
+                              action: "invite",
+                            })
+                          }
                           label="Invite in"
                           name="outsider-action"
                         />
@@ -188,10 +246,12 @@ function LeadersDenPage() {
                             c.ID == outsiderAction?.cat_id &&
                             outsiderAction.action === "drive"
                           }
-                          onChange={() => setOutsiderAction({
-                            cat_id: c.ID,
-                            action: "drive",
-                          })}
+                          onChange={() =>
+                            setOutsiderAction({
+                              cat_id: c.ID,
+                              action: "drive",
+                            })
+                          }
                           label="Drive off"
                           name="outsider-action"
                         />
@@ -200,10 +260,19 @@ function LeadersDenPage() {
                   ))}
               </tbody>
             </table>
-            <button tabIndex={0} onClick={() => setOutsiderAction(undefined)} className="link-button">
+            <button
+              tabIndex={0}
+              onClick={() => setOutsiderAction(undefined)}
+              className="link-button"
+            >
               Clear selection
             </button>
-            <button onClick={submitOutsiderInteraction} tabIndex={0} className="submit" disabled={outsiderAction === undefined}>
+            <button
+              onClick={submitOutsiderInteraction}
+              tabIndex={0}
+              className="submit"
+              disabled={outsiderAction === undefined}
+            >
               Submit
             </button>
           </TabPanel>

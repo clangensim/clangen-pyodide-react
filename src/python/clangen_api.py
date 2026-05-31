@@ -19,7 +19,7 @@ from scripts.patrol.patrol import Patrol
 from scripts.clan import Clan
 from scripts.events import events_class
 from scripts.clan import clan_class
-from scripts.utility import quit as clangen_quit
+from scripts.utility import get_alive_status_cats
 from scripts.housekeeping.datadir import get_save_dir
 
 import shutil
@@ -809,7 +809,7 @@ def schedule_other_clan_interaction(other_clan_name, interaction_type):
 
     return temper_int
 
-  def _compare_temper(self, player_temper_int, other_temper_int) -> float:
+  def _compare_temper(player_temper_int, other_temper_int, other_temper) -> float:
     """
     compares two temper ints and finds the chance of failure between them, adds additional modifiers for distance
     between two tempers on the temperament chart.  returns percent chance of failure
@@ -823,11 +823,11 @@ def schedule_other_clan_interaction(other_clan_name, interaction_type):
     other_index = 0
     other_social = None
     for row in temper_dict:
-      if self.clan_temper in temper_dict[row]:
-        clan_index = temper_dict[row].index(self.clan_temper)
+      if game.clan.temperament in temper_dict[row]:
+        clan_index = temper_dict[row].index(game.clan.temperament)
         clan_social = row
-      if self.focus_clan.temperament in temper_dict[row]:
-        other_index = temper_dict[row].index(self.focus_clan.temperament)
+      if other_temper in temper_dict[row]:
+        other_index = temper_dict[row].index(other_temper)
         other_social = row
 
     # checks social distance between tempers and adds modifiers appropriately
@@ -852,18 +852,54 @@ def schedule_other_clan_interaction(other_clan_name, interaction_type):
     return fail_chance
 
   if "lead_den_interaction" not in game.clan.clan_settings:
-      game.clan.clan_settings["lead_den_interaction"] = False
+    game.clan.clan_settings["lead_den_interaction"] = False
   if "lead_den_clan_event" not in game.clan.clan_settings:
-      game.clan.clan_settings["lead_den_clan_event"] = {}
+    game.clan.clan_settings["lead_den_clan_event"] = {}
   if "lead_den_outsider_event" not in game.clan.clan_settings:
-      game.clan.clan_settings["lead_den_outsider_event"] = {}
+    game.clan.clan_settings["lead_den_outsider_event"] = {}
 
   game.clan.clan_settings["lead_den_interaction"] = True
 
-  if game.clan.leader:
+  gathering_cat = None
+  if game.clan.leader and not game.clan.leader.dead and not game.clan.leader.not_working():
     gathering_cat = game.clan.leader 
-  else:
-    gathering_cat
+  elif game.clan.deputy and not game.clan.deputy.dead and not game.clan.deputy.not_working():
+    gathering_cat = game.clan.deputy
+  if not gathering_cat:
+    meds = get_alive_status_cats(
+        Cat,
+        get_status=["medicine cat", "medicine cat apprentice"],
+        working=True,
+        sort=True,
+    )
+    if meds:
+      gathering_cat = meds[0]
+  if not gathering_cat:
+    mediators = [
+        i
+        for i in Cat.all_cats.values()
+        if not i.dead
+        and not i.exiled
+        and not i.outside
+        and not i.not_working()
+        and i.status in ["mediator", "mediator apprentice"]
+    ]
+    if mediators:
+      gathering_cat = mediators[0]
+  if not gathering_cat:
+    adults = [
+      i
+      for i in Cat.all_cats.values()
+      if not i.dead
+      and not i.exiled
+      and not i.outside
+      and i.status not in ["newborn", "kitten", "leader"]
+    ]
+    if adults:
+        gathering_cat = random.choice(adults)
+
+  if not gathering_cat:
+    return
 
   success = False
 
@@ -875,7 +911,7 @@ def schedule_other_clan_interaction(other_clan_name, interaction_type):
 
   player_temper_int = _find_temper_int(game.clan.temperament)
   other_temper_int = _find_temper_int(other_clan.temperament)
-  fail_chance = _compare_temper(player_temper_int, other_temper_int)
+  fail_chance = _compare_temper(player_temper_int, other_temper_int, other_clan.temperament)
 
   if gathering_cat != game.clan.leader:
     fail_chance = fail_chance * 1.4
