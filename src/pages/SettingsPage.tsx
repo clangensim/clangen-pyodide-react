@@ -185,7 +185,7 @@ function SettingsPage() {
         </fieldset>
       </div>
       <div className="submit">
-        <button onClick={handleSave}>Save</button>
+        <button tabIndex={0} onClick={handleSave}>Save</button>
       </div>
     </BasePage>
   );
