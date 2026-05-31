@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
 import { clangenRunner } from "../python/clangenRunner";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 function Navbar() {
   /* 
@@ -40,6 +41,19 @@ function Navbar() {
       <Link tabIndex={0} className=" nav-item" to="/mediate">
         Mediate
       </Link>
+      <Menu>
+        <MenuButton tabIndex={0} className="nav-item">
+          Dens
+        </MenuButton>
+        <MenuItems  anchor="bottom start" className="nav-sublist">
+          <MenuItem>
+            <Link to="/dens/leaders-den">Leader's Den</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/dens/warriors-den">Warrior's Den</Link>
+          </MenuItem>
+        </MenuItems>
+      </Menu>
       <Link tabIndex={0} className=" nav-item" to="/settings">
         Settings
       </Link>
