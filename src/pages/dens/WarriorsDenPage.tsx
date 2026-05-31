@@ -218,6 +218,7 @@ function WarriorsDenPage() {
           className="submit"
           disabled={!submitEnabled()}
           onClick={handleSubmit}
+          tabIndex={0}
         >
           Submit
         </button>
