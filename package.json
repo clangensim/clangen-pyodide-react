@@ -18,6 +18,7 @@
     "@fontsource/amatic-sc": "^5.2.7",
     "@fontsource/balthazar": "^5.2.7",
     "@fontsource/bubblegum-sans": "^5.2.5",
+    "@headlessui/react": "^2.2.10",
     "@tanstack/react-query": "^5.69.0",
     "comlink": "^4.4.2",
     "localforage": "^1.10.0",
