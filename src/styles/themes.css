@@ -39,6 +39,11 @@
   --select-focus-color: rgba(173, 216, 230, 0.25);
 
   --event-border-color: rgb(160, 160, 160);
+
+  --fall-color: #D95000;
+  --winter-color: #008CB4;
+  --spring-color: #E63B7A;
+  --summer-color: #3C9707;
 }
 
 .theme-clangen-dark {
@@ -82,6 +87,11 @@
   --select-focus-color: rgba(173, 216, 230, 0.25);
 
   --event-border-color: rgb(160, 160, 160);
+
+  --fall-color: rgb(255, 165, 0);
+  --winter-color: #00c4fa;
+  --spring-color: #E63B7A;
+  --summer-color: rgb(72, 183, 8);
 
   button,
   .btn {
@@ -130,6 +140,11 @@
   --select-focus-color: rgba(173, 216, 230, 0.25);
 
   --event-border-color: rgb(160, 160, 160);
+
+  --fall-color: rgb(255, 165, 0);
+  --winter-color: #00c4fa;
+  --spring-color: #E63B7A;
+  --summer-color: rgb(72, 183, 8);
 
   textarea,
   fieldset,
@@ -193,6 +208,11 @@
   --select-focus-color: rgba(173, 216, 230, 0.25);
 
   --event-border-color: rgb(160, 160, 160);
+
+  --fall-color: #f0aa3b;
+  --winter-color: #80f8fd;
+  --spring-color: #ea3323;
+  --summer-color: #56bd37;
 
 
   body, button, a, h2 {

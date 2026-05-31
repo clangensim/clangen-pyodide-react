@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { setCustomCss } from "../utils";
 import ClanSymbol from "../components/Symbol";
 import useClanInfo from "../hooks/useClanInfo";
+import Season from "../components/Season";
 
 function BasePage({
   children,
@@ -70,7 +71,7 @@ function BasePage({
                 <Link className="profile-info__clanname" to="/allegiances">{clanInfo?.name}</Link> - {clanInfo?.age}{" "}
                 <Pluralize num={clanInfo?.age}>moon</Pluralize>
               </li>
-              <li>{clanInfo?.season}</li>
+              <li><Season seasonName={clanInfo?.season} /></li>
             </ul>
           </div>
           <Link to="/moonskip" tabIndex={0} className="btn btn-secondary profile-info_next-moon">

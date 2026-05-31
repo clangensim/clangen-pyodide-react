@@ -254,3 +254,18 @@ h1, h2 {
 .below-header {
   margin-top: 0.25em;
 }
+
+svg.season_spring {
+  fill: var(--spring-color);
+}
+svg.season_winter {
+  stroke: var(--winter-color);
+}
+svg.season_summer {
+  stroke: var(--summer-color);
+  fill: var(--summer-color);
+}
+svg.season_fall {
+  stroke: var(--fall-color);
+  fill: var(--fall-color);
+}
