@@ -33,6 +33,18 @@ type OtherClanInteraction = {
   action: "offend" | "praise";
 };
 
+function getRelationship(relation: number) {
+  if (relation >= 17) {
+    return "ally";
+  }
+  else if (7 < relation && relation < 17) {
+    return "neutral";
+  }
+  else { // relation <= 7
+    return "hostile";
+  }
+}
+
 function LeadersDenPage() {
   const [otherClans, setOtherClans] = useState<OtherClan[]>([]);
   const [cats, setCats] = useState<Cat[]>([]);
@@ -132,7 +144,8 @@ function LeadersDenPage() {
                     </td>
                     <td>
                       <b>{oc.name}Clan</b> <br />
-                      {oc.temperament} <br /> neutral
+                      {oc.temperament} <br />
+                      {getRelationship(oc.relations)}
                     </td>
                     <td>
                       <Radiobox

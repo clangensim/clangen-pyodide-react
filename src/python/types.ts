@@ -147,7 +147,7 @@ type PatrolIntro = {
 
 type OtherClan = {
   name: string;
-  relations: string;
+  relations: number;
   temperament: string;
   symbol: string;
   isEnemy: boolean;

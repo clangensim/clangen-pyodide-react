@@ -720,6 +720,7 @@ def get_other_clans():
       "isEnemy": other_clan.name == game.clan.war["enemy"],
       "temperament": other_clan.temperament,
       "symbol": other_clan.chosen_symbol,
+      "relations": other_clan.relations
     })
   return to_js(other_clan_info, dict_converter=js.Object.fromEntries)
 
