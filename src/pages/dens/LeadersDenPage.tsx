@@ -92,7 +92,7 @@ function LeadersDenPage() {
       otherClanInteraction.action,
     );
     alert(
-      `You will try to ${otherClanInteraction.action} ${otherClanInteraction.other_clan_name} next moon.`,
+      `You will try to ${otherClanInteraction.action} ${otherClanInteraction.other_clan_name}Clan next moon.`,
     );
   }
 
@@ -115,7 +115,7 @@ function LeadersDenPage() {
           <TabPanel>
             <h2>Gatherings</h2>
             <p className="below-header">
-              Determine how to treat another Clan at the next Gathering.
+              Determine how to treat one other Clan at the next Gathering.
             </p>
             <table>
               <thead>
@@ -188,6 +188,7 @@ function LeadersDenPage() {
 
           <TabPanel>
             <h2>Order a Search</h2>
+            Only one search can be ordered per moon.
             <ul className="below-header">
               <li>Search for - Search for this lost cat to bring them home.</li>
               <li>Hunt down - Hunt down this cat and kill them.</li>
