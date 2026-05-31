@@ -102,7 +102,9 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--navbar-hovered-text-color);
-    box-shadow: 1px 5px 15px -12px rgba(0,0,0,0.75);
+  box-shadow: 1px 5px 15px -12px rgba(0,0,0,0.75);
+  border: 1px solid black;
+  border-top: none;
 }
 .nav-sublist a, .nav-sublist div {
   font-family: "Bubblegum Sans", sans-serif;
