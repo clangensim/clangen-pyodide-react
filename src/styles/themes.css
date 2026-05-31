@@ -199,6 +199,13 @@
     font-family: '8 Bit Operator';
   }
   
+  .nav-item {
+    border: none;
+  }
+  .nav-item:hover {
+    border: none;
+  }
+
   .btn, button {
     border: 4px solid #EF8640;
     border-radius: 0;
