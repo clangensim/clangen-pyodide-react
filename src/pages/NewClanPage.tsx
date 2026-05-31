@@ -7,6 +7,7 @@ import "../styles/new-clan.css";
 import CatDisplay from "../components/CatDisplay";
 import { getCampBGPath, setCustomCss } from "../utils";
 import { TbDice3 } from "react-icons/tb";
+import { useQueryClient } from "@tanstack/react-query";
 
 const biomeVariants: {[biome: string]: string[][]} = {
   "Forest": [
@@ -47,6 +48,7 @@ function NewClanPage() {
   const [season, setSeason] = useState<string>("Newleaf");
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   function randomizeName(e: any) {
     e.preventDefault();
@@ -106,6 +108,9 @@ function NewClanPage() {
         otherCats,
         season,
       )
+      .then(() => {
+        queryClient.removeQueries();
+      })
       .then(() => {
         localStorage.removeItem("queueCatRefresh");
         navigate("/cats");
