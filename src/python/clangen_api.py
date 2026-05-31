@@ -723,6 +723,30 @@ def get_other_clans():
     })
   return to_js(other_clan_info, dict_converter=js.Object.fromEntries)
 
+def get_possible_focuses():
+  MEDIATOR_FOCUSES = {"sabotage other clans", "aid other clans"}
+  NOT_CLASSIC_FOCUSES = {"hunting", "herb gathering", "hoarding", "raid other clans"}
+
+  is_classic = game.clan.game_mode == "classic"
+  has_mediator = bool([
+      i
+      for i in Cat.all_cats.values()
+      if not i.dead
+      and not i.exiled
+      and not i.outside
+      and not i.not_working()
+      and i.status in ["mediator", "mediator apprentice"]
+  ])
+
+  lst = []
+  for code in settings_dict["clan_focus"].keys():
+    if code in MEDIATOR_FOCUSES and not has_mediator:
+      continue
+    if code in NOT_CLASSIC_FOCUSES and is_classic:
+      continue
+    lst.append(code)
+  return to_js(lst)
+
 def set_focus(focus, other_clans=None):
   if next_focus_change() > 0:
     return

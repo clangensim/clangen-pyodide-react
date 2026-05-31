@@ -445,6 +445,10 @@ class Clangen {
     return this._clangenApi.get_targetted_clans();
   }
 
+  public async getPossibleFocuses(): Promise<string[]> {
+    return this._clangenApi.get_possible_focuses();
+  }
+
   public async setFocus(focus: string, otherClans?: string[]) {
     this._clangenApi.set_focus(focus, otherClans);
     await this.saveGame();

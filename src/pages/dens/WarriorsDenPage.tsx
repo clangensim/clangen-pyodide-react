@@ -102,6 +102,9 @@ function WarriorsDenPage() {
   const [targettedOtherClans, setTargettedOtherClans] = useState<Set<string>>(
     new Set(),
   );
+  const [possibleFocuses, setPossibleFocuses] = useState<Set<string>>(
+    new Set(),
+  );
   const [nextFocusChange, setNextFocusChange] = useState<number>(0);
   const clanInfo = useClanInfo();
 
@@ -113,6 +116,9 @@ function WarriorsDenPage() {
     clangenRunner
       .getFocus()
       .then((f) => setSelectedFocus(f as keyof typeof focuses));
+    clangenRunner
+      .getPossibleFocuses()
+      .then((pf) => setPossibleFocuses(new Set(pf)));
     clangenRunner.nextFocusChange().then((n) => setNextFocusChange(n));
     clangenRunner
       .getTargettedClans()
@@ -125,7 +131,9 @@ function WarriorsDenPage() {
   }
 
   function submitEnabled() {
-    if (!canChangeFocus) { return false }
+    if (!canChangeFocus) {
+      return false;
+    }
     if (selectedFocus !== undefined && focuses[selectedFocus].otherClans) {
       if (targettedOtherClans.size === 0) {
         return false;
@@ -163,11 +171,7 @@ function WarriorsDenPage() {
         <fieldset>
           <legend>Focus</legend>
           {Object.entries(focuses)
-            .filter(
-              ([_, focusData]) =>
-                (clanInfo.data?.gameMode === "classic" && focusData.classic) ||
-                clanInfo.data?.gameMode !== "classic",
-            )
+            .filter(([k, _]) => possibleFocuses.has(k))
             .map(([focusID, focusData]) => (
               <Radiobox
                 label={
