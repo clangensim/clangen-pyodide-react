@@ -43,7 +43,11 @@ function LeadersDenPage() {
 
   useEffect(() => {
     clangenRunner.getOtherClans().then((oc) => setOtherClans(oc));
-    clangenRunner.getCats().then((c) => setCats(c));
+    clangenRunner
+      .getCats()
+      .then((c) =>
+        setCats(c.filter((c) => c.outside && !c.dead && !c.isDrivenOff)),
+      );
   }, []);
 
   function isLost(cat: Cat) {
@@ -174,107 +178,116 @@ function LeadersDenPage() {
               </li>
               <li>Drive off - Drive this cat away if you find them.</li>
             </ul>
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Cat</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cats
-                  .filter((c) => c.outside && !c.dead && !c.isDrivenOff)
-                  .map((c) => (
+            {cats.length > 0 ? (
+              <>
+                <table>
+                  <thead>
                     <tr>
-                      <td>
-                        <Link to={`/cats/${c.ID}`}>
-                          <CatDisplay cat={c} fuzzy={true} w="50px" h="50px" />
-                        </Link>
-                      </td>
-                      <td>
-                        <b>{c.name.display}</b> <br />
-                        {c.status} <br />
-                      </td>
-                      <td>
-                        {isLost(c) && (
+                      <th></th>
+                      <th>Cat</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cats.map((c) => (
+                      <tr>
+                        <td>
+                          <Link to={`/cats/${c.ID}`}>
+                            <CatDisplay
+                              cat={c}
+                              fuzzy={true}
+                              w="50px"
+                              h="50px"
+                            />
+                          </Link>
+                        </td>
+                        <td>
+                          <b>{c.name.display}</b> <br />
+                          {c.status} <br />
+                        </td>
+                        <td>
+                          {isLost(c) && (
+                            <Radiobox
+                              checked={
+                                c.ID == outsiderAction?.cat_id &&
+                                outsiderAction.action === "search"
+                              }
+                              onChange={() =>
+                                setOutsiderAction({
+                                  cat_id: c.ID,
+                                  action: "search",
+                                })
+                              }
+                              label="Search for"
+                              name="outsider-action"
+                            />
+                          )}
                           <Radiobox
                             checked={
                               c.ID == outsiderAction?.cat_id &&
-                              outsiderAction.action === "search"
+                              outsiderAction.action === "hunt"
                             }
                             onChange={() =>
                               setOutsiderAction({
                                 cat_id: c.ID,
-                                action: "search",
+                                action: "hunt",
                               })
                             }
-                            label="Search for"
+                            label="Hunt down"
+                            name="outsider-action"
+                          />{" "}
+                          <Radiobox
+                            checked={
+                              c.ID == outsiderAction?.cat_id &&
+                              outsiderAction.action === "invite"
+                            }
+                            onChange={() =>
+                              setOutsiderAction({
+                                cat_id: c.ID,
+                                action: "invite",
+                              })
+                            }
+                            label="Invite in"
                             name="outsider-action"
                           />
-                        )}
-                        <Radiobox
-                          checked={
-                            c.ID == outsiderAction?.cat_id &&
-                            outsiderAction.action === "hunt"
-                          }
-                          onChange={() =>
-                            setOutsiderAction({
-                              cat_id: c.ID,
-                              action: "hunt",
-                            })
-                          }
-                          label="Hunt down"
-                          name="outsider-action"
-                        />{" "}
-                        <Radiobox
-                          checked={
-                            c.ID == outsiderAction?.cat_id &&
-                            outsiderAction.action === "invite"
-                          }
-                          onChange={() =>
-                            setOutsiderAction({
-                              cat_id: c.ID,
-                              action: "invite",
-                            })
-                          }
-                          label="Invite in"
-                          name="outsider-action"
-                        />
-                        <Radiobox
-                          checked={
-                            c.ID == outsiderAction?.cat_id &&
-                            outsiderAction.action === "drive"
-                          }
-                          onChange={() =>
-                            setOutsiderAction({
-                              cat_id: c.ID,
-                              action: "drive",
-                            })
-                          }
-                          label="Drive off"
-                          name="outsider-action"
-                        />
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-            <button
-              tabIndex={0}
-              onClick={() => setOutsiderAction(undefined)}
-              className="link-button"
-            >
-              Clear selection
-            </button>
-            <button
-              onClick={submitOutsiderInteraction}
-              tabIndex={0}
-              className="submit"
-              disabled={outsiderAction === undefined}
-            >
-              Submit
-            </button>
+                          <Radiobox
+                            checked={
+                              c.ID == outsiderAction?.cat_id &&
+                              outsiderAction.action === "drive"
+                            }
+                            onChange={() =>
+                              setOutsiderAction({
+                                cat_id: c.ID,
+                                action: "drive",
+                              })
+                            }
+                            label="Drive off"
+                            name="outsider-action"
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <button
+                  tabIndex={0}
+                  onClick={() => setOutsiderAction(undefined)}
+                  className="link-button"
+                >
+                  Clear selection
+                </button>
+                <button
+                  onClick={submitOutsiderInteraction}
+                  tabIndex={0}
+                  className="submit"
+                  disabled={outsiderAction === undefined}
+                >
+                  Submit
+                </button>
+              </>
+            ) : (
+              <p>There is nobody to search for.</p>
+            )}
           </TabPanel>
         </TabPanels>
       </TabGroup>
