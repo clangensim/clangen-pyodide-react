@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "build-python": "uv run vendors/clangen-lite/build.py vendors/clangen-lite public",
     "docker-build": "docker build --output type=local,dest=dist .",
     "test": "npx playwright test",
     "test-ui": "npx playwright test --ui",
