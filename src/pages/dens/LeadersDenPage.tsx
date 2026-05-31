@@ -23,9 +23,16 @@ const crumbs = [
   },
 ];
 
+type OutsiderAction = {
+  cat_id: string;
+  action: "search" | "invite" | "drive" | "hunt";
+};
+
 function LeadersDenPage() {
   const [otherClans, setOtherClans] = useState<OtherClan[]>([]);
   const [cats, setCats] = useState<Cat[]>([]);
+
+  const [outsiderAction, setOutsiderAction] = useState<OutsiderAction>();
 
   useEffect(() => {
     clangenRunner.getOtherClans().then((oc) => setOtherClans(oc));
@@ -37,6 +44,16 @@ function LeadersDenPage() {
       cat.outside &&
       !cat.exiled &&
       !["kittypet", "loner", "rogue", "former Clancat"].includes(cat.status)
+    );
+  }
+
+  function submitOutsiderInteraction() {
+    if (outsiderAction === undefined) {
+      return;
+    }
+    clangenRunner.scheduleOutsiderInteraction(
+      outsiderAction.cat_id,
+      outsiderAction.action,
     );
   }
 
@@ -129,20 +146,64 @@ function LeadersDenPage() {
                       </td>
                       <td>
                         {isLost(c) && (
-                          <Radiobox label="Search for" name="outsider-action" />
+                          <Radiobox
+                            checked={
+                              c.ID == outsiderAction?.cat_id &&
+                              outsiderAction.action === "search"
+                            }
+                            onChange={() => setOutsiderAction({
+                              cat_id: c.ID,
+                              action: "search",
+                            })}
+                            label="Search for"
+                            name="outsider-action"
+                          />
                         )}
-                        <Radiobox label="Hunt down" name="outsider-action" />{" "}
-                        <Radiobox label="Invite in" name="outsider-action" />
-                        <Radiobox label="Drive off" name="outsider-action" />
+                        <Radiobox
+                          checked={
+                            c.ID == outsiderAction?.cat_id &&
+                            outsiderAction.action === "hunt"
+                          }
+                          onChange={() => setOutsiderAction({
+                            cat_id: c.ID,
+                            action: "hunt",
+                          })}
+                          label="Hunt down"
+                          name="outsider-action"
+                        />{" "}
+                        <Radiobox
+                          checked={
+                            c.ID == outsiderAction?.cat_id &&
+                            outsiderAction.action === "invite"
+                          }
+                          onChange={() => setOutsiderAction({
+                            cat_id: c.ID,
+                            action: "invite",
+                          })}
+                          label="Invite in"
+                          name="outsider-action"
+                        />
+                        <Radiobox
+                          checked={
+                            c.ID == outsiderAction?.cat_id &&
+                            outsiderAction.action === "drive"
+                          }
+                          onChange={() => setOutsiderAction({
+                            cat_id: c.ID,
+                            action: "drive",
+                          })}
+                          label="Drive off"
+                          name="outsider-action"
+                        />
                       </td>
                     </tr>
                   ))}
               </tbody>
             </table>
-            <button tabIndex={0} className="link-button">
+            <button tabIndex={0} onClick={() => setOutsiderAction(undefined)} className="link-button">
               Clear selection
             </button>
-            <button tabIndex={0} className="submit">
+            <button onClick={submitOutsiderInteraction} tabIndex={0} className="submit" disabled={outsiderAction === undefined}>
               Submit
             </button>
           </TabPanel>
