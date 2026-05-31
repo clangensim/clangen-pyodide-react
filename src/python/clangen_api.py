@@ -16,7 +16,7 @@ from scripts.cat.names import names
 from scripts.cat.history import History
 from scripts.cat.names import Name
 from scripts.patrol.patrol import Patrol
-from scripts.clan import Clan
+from scripts.clan import Clan, clan_symbol_sprite
 from scripts.events import events_class
 from scripts.clan import clan_class
 from scripts.utility import get_alive_status_cats
@@ -229,6 +229,7 @@ def create_clan(clan_name, leader, deputy, med_cat, biome, camp, game_mode, memb
     starting_members=list(map(lambda cat_id : Cat.all_cats[cat_id], members)),
     starting_season=season
   )
+  game.clan.chosen_symbol = clan_symbol_sprite(game.clan, return_string=True)
   game.clan.create_clan()
   #game.clan.starclan_cats.clear()
   game.cur_events_list.clear()
