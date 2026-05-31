@@ -51,10 +51,17 @@
   padding: 20px;
 }
 .cat-search-select input[type="checkbox"] {
-  display: none;
+  height: 1;
+  width: 1;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  opacity: 0;
 }
 .cat-search-select:has(input[type="checkbox"]:checked) {
   border: 1px solid var(--select-highlight-color);
+}
+.cat-search-select:has(input[type="checkbox"]:focus-visible) {
+  background-color: var(--select-focus-color);
 }
 .cat-search-select-status {
   font-size: 13px;

@@ -36,6 +36,7 @@
 
   --summary-background-color: #efe5ce;
   --select-highlight-color: lightblue;
+  --select-focus-color: rgba(173, 216, 230, 0.25);
 
   --event-border-color: rgb(160, 160, 160);
 }
@@ -78,6 +79,7 @@
 
   --summary-background-color: #807a6e;
   --select-highlight-color: lightblue;
+  --select-focus-color: rgba(173, 216, 230, 0.25);
 
   --event-border-color: rgb(160, 160, 160);
 
@@ -125,6 +127,7 @@
 
   --summary-background-color: #1a1d1f;
   --select-highlight-color: lightblue;
+  --select-focus-color: rgba(173, 216, 230, 0.25);
 
   --event-border-color: rgb(160, 160, 160);
 
@@ -187,6 +190,7 @@
 
   --summary-background-color: #1a1d1f;
   --select-highlight-color: lightblue;
+  --select-focus-color: rgba(173, 216, 230, 0.25);
 
   --event-border-color: rgb(160, 160, 160);
 
