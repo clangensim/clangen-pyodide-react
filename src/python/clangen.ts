@@ -454,6 +454,14 @@ class Clangen {
     return this._clangenApi.next_focus_change();
   }
 
+  public async scheduleOutsiderInteraction(cat_id: string, interaction_type: "search" | "invite" | "drive" | "hunt") {
+    this._clangenApi.schedule_outsider_interaction(cat_id, interaction_type);
+  }
+
+  public async scheduleOtherClanInteraction(other_clan_name: string, interaction_type: "provoke" | "befriend") {
+    this._clangenApi.schedule_other_clan_interaction(other_clan_name, interaction_type)
+  }
+
   /**
    * Removes cats that "don't exist".
    */

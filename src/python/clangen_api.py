@@ -756,6 +756,141 @@ def next_focus_change():
   next_possible_change = game.clan.last_focus_change + game.config["focus"]["duration"]
   return max(0, next_possible_change - game.clan.age)
 
+def schedule_outsider_interaction(cat_id, interaction_type):
+  if "lead_den_interaction" not in game.clan.clan_settings:
+      game.clan.clan_settings["lead_den_interaction"] = False
+  if "lead_den_clan_event" not in game.clan.clan_settings:
+      game.clan.clan_settings["lead_den_clan_event"] = {}
+  if "lead_den_outsider_event" not in game.clan.clan_settings:
+      game.clan.clan_settings["lead_den_outsider_event"] = {}
+
+  game.clan.clan_settings["lead_den_interaction"] = True
+
+  success_chance = (int(game.clan.reputation) / 100) / 1.5
+  if game.clan.leader.not_working:
+      success_chance = success_chance / 1.2
+  # searching should be extra hard, after all those kitties are LOST
+  if interaction_type == "search":
+      success_chance = success_chance / 2
+  # if we got to zero somehow, reset to give a teeny little chance of success
+  if success_chance <= 0:
+      success_chance = 0.1
+
+  if random.random() < success_chance:
+      success = True
+  else:
+      success = False
+
+  game.clan.clan_settings["lead_den_outsider_event"] = {
+      "cat_ID": cat_id,
+      "interaction_type": interaction_type,
+      "success": success,
+  }
+
+def schedule_other_clan_interaction(other_clan_name, interaction_type):
+  def _find_temper_int(temper: str) -> int:
+    """
+    returns int value (social rank + aggression rank) of given temperament
+    """
+    temper_dict = game.clan.temperament_dict
+    temper_int = 0
+
+    if temper in temper_dict["low_social"]:
+      temper_int += 1
+      social_list = temper_dict["low_social"]
+    elif temper in temper_dict["mid_social"]:
+      temper_int += 3
+      social_list = temper_dict["mid_social"]
+    else:
+      temper_int += 5
+      social_list = temper_dict["high_social"]
+
+    temper_int += int(social_list.index(temper)) + 1
+
+    return temper_int
+
+  def _compare_temper(self, player_temper_int, other_temper_int) -> float:
+    """
+    compares two temper ints and finds the chance of failure between them, adds additional modifiers for distance
+    between two tempers on the temperament chart.  returns percent chance of failure
+    """
+    # base equation for fail chance (temper_int - temper_int) / 10
+    fail_chance = (abs(int(player_temper_int - other_temper_int))) / 10
+
+    temper_dict = game.clan.temperament_dict
+    clan_index = 0
+    clan_social = None
+    other_index = 0
+    other_social = None
+    for row in temper_dict:
+      if self.clan_temper in temper_dict[row]:
+        clan_index = temper_dict[row].index(self.clan_temper)
+        clan_social = row
+      if self.focus_clan.temperament in temper_dict[row]:
+        other_index = temper_dict[row].index(self.focus_clan.temperament)
+        other_social = row
+
+    # checks social distance between tempers and adds modifiers appropriately
+    if clan_social != other_social:
+      fail_chance += 0.05
+      if clan_social == "low social" and other_social == "high_social":
+        fail_chance += 0.1
+      elif other_social == "low social" and clan_social == "high_social":
+        fail_chance += 0.1
+
+    # checks aggression distance between tempers and adds modifiers appropriately
+    if clan_index != other_index:
+      fail_chance += 0.05
+      if clan_index == 0 and other_index == 2:
+        fail_chance += 0.1
+      elif other_index == 0 and clan_index == 2:
+        fail_chance += 0.1
+
+    if fail_chance > 0.5:
+      fail_chance = 0.5
+
+    return fail_chance
+
+  if "lead_den_interaction" not in game.clan.clan_settings:
+      game.clan.clan_settings["lead_den_interaction"] = False
+  if "lead_den_clan_event" not in game.clan.clan_settings:
+      game.clan.clan_settings["lead_den_clan_event"] = {}
+  if "lead_den_outsider_event" not in game.clan.clan_settings:
+      game.clan.clan_settings["lead_den_outsider_event"] = {}
+
+  game.clan.clan_settings["lead_den_interaction"] = True
+
+  if game.clan.leader:
+    gathering_cat = game.clan.leader 
+  else:
+    gathering_cat
+
+  success = False
+
+  for oc in game.clan.all_clans:
+    if oc.name == other_clan_name:
+      other_clan = oc
+  if not other_clan:
+    return
+
+  player_temper_int = _find_temper_int(game.clan.temperament)
+  other_temper_int = _find_temper_int(other_clan.temperament)
+  fail_chance = _compare_temper(player_temper_int, other_temper_int)
+
+  if gathering_cat != game.clan.leader:
+    fail_chance = fail_chance * 1.4
+
+  if random.random() >= fail_chance:
+    success = True
+
+  game.clan.clan_settings["lead_den_clan_event"] = {
+      "cat_ID": gathering_cat.ID,
+      "other_clan": other_clan_name,
+      "player_clan_temper": game.clan.temperament,
+      "interaction_type": interaction_type,
+      "success": success,
+  }
+
 def refresh_cats():
   if game.clan is not None:
     key_copy = tuple(Cat.all_cats.keys())
