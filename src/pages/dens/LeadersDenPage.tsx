@@ -49,7 +49,7 @@ function LeadersDenPage() {
       .then((c) =>
         setCats(c.filter((c) => c.outside && !c.dead && !c.isDrivenOff)),
       );
-    document.title = "Leader's Den | ClanGen Simulator"
+    document.title = "Leader's Den | ClanGen Simulator";
   }, []);
 
   function isLost(cat: Cat) {
@@ -69,18 +69,16 @@ function LeadersDenPage() {
       outsiderAction.action,
     );
 
-    var verb
+    var verb;
     if (outsiderAction.action === "drive") {
-      verb = "drive out"
-    }
-    else if (outsiderAction.action === "hunt") {
-      verb = "hunt down"
-    }
-    else if (outsiderAction.action === "invite") {
-      verb = "invite in"
-    }
-    else { // outsiderAction === "search"
-      verb = "search for"
+      verb = "drive out";
+    } else if (outsiderAction.action === "hunt") {
+      verb = "hunt down";
+    } else if (outsiderAction.action === "invite") {
+      verb = "invite in";
+    } else {
+      // outsiderAction === "search"
+      verb = "search for";
     }
     alert(`The Clan will try to ${verb} ${outsiderAction.catName} next moon.`);
   }
@@ -93,7 +91,9 @@ function LeadersDenPage() {
       otherClanInteraction.other_clan_name,
       otherClanInteraction.action,
     );
-    alert(`You will try to ${otherClanInteraction.action} ${otherClanInteraction.other_clan_name} next moon.`);
+    alert(
+      `You will try to ${otherClanInteraction.action} ${otherClanInteraction.other_clan_name} next moon.`,
+    );
   }
 
   return (
@@ -267,7 +267,6 @@ function LeadersDenPage() {
                                 action: "invite",
                                 catName: c.name.display,
                               })
-                              
                             }
                             label="Invite in"
                             name="outsider-action"
