@@ -8,6 +8,7 @@ import { Cat } from "../python/types";
 import Pluralize from "../components/generic/Pluralize";
 import { useQueryClient } from "@tanstack/react-query";
 import useClanInfo from "../hooks/useClanInfo";
+import { Link } from "react-router";
 
 function NextMoonPage() {
   const queryClient = useQueryClient();
@@ -72,7 +73,7 @@ function NextMoonPage() {
       }
 
       {nextFocusChange === 0 &&
-        <p>{clanInfo?.name}'s focus can be changed.</p>
+        <p>{clanInfo?.name}'s <Link to="/dens/warriors-den">focus</Link> can be changed.</p>
       }
 
       {clanInfo?.gameMode !== "classic" &&
