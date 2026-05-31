@@ -1,4 +1,4 @@
-import { TbFlowerFilled, TbLeaf, TbLeaf2, TbSnowflake } from "react-icons/tb";
+import { TbLeaf, TbLeaf2,  TbSeedingFilled, TbSnowflake } from "react-icons/tb";
 
 function Season({ seasonName }: { seasonName: string | undefined }) {
   if (seasonName === undefined) {
@@ -20,7 +20,7 @@ function Season({ seasonName }: { seasonName: string | undefined }) {
   } else if (season === "newleaf") {
     return (
       <>
-        <TbFlowerFilled className="season_spring" /> {seasonName}
+        <TbSeedingFilled className="season_spring" /> {seasonName}
       </>
     );
   } else if (season === "greenleaf") {

@@ -258,6 +258,7 @@ h1, h2 {
 
 svg.season_spring {
   fill: var(--spring-color);
+  stroke: var(--spring-color);
 }
 svg.season_winter {
   stroke: var(--winter-color);

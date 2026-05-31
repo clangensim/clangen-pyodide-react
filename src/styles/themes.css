@@ -42,7 +42,7 @@
 
   --fall-color: #D95000;
   --winter-color: #008CB4;
-  --spring-color: #E63B7A;
+  --spring-color: #7aa20b;
   --summer-color: #3C9707;
 }
 
@@ -90,7 +90,7 @@
 
   --fall-color: rgb(255, 165, 0);
   --winter-color: #00c4fa;
-  --spring-color: #E63B7A;
+  --spring-color: #7aa20b;
   --summer-color: rgb(72, 183, 8);
 
   button,
@@ -143,7 +143,7 @@
 
   --fall-color: rgb(255, 165, 0);
   --winter-color: #00c4fa;
-  --spring-color: #E63B7A;
+  --spring-color: #7aa20b;
   --summer-color: rgb(72, 183, 8);
 
   textarea,
@@ -211,7 +211,7 @@
 
   --fall-color: #f0aa3b;
   --winter-color: #80f8fd;
-  --spring-color: #ea3323;
+  --spring-color: #56bd37;
   --summer-color: #56bd37;
 
 
