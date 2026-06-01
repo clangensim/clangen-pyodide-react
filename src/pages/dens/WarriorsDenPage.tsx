@@ -157,7 +157,7 @@ function WarriorsDenPage() {
         />
 
         <p>
-          Warriors can be managed by giving them a <b>focus</b> to prioritize.
+          Warriors and mediators can be managed by giving them a <b>focus</b> to prioritize.
           The focus can be changed once every three moons.
         </p>
 
