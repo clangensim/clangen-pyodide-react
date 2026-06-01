@@ -37,11 +37,10 @@ type OtherClanInteraction = {
 function getRelationship(relation: number) {
   if (relation >= 17) {
     return "ally";
-  }
-  else if (7 < relation && relation < 17) {
+  } else if (7 < relation && relation < 17) {
     return "neutral";
-  }
-  else { // relation <= 7
+  } else {
+    // relation <= 7
     return "hostile";
   }
 }
@@ -49,11 +48,10 @@ function getRelationship(relation: number) {
 function getReputation(reputation: number) {
   if (0 <= reputation && reputation <= 30) {
     return "hostile";
-  }
-  else if (31 <= reputation && reputation <= 70) {
+  } else if (31 <= reputation && reputation <= 70) {
     return "neutral";
-  }
-  else { // reputation >= 70
+  } else {
+    // reputation >= 70
     return "welcoming";
   }
 }
@@ -144,7 +142,10 @@ function LeadersDenPage() {
             <p className="below-header">
               Determine how to treat another Clan at the next Gathering.
             </p>
-            <p>The other Clans think that {clanInfo.data?.name} is {clanInfo.data?.temperament}.</p>
+            <p>
+              The other Clans think that {clanInfo.data?.name} is{" "}
+              {clanInfo.data?.temperament}.
+            </p>
             <table>
               <thead>
                 <tr>
@@ -217,7 +218,8 @@ function LeadersDenPage() {
 
           <TabPanel>
             <h2>Order a Search</h2>
-            Only one search can be ordered per moon. Searches are more likely to succeed if the Clan has a better reputation among outsiders.
+            Only one search can be ordered per moon. Searches are more likely to
+            succeed if the Clan has a better reputation among outsiders.
             <ul className="below-header above-header">
               <li>Search for - Search for this lost cat to bring them home.</li>
               <li>Hunt down - Hunt down this cat and kill them.</li>
@@ -226,11 +228,11 @@ function LeadersDenPage() {
               </li>
               <li>Drive off - Drive this cat away if you find them.</li>
             </ul>
-            {reputation &&
+            {reputation && (
               <p className="below-header">
                 {clanInfo.data?.name} is seen as {reputation} towards outsiders.
               </p>
-            }
+            )}
             {cats.length > 0 ? (
               <>
                 <table>
