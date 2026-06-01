@@ -8,6 +8,7 @@ type ClanInfo = {
   freshkill?: number;
   requiredFreshkill?: number;
   symbol: string;
+  temperament: string;
 };
 
 type Pelt = {

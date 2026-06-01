@@ -7,6 +7,7 @@ import Radiobox from "../../components/generic/Radiobox";
 import CatDisplay from "../../components/CatDisplay";
 import { Link } from "react-router";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import useClanInfo from "../../hooks/useClanInfo";
 
 const crumbs = [
   {
@@ -46,6 +47,7 @@ function getRelationship(relation: number) {
 }
 
 function LeadersDenPage() {
+  const clanInfo = useClanInfo();
   const [otherClans, setOtherClans] = useState<OtherClan[]>([]);
   const [cats, setCats] = useState<Cat[]>([]);
 
@@ -126,8 +128,9 @@ function LeadersDenPage() {
           <TabPanel>
             <h2>Gatherings</h2>
             <p className="below-header">
-              Determine how to treat one other Clan at the next Gathering.
+              Determine how to treat another Clan at the next Gathering.
             </p>
+            <p>The other Clans think that {clanInfo.data?.name} is {clanInfo.data?.temperament}.</p>
             <table>
               <thead>
                 <tr>
