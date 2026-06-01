@@ -68,7 +68,7 @@ function BasePage({
             </Link>
             <ul>
               <li>
-                <Link className="profile-info__clanname" to="/allegiances">{clanInfo?.name}</Link> - {clanInfo?.age}{" "}
+                <Link tabIndex={0} className="profile-info__clanname" to="/allegiances">{clanInfo?.name}</Link> - {clanInfo?.age}{" "}
                 <Pluralize num={clanInfo?.age}>moon</Pluralize>
               </li>
               <li><Season seasonName={clanInfo?.season} /></li>

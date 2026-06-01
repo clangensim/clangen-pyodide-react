@@ -65,22 +65,22 @@ function CatsPage() {
         <div className="button-row" style={{marginLeft: "0.25em"}}>
           { showLiving && 
             <>
-              <button className={screenState === "clan_cats" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("clan_cats")}>{clanInfo ? clanInfo.name : "Clan"}</button>
-              <button className={screenState === "outside_cats" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("outside_cats")}>Cats Outside the Clan</button>
+              <button tabIndex={0} className={screenState === "clan_cats" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("clan_cats")}>{clanInfo ? clanInfo.name : "Clan"}</button>
+              <button tabIndex={0} className={screenState === "outside_cats" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("outside_cats")}>Cats Outside the Clan</button>
             </>
           }
           { showDead && 
             <>
-              <button className={screenState === "starclan" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("starclan")}>StarClan</button>
-              <button className={screenState === "dark_forest" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("dark_forest")}>Dark Forest</button>
-              <button className={screenState === "unknown_residence" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("unknown_residence")}>Unknown</button>
+              <button tabIndex={0} className={screenState === "starclan" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("starclan")}>StarClan</button>
+              <button tabIndex={0} className={screenState === "dark_forest" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("dark_forest")}>Dark Forest</button>
+              <button tabIndex={0} className={screenState === "unknown_residence" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("unknown_residence")}>Unknown</button>
             </>
           }
         </div>
 
         <div className="cats-list__nav__toggle-living">
-          {showDead && <button onClick={() => { setScreenState("clan_cats") }} className="link-button">Show living</button>}
-          {showLiving && <button onClick={() => { setScreenState("starclan") }} className="link-button">Show deceased</button>}
+          {showDead && <button tabIndex={0} onClick={() => { setScreenState("clan_cats") }} className="link-button">Show living</button>}
+          {showLiving && <button tabIndex={0} onClick={() => { setScreenState("starclan") }} className="link-button">Show deceased</button>}
         </div>
       </div>
 

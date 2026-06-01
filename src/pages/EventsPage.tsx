@@ -71,7 +71,7 @@ function EventsPage() {
               {event.cats_involved.length > 0 &&
                 <div className="event-display__cats">
                   {event.cats_involved.filter(Boolean).map((ID) => // sometimes cat doesn't exist?
-                    <Link key={`${event.text}_${ID}`} to={`/cats/${ID}`}>
+                    <Link tabIndex={0} key={`${event.text}_${ID}`} to={`/cats/${ID}`}>
                       <CatDisplay fuzzy={true} w="35px" h="35px" cat={cats[ID]} />
                     </Link>
                   )}
