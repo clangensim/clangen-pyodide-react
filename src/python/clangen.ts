@@ -437,27 +437,47 @@ class Clangen {
     return this._clangenApi.get_other_clans();
   }
 
+  /**
+   * Gets the Clan's current focus.
+   */
   public async getFocus(): Promise<string> {
     return this._clangenApi.get_focus();
   }
 
+  /**
+   * Gets Clans being currently targetted by this Clan's focus.
+   */
   public getTargettedClans(): Promise<string[]> {
     return this._clangenApi.get_targetted_clans();
   }
 
+  /**
+   * Gets possible focuses for this Clan.
+   */
   public async getPossibleFocuses(): Promise<string[]> {
     return this._clangenApi.get_possible_focuses();
   }
 
+  /**
+   * Sets focus. otherClans is the other Clans involved, if
+   * the focus is an interaction with other Clans.
+   */
   public async setFocus(focus: string, otherClans?: string[]) {
     this._clangenApi.set_focus(focus, otherClans);
     await this.saveGame();
   }
 
+  /**
+   * Gets how many moons until the focus can be changed.
+   * 0 when focus can be changed.
+   */
   public async nextFocusChange(): Promise<number> {
     return this._clangenApi.next_focus_change();
   }
 
+  /**
+   * Schedules an interaction with an outsider.
+   */
   public async scheduleOutsiderInteraction(
     cat_id: string,
     interaction_type: "search" | "invite" | "drive" | "hunt",
@@ -465,6 +485,9 @@ class Clangen {
     this._clangenApi.schedule_outsider_interaction(cat_id, interaction_type);
   }
 
+  /**
+   * Schedules an interaction with another Clan.
+   */
   public async scheduleOtherClanInteraction(
     other_clan_name: string,
     interaction_type: "offend" | "praise",
