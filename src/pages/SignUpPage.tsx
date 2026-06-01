@@ -43,7 +43,7 @@ function SignUpPage() {
         </p>
 
         <div className="signup-buttons">
-          <Link className="btn" to="/new-clan">Create New Clan</Link>
+          <Link tabIndex={0} className="btn" to="/new-clan">Create New Clan</Link>
           <div className="or">or</div>
           <FileUploadButton
             accept=".sav,.zip,application/zip,application/octet-stream"
@@ -54,7 +54,7 @@ function SignUpPage() {
         </FileUploadButton>
         </div>
         <div className="footer">
-          <a target="_blank" rel="noopener noreferrer" href="/credits">Credits</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source</a> | <a target="_blank" rel="noopener noreferrer" href="/changelog">Changelog</a>
+          <a tabIndex={0} target="_blank" rel="noopener noreferrer" href="/credits">Credits</a> | <a tabIndex={0} target="_blank" rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source</a> | <a tabIndex={0} target="_blank" rel="noopener noreferrer" href="/changelog">Changelog</a>
         </div>
       </div>
     </>

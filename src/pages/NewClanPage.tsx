@@ -146,6 +146,7 @@ function NewClanPage() {
             style={{marginLeft: "0.5em"}}
             className="icon-button"
             onClick={randomizeName}
+            tabIndex={0}
           >
             <TbDice3 size={20} />
           </button>
