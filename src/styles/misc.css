@@ -39,11 +39,14 @@ dialog div.dialog-footer {
   justify-content: flex-end;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid;
   border-collapse: collapse;
 }
-th, td {
+th,
+td {
   padding: 0.5em;
 }
 .table-container {

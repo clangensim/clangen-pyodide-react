@@ -29,19 +29,22 @@ function EventsPage() {
   });
 
   const events = eventsQuery.data === undefined ? [] : eventsQuery.data;
-  const [cats, setCats] = useState<Record<string,Cat>>({});
+  const [cats, setCats] = useState<Record<string, Cat>>({});
 
   const [showRelEvents, setShowRelEvents] = useState(false);
   const [showRegEvents, setShowRegEvents] = useState(true);
 
   useEffect(() => {
-    clangenRunner.getCats().then((c) => {
-      const temp: Record<string, Cat> = {};
-      for (const cat of c) {
-        temp[cat.ID] = cat;
-      }
-      return temp;
-    }).then((c) => setCats(c));
+    clangenRunner
+      .getCats()
+      .then((c) => {
+        const temp: Record<string, Cat> = {};
+        for (const cat of c) {
+          temp[cat.ID] = cat;
+        }
+        return temp;
+      })
+      .then((c) => setCats(c));
   }, []);
 
   useEffect(() => {
@@ -55,7 +58,11 @@ function EventsPage() {
   let eventsDisplay;
   if (regularEvents !== undefined) {
     if (regularEvents.length === 0 && showRegEvents && !showRelEvents) {
-      eventsDisplay = <li className="event-display">Nothing interesting happened this moon.</li>;
+      eventsDisplay = (
+        <li className="event-display">
+          Nothing interesting happened this moon.
+        </li>
+      );
     } else {
       eventsDisplay = (
         <>
@@ -66,18 +73,35 @@ function EventsPage() {
             if (!showRegEvents && !event.types.includes("interaction")) {
               return;
             }
-            return <li className="event-display" key={event.text}>
-              <div className="event-display__text">{formatText(event.text)}</div>
-              {event.cats_involved.length > 0 &&
-                <div className="event-display__cats">
-                  {event.cats_involved.filter(Boolean).map((ID) => // sometimes cat doesn't exist?
-                    <Link tabIndex={0} key={`${event.text}_${ID}`} to={`/cats/${ID}`}>
-                      <CatDisplay fuzzy={true} w="35px" h="35px" cat={cats[ID]} />
-                    </Link>
-                  )}
+            return (
+              <li className="event-display" key={event.text}>
+                <div className="event-display__text">
+                  {formatText(event.text)}
                 </div>
-              }
-            </li>
+                {event.cats_involved.length > 0 && (
+                  <div className="event-display__cats">
+                    {event.cats_involved.filter(Boolean).map(
+                      (
+                        ID, // sometimes cat doesn't exist?
+                      ) => (
+                        <Link
+                          tabIndex={0}
+                          key={`${event.text}_${ID}`}
+                          to={`/cats/${ID}`}
+                        >
+                          <CatDisplay
+                            fuzzy={true}
+                            w="35px"
+                            h="35px"
+                            cat={cats[ID]}
+                          />
+                        </Link>
+                      ),
+                    )}
+                  </div>
+                )}
+              </li>
+            );
           })}
         </>
       );

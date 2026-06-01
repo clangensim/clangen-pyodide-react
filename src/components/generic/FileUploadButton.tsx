@@ -18,7 +18,7 @@ function FileUploadButton({
       inputRef.current.click();
     }
   }
-  
+
   return (
     <>
       <button tabIndex={tabIndex} onClick={handleButtonClick}>

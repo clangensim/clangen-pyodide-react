@@ -20,7 +20,10 @@ function CatProfilePage() {
   const [cat, setCat] = useState<Cat>();
   const [relationships, setRelationships] = useState<Relationship[]>();
   const [conditions, setConditions] = useState<Condition[]>();
-  const [neighbourCats, setNeighbourCats] = useState<[string, string]>(["-1", "-1"]);
+  const [neighbourCats, setNeighbourCats] = useState<[string, string]>([
+    "-1",
+    "-1",
+  ]);
   const [ceremony, setCeremony] = useState<string>();
   const [notes, setNotes] = useState<string>();
   const [family, setFamily] = useState<Family>();
@@ -55,7 +58,7 @@ function CatProfilePage() {
   let crumbs = undefined;
   if (cat) {
     let location = "???";
-    let href = "/cats"
+    let href = "/cats";
     if (cat.dead) {
       location = "StarClan";
       href = "/cats?category=starclan";
@@ -100,10 +103,18 @@ function CatProfilePage() {
           <div>
             <h2 className="cat-profile__header">{cat.name.display}</h2> #
             {cat.ID}
-            <Link to={`/cats/${catID}/edit`} className="icon-button" tabIndex={0}>
+            <Link
+              to={`/cats/${catID}/edit`}
+              className="icon-button"
+              tabIndex={0}
+            >
               <TbPencil size={25} />
             </Link>
-            <Link to={`/cats/${catID}/edit/dangerous`} className="icon-button" tabIndex={0}>
+            <Link
+              to={`/cats/${catID}/edit/dangerous`}
+              className="icon-button"
+              tabIndex={0}
+            >
               <TbFileAlert size={25} />
             </Link>
             <div>{cat.thought}</div>
@@ -113,24 +124,47 @@ function CatProfilePage() {
             <CatProfile cat={cat} />
           </div>
 
-        <div className="next-prev"
-          style={{
-            display: neighbourCats[0] === "-1" && neighbourCats[1] === "-1" ? "none" : "flex",
-            height: "auto"
-          }}>
-          <div style={{
-            marginRight: "auto",
-            visibility: neighbourCats[0] === "-1" ? "hidden" : "visible",
-          }}>
-            <Link tabIndex={0} style={{display: "inline-block"}} className="btn next-prev__button" to={`/cats/${neighbourCats[0]}`}><TbCaretLeftFilled /></Link>
+          <div
+            className="next-prev"
+            style={{
+              display:
+                neighbourCats[0] === "-1" && neighbourCats[1] === "-1"
+                  ? "none"
+                  : "flex",
+              height: "auto",
+            }}
+          >
+            <div
+              style={{
+                marginRight: "auto",
+                visibility: neighbourCats[0] === "-1" ? "hidden" : "visible",
+              }}
+            >
+              <Link
+                tabIndex={0}
+                style={{ display: "inline-block" }}
+                className="btn next-prev__button"
+                to={`/cats/${neighbourCats[0]}`}
+              >
+                <TbCaretLeftFilled />
+              </Link>
+            </div>
+            <div
+              style={{
+                marginLeft: "auto",
+                visibility: neighbourCats[1] === "-1" ? "hidden" : "visible",
+              }}
+            >
+              <Link
+                tabIndex={0}
+                style={{ display: "inline-block" }}
+                className="btn next-prev__button"
+                to={`/cats/${neighbourCats[1]}`}
+              >
+                <TbCaretRightFilled />
+              </Link>
+            </div>
           </div>
-          <div style={{
-            marginLeft: "auto",
-            visibility: neighbourCats[1] === "-1" ? "hidden" : "visible"
-          }}>
-            <Link tabIndex={0} style={{display: "inline-block"}} className="btn next-prev__button" to={`/cats/${neighbourCats[1]}`}><TbCaretRightFilled /></Link>
-          </div>
-        </div>
           <div>
             <details>
               <summary>Relationships</summary>
@@ -143,7 +177,7 @@ function CatProfilePage() {
             <details>
               <summary>Family</summary>
               <div className="details-content">
-                { family && <FamilyDisplay family={family} />}
+                {family && <FamilyDisplay family={family} />}
               </div>
             </details>
           </div>
@@ -155,32 +189,39 @@ function CatProfilePage() {
                   <TbExclamationCircleFilled />
                 )}
               </summary>
-              
+
               <div className="details-content">
                 <ConditionsDisplay conditions={conditions} />
               </div>
             </details>
           </div>
-          {notes && 
+          {notes && (
             <div>
               <details>
                 <summary>Notes</summary>
                 <div className="details-content">
-                  {notes.split("\n").map(line => <>{line}<br /></>)}
+                  {notes.split("\n").map((line) => (
+                    <>
+                      {line}
+                      <br />
+                    </>
+                  ))}
                 </div>
               </details>
             </div>
-          }
-          {ceremony && 
+          )}
+          {ceremony && (
             <div>
               <details>
                 <summary>Leadership Ceremony</summary>
                 <div className="details-content">
-                  {ceremony.split("<br><br>").map(line => <p>{line}</p>)}
+                  {ceremony.split("<br><br>").map((line) => (
+                    <p>{line}</p>
+                  ))}
                 </div>
               </details>
             </div>
-          }
+          )}
         </>
       )}
     </BasePage>

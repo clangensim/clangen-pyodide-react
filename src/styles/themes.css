@@ -22,7 +22,7 @@
   --progress-bar-fill: #80bc08;
   --loader-color: #d5d5d5;
 
-  --icon-button-text-color: #8A8A8A;
+  --icon-button-text-color: #8a8a8a;
   --icon-button-hovered-text-color: #626262;
 
   --button-background-color: #655934;
@@ -40,10 +40,10 @@
 
   --event-border-color: rgb(160, 160, 160);
 
-  --fall-color: #D95000;
-  --winter-color: #008CB4;
+  --fall-color: #d95000;
+  --winter-color: #008cb4;
   --spring-color: #7aa20b;
-  --summer-color: #3C9707;
+  --summer-color: #3c9707;
 }
 
 .theme-clangen-dark {
@@ -155,14 +155,13 @@
   }
 }
 
-
 @font-face {
-  font-family: '8 Bit Operator';
+  font-family: "8 Bit Operator";
   src: url(/fonts/8bitoperator/8bitoperator.otf.woff2);
 }
 
 @font-face {
-  font-family: '8 Bit Operator';
+  font-family: "8 Bit Operator";
   src: url(/fonts/8bitoperator/8bitoperator.otf.woff2);
   font-weight: bold;
 }
@@ -187,8 +186,8 @@
   --cat-display-hovered-background-color: #1a1d1f;
 
   --progress-bar-border: 1px solid black;
-  --progress-bar-bg: #B02418;
-  --progress-bar-fill: #FFFF54;
+  --progress-bar-bg: #b02418;
+  --progress-bar-fill: #ffff54;
   --loader-color: #494e52;
 
   --icon-button-text-color: darkgray;
@@ -214,11 +213,13 @@
   --spring-color: #56bd37;
   --summer-color: #56bd37;
 
-
-  body, button, a, h2 {
-    font-family: '8 Bit Operator';
+  body,
+  button,
+  a,
+  h2 {
+    font-family: "8 Bit Operator";
   }
-  
+
   .nav-item {
     border: none;
   }
@@ -226,25 +227,30 @@
     border: none;
   }
 
-  .btn, button {
-    border: 4px solid #EF8640;
+  .btn,
+  button {
+    border: 4px solid #ef8640;
     border-radius: 0;
     background-color: black;
-    color: #EF8640;
+    color: #ef8640;
   }
-  .btn:hover, button:hover, .btn-primary {
-    border: 4px solid #FFFF54;
+  .btn:hover,
+  button:hover,
+  .btn-primary {
+    border: 4px solid #ffff54;
     border-radius: 0;
     background-color: black;
-    color: #FFFF54;
+    color: #ffff54;
   }
-  .btn:disabled, button:disabled {
+  .btn:disabled,
+  button:disabled {
     border: 4px solid #984c1a;
     border-radius: 0;
     background-color: black;
     color: #984c1a;
   }
-  .btn:disabled:hover, button:disabled:hover {
+  .btn:disabled:hover,
+  button:disabled:hover {
     border: 4px solid #984c1a;
     border-radius: 0;
     background-color: black;
@@ -259,7 +265,7 @@
   }
 
   b {
-    color: #FFFF54;
+    color: #ffff54;
     text-transform: uppercase;
   }
 
@@ -268,7 +274,7 @@
     border-radius: 0;
   }
   .event-display__text::before {
-    content: "* "
+    content: "* ";
   }
 
   .icon-button {

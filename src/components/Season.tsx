@@ -1,4 +1,4 @@
-import { TbLeaf, TbLeaf2,  TbSeedingFilled, TbSnowflake } from "react-icons/tb";
+import { TbLeaf, TbLeaf2, TbSeedingFilled, TbSnowflake } from "react-icons/tb";
 
 function Season({ seasonName }: { seasonName: string | undefined }) {
   if (seasonName === undefined) {

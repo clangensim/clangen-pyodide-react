@@ -86,7 +86,7 @@ function CatDangerousEditPage() {
             id="death-cause"
             value={deathHistory}
             onChange={(e) => setDeathHistory(e.currentTarget.value)}
-            style={{ resize: "none", minWidth: "95%", fontSize: "16px"}}
+            style={{ resize: "none", minWidth: "95%", fontSize: "16px" }}
           />
           {cat && cat.status === "leader" && (
             <Checkbox

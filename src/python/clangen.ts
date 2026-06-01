@@ -239,7 +239,7 @@ class Clangen {
     return this._clangenApi.get_patrollable_cats();
   }
 
-  /* 
+  /*
    * Gets cats who were mediated together this moon.
    */
   public async getMediatedPairs(): Promise<[string, string][]> {
@@ -458,12 +458,21 @@ class Clangen {
     return this._clangenApi.next_focus_change();
   }
 
-  public async scheduleOutsiderInteraction(cat_id: string, interaction_type: "search" | "invite" | "drive" | "hunt") {
+  public async scheduleOutsiderInteraction(
+    cat_id: string,
+    interaction_type: "search" | "invite" | "drive" | "hunt",
+  ) {
     this._clangenApi.schedule_outsider_interaction(cat_id, interaction_type);
   }
 
-  public async scheduleOtherClanInteraction(other_clan_name: string, interaction_type: "offend" | "praise") {
-    this._clangenApi.schedule_other_clan_interaction(other_clan_name, interaction_type)
+  public async scheduleOtherClanInteraction(
+    other_clan_name: string,
+    interaction_type: "offend" | "praise",
+  ) {
+    this._clangenApi.schedule_other_clan_interaction(
+      other_clan_name,
+      interaction_type,
+    );
   }
 
   /**

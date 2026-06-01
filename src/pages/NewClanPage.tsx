@@ -9,31 +9,31 @@ import { getCampBGPath, setCustomCss } from "../utils";
 import { TbDice3 } from "react-icons/tb";
 import { useQueryClient } from "@tanstack/react-query";
 
-const biomeVariants: {[biome: string]: string[][]} = {
-  "Forest": [
+const biomeVariants: { [biome: string]: string[][] } = {
+  Forest: [
     ["forest", "camp1"],
     ["gully", "camp2"],
     ["grotto", "camp3"],
-    ["lakeside", "camp4"]
+    ["lakeside", "camp4"],
   ],
-  "Mountainous": [
+  Mountainous: [
     ["cliff", "camp1"],
     ["cave", "camp2"],
     ["crystal", "camp3"],
     ["ruins", "camp4"],
   ],
-  "Plains": [
+  Plains: [
     ["grasslands", "camp1"],
     ["tunnel", "camp2"],
-    ["wasteland", "camp3"]
+    ["wasteland", "camp3"],
   ],
-  "Beach": [
+  Beach: [
     ["tidepool", "camp1"],
     ["tidal cave", "camp2"],
     ["shipwreck", "camp3"],
     ["fjord", "camp4"],
-  ]
-}
+  ],
+};
 
 function NewClanPage() {
   const [cats, setCats] = useState<Cat[]>([]);
@@ -116,18 +116,17 @@ function NewClanPage() {
         navigate("/cats");
       })
       .catch((err) => {
-        console.error(err)
-        alert("Something went wrong when creating your Clan! Please close all other ClanGen Simulator tabs then refresh this page.");
+        console.error(err);
+        alert(
+          "Something went wrong when creating your Clan! Please close all other ClanGen Simulator tabs then refresh this page.",
+        );
         document.location.reload();
       });
   }
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        id="new-clan-form"
-      >
+      <form onSubmit={handleSubmit} id="new-clan-form">
         <fieldset>
           <legend>Clan Name*</legend>
           <input
@@ -143,7 +142,7 @@ function NewClanPage() {
           ></input>
           -Clan
           <button
-            style={{marginLeft: "0.5em"}}
+            style={{ marginLeft: "0.5em" }}
             className="icon-button"
             onClick={randomizeName}
             tabIndex={0}
@@ -182,14 +181,9 @@ function NewClanPage() {
 
         <fieldset>
           <legend>Cats</legend>
-          <div
-            className="select-clan-cats"
-          >
+          <div className="select-clan-cats">
             {cats.map((cat) => (
-              <div
-                className="clan-cats"
-                key={cat.ID}
-              >
+              <div className="clan-cats" key={cat.ID}>
                 <CatDisplay cat={cat} />
                 <div>{cat.name.display}</div>
                 <div>{cat.gender}</div>
@@ -221,7 +215,11 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option key={cat.ID} value={cat.ID}>{cat.name.display}</option>;
+                      return (
+                        <option key={cat.ID} value={cat.ID}>
+                          {cat.name.display}
+                        </option>
+                      );
                     }
                   })}
                 </select>
@@ -248,7 +246,11 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option key={cat.ID} value={cat.ID}>{cat.name.display}</option>;
+                      return (
+                        <option key={cat.ID} value={cat.ID}>
+                          {cat.name.display}
+                        </option>
+                      );
                     }
                   })}
                 </select>
@@ -275,7 +277,11 @@ function NewClanPage() {
                       return;
                     }
                     if (cat.status === "warrior") {
-                      return <option key={cat.ID} value={cat.ID}>{cat.name.display}</option>;
+                      return (
+                        <option key={cat.ID} value={cat.ID}>
+                          {cat.name.display}
+                        </option>
+                      );
                     }
                   })}
                 </select>
@@ -312,7 +318,7 @@ function NewClanPage() {
             })}
           </fieldset>
         </fieldset>
-        
+
         <fieldset>
           <legend>Camp</legend>
 
@@ -435,25 +441,26 @@ function NewClanPage() {
           <fieldset>
             <legend>Biome Variant</legend>
             <div className="dropdown">
-              {
-                biomeVariants[biome].map((campInfo, index) => {
-                  return (
-                    <div key={`${campInfo[0]}_${index}`} className="radio-row">
-                      <input
-                        tabIndex={0}
-                        type="radio"
-                        id={`${campInfo[0]}-variant-radio`}
-                        value={`${campInfo[1]}`}
-                        name="variant"
-                        defaultChecked={index == 0}
-                        checked={campNum == `camp${index+1}`}
-                        onChange={(e) => setCampNum(e.target.value)}
-                      ></input>
-                      <label htmlFor={`${campInfo[0]}-variant-radio`}>{campInfo[0].substring(0, 1).toUpperCase() + campInfo[0].substring(1)}</label>
-                    </div>
-                  )
-                })
-              }
+              {biomeVariants[biome].map((campInfo, index) => {
+                return (
+                  <div key={`${campInfo[0]}_${index}`} className="radio-row">
+                    <input
+                      tabIndex={0}
+                      type="radio"
+                      id={`${campInfo[0]}-variant-radio`}
+                      value={`${campInfo[1]}`}
+                      name="variant"
+                      defaultChecked={index == 0}
+                      checked={campNum == `camp${index + 1}`}
+                      onChange={(e) => setCampNum(e.target.value)}
+                    ></input>
+                    <label htmlFor={`${campInfo[0]}-variant-radio`}>
+                      {campInfo[0].substring(0, 1).toUpperCase() +
+                        campInfo[0].substring(1)}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </fieldset>
 

@@ -42,24 +42,31 @@ function HomePage() {
   return (
     <BasePage>
       <ClanInfoDisplay />
-      <img style={{maxWidth: "100%", maxHeight: "400px"}} src={getCampBGPathByClan(clanInfo)}></img>
+      <img
+        style={{ maxWidth: "100%", maxHeight: "400px" }}
+        src={getCampBGPathByClan(clanInfo)}
+      ></img>
 
       <p>
-        Welcome to <b>ClanGen Simulator</b>, an unofficial project that aims to simulate
-        Clan Generator in your browser. This site is a work in progress, so some
-        features may be missing and there may be bugs.
+        Welcome to <b>ClanGen Simulator</b>, an unofficial project that aims to
+        simulate Clan Generator in your browser. This site is a work in
+        progress, so some features may be missing and there may be bugs.
       </p>
 
-      {!("SharedWorker" in window) && 
+      {!("SharedWorker" in window) && (
         <p>
-          <b>Your browser does not support opening this site in multiple tabs.</b> If you try, data may be lost.
+          <b>
+            Your browser does not support opening this site in multiple tabs.
+          </b>{" "}
+          If you try, data may be lost.
         </p>
-      }
+      )}
 
-      <p><b>Important notice for iOS users: </b>
-        Browsers on iOS phones (and Safari on computers) will automatically delete all
-        stored data on a website after seven days without use.
-        Please back up your save data if it is important to you.
+      <p>
+        <b>Important notice for iOS users: </b>
+        Browsers on iOS phones (and Safari on computers) will automatically
+        delete all stored data on a website after seven days without use. Please
+        back up your save data if it is important to you.
       </p>
 
       <p>
@@ -91,11 +98,45 @@ function HomePage() {
       </div>
 
       <p>
-        <a target="_blank" tabIndex={0} rel="noopener noreferrer" href="/credits">Credits</a> |{" "}
-        <a target="_blank" tabIndex={0} rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source Code</a> |{" "}
-        <a target="_blank" tabIndex={0} rel="noopener noreferrer" href="https://forms.gle/zX1zwgiEDGTrZ7X16">Bugs & Feedback</a> |{" "}
-        <a target="_blank" tabIndex={0} rel="noopener noreferrer" href="/changelog">Changelog</a> | {" "}
-        <a target="_blank" tabIndex={0} rel="noopener noreferrer" href="/faq">FAQ</a>
+        <a
+          target="_blank"
+          tabIndex={0}
+          rel="noopener noreferrer"
+          href="/credits"
+        >
+          Credits
+        </a>{" "}
+        |{" "}
+        <a
+          target="_blank"
+          tabIndex={0}
+          rel="noopener noreferrer"
+          href="https://github.com/clangensim/clangen-pyodide-react"
+        >
+          Source Code
+        </a>{" "}
+        |{" "}
+        <a
+          target="_blank"
+          tabIndex={0}
+          rel="noopener noreferrer"
+          href="https://forms.gle/zX1zwgiEDGTrZ7X16"
+        >
+          Bugs & Feedback
+        </a>{" "}
+        |{" "}
+        <a
+          target="_blank"
+          tabIndex={0}
+          rel="noopener noreferrer"
+          href="/changelog"
+        >
+          Changelog
+        </a>{" "}
+        |{" "}
+        <a target="_blank" tabIndex={0} rel="noopener noreferrer" href="/faq">
+          FAQ
+        </a>
       </p>
     </BasePage>
   );

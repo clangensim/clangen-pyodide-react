@@ -11,7 +11,7 @@ function Checkbox({
   checked?: boolean;
   onChange?: () => void;
   className?: string;
-  disabled?: boolean
+  disabled?: boolean;
 }) {
   const ID = useId();
 

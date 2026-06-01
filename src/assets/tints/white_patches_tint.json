@@ -1,6 +1,5 @@
 {
-  "colour_groups":
-  {
+  "colour_groups": {
     "WHITE": "white",
     "PALEGREY": "gray",
     "SILVER": "gray",
@@ -29,8 +28,7 @@
     "brown": ["darkcream", "cream"],
     "white": []
   },
-  "tint_colours":
-  {
+  "tint_colours": {
     "darkcream": [236, 229, 208],
     "cream": [247, 241, 225],
     "offwhite": [238, 249, 252],

@@ -45,7 +45,11 @@ function AllegiancesPage() {
   return (
     <>
       <BasePage crumbs={crumbs}>
-        <button className="icon-button" tabIndex={0} onClick={() => window.print()}>
+        <button
+          className="icon-button"
+          tabIndex={0}
+          onClick={() => window.print()}
+        >
           <TbPrinter size={25} />
         </button>
 

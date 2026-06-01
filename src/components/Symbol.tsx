@@ -39,7 +39,14 @@ function ClanSymbol({ symbol }: { symbol?: string }) {
     drawSymbol(symbol as Symbol, canvasElement.current);
   }, [canvasElement, symbol]);
 
-  return <canvas width={50} height={50} style={{imageRendering: "pixelated"}} ref={canvasElement}></canvas>;
+  return (
+    <canvas
+      width={50}
+      height={50}
+      style={{ imageRendering: "pixelated" }}
+      ref={canvasElement}
+    ></canvas>
+  );
 }
 
 export default ClanSymbol;

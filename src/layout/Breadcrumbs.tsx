@@ -15,10 +15,10 @@ function Breadcrumbs({ crumbs }: { crumbs: Breadcrumb[] }) {
         }
         if (crumb.url === undefined) {
           return (
-          <span key={index}>
-            {crumb.label} {separator}
-          </span>
-          )
+            <span key={index}>
+              {crumb.label} {separator}
+            </span>
+          );
         }
         return (
           <span key={index}>

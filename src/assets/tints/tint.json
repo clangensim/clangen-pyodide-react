@@ -1,6 +1,5 @@
 {
-  "colour_groups":
-  {
+  "colour_groups": {
     "WHITE": "white",
     "PALEGREY": "cool",
     "SILVER": "cool",
@@ -29,8 +28,7 @@
     "monochrome": ["blue", "black", "dilute", "cooldilute"],
     "brown": ["yellow", "purple", "black", "dilute", "cooldilute"]
   },
-  "tint_colours":
-  {
+  "tint_colours": {
     "pink": [253, 237, 237],
     "gray": [225, 225, 225],
     "red": [248, 226, 228],
@@ -41,8 +39,7 @@
     "blue": [218, 237, 245],
     "none": null
   },
-  "dilute_tint_colours":
-  {
+  "dilute_tint_colours": {
     "dilute": [20, 20, 20],
     "warmdilute": [25, 15, 7],
     "cooldilute": [7, 15, 25],

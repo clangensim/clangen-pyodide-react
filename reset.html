@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clangen Simulator</title>
 
-
     <style>
       .hidden {
         display: none;
@@ -19,13 +18,14 @@
         localStorage.clear();
         indexedDB.deleteDatabase("/mnt");
         indexedDB.deleteDatabase("localforage");
-        deleted.classList = ""
+        deleted.classList = "";
       }
     </script>
   </head>
   <body>
     <p>
-      Clicking this button will delete all ClanGen resources, <b>including your save data</b>:
+      Clicking this button will delete all ClanGen resources,
+      <b>including your save data</b>:
     </p>
     <button onclick="deleteAllData()">Delete All Data</button>
     <div id="data-deleted-notif" class="hidden">

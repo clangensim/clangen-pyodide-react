@@ -17,8 +17,9 @@ function CatDisplay({
 }) {
   var forceSprite;
 
-  if (!cat) { // just to prevent crash
-    return <></>
+  if (!cat) {
+    // just to prevent crash
+    return <></>;
   }
 
   if (!cat.canWork && cat.age !== "newborn") {
@@ -77,14 +78,25 @@ function CatSprite({
   useEffect(() => {
     const shadingEnabled = localStorage.getItem("shading-enabled") !== null;
     if (canvasRef.current !== null) {
-      drawCat(canvasRef.current, pelt, catSprite, dead, darkForest, shadingEnabled);
+      drawCat(
+        canvasRef.current,
+        pelt,
+        catSprite,
+        dead,
+        darkForest,
+        shadingEnabled,
+      );
     }
   }, [canvasRef, pelt, catSprite, darkForest, dead]);
 
   return (
     <>
       <canvas
-        style={{ imageRendering: fuzzy ? "auto" : "pixelated", width: w, height: h }}
+        style={{
+          imageRendering: fuzzy ? "auto" : "pixelated",
+          width: w,
+          height: h,
+        }}
         width={50}
         height={50}
         ref={canvasRef}

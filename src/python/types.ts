@@ -109,7 +109,7 @@ type Family = {
   parents: Cat[];
   siblings: Cat[];
   children: Cat[];
-}
+};
 
 type Event = {
   text: string;
@@ -153,7 +153,7 @@ type OtherClan = {
   temperament: string;
   symbol: string;
   isEnemy: boolean;
-}
+};
 
 export type {
   CatEdit,

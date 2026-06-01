@@ -23,7 +23,7 @@ function SignUpPage() {
 
   useEffect(() => {
     document.title = "Welcome! | ClanGen Simulator";
-  })
+  });
 
   useEffect(() => {
     setCustomCss();
@@ -33,32 +33,59 @@ function SignUpPage() {
     <>
       <div id="signup">
         <p>
-          Welcome to <b>ClanGen Simulator</b>, an unofficial project that aims to simulate
-          Clan Generator in your browser.
+          Welcome to <b>ClanGen Simulator</b>, an unofficial project that aims
+          to simulate Clan Generator in your browser.
         </p>
 
         <p>
-          This site is a work in progress, so some
-          features may be missing and there may be bugs.
+          This site is a work in progress, so some features may be missing and
+          there may be bugs.
         </p>
 
         <div className="signup-buttons">
-          <Link tabIndex={0} className="btn" to="/new-clan">Create New Clan</Link>
+          <Link tabIndex={0} className="btn" to="/new-clan">
+            Create New Clan
+          </Link>
           <div className="or">or</div>
           <FileUploadButton
             accept=".sav,.zip,application/zip,application/octet-stream"
             tabIndex={0}
             onChange={handleImportClan}
           >
-          Import Save
-        </FileUploadButton>
+            Import Save
+          </FileUploadButton>
         </div>
         <div className="footer">
-          <a tabIndex={0} target="_blank" rel="noopener noreferrer" href="/credits">Credits</a> | <a tabIndex={0} target="_blank" rel="noopener noreferrer" href="https://github.com/clangensim/clangen-pyodide-react">Source</a> | <a tabIndex={0} target="_blank" rel="noopener noreferrer" href="/changelog">Changelog</a>
+          <a
+            tabIndex={0}
+            target="_blank"
+            rel="noopener noreferrer"
+            href="/credits"
+          >
+            Credits
+          </a>{" "}
+          |{" "}
+          <a
+            tabIndex={0}
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/clangensim/clangen-pyodide-react"
+          >
+            Source
+          </a>{" "}
+          |{" "}
+          <a
+            tabIndex={0}
+            target="_blank"
+            rel="noopener noreferrer"
+            href="/changelog"
+          >
+            Changelog
+          </a>
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default SignUpPage;

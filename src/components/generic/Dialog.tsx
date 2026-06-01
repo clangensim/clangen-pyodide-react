@@ -41,7 +41,9 @@ function Dialog({
           <div className="title-bar">
             <div className="title-bar-text">{title}</div>
             <div className="title-bar-buttons">
-              <button className="icon-button" onClick={handleClose}><TbX /></button>
+              <button className="icon-button" onClick={handleClose}>
+                <TbX />
+              </button>
             </div>
           </div>
           <div className="window-body">{children}</div>

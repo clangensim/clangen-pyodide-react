@@ -19,9 +19,12 @@ const formatText = (s: string) => {
   return output;
 };
 
-function getCatLocationBreadcrumb(cat: Cat | undefined, clanInfo: ClanInfo | null | undefined) {
+function getCatLocationBreadcrumb(
+  cat: Cat | undefined,
+  clanInfo: ClanInfo | null | undefined,
+) {
   let location = "???";
-  let href = "/cats"
+  let href = "/cats";
   if (cat) {
     if (cat.dead) {
       location = "StarClan";
@@ -46,15 +49,17 @@ function getCatLocationBreadcrumb(cat: Cat | undefined, clanInfo: ClanInfo | nul
 
   return {
     url: href,
-    label: location,    
-  }
+    label: location,
+  };
 }
 
 function getSiteTheme() {
   let siteTheme = localStorage.getItem("site-theme");
   if (!siteTheme || siteTheme == "auto") {
-    const prefersLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
-    siteTheme  = prefersLightMode ? "theme-light" : "theme-dark";
+    const prefersLightMode = window.matchMedia(
+      "(prefers-color-scheme: light)",
+    ).matches;
+    siteTheme = prefersLightMode ? "theme-light" : "theme-dark";
   }
 
   return siteTheme;
@@ -67,7 +72,11 @@ function setCustomCss() {
   const customCssElement = document.getElementById("custom-css");
   const customCss = localStorage.getItem("custom-css");
   // need the last condition or there will be flash of unstyled content
-  if (customCssElement && customCss && customCssElement.textContent !== customCss) {
+  if (
+    customCssElement &&
+    customCss &&
+    customCssElement.textContent !== customCss
+  ) {
     customCssElement.textContent = customCss;
   }
 }
@@ -79,15 +88,19 @@ function getCampBGPath(biome: string, season: string, campNum: string) {
     lightDark = "dark";
   }
 
-  return `camp_bg/${biome.toLowerCase()}/${season.toLowerCase().replace("-", "")}_${campNum}_${lightDark}.png`
+  return `camp_bg/${biome.toLowerCase()}/${season.toLowerCase().replace("-", "")}_${campNum}_${lightDark}.png`;
 }
 
 function getCampBGPathByClan(clanInfo: ClanInfo | null | undefined) {
   if (!clanInfo) {
     return "";
   }
-  
-  return getCampBGPath(clanInfo?.biome.toLowerCase(), clanInfo?.season.toLowerCase().replace("-", ""), clanInfo?.campBg);
+
+  return getCampBGPath(
+    clanInfo?.biome.toLowerCase(),
+    clanInfo?.season.toLowerCase().replace("-", ""),
+    clanInfo?.campBg,
+  );
 }
 
 async function loadImage(url: string): Promise<HTMLImageElement> {
@@ -101,4 +114,12 @@ async function loadImage(url: string): Promise<HTMLImageElement> {
   });
 }
 
-export { download, formatText, getCatLocationBreadcrumb, setCustomCss, getCampBGPath, getCampBGPathByClan, loadImage};
+export {
+  download,
+  formatText,
+  getCatLocationBreadcrumb,
+  setCustomCss,
+  getCampBGPath,
+  getCampBGPathByClan,
+  loadImage,
+};

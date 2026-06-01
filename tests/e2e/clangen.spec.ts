@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('signup', async ({ page }) => {
-  await page.goto('http://localhost:5173');
+test("signup", async ({ page }) => {
+  await page.goto("http://localhost:5173");
 
   // Redirect to signup page when no account
   // Also confirms that clangen loaded successfully
@@ -24,9 +24,15 @@ test('signup', async ({ page }) => {
   await deputy.selectOption({ index: 1 });
   await med.selectOption({ index: 1 });
 
-  const leaderName: string = await leader.evaluate("el => el.options[el.selectedIndex].text");
-  const deputyName: string = await deputy.evaluate("el => el.options[el.selectedIndex].text");
-  const medName: string = await med.evaluate("el => el.options[el.selectedIndex].text");
+  const leaderName: string = await leader.evaluate(
+    "el => el.options[el.selectedIndex].text",
+  );
+  const deputyName: string = await deputy.evaluate(
+    "el => el.options[el.selectedIndex].text",
+  );
+  const medName: string = await med.evaluate(
+    "el => el.options[el.selectedIndex].text",
+  );
 
   // submit
   await page.getByRole("button", { name: "Submit" }).click();
@@ -39,7 +45,7 @@ test('signup', async ({ page }) => {
   await expect(profileInfo).toHaveText(/Newleaf/);
   await expect(profileInfo).toHaveText(/0 moons/);
 
-  // correct page? 
+  // correct page?
   await expect(page).toHaveURL("http://localhost:5173/cats?category=clan_cats");
 
   // selected cats ok?

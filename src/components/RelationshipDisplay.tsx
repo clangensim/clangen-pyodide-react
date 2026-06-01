@@ -9,14 +9,19 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   return (
     <div className="relationship">
       <Link to={`/cats/${relationship.cat_to_id}`}>
-        <CatDisplay cat={relationship.cat_to}/>
+        <CatDisplay cat={relationship.cat_to} />
         {relationship.cat_to.name.display}
-      </Link>
-      {" "}
-      <button onClick={() => {
-        if (relationship.log.length === 0) { alert("No relationship log found.") }
-        else { alert(relationship.log.join("\n\n")) }
-      }} className="icon-button">
+      </Link>{" "}
+      <button
+        onClick={() => {
+          if (relationship.log.length === 0) {
+            alert("No relationship log found.");
+          } else {
+            alert(relationship.log.join("\n\n"));
+          }
+        }}
+        className="icon-button"
+      >
         <TbFileDots />
       </button>
       <ul className="row-list">
@@ -53,7 +58,11 @@ function RelationshipDisplay({ relationship }: { relationship: Relationship }) {
   );
 }
 
-function RelationshipsDisplay({ relationships }: { relationships: Relationship[] | undefined}) {
+function RelationshipsDisplay({
+  relationships,
+}: {
+  relationships: Relationship[] | undefined;
+}) {
   return (
     <>
       {relationships === undefined ||
@@ -71,7 +80,7 @@ function RelationshipsDisplay({ relationships }: { relationships: Relationship[]
         })}
       </div>
     </>
-  )
+  );
 }
 
 export default RelationshipsDisplay;

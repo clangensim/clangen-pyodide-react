@@ -56,64 +56,122 @@ const selectRegularCatOptions = [
   },
 ];
 
-function EditGender({cat, value, setValue} : {cat: Cat, value: string; setValue: (val: string) => void}) {
-
+function EditGender({
+  cat,
+  value,
+  setValue,
+}: {
+  cat: Cat;
+  value: string;
+  setValue: (val: string) => void;
+}) {
   return (
     <>
       <fieldset>
         <legend>Gender</legend>
 
         <div onChange={(e: any) => setValue(e.target.value)}>
-          {cat.sex === "female" && 
+          {cat.sex === "female" && (
             <>
-              <Radiobox checked={value === "trans male"} label="trans male" name="gender" />
-              <Radiobox checked={value === "female"} label="female" name="gender" />
+              <Radiobox
+                checked={value === "trans male"}
+                label="trans male"
+                name="gender"
+              />
+              <Radiobox
+                checked={value === "female"}
+                label="female"
+                name="gender"
+              />
             </>
-          }
-          {cat.sex === "male" &&
+          )}
+          {cat.sex === "male" && (
             <>
               <Radiobox checked={value === "male"} label="male" name="gender" />
-              <Radiobox checked={value === "trans female"} label="trans female" name="gender" />
+              <Radiobox
+                checked={value === "trans female"}
+                label="trans female"
+                name="gender"
+              />
             </>
-          }
-          <Radiobox checked={value === "nonbinary"} label="nonbinary" name="gender" />
+          )}
+          <Radiobox
+            checked={value === "nonbinary"}
+            label="nonbinary"
+            name="gender"
+          />
         </div>
       </fieldset>
     </>
   );
 }
 
-function EditPronouns({value, setValue} : {value: string; setValue: (val: string) => void}) {
-
+function EditPronouns({
+  value,
+  setValue,
+}: {
+  value: string;
+  setValue: (val: string) => void;
+}) {
   return (
     <>
       <fieldset>
         <legend>Pronouns</legend>
 
         <div onChange={(e: any) => setValue(e.target.value)}>
-          <Radiobox checked={value === "he/him"} label="he/him" name="pronouns" />
-          <Radiobox checked={value === "she/her"} label="she/her" name="pronouns" />
-          <Radiobox checked={value === "they/them"} label="they/them" name="pronouns" />
+          <Radiobox
+            checked={value === "he/him"}
+            label="he/him"
+            name="pronouns"
+          />
+          <Radiobox
+            checked={value === "she/her"}
+            label="she/her"
+            name="pronouns"
+          />
+          <Radiobox
+            checked={value === "they/them"}
+            label="they/them"
+            name="pronouns"
+          />
         </div>
       </fieldset>
     </>
   );
 }
 
-function EditAfterlife({value, setValue} : {value: string; setValue: (val: string) => void}) {
+function EditAfterlife({
+  value,
+  setValue,
+}: {
+  value: string;
+  setValue: (val: string) => void;
+}) {
   return (
     <>
       <fieldset>
         <legend>Afterlife</legend>
 
         <div onChange={(e: any) => setValue(e.target.value)}>
-            <Radiobox checked={value === "starclan"} label="starclan" name="afterlife" />
-            <Radiobox checked={value === "dark forest"} label="dark forest" name="afterlife" />
-            <Radiobox checked={value === "unknown residence"} label="unknown residence" name="afterlife" />
+          <Radiobox
+            checked={value === "starclan"}
+            label="starclan"
+            name="afterlife"
+          />
+          <Radiobox
+            checked={value === "dark forest"}
+            label="dark forest"
+            name="afterlife"
+          />
+          <Radiobox
+            checked={value === "unknown residence"}
+            label="unknown residence"
+            name="afterlife"
+          />
         </div>
       </fieldset>
     </>
-  )
+  );
 }
 
 function CatEditPage() {
@@ -131,7 +189,8 @@ function CatEditPage() {
 
   const [potentialMentors, setPotentialMentors] = useState<Cat[]>();
   const [potentialMates, setPotentialMates] = useState<Cat[]>();
-  const [potentialAdoptiveParents, setPotentialAdoptiveParents] = useState<Cat[]>();
+  const [potentialAdoptiveParents, setPotentialAdoptiveParents] =
+    useState<Cat[]>();
 
   const [prefix, setPrefix] = useState<string>("");
   const [suffix, setSuffix] = useState<string>("");
@@ -185,12 +244,14 @@ function CatEditPage() {
   const potentialAdoptiveParentsOptions = [];
   if (potentialAdoptiveParents) {
     for (const c of potentialAdoptiveParents) {
-      if (adoptiveParents.includes(c.ID)) { continue; }
+      if (adoptiveParents.includes(c.ID)) {
+        continue;
+      }
       potentialAdoptiveParentsOptions.push({
         label: `${c.name.display}`,
         value: c.ID,
       });
-    potentialAdoptiveParentsMap.current[c.ID] = c;
+      potentialAdoptiveParentsMap.current[c.ID] = c;
     }
   }
 
@@ -256,7 +317,7 @@ function CatEditPage() {
     const t: Toggles = {
       preventKits: preventKits,
       preventMates: preventMates,
-      preventRetire: preventRetire
+      preventRetire: preventRetire,
     };
     e.toggles = t;
     e.hideSpecialSuffix = hideSpecSuffix;
@@ -326,7 +387,8 @@ function CatEditPage() {
 
       setAdoptiveParents(c.adoptiveParents.map((parent) => parent.ID));
 
-      clangenRunner.getPotentialMentors(c.status)
+      clangenRunner
+        .getPotentialMentors(c.status)
         .then((mentors) => setPotentialMentors(mentors));
 
       for (const mate of c.mates) {
@@ -346,7 +408,9 @@ function CatEditPage() {
     });
 
     clangenRunner.getCatNotes(catID).then((n) => {
-      if (n) { setNotes(n) }
+      if (n) {
+        setNotes(n);
+      }
     });
   }, [catID]);
 
@@ -369,7 +433,7 @@ function CatEditPage() {
           placeholder=" " // otherwise the spacing shifts on iOS
         />
         <button
-          style={{marginLeft: "0.5em"}}
+          style={{ marginLeft: "0.5em" }}
           className="icon-button"
           onClick={randomizeName}
         >
@@ -377,9 +441,9 @@ function CatEditPage() {
         </button>
       </div>
 
-      {cat && cat.dead && 
-        <EditAfterlife value={afterlife} setValue={setAfterlife}/>
-      }
+      {cat && cat.dead && (
+        <EditAfterlife value={afterlife} setValue={setAfterlife} />
+      )}
 
       {cat && !cat.dead && !cat.outside && (
         <>
@@ -454,7 +518,10 @@ function CatEditPage() {
             />
             <button
               onClick={() => {
-                setAdoptiveParents([...adoptiveParents, selectedAdoptiveParent]);
+                setAdoptiveParents([
+                  ...adoptiveParents,
+                  selectedAdoptiveParent,
+                ]);
                 setSelectedAdoptiveParent("");
               }}
               disabled={selectedAdoptiveParent === ""}
@@ -466,10 +533,26 @@ function CatEditPage() {
           <fieldset>
             <legend>Toggles</legend>
 
-            <Checkbox label="Prevent retiring automatically" checked={preventRetire} onChange={() => setPreventRetire(!preventRetire)}/>
-            <Checkbox label="Prevent adopting or having kits" checked={preventKits} onChange={() => setPreventKits(!preventKits)}/>
-            <Checkbox label="Prevent having romantic interactions with non-mates" checked={preventMates} onChange={() => setPreventMates(!preventMates)}/>
-            <Checkbox label="Hide special role suffixes" checked={hideSpecSuffix} onChange={() => setHideSpecSuffix(!hideSpecSuffix)}/>
+            <Checkbox
+              label="Prevent retiring automatically"
+              checked={preventRetire}
+              onChange={() => setPreventRetire(!preventRetire)}
+            />
+            <Checkbox
+              label="Prevent adopting or having kits"
+              checked={preventKits}
+              onChange={() => setPreventKits(!preventKits)}
+            />
+            <Checkbox
+              label="Prevent having romantic interactions with non-mates"
+              checked={preventMates}
+              onChange={() => setPreventMates(!preventMates)}
+            />
+            <Checkbox
+              label="Hide special role suffixes"
+              checked={hideSpecSuffix}
+              onChange={() => setHideSpecSuffix(!hideSpecSuffix)}
+            />
           </fieldset>
 
           {isApprentice && (
@@ -491,7 +574,14 @@ function CatEditPage() {
         <textarea
           onChange={(e) => setNotes(e.target.value)}
           value={notes}
-          style={{width: "95%", maxWidth: "95%", resize: "none", height: "20em", fontSize: "16px"}}></textarea>
+          style={{
+            width: "95%",
+            maxWidth: "95%",
+            resize: "none",
+            height: "20em",
+            fontSize: "16px",
+          }}
+        ></textarea>
       </fieldset>
 
       <div className="submit">

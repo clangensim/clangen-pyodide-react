@@ -53,23 +53,23 @@ function SettingsPage() {
   const siteThemes: SelectOption[] = [
     {
       label: "Sync with System",
-      value: "auto"
+      value: "auto",
     },
     {
       label: "Light",
-      value: "theme-light"
+      value: "theme-light",
     },
     {
       label: "Dark",
-      value: "theme-dark"
+      value: "theme-dark",
     },
     {
       label: "ClanGen Dark (Partially Complete)",
-      value: "theme-clangen-dark"
+      value: "theme-clangen-dark",
     },
     {
       label: "Unrelated RPG",
-      value: "theme-unrelated-rpg"
+      value: "theme-unrelated-rpg",
     },
   ];
 
@@ -103,7 +103,7 @@ function SettingsPage() {
 
     const storedSaveAsZip = localStorage.getItem("export-as-zip");
     if (storedSaveAsZip) {
-      setSaveAsZip(storedSaveAsZip !== null)
+      setSaveAsZip(storedSaveAsZip !== null);
     }
 
     clangenRunner.getSettings().then((s) => {
@@ -128,7 +128,7 @@ function SettingsPage() {
         customCssElement.textContent = customCss;
       }
       localStorage.setItem("custom-css", customCss);
-      
+
       if (shading) {
         localStorage.setItem("shading-enabled", "true");
       } else {
@@ -138,7 +138,7 @@ function SettingsPage() {
       if (saveAsZip) {
         localStorage.setItem("export-as-zip", "true");
       } else {
-        localStorage.removeItem("export-as-zip")
+        localStorage.removeItem("export-as-zip");
       }
 
       navigator("/");
@@ -148,44 +148,64 @@ function SettingsPage() {
   return (
     <BasePage>
       <h2>Game Settings</h2>
-      {Object.keys(settings).length !== 0 ?
-       Object.entries(settings).map(([settingName, value]) => (
-        <Checkbox
-          key={settingName}
-          label={settingLabels[settingName]?.label}
-          checked={value}
-          onChange={() => setSettings({ ...settings, [settingName]: !value })}
-        />
-      )) : 
-       Object.entries(settingLabels).map(([settingName, _]) => (
-        <Checkbox
-          key={settingName}
-          label={settingLabels[settingName].label}
-          checked={false}
-        />
-      ))
-      }
+      {Object.keys(settings).length !== 0
+        ? Object.entries(settings).map(([settingName, value]) => (
+            <Checkbox
+              key={settingName}
+              label={settingLabels[settingName]?.label}
+              checked={value}
+              onChange={() =>
+                setSettings({ ...settings, [settingName]: !value })
+              }
+            />
+          ))
+        : Object.entries(settingLabels).map(([settingName, _]) => (
+            <Checkbox
+              key={settingName}
+              label={settingLabels[settingName].label}
+              checked={false}
+            />
+          ))}
 
       <h2>Site Settings</h2>
-      <Checkbox label="Enable shading for cat sprites" onChange={() => setShading(!shading)} checked={shading}/>
-      <Checkbox label="Export save as .zip instead of .sav" onChange={() => setSaveAsZip(!saveAsZip)} checked={saveAsZip}/>
-      <Select 
-        label="Site theme" 
-        onChange={(value: string) => setSiteTheme(value)} 
-        options={siteThemes} 
+      <Checkbox
+        label="Enable shading for cat sprites"
+        onChange={() => setShading(!shading)}
+        checked={shading}
+      />
+      <Checkbox
+        label="Export save as .zip instead of .sav"
+        onChange={() => setSaveAsZip(!saveAsZip)}
+        checked={saveAsZip}
+      />
+      <Select
+        label="Site theme"
+        onChange={(value: string) => setSiteTheme(value)}
+        options={siteThemes}
         value={siteTheme}
         noEmpty={true}
       />
       <div>
         <fieldset>
           <legend>Custom CSS</legend>
-          <textarea rows={10} cols={50} value={customCss} onChange={e => setCustomCss(e.target.value)} style={{resize: "none", width: "98%"}}></textarea>
-          
-          <p>Your custom CSS will be injected onto every page except for this one. For your safety, please only input CSS that you 100% trust.</p>
+          <textarea
+            rows={10}
+            cols={50}
+            value={customCss}
+            onChange={(e) => setCustomCss(e.target.value)}
+            style={{ resize: "none", width: "98%" }}
+          ></textarea>
+
+          <p>
+            Your custom CSS will be injected onto every page except for this
+            one. For your safety, please only input CSS that you 100% trust.
+          </p>
         </fieldset>
       </div>
       <div className="submit">
-        <button tabIndex={0} onClick={handleSave}>Save</button>
+        <button tabIndex={0} onClick={handleSave}>
+          Save
+        </button>
       </div>
     </BasePage>
   );

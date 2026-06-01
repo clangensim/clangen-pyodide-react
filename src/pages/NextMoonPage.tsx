@@ -32,63 +32,90 @@ function NextMoonPage() {
 
   useEffect(() => {
     processing.current = isProcessing;
-  }, [isProcessing])
+  }, [isProcessing]);
 
   function handleMoonskip() {
     setIsProcessing(true);
     setTimeout(() => {
-      if (processing.current) { setShowLoading(true); }
-      else { setShowLoading(false); }
+      if (processing.current) {
+        setShowLoading(true);
+      } else {
+        setShowLoading(false);
+      }
     }, 250);
-    clangenRunner.moonskip().then(() => {
-      setIsProcessing(false);
-      setShowLoading(false);
-      clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
-      clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));
-      clangenRunner.nextFocusChange().then((n) => setNextFocusChange(n));
-      queryClient.invalidateQueries();
-    }).catch((err) => {
-      alert(err);
-      setIsProcessing(false);
-      setShowLoading(false);
-      queryClient.invalidateQueries();
-    });
+    clangenRunner
+      .moonskip()
+      .then(() => {
+        setIsProcessing(false);
+        setShowLoading(false);
+        clangenRunner.getPatrollableCats().then((c) => setCanPatrol(c));
+        clangenRunner.getPossibleMediators().then((c) => setCanMediate(c));
+        clangenRunner.nextFocusChange().then((n) => setNextFocusChange(n));
+        queryClient.invalidateQueries();
+      })
+      .catch((err) => {
+        alert(err);
+        setIsProcessing(false);
+        setShowLoading(false);
+        queryClient.invalidateQueries();
+      });
   }
 
   return (
     <BasePage>
-      <img height="300px" style={{imageRendering: "pixelated"}} src={nextMoonImage}></img>
+      <img
+        height="300px"
+        style={{ imageRendering: "pixelated" }}
+        src={nextMoonImage}
+      ></img>
 
-      <p>It has been <b>{clanInfo?.age} moons</b> since {clanInfo?.name} was founded. The current season is <b>{clanInfo?.season}</b>.</p>
+      <p>
+        It has been <b>{clanInfo?.age} moons</b> since {clanInfo?.name} was
+        founded. The current season is <b>{clanInfo?.season}</b>.
+      </p>
 
-      {(canPatrol.length > 0 || canMediate.length > 0) &&
+      {(canPatrol.length > 0 || canMediate.length > 0) && (
         <p>
-          {canPatrol.length > 0 && 
-            <>{canPatrol.length} <Pluralize num={canPatrol.length}>cat</Pluralize> can still patrol this moon.</>
-          }{" "}
-          {canMediate.length > 0 && 
-            <>{canMediate.length} <Pluralize num={canMediate.length}>mediator</Pluralize> can still mediate this moon.</>
-          }
+          {canPatrol.length > 0 && (
+            <>
+              {canPatrol.length}{" "}
+              <Pluralize num={canPatrol.length}>cat</Pluralize> can still patrol
+              this moon.
+            </>
+          )}{" "}
+          {canMediate.length > 0 && (
+            <>
+              {canMediate.length}{" "}
+              <Pluralize num={canMediate.length}>mediator</Pluralize> can still
+              mediate this moon.
+            </>
+          )}
         </p>
-      }
+      )}
 
-      {nextFocusChange === 0 &&
-        <p>{clanInfo?.name}'s <Link to="/dens/warriors-den">focus</Link> can be changed.</p>
-      }
+      {nextFocusChange === 0 && (
+        <p>
+          {clanInfo?.name}'s <Link to="/dens/warriors-den">focus</Link> can be
+          changed.
+        </p>
+      )}
 
-      {clanInfo?.gameMode !== "classic" &&
+      {clanInfo?.gameMode !== "classic" && (
         <p>
           Current Food: {clanInfo?.freshkill} <br />
           Food Required to Feed Everyone: {clanInfo?.requiredFreshkill}
         </p>
-      }
+      )}
 
       <div className="flex">
-        <button disabled={isProcessing} tabIndex={0} onClick={handleMoonskip}>Timeskip One Moon</button>
-        { showLoading && 
-        <div className="moonskip-spinner__container">
-          <div className="moonskip-spinner" />
-        </div>}
+        <button disabled={isProcessing} tabIndex={0} onClick={handleMoonskip}>
+          Timeskip One Moon
+        </button>
+        {showLoading && (
+          <div className="moonskip-spinner__container">
+            <div className="moonskip-spinner" />
+          </div>
+        )}
       </div>
     </BasePage>
   );

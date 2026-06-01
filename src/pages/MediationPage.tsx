@@ -19,7 +19,11 @@ const crumbs = [
   },
 ];
 
-function haveMediated(cat1: string, cat2: string, mediatedPairs: [string, string][]) {
+function haveMediated(
+  cat1: string,
+  cat2: string,
+  mediatedPairs: [string, string][],
+) {
   for (const pair of mediatedPairs) {
     if (pair.includes(cat1) && pair.includes(cat2)) {
       return true;
@@ -42,7 +46,11 @@ function MediationPage() {
   const [selectedCat2, setSelectedCat2] = useState("");
   const [selectedCat3, setSelectedCat3] = useState("");
 
-  const alreadyMediated = haveMediated(selectedCat3, selectedCat2, mediatedPairs);
+  const alreadyMediated = haveMediated(
+    selectedCat3,
+    selectedCat2,
+    mediatedPairs,
+  );
 
   // non-empty cats only
   const selectedCats = [selectedCat1, selectedCat2, selectedCat3].filter(
@@ -116,7 +124,7 @@ function MediationPage() {
   if (isFirstLoad) {
     return (
       <BasePage crumbs={crumbs}>
-        <p style={{height: "500px"}}>Loading...</p>
+        <p style={{ height: "500px" }}>Loading...</p>
       </BasePage>
     );
   }
@@ -138,8 +146,9 @@ function MediationPage() {
   return (
     <BasePage crumbs={crumbs}>
       <p>
-        Cats with the “mediator” or "mediator apprentice" role without major injuries or
-        illnesses can mediate once every moon. Mediator cats cannot patrol. Roles can be set on a cat's edit page.
+        Cats with the “mediator” or "mediator apprentice" role without major
+        injuries or illnesses can mediate once every moon. Mediator cats cannot
+        patrol. Roles can be set on a cat's edit page.
       </p>
 
       <p>Any particular pair of cats can only be mediated once per moon.</p>
@@ -194,7 +203,9 @@ function MediationPage() {
         />
       </fieldset>
 
-      {alreadyMediated && <p>This pair of cats has already been mediated together this moon.</p>}
+      {alreadyMediated && (
+        <p>This pair of cats has already been mediated together this moon.</p>
+      )}
 
       <p>{mediationText}</p>
 

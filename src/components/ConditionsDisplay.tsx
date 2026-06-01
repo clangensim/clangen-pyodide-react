@@ -1,7 +1,11 @@
 import { Condition } from "../python/types";
 import Pluralize from "./generic/Pluralize";
 
-function ConditionsDisplay({conditions}: {conditions: Condition[] | undefined}) {
+function ConditionsDisplay({
+  conditions,
+}: {
+  conditions: Condition[] | undefined;
+}) {
   return (
     <>
       {conditions === undefined ||
@@ -12,7 +16,10 @@ function ConditionsDisplay({conditions}: {conditions: Condition[] | undefined}) 
           <ul>
             <li>{condition.type}</li>
             <li>{condition.severity}</li>
-            <li>has had for {condition.moonsWith} <Pluralize num={condition.moonsWith}>moon</Pluralize></li>
+            <li>
+              has had for {condition.moonsWith}{" "}
+              <Pluralize num={condition.moonsWith}>moon</Pluralize>
+            </li>
           </ul>
         </ul>
       ))}

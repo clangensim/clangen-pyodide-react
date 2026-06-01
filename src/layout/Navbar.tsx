@@ -45,7 +45,7 @@ function Navbar() {
         <MenuButton tabIndex={0} className="nav-item">
           Dens
         </MenuButton>
-        <MenuItems  anchor="bottom start" className="nav-sublist">
+        <MenuItems anchor="bottom start" className="nav-sublist">
           <MenuItem>
             <Link to="/dens/leaders-den">Leader's Den</Link>
           </MenuItem>

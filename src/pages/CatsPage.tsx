@@ -19,9 +19,14 @@ const crumbs = [
   },
 ];
 
-type ScreenState = "starclan" | "dark_forest" | "clan_cats" | "outside_cats" | "unknown_residence";
-const selectedButtonClass = "btn-primary"
-const deselectedButtonClass = "btn-secondary"
+type ScreenState =
+  | "starclan"
+  | "dark_forest"
+  | "clan_cats"
+  | "outside_cats"
+  | "unknown_residence";
+const selectedButtonClass = "btn-primary";
+const deselectedButtonClass = "btn-secondary";
 
 function CatsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,14 +35,17 @@ function CatsPage() {
   const query = useClanInfo();
   const clanInfo = query.data;
 
-
   let showLiving;
   let showDead;
   const [screenState, _setScreenState] = useState<ScreenState>("clan_cats");
   if (screenState === "clan_cats" || screenState === "outside_cats") {
     showLiving = true;
     showDead = false;
-  } else if (screenState === "starclan" || screenState === "dark_forest" || screenState === "unknown_residence") {
+  } else if (
+    screenState === "starclan" ||
+    screenState === "dark_forest" ||
+    screenState === "unknown_residence"
+  ) {
     showLiving = false;
     showDead = true;
   }
@@ -49,53 +57,139 @@ function CatsPage() {
 
   useEffect(() => {
     let category = searchParams.get("category") as ScreenState | null;
-    if (category === null) { category = "clan_cats" }
+    if (category === null) {
+      category = "clan_cats";
+    }
     _setScreenState(category);
   }, [searchParams]);
 
   function setScreenState(state: ScreenState) {
     _setScreenState(state);
-    setSearchParams({category: state});
+    setSearchParams({ category: state });
   }
-
 
   return (
     <BasePage crumbs={crumbs}>
       <div className="cats-list__nav">
-        <div className="button-row" style={{marginLeft: "0.25em"}}>
-          { showLiving && 
+        <div className="button-row" style={{ marginLeft: "0.25em" }}>
+          {showLiving && (
             <>
-              <button tabIndex={0} className={screenState === "clan_cats" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("clan_cats")}>{clanInfo ? clanInfo.name : "Clan"}</button>
-              <button tabIndex={0} className={screenState === "outside_cats" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("outside_cats")}>Cats Outside the Clan</button>
+              <button
+                tabIndex={0}
+                className={
+                  screenState === "clan_cats"
+                    ? selectedButtonClass
+                    : deselectedButtonClass
+                }
+                onClick={() => setScreenState("clan_cats")}
+              >
+                {clanInfo ? clanInfo.name : "Clan"}
+              </button>
+              <button
+                tabIndex={0}
+                className={
+                  screenState === "outside_cats"
+                    ? selectedButtonClass
+                    : deselectedButtonClass
+                }
+                onClick={() => setScreenState("outside_cats")}
+              >
+                Cats Outside the Clan
+              </button>
             </>
-          }
-          { showDead && 
+          )}
+          {showDead && (
             <>
-              <button tabIndex={0} className={screenState === "starclan" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("starclan")}>StarClan</button>
-              <button tabIndex={0} className={screenState === "dark_forest" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("dark_forest")}>Dark Forest</button>
-              <button tabIndex={0} className={screenState === "unknown_residence" ? selectedButtonClass : deselectedButtonClass} onClick={() => setScreenState("unknown_residence")}>Unknown</button>
+              <button
+                tabIndex={0}
+                className={
+                  screenState === "starclan"
+                    ? selectedButtonClass
+                    : deselectedButtonClass
+                }
+                onClick={() => setScreenState("starclan")}
+              >
+                StarClan
+              </button>
+              <button
+                tabIndex={0}
+                className={
+                  screenState === "dark_forest"
+                    ? selectedButtonClass
+                    : deselectedButtonClass
+                }
+                onClick={() => setScreenState("dark_forest")}
+              >
+                Dark Forest
+              </button>
+              <button
+                tabIndex={0}
+                className={
+                  screenState === "unknown_residence"
+                    ? selectedButtonClass
+                    : deselectedButtonClass
+                }
+                onClick={() => setScreenState("unknown_residence")}
+              >
+                Unknown
+              </button>
             </>
-          }
+          )}
         </div>
 
         <div className="cats-list__nav__toggle-living">
-          {showDead && <button tabIndex={0} onClick={() => { setScreenState("clan_cats") }} className="link-button">Show living</button>}
-          {showLiving && <button tabIndex={0} onClick={() => { setScreenState("starclan") }} className="link-button">Show deceased</button>}
+          {showDead && (
+            <button
+              tabIndex={0}
+              onClick={() => {
+                setScreenState("clan_cats");
+              }}
+              className="link-button"
+            >
+              Show living
+            </button>
+          )}
+          {showLiving && (
+            <button
+              tabIndex={0}
+              onClick={() => {
+                setScreenState("starclan");
+              }}
+              className="link-button"
+            >
+              Show deceased
+            </button>
+          )}
         </div>
       </div>
 
       <div className="cats-list__container">
         <div className="cats-list">
           {cats.map((cat, _) => {
-            if (screenState === "dark_forest" && (!cat.dead || !cat.inDarkForest )) {
+            if (
+              screenState === "dark_forest" &&
+              (!cat.dead || !cat.inDarkForest)
+            ) {
               return;
-            } else if (screenState === "starclan" && (!cat.dead || cat.inDarkForest || cat.outside)) {
+            } else if (
+              screenState === "starclan" &&
+              (!cat.dead || cat.inDarkForest || cat.outside)
+            ) {
               return;
-            } else if (screenState === "clan_cats" && (cat.dead || cat.outside)) {
+            } else if (
+              screenState === "clan_cats" &&
+              (cat.dead || cat.outside)
+            ) {
               return;
-            } else if (screenState === "outside_cats" && (cat.dead || !cat.outside || cat.isDrivenOff)) {
+            } else if (
+              screenState === "outside_cats" &&
+              (cat.dead || !cat.outside || cat.isDrivenOff)
+            ) {
               return;
-            } else if (screenState === "unknown_residence" && (!cat.dead || cat.inDarkForest || !cat.outside)) {
+            } else if (
+              screenState === "unknown_residence" &&
+              (!cat.dead || cat.inDarkForest || !cat.outside)
+            ) {
               return;
             }
             return (

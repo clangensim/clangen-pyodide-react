@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite'
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { defineConfig } from "vite";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import react from '@vitejs/plugin-react'
+import react from "@vitejs/plugin-react";
 
 const PYODIDE_EXCLUDE = [
   "!**/*.{md,html}",
@@ -14,7 +14,6 @@ const PYODIDE_EXCLUDE = [
 ];
 const DIR = dirname(fileURLToPath(import.meta.url));
 
-
 export function viteStaticCopyPyodide() {
   const pyodideDir = dirname(fileURLToPath(import.meta.resolve("pyodide")));
   return viteStaticCopy({
@@ -24,7 +23,7 @@ export function viteStaticCopyPyodide() {
         dest: "assets",
         rename: {
           stripBase: true,
-        }
+        },
       },
     ],
   });
@@ -32,10 +31,7 @@ export function viteStaticCopyPyodide() {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    viteStaticCopyPyodide(),
-  ],
+  plugins: [react(), viteStaticCopyPyodide()],
   build: {
     rollupOptions: {
       input: {
@@ -44,15 +40,13 @@ export default defineConfig({
         reset: resolve(DIR, "reset.html"),
         changelog: resolve(DIR, "changelog.html"),
         faq: resolve(DIR, "faq.html"),
-      }
-    }
+      },
+    },
   },
   optimizeDeps: {
-    exclude: [
-      "pyodide",
-    ],
+    exclude: ["pyodide"],
   },
   worker: {
     format: "es",
-  }
-})
+  },
+});

@@ -10,7 +10,7 @@ import { formatText } from "../utils";
 import CatDisplay from "../components/CatDisplay";
 import CatSearch from "../components/CatSearch";
 
-type ScreenState = "start" | "in-progress" | "wrap-up"
+type ScreenState = "start" | "in-progress" | "wrap-up";
 const crumbs = [
   {
     url: "/",
@@ -28,10 +28,15 @@ function getPatrolArtPath(type: PatrolType | null, path: string | undefined) {
   }
   let name: string = "bord";
 
-  if (type == "hunting") { name = "hunt" }
-  else if (type == "border") { name = "bord" }
-  else if (type == "training") { name = "train" }
-  else if (type == "med") { name = "med" }
+  if (type == "hunting") {
+    name = "hunt";
+  } else if (type == "border") {
+    name = "bord";
+  } else if (type == "training") {
+    name = "train";
+  } else if (type == "med") {
+    name = "med";
+  }
 
   return `patrol_art/${name}_general_intro.png`;
 }
@@ -77,7 +82,7 @@ function PatrolsPage() {
   useEffect(() => {
     reset().then(() => {
       setIsFirstLoad(false);
-    })
+    });
   }, []);
 
   useEffect(() => {
@@ -102,9 +107,11 @@ function PatrolsPage() {
   async function endPatrol(action: PatrolAction) {
     try {
       const [outcomeText, outcomeResult, art] =
-      await clangenRunner.finishPatrol(patrolUuid, action);
+        await clangenRunner.finishPatrol(patrolUuid, action);
       // outcome art is used rarely
-      if (art) { setPatrolArtUrl(getPatrolArtPath(null, art)) }
+      if (art) {
+        setPatrolArtUrl(getPatrolArtPath(null, art));
+      }
       setPatrolText(outcomeText);
       setResultText(outcomeResult);
       setScreenState("wrap-up");
@@ -117,7 +124,7 @@ function PatrolsPage() {
   if (isFirstLoad) {
     return (
       <BasePage crumbs={crumbs}>
-        <p style={{height: "500px"}}>Loading...</p>
+        <p style={{ height: "500px" }}>Loading...</p>
       </BasePage>
     );
   }
@@ -147,7 +154,7 @@ function PatrolsPage() {
 
       <fieldset disabled={screenState !== "start"}>
         <legend>Cats</legend>
-        <CatSearch 
+        <CatSearch
           catsToSearch={possibleCats}
           catsPerPage={16}
           maxSelection={6}
@@ -159,21 +166,21 @@ function PatrolsPage() {
       <fieldset>
         <legend>Patrol Group</legend>
         {selectedCats.length === 0 && <>This patrol group is empty.</>}
-        {selectedCats.length !== 0 &&
-        <div className="selected-cats-list">
-          {possibleCats
-          .filter(cat => cat && selectedCats.find(id => id == cat.ID)) // sometimes cat doesn't exist?
-          .map((cat, index) => {
-            return (
-              <div className="cat" key={index}>
-                <CatDisplay cat={cat} w="50px" h="50px" />
-                <div>{cat.name.display}</div>
-                <div className="cat-search-select-status">{cat.status}</div>
-              </div>
-            );
-          })}
+        {selectedCats.length !== 0 && (
+          <div className="selected-cats-list">
+            {possibleCats
+              .filter((cat) => cat && selectedCats.find((id) => id == cat.ID)) // sometimes cat doesn't exist?
+              .map((cat, index) => {
+                return (
+                  <div className="cat" key={index}>
+                    <CatDisplay cat={cat} w="50px" h="50px" />
+                    <div>{cat.name.display}</div>
+                    <div className="cat-search-select-status">{cat.status}</div>
+                  </div>
+                );
+              })}
           </div>
-        }
+        )}
       </fieldset>
 
       <fieldset>
@@ -225,9 +232,13 @@ function PatrolsPage() {
         </>
       )}
 
-      {patrolArtUrl && 
-        <img height={300} style={{imageRendering: "pixelated"}} src={patrolArtUrl}></img>
-      }
+      {patrolArtUrl && (
+        <img
+          height={300}
+          style={{ imageRendering: "pixelated" }}
+          src={patrolArtUrl}
+        ></img>
+      )}
 
       <p>{formatText(patrolText)}</p>
 
