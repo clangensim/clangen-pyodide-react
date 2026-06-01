@@ -257,6 +257,9 @@ h1, h2 {
 .below-header {
   margin-top: 0.25em;
 }
+.above-header {
+  margin-bottom: 0.5em;
+}
 
 svg.season_spring {
   fill: var(--spring-color);

@@ -46,6 +46,18 @@ function getRelationship(relation: number) {
   }
 }
 
+function getReputation(reputation: number) {
+  if (0 <= reputation && reputation <= 30) {
+    return "hostile";
+  }
+  else if (31 <= reputation && reputation <= 70) {
+    return "neutral";
+  }
+  else { // reputation >= 70
+    return "welcoming";
+  }
+}
+
 function LeadersDenPage() {
   const clanInfo = useClanInfo();
   const [otherClans, setOtherClans] = useState<OtherClan[]>([]);
@@ -54,6 +66,8 @@ function LeadersDenPage() {
   const [outsiderAction, setOutsiderAction] = useState<OutsiderAction>();
   const [otherClanInteraction, setOtherClanInteraction] =
     useState<OtherClanInteraction>();
+
+  const reputation = clanInfo.data && getReputation(clanInfo.data?.reputation);
 
   useEffect(() => {
     clangenRunner.getOtherClans().then((oc) => setOtherClans(oc));
@@ -113,7 +127,7 @@ function LeadersDenPage() {
     <BasePage crumbs={crumbs}>
       Manage relationships with other cats who live nearby.
       <TabGroup vertical>
-        <TabList className="button-row">
+        <TabList>
           <ul className="below-header row-list">
             <li>
               <Tab className="link-button">Gatherings</Tab>
@@ -203,8 +217,8 @@ function LeadersDenPage() {
 
           <TabPanel>
             <h2>Order a Search</h2>
-            Only one search can be ordered per moon.
-            <ul className="below-header">
+            Only one search can be ordered per moon. Searches are more likely to succeed if the Clan has a better reputation among outsiders.
+            <ul className="below-header above-header">
               <li>Search for - Search for this lost cat to bring them home.</li>
               <li>Hunt down - Hunt down this cat and kill them.</li>
               <li>
@@ -212,6 +226,11 @@ function LeadersDenPage() {
               </li>
               <li>Drive off - Drive this cat away if you find them.</li>
             </ul>
+            {reputation &&
+              <p className="below-header">
+                {clanInfo.data?.name} is seen as {reputation} towards outsiders.
+              </p>
+            }
             {cats.length > 0 ? (
               <>
                 <table>
