@@ -110,7 +110,7 @@ body {
   font-family: "Bubblegum Sans", sans-serif;
   font-size: large;
   text-decoration-line: none;
-  padding: 10px 10px 10px 5px;
+  padding: 10px 10px 10px 10px;
   color: var(--navbar-text-color);
   text-align: left;
 }
