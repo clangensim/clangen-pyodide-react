@@ -149,6 +149,7 @@ async function drawCat(
   if (ctx === null || outCtx == null) {
     return;
   }
+  outCtx.clearRect(0, 0, outCanvas.width, outCanvas.height);
 
   if (pelt.name !== "Tortie" && pelt.name !== "Calico") {
     await drawSprite(`${pelt.spritesName}${pelt.colour}`, catSprite, ctx);
@@ -279,7 +280,6 @@ async function drawCat(
     }
   }
 
-  outCtx.clearRect(0, 0, outCanvas.width, outCanvas.height);
   if (pelt.reverse) {
     outCtx.scale(-1, 1);
     outCtx.drawImage(canvas, -outCanvas.width, 0);
