@@ -214,7 +214,7 @@ function NewClanPage() {
                     if (cat.ID === med) {
                       return;
                     }
-                    if (cat.status === "warrior") {
+                    if (cat.status === "warrior" || cat.status === "elder") {
                       return (
                         <option key={cat.ID} value={cat.ID}>
                           {cat.name.display}
@@ -245,7 +245,7 @@ function NewClanPage() {
                     if (cat.ID === med) {
                       return;
                     }
-                    if (cat.status === "warrior") {
+                    if (cat.status === "warrior" || cat.status === "elder") {
                       return (
                         <option key={cat.ID} value={cat.ID}>
                           {cat.name.display}
@@ -276,7 +276,7 @@ function NewClanPage() {
                     if (cat.ID === deputy) {
                       return;
                     }
-                    if (cat.status === "warrior") {
+                    if (cat.status === "warrior" || cat.status === "elder") {
                       return (
                         <option key={cat.ID} value={cat.ID}>
                           {cat.name.display}
