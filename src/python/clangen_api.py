@@ -443,6 +443,7 @@ def get_potential_mates(cat_id):
                   and cat.is_potential_mate(
                       i, for_love_interest=False,
                       age_restriction=False, ignore_no_mates=True)
+                  and i.outside == cat.outside
                   and (not single_only or not i.mate)
                   and (not have_kits_only 
                       or game.clan.clan_settings["same sex birth"]
