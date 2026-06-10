@@ -457,10 +457,18 @@ function CatEditPage() {
               noEmpty
             />
           </div>
+        </>
+      )}
 
+      {cat && !cat.outside && (
+        <>
           <EditGender cat={cat} value={gender} setValue={setGender} />
           <EditPronouns value={pronouns} setValue={setPronouns} />
+        </>
+      )}
 
+      {cat && !cat.dead && !cat.outside && (
+        <>
           {["young adult", "adult", "senior adult", "senior"].includes(
             cat.age,
           ) && (
