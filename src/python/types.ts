@@ -69,6 +69,7 @@ type Cat = {
   exiled: boolean;
   isDrivenOff: boolean;
   experienceLevel: string;
+  experience: number;
   thought: string;
   description: string;
   canWork: boolean;

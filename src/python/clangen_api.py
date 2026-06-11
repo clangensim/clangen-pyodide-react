@@ -158,6 +158,7 @@ def cat_to_dict(cat, depth=1):
     'parents': parents,
     'adoptiveParents': adoptive_parents,
     'mates': mates,
+    'experience': cat.experience,
     'experienceLevel': cat.experience_level,
     'thought': cat.thought,
     'canWork': not cat.not_working(),
