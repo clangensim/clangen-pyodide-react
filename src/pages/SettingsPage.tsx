@@ -45,6 +45,7 @@ const settingLabels: Record<string, Record<string, string>> = {
 function SettingsPage() {
   const [settings, setSettings] = useState<Record<string, boolean>>({});
   const [customCss, setCustomCss] = useState("");
+  const [showExpValue, setShowExpValue] = useState(false);
   const [shading, setShading] = useState(false);
   const [saveAsZip, setSaveAsZip] = useState(false);
   const [siteTheme, setSiteTheme] = useState("");
@@ -101,6 +102,11 @@ function SettingsPage() {
       setShading(shadingEnabled !== null);
     }
 
+    const showExpValueEnabled = localStorage.getItem("show-exp-value");
+    if (showExpValueEnabled) {
+      setShowExpValue(showExpValueEnabled !== null);
+    }
+
     const storedSaveAsZip = localStorage.getItem("export-as-zip");
     if (storedSaveAsZip) {
       setSaveAsZip(storedSaveAsZip !== null);
@@ -141,6 +147,12 @@ function SettingsPage() {
         localStorage.removeItem("export-as-zip");
       }
 
+      if (showExpValue) {
+        localStorage.setItem("show-exp-value", "true");
+      } else {
+        localStorage.removeItem("show-exp-value");
+      }
+
       navigator("/");
     });
   }
@@ -168,6 +180,11 @@ function SettingsPage() {
           ))}
 
       <h2>Site Settings</h2>
+      <Checkbox
+        label="Show numerical experience value"
+        onChange={() => setShowExpValue(!showExpValue)}
+        checked={showExpValue}
+      />
       <Checkbox
         label="Enable shading for cat sprites"
         onChange={() => setShading(!shading)}

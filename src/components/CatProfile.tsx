@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { Cat } from "../python/types";
 import Pluralize from "./generic/Pluralize";
 import { Fragment } from "react/jsx-runtime";
+import { useEffect, useState } from "react";
 
 function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
   return (
@@ -22,6 +23,15 @@ function CommaSeparatedProfileLinks({ cats }: { cats: Cat[] }) {
 }
 
 function CatProfile({ cat }: { cat: Cat }) {
+
+  const [showExp, setShowExp] = useState<Boolean>(false);
+
+  useEffect(() => {
+    const showExpValue = localStorage.getItem("show-exp-value");
+    if (showExpValue) {
+      setShowExp(true);
+    }
+  }, [])
   return (
     <>
       <ul className="row-list cat-profile__list">
@@ -35,7 +45,12 @@ function CatProfile({ cat }: { cat: Cat }) {
         <li>{cat.status} </li>
         {cat.lives !== undefined && <li>remaining lives: {cat.lives}</li>}
         <li>backstory: {cat.backstory}</li>
-        <li>experience: {cat.experienceLevel}</li>
+        <li>
+          experience: {cat.experienceLevel}
+          {showExp && 
+            <>{" "}({cat.experience})</>
+          }
+        </li>
         {cat.mentor && (
           <li>
             mentor:{" "}
